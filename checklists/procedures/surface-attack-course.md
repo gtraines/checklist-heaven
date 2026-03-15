@@ -29,7 +29,7 @@ This course provides a structured progression from basic unguided surface attack
 
 | Phase | Title | Focus | Hours (Approx.) |
 | :---: | :--- | :--- | :---: |
-| 1 | Basic Surface Attack | Unguided Weapons, Visual Delivery, Safe Escape | 4 |
+| 1 | Basic Surface Attack | Attack Patterns & Geometry, Unguided Weapons, Visual Delivery, Safe Escape | 5 |
 | 2 | Intermediate Surface Attack | TGP/Shkval, Precision Guided Munitions | 4 |
 | 3 | CAS & JTAC Coordination | 9-Line, Check-In, Keyhole CAS | 4 |
 | 4 | Airborne FAC-A | Stack Management, Marking, Talk-On | 4 |
@@ -70,14 +70,103 @@ This course provides a structured progression from basic unguided surface attack
 
 Upon completion of Phase 1, the student will be able to:
 
-1. Execute a safe, accurate high-angle dive attack with unguided general-purpose bombs.
-2. Execute a low-angle dive / strafe attack with rockets and the gun system.
-3. Identify and apply correct frag avoidance and minimum recovery altitudes for all unguided ordnance types.
-4. Configure stores management systems (DSMS or simplified equivalents) correctly prior to weapons employment.
+1. Describe the Standard Basic Surface Attack Pattern and execute correct range brevity calls.
+2. Describe the Tactical Surface Attack Pattern and explain how it differs from the basic training pattern.
+3. Execute a safe, accurate high-angle dive attack with unguided general-purpose bombs.
+4. Execute a low-angle dive / strafe attack with rockets and the gun system.
+5. Identify and apply correct frag avoidance and minimum recovery altitudes for all unguided ordnance types.
+6. Configure stores management systems (DSMS or simplified equivalents) correctly prior to weapons employment.
 
 ---
 
-### 1.1 Weapons Delivery: High-Angle Dive (30–45°)
+### 1.1 Attack Patterns & Geometry
+
+Before mastering individual weapon deliveries, pilots must understand how to position the aircraft relative to the target. Two fundamental geometries govern this course: the **Standard Basic Surface Attack Pattern** (range and training operations) and the **Tactical Surface Attack Pattern** (combat employment).
+
+---
+
+#### 1.1.1 Standard Basic Surface Attack Pattern
+
+The basic pattern is the foundation of all range operations. Predictability and repeatability are intentional — the circuit gives pilots a structured, repeatable geometry in which to practise dive angles, airspeed, and release parameters without the added workload of threat management.
+
+**Pattern Legs:**
+
+| Leg | Description |
+| :--- | :--- |
+| **Crosswind** | Initial turn after recovery to re-enter the downwind. |
+| **Downwind** | Parallel to the run-in heading, opposite direction. All pre-attack checks complete here. |
+| **Base** | 90° turn from downwind to intercept the run-in heading. Manages spacing to target. |
+| **Final (Run-In)** | The attack leg. Acquire target, establish dive parameters, and release. |
+| **Recovery** | Immediate 4–5 g pull after weapon release. Egress off-axis; return to pattern altitude. |
+
+**Pattern Diagram (Right-Hand Circuit):**
+
+```
+             ↑  DOWNWIND  (pre-attack checks)
+             │
+             └──►  BASE  (2–3 NM abeam; 90° turn to final)
+                   │
+                   ↓  FINAL / RUN-IN  ("In" call)
+                   │
+                  [T]  TARGET  — weapon release
+                   │
+                   ↑  RECOVERY  ("Off" call; 4–5 g pull)
+                   │
+              ─────┘  (crosswind — rejoin pattern)
+```
+
+**Typical Parameters:**
+
+| Parameter | Value |
+| :--- | :--- |
+| **Pattern Altitude** | 3,000 – 5,000 ft AGL |
+| **Base Distance (abeam target)** | 2 – 3 NM |
+| **Run-In Airspeed** | 300 – 350 KIAS |
+| **Multi-Ship Spacing** | 30 – 60 seconds |
+
+**Standard Range Calls:**
+- **"In"** — Transmitted when commencing roll-in or turning base-to-final.
+  *Example:* `"Colt 1-1, In, Heading 270."`
+- **"Off [Safe/Armed] [Direction]"** — Transmitted when initiating the recovery pull.
+  *Example:* `"Colt 1-1, Off Safe, Right."`
+
+---
+
+#### 1.1.2 Tactical Surface Attack Pattern
+
+Combat employment abandons the rigid circuit in favour of geometries that minimise exposure time, maximise surprise, and enable mutual support. The core principle is unpredictability — varying attack axes, altitudes, and timing to defeat enemy tracking solutions.
+
+**Key Tactical Concepts:**
+
+| Concept | Description |
+| :--- | :--- |
+| **IP (Initial Point)** | A distinct geographic feature 5–15 NM from the target. Aircraft hold here and depart on sequence. |
+| **Wheel / Orbit** | Racetrack or circular hold at the IP; provides continuous observation at standoff. |
+| **Pop-Up Attack** | Low-level terrain-masked ingress; rapid climb at the action point to acquire target and dive. |
+| **Shooter-Cover** | One aircraft attacks; wingman maintains overwatch and threat suppression. |
+
+**Tactical Considerations:**
+- **"One Pass, Haul Ass"** — Avoid re-attacking on the same heading. Predictable runs are the primary cause of loss to radar-directed AAA.
+- **Egress Jinking** — Execute aggressive heading and altitude changes immediately after release to deny enemy tracking solutions.
+- **Attack Axis Selection** — Brief the attack heading to avoid known threat sectors, maximise safe egress, and prevent fratricide.
+- **Terrain Masking** — Use terrain between the IP and target area to reduce radar and visual detection prior to the pop-up or run-in.
+
+---
+
+#### 1.1.3 Pattern Comparison
+
+| Feature | Basic Pattern (Range) | Tactical Pattern (Combat) |
+| :--- | :--- | :--- |
+| **Primary Goal** | Training, Safety, Repetition | Survivability, Effect on Target |
+| **Shape** | Rectangular / Box Circuit | IP Hold, Wheel, Pop-Up, Straight-In |
+| **Predictability** | High — intentional | Low — intentional |
+| **Entry Point** | Downwind leg | IP or action point |
+| **Communications** | Standard range calls (`"In"`, `"Off"`) | Brevity codes, authentication |
+| **Threat Environment** | None (simulated) | Active — AAA, SAMs, MANPADS |
+
+---
+
+### 1.2 Weapons Delivery: High-Angle Dive (30–45°)
 
 High-angle dive attacks provide accurate ballistic solutions and maximise frag clearance. They are the primary delivery method for slick (low-drag) general-purpose bombs.
 
@@ -102,7 +191,7 @@ High-angle dive attacks provide accurate ballistic solutions and maximise frag c
 
 ---
 
-### 1.2 Weapons Delivery: Low-Angle Dive / Strafing (10–20°)
+### 1.3 Weapons Delivery: Low-Angle Dive / Strafing (10–20°)
 
 Low-angle delivery is used for area suppression with rockets and for gun employment. Requires high-drag ordnance (Mk-82AIR/Snakeye) if bombs are employed.
 
@@ -125,7 +214,7 @@ Low-angle delivery is used for area suppression with rockets and for gun employm
 
 ---
 
-### 1.3 Aircraft-Specific Procedures — Phase 1
+### 1.4 Aircraft-Specific Procedures — Phase 1
 
 #### A-10C / A-10C II (High Fidelity)
 
@@ -222,7 +311,7 @@ The standard Su-25 uses the ASP-17 optical gunsight. No TV or laser systems are 
 
 ---
 
-### 1.4 Phase 1 — Practice Mission Profile
+### 1.5 Phase 1 — Practice Mission Profile
 
 **Mission Name:** IRON ANVIL 01
 
