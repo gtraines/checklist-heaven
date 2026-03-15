@@ -9,30 +9,30 @@
 ## Table of Contents
 1. [A-10C II vs A-10C Differences](#a-10c-ii-vs-a-10c-differences)
 2. [Cockpit Orientation](#cockpit-orientation)
-3. [Startup Checklist](#startup-checklist)
-4. [Navigation (CDU/EGI/SADL)](#navigation-cduegisadl)
-5. [Avionics & Systems](#avionics--systems)
+3. [Operating Limitations](#operating-limitations)
+4. [Performance & V-Speeds](#performance--v-speeds)
+5. [Emergency Procedures (Quick Ref)](#emergency-procedures-quick-ref)
+6. [Weapons & Stores (Quick Ref)](#weapons--stores-quick-ref)
+7. [Startup Checklist](#startup-checklist)
+8. [Navigation (CDU/EGI/SADL)](#navigation-cduegisadl)
+9. [Avionics & Systems](#avionics--systems)
    - [MFCD Operations](#mfcd-operations)
    - [TGP Sniper XR](#tgp-sniper-xr)
    - [HMCS/JHMCS](#hmcsjhmcs)
    - [Link-16 / SADL](#link-16--sadl)
-6. [HOTAS Reference](#hotas-reference)
-7. [Weapons Employment](#weapons-employment)
-   - [GAU-8/A 30mm Cannon](#gau-8a-30mm-cannon)
-   - [AGM-65 Maverick](#agm-65-maverick)
-   - [JDAM (GBU-31/32/38)](#jdam-gbu-313238)
-   - [Paveway LGB](#paveway-lgb)
-   - [GBU-54 Laser JDAM](#gbu-54-laser-jdam)
-   - [SDB GBU-39](#sdb-gbu-39)
-   - [APKWS Rockets](#apkws-rockets)
-8. [Defensive Systems](#defensive-systems)
-9. [Landing Checklist](#landing-checklist)
-10. [Shutdown Checklist](#shutdown-checklist)
-11. [Emergency Procedures](#emergency-procedures)
-12. [Operating Limitations](#operating-limitations)
-13. [Performance & V-Speeds](#performance--v-speeds)
-14. [Emergency Procedures Reference](#emergency-procedures-reference)
-15. [Weapons & Stores Reference](#weapons--stores-reference)
+10. [HOTAS Reference](#hotas-reference)
+11. [Weapons Employment](#weapons-employment)
+    - [GAU-8/A 30mm Cannon](#gau-8a-30mm-cannon)
+    - [AGM-65 Maverick](#agm-65-maverick)
+    - [JDAM (GBU-31/32/38)](#jdam-gbu-313238)
+    - [Paveway LGB](#paveway-lgb)
+    - [GBU-54 Laser JDAM](#gbu-54-laser-jdam)
+    - [SDB GBU-39](#sdb-gbu-39)
+    - [APKWS Rockets](#apkws-rockets)
+12. [Defensive Systems](#defensive-systems)
+13. [Landing Checklist](#landing-checklist)
+14. [Shutdown Checklist](#shutdown-checklist)
+15. [Emergency Procedures (Detailed)](#emergency-procedures)
 16. [Keyboard & HOTAS Reference](#keyboard--hotas-reference)
 
 ---
@@ -73,11 +73,19 @@ Same layout as A-10C with additional:
 |---|---|---|
 | **Max Takeoff Weight (MTOW)** | ~51,000 lbs | Structural Max (Standard Combat ~47k) |
 | **Max Landing Weight** | 46,000 lbs | Structural Limit (Rec. < 40k) |
-| **G-Limits** | +7.33 / -3.0 (Clean)<br>+5.0 (Loaded) | Limits reduce with store symmetry |
-| **AoA Limits** | 20-22 Units | Stall warning (chopper) ~20 units |
-| **Crosswind Component** | 20 kts | 15 kts (Wet runway) |
-| **Max Mach** | M 0.75 | Airframe drag usually limits level flight speed |
+| **G-Limits** | +7.33 / -3.0 (Clean)<br>+5.0 (Loaded) | Limits reduce with store asymmetry |
+| **AoA Limits** | 20–22 Units | Stall warning (chopper) ~20 units |
+| **Max Crosswind (Dry)** | 30 kts | Ref: AFMAN 11-2A-10C Vol 3 |
+| **Max Crosswind (Wet)** | 20 kts | Wet or contaminated runway |
+| **Max Tailwind** | 10 kts | All conditions |
+| **Max Headwind (Canopy Open)** | 45 kts | Ground taxi |
+| **Max Mach** | M 0.75 | Airframe drag usually limits level flight |
 | **APU Operation** | < 15,000 ft | For starting or emergency power |
+| **Engine ITT (Start)** | 860°C max | Abort start if exceeded |
+| **Engine ITT (Max Continuous)** | 810°C | Normal operations limit |
+| **Engine ITT (Transient/TO)** | 900°C | Not to exceed limit |
+| **Fan Speed N1** | 98% max | Primary thrust indicator |
+| **Core Speed N2** | 99% max | — |
 
 ## Performance & V-Speeds
 
@@ -96,15 +104,16 @@ Same layout as A-10C with additional:
 
 ## Emergency Procedures (Quick Ref)
 
-| Emergency | Immediate Action Steps |
+> **BOLDFACE** items are critical memory actions per AFMAN 11-2A-10C Vol 3. Perform without reference to checklist.
+
+| Emergency | Immediate Action Steps (Boldface) |
 |---|---|
-| **Engine Failure on Takeoff** | 1. **Throttles** — IDLE<br>2. **Brakes** — MAX<br>3. **Speed Brakes** — OPEN<br>4. **Jettison** — IF REQUIRED |
-| **Engine Fire in Flight** | 1. **Throttles** — IDLE (Affected)<br>2. **Fire Handle** — PULL<br>3. **Agent** — DISCHARGE<br>4. **Land ASAP** |
-| **Engine Restart** | 1. **Throttles** — IDLE<br>2. **Crossfeed** — OPEN (if needed)<br>3. **APU** — START (< 15,000 ft)<br>4. **Engine** — MOTOR / IGN |
-| **Hydraulic Failure (Dual)** | 1. **Manual Reversion** — ENGAGE (Pitch/Roll switches)<br>2. **Control Stick** — Fly carefully (limited authority)<br>3. **Land ASAP** — No flaps, Emergency Gear |
-| **Electrical Failure** | 1. **Emergency Flood** — AS REQUIRED<br>2. **Standby Attitude** — UNCAGE<br>3. **Get Visual** — EGI/HUD/CDU failure likely |
-| **Spin Recovery** | 1. **Throttles** — IDLE<br>2. **Stick** — NEUTRAL / AFT Slightly<br>3. **Rudder** — FULL OPPOSITE<br>4. **Recover** — Dive recovery |
-| **Ejection** | 1. **Eject** — PULL HANDLE (3 times) |
+| **ABORT (Engine Failure/Fire on Takeoff)** | 1. **THROTTLES** — IDLE<br>2. **WHEEL BRAKES** — MAX<br>3. **SPEEDBRAKES** — OPEN<br>*(If fire exists:)*<br>4. **FIRE HANDLE** — PULL<br>5. **EXTINGUISHER SWITCH** — FWD/AFT as required |
+| **ENGINE FIRE (In Flight)** | 1. **THROTTLE (Affected)** — IDLE<br>2. **FIRE HANDLE (Affected)** — PULL<br>3. **EXTINGUISHER SWITCH** — FWD/AFT as required |
+| **DOUBLE ENGINE FAILURE** | 1. **THROTTLES** — IDLE<br>2. **APU SWITCH** — START<br>3. **ENGINE OPERATE SWITCHES** — IGN<br>*(Proceed to crossbleed/APU restart logic)* |
+| **MANUAL REVERSION (Hydraulic Failure)** | 1. **FLIGHT CONTROLS** — MAN REVERSION<br>2. **Fly conservatively** — limited control authority<br>3. **Land ASAP** — no flaps, emergency gear |
+| **ENGINE RESTART (Air Start)** | 1. **Throttle (dead)** — IDLE<br>2. **Crossfeed** — OPEN if needed<br>3. **APU** — START (below 15,000 ft)<br>4. **ENGINE OPERATE** — IGN |
+| **EJECTION** | 1. **EJECTION HANDLE** — PULL |
 
 ## Weapons & Stores (Quick Ref)
 
@@ -149,10 +158,18 @@ Same layout as A-10C with additional:
 - [ ] **CDU** — ON
 - [ ] **EGI (GPS/INS)** — ON — allow GPS alignment
 - [ ] **Sniper XR TGP** — ON (earlier warmup due to better IR detector — ~3 min)
-- [ ] **JHMCS** — ON and boresight
+- [ ] **JHMCS** — ON and boresight (see procedure below)
 - [ ] **Link-16 / SADL** — ON, set network codes
 - [ ] **ARC-210** — ON, set frequencies
 - [ ] **IFF** — set Mode 1/2/3/4 codes
+
+### JHMCS (Scorpion HMD) Alignment
+1. [ ] **HMCS Power Switch** (Bat/AC panel) — **ON**
+2. [ ] **MFCD** — select **HMCS** page
+3. [ ] Select **ALIGN**
+4. [ ] **Coarse Align:** Look at the HUD boresight cross. Press and hold the designated align button (TMS Up or profile-specific) until "ALIGN OK" appears.
+5. [ ] **Fine Align:** Use cursor slews to adjust Az/El/Roll crosshair overlay to match HUD center precisely.
+6. [ ] Verify HMCS symbology is visible and conformal with HUD before taxi.
 
 ---
 
@@ -318,17 +335,20 @@ The GBU-54 combines GPS guidance with a laser seeker — the best of both:
 | Guidance | Semi-Active Laser (SAL) |
 | Targets | Soft vehicles, light armor, personnel |
 
+> **DSMS Laser Code Setup:** In DSMS → INV → select the APKWS station → **LASER** → set code (default **1688**). Must match the TGP laser code if self-lasing. Set via **LATCH** or **PULSE** mode on the AHCP laser arm switch.
+
 #### APKWS Procedure
 1. [ ] **Master Arm** — ARM
 2. [ ] **Laser Arm** — ARM
 3. [ ] Select APKWS pod on WPN page
-4. [ ] **TGP** — lock target (POINT track mode)
-5. [ ] **Lase** — hold laser on target (`O`)
-6. [ ] **Fire** at 1.5–5 km range: `Space` or trigger
-7. [ ] **Hold laser on target** until impact (~5–8 sec)
-8. [ ] Can fire multiple rockets while holding laser
+4. [ ] **Delivery mode** — CCIP or CCRP (CCRP recommended for loft delivery)
+5. [ ] **TGP** — lock target (POINT track mode)
+6. [ ] **Lase** — hold laser on target (`O`)
+7. [ ] **Fire** at 1.5–5 km range: `Space` or trigger
+8. [ ] **Hold laser on target** until impact (~5–8 sec)
+9. [ ] Can fire multiple rockets while holding laser
 
-> **Tip:** Very effective against vehicles and light armor. Much cheaper than a Maverick for soft targets.
+> **Tip:** Very effective against vehicles and light armor. Much cheaper than a Maverick for soft targets. Unlike dumb rockets, do NOT break laser until impact confirmed.
 
 ---
 
