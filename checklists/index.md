@@ -27,6 +27,7 @@
 | Procedure | Description |
 |---|---|
 | [9-Line CAS Procedures](procedures/9-line-cas.md) | Requesting and responding to Close Air Support |
+| [CCA vs. CAS Doctrine (Helicopters)](procedures/cca-vs-cas-helicopters.md) | Close Combat Attack vs. 9-Line CAS |
 | [Military Aviation Radio Communications](procedures/radio-communications.md) | Frequencies, formats, phraseology |
 | [Military Airfield & ATC Communications](procedures/airfield-atc-communications.md) | Tower, Ground, Approach, Departure |
 

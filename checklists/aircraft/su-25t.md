@@ -8,22 +8,26 @@
 
 ## Table of Contents
 1. [Cockpit Orientation](#cockpit-orientation)
-2. [Startup Checklist](#startup-checklist)
-3. [Taxi & Takeoff](#taxi--takeoff)
-4. [Navigation](#navigation)
-5. [Avionics & Systems](#avionics--systems)
-6. [Weapons Employment](#weapons-employment)
+2. [Operating Limitations](#operating-limitations)
+3. [Performance & V-Speeds](#performance--v-speeds)
+4. [Emergency Procedures (Quick Ref)](#emergency-procedures-reference)
+5. [Weapons & Stores (Quick Ref)](#weapons--stores-reference)
+6. [Startup Checklist](#startup-checklist)
+7. [Taxi & Takeoff](#taxi--takeoff)
+8. [Navigation](#navigation)
+9. [Avionics & Systems](#avionics--systems)
+10. [Weapons Employment](#weapons-employment)
    - [Air-to-Ground Rockets & Guns](#air-to-ground-rockets--guns)
    - [Unguided Bombs](#unguided-bombs)
    - [Guided Weapons (Kh-25ML, Kh-29L/T, Kh-58)](#guided-weapons)
    - [TV/Laser Guided Bombs (KAB-500)](#tvlaser-guided-bombs)
    - [Anti-Radiation (Kh-58)](#anti-radiation-kh-58)
    - [SEAD Procedures](#sead-procedures)
-7. [Defensive Systems](#defensive-systems)
-8. [Landing Checklist](#landing-checklist)
-9. [Shutdown Checklist](#shutdown-checklist)
-10. [Emergency Procedures](#emergency-procedures)
-11. [Keyboard & Joystick Reference](#keyboard--joystick-reference)
+11. [Defensive Systems](#defensive-systems)
+12. [Landing Checklist](#landing-checklist)
+13. [Shutdown Checklist](#shutdown-checklist)
+14. [Emergency Procedures (Detailed)](#emergency-procedures)
+15. [Keyboard & Joystick Reference](#keyboard--joystick-reference)
 
 ---
 
@@ -44,6 +48,67 @@
 | EKRAN | Left instrument cluster | System warning display |
 | Weapon selector | Right console | Selects weapon system |
 | Autopilot panel | Left console | Route/altitude hold |
+
+---
+
+## Operating Limitations
+
+| Parameter | Limit | Notes |
+|---|---|---|
+| **Max Takeoff Weight (MTOW)** | 19,500 kg (42,990 lbs) | Absolute max combat load |
+| **Max Landing Weight** | 13,300 kg (29,321 lbs) | Risk of gear collapse above this limit* |
+| **G-Limits** | +6.5 / -2.0 (Clean)<br>+5.0 (Loaded) | EKRAN provides audible "OVER-G" warning |
+| **AoA Limits** | 20° (Clean)<br>16-18° (Loaded) | Critical AoA ~22°; Stall onset 18-20° |
+| **Crosswind Component** | 15 m/s (~30 kts) | Ground handling degrades significantly >12 m/s* |
+| **Max Mach** | M 0.82 | Airframe drag limit |
+
+## Performance & V-Speeds
+
+| Regime | Speed (km/h) | Configuration / Notes |
+|---|---|---|
+| **Rotation (Vr)** | 230 - 240 | Loaded (Clean: ~210) |
+| **Takeoff Speed** | 260 - 270 | Lift-off speed |
+| **Landing Approach** | 280 - 300 | Loaded / Heavy |
+| **Landing Approach** | 250 - 260 | Clean / Light (Pattern speed) |
+| **Corner Speed** | 450 - 550 | Best maneuvering range |
+| **Best Climb (Vy)** | 550 - 600 | Clean |
+| **Stall Speed (Vs)** | ~180 | Landing configuration (varies by weight) |
+| **Max Speed (Vne)** | 950 | Sea Level (Structural limit >1000) |
+| **Gear Extension (Vlo)** | 400 | Do not exceed or doors may jam |
+| **Flaps Limit (Vfe)** | 500 (Maneuver)<br>400 (Landing) | Maneuver ~10°, Landing Full |
+| **Drag Chute** | < 280 | Deploy on touchdown |
+
+## Emergency Procedures (Quick Ref)
+
+| Emergency | Immediate Action Steps |
+|---|---|
+| **Engine Failure on Takeoff** | 1. **Throttle** — IDLE<br>2. **Brakes** — MAX<br>3. **Drag Chute** — DEPLOY (`P`)<br>4. **Jettison Stores** — (`LCtrl + W`) |
+| **Engine Fire in Flight** | 1. **Throttle** — IDLE (Affected Engine)<br>2. **Fire Extinguisher** — DISCHARGE (Auto/Manual)<br>3. **Engine** — SHUTDOWN (`RAlt + End` / `RCtrl + End`)<br>4. **Land ASAP** |
+| **Engine Restart** | 1. **Throttle** — IDLE<br>2. **Airspeed** — 300-400 km/h<br>3. **Engine Start** — INITIATE (`RAlt + Home` / `RCtrl + Home`)<br>4. **Throttle** — ADVANCE slowly (>30% RPM) |
+| **Hydraulic Failure** | 1. **Monitor** — Hydro 1/2 Pressures<br>2. **Gear** — EMERGENCY EXTEND (`LCtrl + G`)<br>3. **Flaps** — Plan for No-Flap Landing<br>4. **Brakes** — Expect failure (Use Chute) |
+| **Electrical Failure** | 1. **Reduce Load** — Radar/EO/Lights OFF<br>2. **Battery** — Monitor (approx 20 min life)<br>3. **Land ASAP** |
+| **Spin Recovery** | 1. **Throttle** — IDLE<br>2. **Stick** — NEUTRAL<br>3. **Rudder** — FULL OPPOSITE<br>4. **Recover** — Gentle pull-out |
+| **Ejection** | 1. **Canopy** — JETTISON<br>2. **Eject** — INITIATE (`LCtrl + E` x3) |
+
+## Weapons & Stores (Quick Ref)
+
+| Weapon / System | Type | Effective Range | Best Suited For | Simulation Notes |
+|---|---|---|---|---|
+| **9A4172 Vikhr** | Beam Riding Missile | 8-10 km | **Anti-Tank (Primary)**, Helicopters | Requires continuous laser lock; fly straight during guidance |
+| **Kh-29L** | Laser Missile | 8-10 km | Hardened Bunkers, Bridges | Heavy missile; requires Shkval laser lock |
+| **Kh-29T** | TV Missile | 8-12 km | Pop-up attacks (High Threat) | **Fire & Forget**; Daylight only (Contrast lock) |
+| **Kh-25MPU** | Anti-Radiation | 20-40 km | SEAD (Short/Med Range) | Requires **Phantasmagoria** pod |
+| **Kh-58** | Anti-Radiation | 40-100+ km | SEAD (Long Range/High Value) | Requires **Phantasmagoria** pod |
+| **FAB-500** | GP Bomb | CCIP | Soft targets, light vehicles | Accurate with CCIP; no guidance |
+| **RBK-500** | Cluster Bomb | Area | Convoys, soft armor | Area denial; weak against MBTs in DCS |
+| **S-8 / S-13** | Rockets | 1-2.5 km | Infantry, Trucks, BMPs | Fired in salvos; CCIP aimed |
+| **GSh-30-2** | 30mm Cannon | < 1.5 km | Light Armor, Strafing | High recoil vibrates HUD; limited ammo |
+| **Mercury Pod** | LLTV System | N/A | Night Operations | Allows night use of Shkval/Vikhr |
+
+## Realism Notes
+- **Max Landing Weight:** In DCS, landing significantly above 13,300 kg often results in tire blowouts or gear collapse, which is modeled more strictly than in some other modules.
+- **Crosswind:** DCS Su-25T ground handling logic can be unstable (tipping) in crosswinds >12 m/s, which may differ slightly from real-world tolerances.
+- **Cockpit:** The DCS Su-25T does not have a clickable cockpit; all procedures assume keybinds or HOTAS mappings.
 
 ---
 
@@ -325,6 +390,9 @@
 ### Ejection
 - **Eject:** `LCtrl + E` (hold 1 second)
 - Minimum safe altitude: ~100 m AGL for seat to function
+
+---
+
 
 ---
 

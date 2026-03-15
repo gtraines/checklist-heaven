@@ -9,21 +9,24 @@
 ## Table of Contents
 1. [Cockpit Orientation](#cockpit-orientation)
 2. [Crew Positions](#crew-positions)
-3. [Startup Checklist](#startup-checklist)
-4. [Hover & Takeoff](#hover--takeoff)
-5. [Navigation](#navigation)
-6. [Avionics & Systems](#avionics--systems)
-7. [Weapons Employment](#weapons-employment)
+3. [Operating Limitations](#1-operating-limitations)
+4. [Performance & V-Speeds](#2-performance--v-speeds)
+5. [Emergency Procedures](#3-emergency-procedures-immediate-action)
+6. [Weapons & Stores](#4-weapons--stores)
+7. [Startup Checklist](#startup-checklist)
+8. [Hover & Takeoff](#hover--takeoff)
+9. [Navigation](#navigation)
+10. [Avionics & Systems](#avionics--systems)
+11. [Weapons Employment](#weapons-employment)
    - [GSh-30-2 30mm Cannon](#gsh-30-2-30mm-cannon)
    - [Unguided Rockets (S-8/S-24)](#unguided-rockets)
    - [9M114 Shturm ATGM](#9m114-shturm-atgm)
    - [9M120 Ataka ATGM](#9m120-ataka-atgm)
    - [R-60 / R-73 AAM](#r-60--r-73-aam)
-8. [Defensive Systems](#defensive-systems)
-9. [Landing Checklist](#landing-checklist)
-10. [Shutdown Checklist](#shutdown-checklist)
-11. [Emergency Procedures](#emergency-procedures)
-12. [Keyboard & Joystick Reference](#keyboard--joystick-reference)
+12. [Defensive Systems](#defensive-systems)
+13. [Landing Checklist](#landing-checklist)
+14. [Shutdown Checklist](#shutdown-checklist)
+15. [Keyboard & Joystick Reference](#keyboard--joystick-reference)
 
 ---
 
@@ -59,6 +62,63 @@ Rear Cockpit (Pilot):
 | Weapons Systems Officer | Front | Operate weapons and sights | Switch: `2` |
 
 In single-player: switch between positions by pressing `2` (rear) or `1` (front).
+
+## 1. Operating Limitations
+
+| Parameter | Limit | Notes |
+|---|---|---|
+| **Max Takeoff Weight (MTOW)** | **11,500 kg** (25,353 lbs) | Normal max. Overload TO possible. |
+| **Max Landing Weight** | **11,500 kg** | Same as MTOW for normal ops. |
+| **G-Limits** | **+3.5 G / -0.5 G** | Hard banking increases load factor rapidly. |
+| **VNE (Never Exceed)** | **300 km/h** (162 kts) | Retreating blade stall risk beyond this. |
+| **Max Autorotation Entry** | **220 km/h** | Initiate below this speed. |
+| **Max Sideward Flight** | **50 km/h** | Lateral limit to avoid tail rotor issues. |
+| **Max Backward Flight** | **40 km/h** | Rearward speed limit. |
+| **Rotor RPM (Normal)** | **92-98%** | Nominal operating range. |
+| **Crosswind Component** | **12 m/s** (~23 kts) | Landing/Takeoff limit. |
+
+## 2. Performance & V-Speeds
+
+| Regime | Speed (km/h) | Configuration / Notes |
+|---|---|---|
+| **VNE (Never Exceed)** | **300** | Structural/aeroelastic limit. |
+| **Cruise Speed** | **260** | Normal cruise (loaded). |
+| **Best Range** | **220** | Fuel-optimal cruise. |
+| **Best Endurance** | **120** | Max loiter time. |
+| **Autorotation** | **170** | Optimal glide speed. |
+| **Max Climb Rate** | **~12 m/s** | Clean, sea level. |
+| **Sideward Flight** | **< 50** | Lateral maneuver limit. |
+| **Backward Flight** | **< 40** | Rearward maneuver limit. |
+
+## 3. Emergency Procedures (Immediate Action)
+
+| Emergency | Immediate Action Steps |
+|---|---|
+| **Engine Failure (Single)** | 1. **Collective** — ADJUST for level flight<br>2. **Fuel Feed** — CROSS-FEED OPEN<br>3. **Failed Engine** — IDLE, then OFF<br>4. **Airspeed** — 160-180 km/h<br>5. **Land** — ASAP |
+| **Engine Failure (Dual)** | 1. **Collective** — LOWER IMMEDIATELY<br>2. **Airspeed** — 170 km/h<br>3. **Rotor RPM** — Maintain 92-98%<br>4. **Flare** — At ~30-50m AGL<br>5. **Collective** — PULL at 5-10m<br>6. **Touchdown** — Level skids |
+| **Tail Rotor Failure** | 1. **Airspeed** — INCREASE > 120 km/h<br>2. **Collective** — Control yaw with power<br>3. **Land** — ASAP (Running landing)<br>4. **Do NOT Hover** |
+| **Engine Fire** | 1. **Throttle** — IDLE then OFF<br>2. **Fire Extinguisher** — DISCHARGE<br>3. **Land** — ASAP |
+| **Hydraulic Failure** | 1. **Force Trim** — Use to assist<br>2. **Airspeed** — Reduce < 150 km/h<br>3. **Land** — ASAP |
+| **Crew Egress** | 1. **Autorotate** — To suitable area<br>2. **Doors/Windows** — KICK OUT<br>3. **Exit** — Rapidly |
+
+## 4. Weapons & Stores
+
+| Weapon / System | Type | Effective Range | Best Suited For | Simulation Notes |
+|---|---|---|---|---|
+| **GSh-30K** | 30mm Twin Cannon | < 1.5 km | Light Armor, APCs, Trucks | Fixed starboard mount. Pilot aims aircraft. |
+| **9M114 Shturm** | ATGM (Radio) | 400m - 5 km | **Primary Anti-Tank**, MBTs | Operator keeps crosshair on target. Steady flight required. |
+| **9M120 Ataka** | ATGM (Radio) | 400m - 6 km | MBTs, IFVs, Bunkers | Faster, longer range than Shturm. |
+| **S-8 Rockets** | 80mm Unguided | 1-2 km | Soft targets, Light armor | 20-round B-8V20A pods. CCIP/Manual. |
+| **S-13 Rockets** | 122mm Unguided | 1-2.5 km | Bunkers, Light Vehicles | 5-round O-25 pods. Heavy punch. |
+| **S-24 Rockets** | 240mm Heavy | 2-3 km | Hardened targets | Single rail. Powerful, inaccurate without ranging. |
+| **9M39 Igla** | IR Air-to-Air | 0.5 - 5 km | Helicopters, Low Aircraft | All-aspect IR. External rail. |
+| **FAB-100/250** | GP Bomb | Overflight | Soft area targets | Low altitude delivery. |
+| **RBK-250** | Cluster Dispenser | Area | Soft target concentrations | Area denial. Low altitude pass. |
+
+## Realism Notes
+*   **Cannon Variant:** The Mi-24P ('P' for Pushka - cannon) is distinct from the Mi-24V in that it uses a fixed, side-mounted twin-barrel 30mm GSh-30K cannon rather than the flexible 12.7mm Yak-B turret. This requires the pilot to aim the entire helicopter at the target.
+*   **ATGM Guidance:** The Shturm and Ataka missiles are radio-command guided. In the simulation (and reality), the Weapons Operator must maintain the sight crosshair on the target until impact. The pilot must fly a steady profile to avoid masking the guidance antenna or exceeding the seeker's field of view.
+*   **Crew Roles:** The DCS module accurately simulates the division of labor: Pilot flies and fires fixed forward weapons (rockets, cannon), while the Weapons Operator (front seat) manages the guided missiles (ATGMs) and detection systems.
 
 ---
 
@@ -376,3 +436,5 @@ Self-defense air-to-air missiles for fixed-wing threats.
 ---
 
 *Based on Eagle Dynamics DCS Mi-24P documentation. For simulation use only.*
+
+<!-- Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com> -->
