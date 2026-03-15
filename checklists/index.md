@@ -39,6 +39,8 @@
 | [Military Airfield & ATC Communications](procedures/airfield-atc-communications.md) | Tower, Ground, Approach, Departure |
 | [Basic & Intermediate Surface Attack Course](procedures/surface-attack-course.md) | Fixed-wing SA course: A-10A/C/II, Su-25/T — Phases 1–4 |
 | [Close Combat Attack (CCA) Course](procedures/cca-course.md) | Helicopter CCA course: UH-1H, OH-58D, Mi-24P — Phases 1–4 |
+| [NTTR Surface Attack Training Scenarios](procedures/nttr-training-scenarios.md) | Practical mission scenarios for all four SA course phases on the NTTR map |
+| [Caucasus Surface Attack Training Scenarios](procedures/caucasus-training-scenarios.md) | Practical mission scenarios for all four SA course phases on the Caucasus map |
 
 ---
 
