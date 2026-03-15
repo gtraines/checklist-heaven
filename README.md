@@ -30,6 +30,7 @@ Aviation-style checklists for DCS World aircraft, optimized for tablet viewing.
 | [9-Line CAS Procedures](checklists/procedures/9-line-cas.md) | Requesting and responding to Close Air Support |
 | [Military Aviation Radio Communications](checklists/procedures/radio-communications.md) | Frequencies, formats, phraseology |
 | [Military Airfield & ATC Communications](checklists/procedures/airfield-atc-communications.md) | Tower, Ground, Approach, Departure |
+| [Formation Flying Training Course](checklists/procedures/formation-flying-training.md) | Rotary & Fixed-Wing formation standards, visual references, and drills |
 | [CCA vs. CAS Doctrine (Helicopters)](checklists/procedures/cca-vs-cas-helicopters.md) | Close Combat Attack vs. 9-Line CAS distinction |
 | [Basic & Intermediate Surface Attack Course](checklists/procedures/surface-attack-course.md) | Fixed-wing SA course: A-10A/C/II, Su-25/T |
 | [Close Combat Attack (CCA) Course](checklists/procedures/cca-course.md) | Helicopter CCA course: UH-1H, OH-58D, Mi-24P |
