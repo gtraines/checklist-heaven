@@ -29,7 +29,11 @@
 9. [Landing Checklist](#landing-checklist)
 10. [Shutdown Checklist](#shutdown-checklist)
 11. [Emergency Procedures](#emergency-procedures)
-12. [Keyboard & HOTAS Reference](#keyboard--hotas-reference)
+12. [Operating Limitations](#operating-limitations)
+13. [Performance & V-Speeds](#performance--v-speeds)
+14. [Emergency Procedures Reference](#emergency-procedures-reference)
+15. [Weapons & Stores Reference](#weapons--stores-reference)
+16. [Keyboard & HOTAS Reference](#keyboard--hotas-reference)
 
 ---
 
@@ -60,6 +64,71 @@ Same layout as A-10C with additional:
 | SADL/Link-16 indicator | Center MFCD | Network picture / contacts |
 | ARC-210 radio panel | Right console | Multi-band radio |
 | JHMCS calibration | Helmet | Enhanced cueing |
+
+---
+
+## Operating Limitations
+
+| Parameter | Limit | Notes |
+|---|---|---|
+| **Max Takeoff Weight (MTOW)** | ~51,000 lbs | Structural Max (Standard Combat ~47k) |
+| **Max Landing Weight** | 46,000 lbs | Structural Limit (Rec. < 40k) |
+| **G-Limits** | +7.33 / -3.0 (Clean)<br>+5.0 (Loaded) | Limits reduce with store symmetry |
+| **AoA Limits** | 20-22 Units | Stall warning (chopper) ~20 units |
+| **Crosswind Component** | 20 kts | 15 kts (Wet runway) |
+| **Max Mach** | M 0.75 | Airframe drag usually limits level flight speed |
+| **APU Operation** | < 15,000 ft | For starting or emergency power |
+
+## Performance & V-Speeds
+
+| Regime | Speed (KIAS) | Configuration / Notes |
+|---|---|---|
+| **Rotation (Vr)** | 135 - 150 | Weight dependent (Avg 140) |
+| **Takeoff Speed** | 150 - 160 | Lift-off |
+| **Landing Approach** | 130 - 140 | **AoA Indexer (Green Circle)** |
+| **Corner Speed** | 280 - 320 | Best Turn Rate |
+| **Best Climb (Vy)** | 200 - 220 | Clean / Light Stores |
+| **Stall Speed (Vs)** | ~110 | Gear/Flaps Down (Weight dependent) |
+| **Max Speed (Vne)** | 450 | Low Altitude Structural Limit |
+| **Gear Extension (Vlo)** | 200 | Do not extend above |
+| **Flaps Limit (Vfe)** | 200 | Maneuver (MVR) & Down (DN) |
+| **Refueling** | 200 - 220 | Typical tanker speed |
+
+## Emergency Procedures (Quick Ref)
+
+| Emergency | Immediate Action Steps |
+|---|---|
+| **Engine Failure on Takeoff** | 1. **Throttles** — IDLE<br>2. **Brakes** — MAX<br>3. **Speed Brakes** — OPEN<br>4. **Jettison** — IF REQUIRED |
+| **Engine Fire in Flight** | 1. **Throttles** — IDLE (Affected)<br>2. **Fire Handle** — PULL<br>3. **Agent** — DISCHARGE<br>4. **Land ASAP** |
+| **Engine Restart** | 1. **Throttles** — IDLE<br>2. **Crossfeed** — OPEN (if needed)<br>3. **APU** — START (< 15,000 ft)<br>4. **Engine** — MOTOR / IGN |
+| **Hydraulic Failure (Dual)** | 1. **Manual Reversion** — ENGAGE (Pitch/Roll switches)<br>2. **Control Stick** — Fly carefully (limited authority)<br>3. **Land ASAP** — No flaps, Emergency Gear |
+| **Electrical Failure** | 1. **Emergency Flood** — AS REQUIRED<br>2. **Standby Attitude** — UNCAGE<br>3. **Get Visual** — EGI/HUD/CDU failure likely |
+| **Spin Recovery** | 1. **Throttles** — IDLE<br>2. **Stick** — NEUTRAL / AFT Slightly<br>3. **Rudder** — FULL OPPOSITE<br>4. **Recover** — Dive recovery |
+| **Ejection** | 1. **Eject** — PULL HANDLE (3 times) |
+
+## Weapons & Stores (Quick Ref)
+
+| Weapon / System | Type | Effective Range | Best Suited For | Simulation Notes |
+|---|---|---|---|---|
+| **GAU-8/A Avenger** | 30mm Cannon | < 2 NM | **Anti-Armor** (Tanks/IFVs) | PAC stabilizes aiming; massive recoil |
+| **AGM-65D/G** | IR Missile | 6-8 NM | Moving Armor, Night Ops | Force Correlate (G) for large targets |
+| **AGM-65H/K** | TV Missile | 4-6 NM | High Contrast (Day) | K = Heavy Warhead; H = Light |
+| **AGM-65L** | Laser Missile | 6-8 NM | Buddy Lasing | Requires laser code match |
+| **GBU-38** | JDAM (500lb) | 5-10 NM | All Weather / Coordinate | GPS Guided; Requires alignment |
+| **GBU-54 LJDAM** | Laser+GPS (500lb) | 5-10 NM | **Moving Targets** | **A-10C II Only** — terminal laser guidance |
+| **GBU-12** | LGB (500lb) | Varies | Precision Point | Requires TGP lasing |
+| **GBU-39 SDB** | GPS Bomb (250lb) | 5-10 NM | Lightly Armored / Soft | 4 per BRU-61 rack; 4 targets per pass |
+| **APKWS** | Guided Rocket | 1.5-5 NM | Light Armor / Precision | **A-10C II Only** — SAL guidance |
+| **CBU-97 (SFW)** | Sensor Fuzed | Area | **Heavy Armor Columns** | Deploys seeking skeets; "Tank Plinker" |
+| **CBU-105 (WCMD)** | GPS Cluster | 5-8 NM | Heavy Armor (Stand-off) | Wind Corrected; accurate from altitude |
+| **Hydra 70 (M151)** | 2.75" Rocket | 1-2 NM | Soft Targets, Suppression | CCIP aiming |
+| **Sniper XR TGP** | Targeting Pod | N/A | ID / Self-Lasing | Longer range than Litening AT |
+| **JHMCS** | Helmet Sight | N/A | Cueing / SA | **A-10C II Only** — "Look-and-shoot" |
+
+## Realism Notes
+- **A-10C II vs A-10C:** The "Tank Killer" (II) variant adds the JHMCS, APKWS, GBU-54 LJDAM, SADL/Link-16, and the Sniper XR TGP. Flight performance is identical.
+- **Manual Reversion:** In dual hydraulic failure, flight controls must be switched to "Manual Reversion" (Pitch/Roll switches on left console). Control authority is significantly reduced.
+- **APKWS Range:** Real-world APKWS range extends to ~5 km; DCS models this accurately. The rocket is semi-active laser homing — do not break laser until impact.
 
 ---
 
@@ -293,6 +362,9 @@ Additional:
 ## Emergency Procedures
 
 *(Same as A-10C — see [A-10C Emergencies](a-10c.md#emergency-procedures))*
+
+---
+
 
 ---
 

@@ -9,22 +9,25 @@
 ## Table of Contents
 1. [Cockpit Orientation](#cockpit-orientation)
 2. [MMS (Mast-Mounted Sight)](#mms-mast-mounted-sight)
-3. [Startup Checklist](#startup-checklist)
-4. [Hover & Takeoff](#hover--takeoff)
-5. [Navigation (AHRS/GPS)](#navigation-ahrsgps)
-6. [Avionics & Systems](#avionics--systems)
-7. [Weapons Employment](#weapons-employment)
+3. [Operating Limitations](#1-operating-limitations)
+4. [Performance & V-Speeds](#2-performance--v-speeds)
+5. [Emergency Procedures](#3-emergency-procedures-immediate-action)
+6. [Weapons & Stores](#4-weapons--stores)
+7. [Startup Checklist](#startup-checklist)
+8. [Hover & Takeoff](#hover--takeoff)
+9. [Navigation (AHRS/GPS)](#navigation-ahrsgps)
+10. [Avionics & Systems](#avionics--systems)
+11. [Weapons Employment](#weapons-employment)
    - [M296 .50 cal Machine Gun](#m296-50-cal-machine-gun)
    - [2.75-inch Rockets (Hydra 70)](#275-inch-rockets-hydra-70)
    - [AGM-114 Hellfire](#agm-114-hellfire)
    - [AIM-92 Stinger (Air Defense)](#aim-92-stinger)
-8. [Scout Procedures (RSTA)](#scout-procedures)
-9. [Laser Designation Procedures](#laser-designation)
-10. [Defensive Procedures](#defensive-procedures)
-11. [Landing Checklist](#landing-checklist)
-12. [Shutdown Checklist](#shutdown-checklist)
-13. [Emergency Procedures](#emergency-procedures)
-14. [Keyboard & Joystick Reference](#keyboard--joystick-reference)
+12. [Scout Procedures (RSTA)](#scout-procedures)
+13. [Laser Designation Procedures](#laser-designation)
+14. [Defensive Procedures](#defensive-procedures)
+15. [Landing Checklist](#landing-checklist)
+16. [Shutdown Checklist](#shutdown-checklist)
+17. [Keyboard & Joystick Reference](#keyboard--joystick-reference)
 
 ---
 
@@ -83,6 +86,67 @@ The MMS is the OH-58D's unique capability — a sensor ball mounted above the ro
 | MMS zoom out | `Numpad -` |
 | Laser range/designate | `O` key |
 | Video switch (TV/FLIR) | MFD OSB |
+
+## 1. Operating Limitations
+
+| Parameter | Limit | Notes |
+|---|---|---|
+| **Max Takeoff Weight (MTOW)** | **5,500 lbs (2,495 kg)** | Standard max gross for KW; earlier models 5,200 lbs |
+| **Max Landing Weight** | **5,500 lbs** | Same as MTOW |
+| **G-Limits** | **+2.5 G to -0.5 G** | At Max Gross Weight; avoid negative G (mast bumping) |
+| **Rotor RPM Limits ($N_R$)** | **Power On: 98% - 100%**<br>**Power Off: 90% - 107%** | Transient limits exist |
+| **Torque Limits (Q)** | **Continuous: 100%**<br>**Transient (10 sec): 110%** | Exceeding 100% requires inspection |
+| **TOT Limits** | **Continuous: 737°C**<br>**Start (10 sec): 843°C** | Strict start limits |
+| **Slope Landing Limits** | **10° (Side/Nose Up)**<br>**5° (Nose Down)** | Terrain interaction varies in sim |
+| **Crosswind Component** | **35 knots** | Sideward/Rearward; High LTE risk |
+
+## 2. Performance & V-Speeds
+
+| Regime | Speed (KIAS) | Configuration / Notes |
+|---|---|---|
+| **Hover Taxi** | **< 20** | Standard ground taxi |
+| **Takeoff Profile** | **45 - 60** | Climb out speed |
+| **Max Rate of Climb ($V_Y$)** | **55 - 60** | Variable with weight |
+| **Max Range Speed** | **90 - 100** | Depends on drag (MMS/Stores) |
+| **Max Speed ($V_{NE}$)** | **110 - 120** | 110 KIAS with doors off |
+| **Autorotation** | **60 (Min Rate)**<br>**80 (Max Glide)** | Range 60-80 KIAS |
+| **Sideward/Rearward** | **35** | Max control limit |
+| **Landing Approach** | **60** | Initial approach speed |
+
+---
+
+## 3. Emergency Procedures (Immediate Action)
+
+| Emergency | Immediate Action Steps |
+|---|---|
+| **Engine Failure - In Flight** | 1. **COLLECTIVE** — ADJUST (Maintain $N_R$)<br>2. **PEDALS** — ADJUST (Trim)<br>3. **CYCLIC** — ADJUST (60-80 KIAS)<br>4. **LANDING** — ACCOMPLISH |
+| **Engine Fire - In Flight** | 1. **LAND IMMEDIATELY**<br>2. **EMERGENCY SHUTDOWN** — ACCOMPLISH (Once on ground) |
+| **Engine Fire - On Ground** | 1. **EMERGENCY SHUTDOWN** — ACCOMPLISH |
+| **Emergency Shutdown** | 1. **THROTTLE** — OFF<br>2. **FUEL BOOST** — OFF<br>3. **BATTERY** — OFF<br>4. **ROTOR BRAKE** — APPLY |
+| **FADEC Failure / Overspeed** | 1. **COLLECTIVE** — ADJUST ($N_R$)<br>2. **THROTTLE** — ADJUST (Match $N_G$/TGT)<br>3. **FADEC MODE SWITCH** — CHECK<br>4. **LAND AS SOON AS PRACTICABLE** |
+| **Hydraulic Failure** | 1. **AIRSPEED** — ADJUST (60-80 KIAS)<br>2. **HYDRAULIC SWITCH** — OFF (If hardover)<br>3. **LAND AS SOON AS POSSIBLE** (Run-on landing) |
+| **Tail Rotor Failure / Spin** | 1. **AUTOROTATION** — ENTER<br>2. **THROTTLE** — IDLE<br>3. **LANDING** — ACCOMPLISH |
+| **LTE (Uncommanded Yaw)** | 1. **COLLECTIVE** — REDUCE<br>2. **CYCLIC** — FORWARD (Gain airspeed)<br>3. **PEDALS** — FULL LEFT<br>4. **AIRSPEED** — INCREASE |
+| **Electrical Failure (DC Gen)** | 1. **GEN RESET** — PRESS<br>2. **GEN SWITCH** — ON<br>3. **If Fails:** NON-ESSENTIAL BUS — OFF<br>4. **LAND AS SOON AS PRACTICABLE** |
+| **Engine Restart - In Flight** | 1. **AIRSPEED** — 60 KIAS<br>2. **COLLECTIVE** — ADJUST ($N_R$)<br>3. **THROTTLE** — IDLE (If $N_1$ < 50%) / FLY (If $N_1$ > 50%)<br>4. **START SWITCH** — PRESS (If $N_1$ < 50%) |
+
+## 4. Weapons & Stores
+
+| Weapon / System | Type | Effective Range | Best Suited For | Simulation Notes |
+|---|---|---|---|---|
+| **AGM-114K Hellfire II** | SAL Missile (Anti-Tank) | 500m - 8km | Heavy armor (MBTs) | Requires constant laser (MMS or Buddy) |
+| **AGM-114M Hellfire II** | SAL Missile (Blast-Frag) | ~8km | Soft targets, boats, structures | Blast-frag warhead; delay fuse possible |
+| **AGM-114N Hellfire II** | SAL Missile (Thermobaric) | ~8km | Bunkers, caves, enclosed spaces | MAC warhead for pressure/heat effect |
+| **Hydra 70 (M151/M229)** | Unguided Rocket (HE) | 1.5km - 4km | Area suppression, soft targets | Aim using CCIP "I-beam" in HUD |
+| **APKWS (AGR-20A)** | Laser-Guided Rocket | 1.5km - 5km+ | Precision strikes, light armor | Needs laser designation; fly into basket |
+| **M3P .50 Cal** | Heavy Machine Gun | 1km - 1.5km | Infantry, technicals, defense | Fixed mount; aim with aircraft nose |
+
+## Realism Notes
+*   **MMS Dynamics:** The Mast Mounted Sight adds significant top weight and drag. Be aware of handling differences and $V_{NE}$ limits compared to clean helicopters.
+*   **Hellfire Types:** The OH-58D does not typically carry the radar-guided AGM-114L (Longbow) in this configuration; stick to SAL variants (K/M/N) for realism.
+*   **Power Management:** The Kiowa is power-limited. A full load of 4 Hellfires heavily impacts climb rate and maneuverability. A mixed "Scout" loadout (2x Hellfire + .50 Cal or Rockets) is often preferred.
+*   **FADEC:** The FADEC system is critical and modeled in detail. Startup sequence is sensitive to throttle position (must be at Idle detent).
+*   **LTE:** The aircraft is susceptible to Loss of Tail Rotor Effectiveness in high power/low speed conditions, especially with tailwinds.
 
 ---
 
@@ -429,3 +493,5 @@ Equipment: (additional info)
 ---
 
 *Based on Eagle Dynamics DCS OH-58D documentation. For simulation use only.*
+
+<!-- Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com> -->

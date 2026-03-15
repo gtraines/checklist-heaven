@@ -8,18 +8,22 @@
 
 ## Table of Contents
 1. [Cockpit Orientation](#cockpit-orientation)
-2. [Startup Checklist](#startup-checklist)
-3. [Hover & Takeoff](#hover--takeoff)
-4. [Navigation](#navigation)
-5. [Weapons Employment](#weapons-employment)
+2. [Operating Limitations](#1-operating-limitations)
+3. [Performance & V-Speeds](#2-performance--v-speeds)
+4. [Emergency Procedures (Quick Ref)](#3-emergency-procedures-quick-ref)
+5. [Weapons & Stores (Quick Ref)](#4-weapons--stores-quick-ref)
+6. [Startup Checklist](#startup-checklist)
+7. [Hover & Takeoff](#hover--takeoff)
+8. [Navigation](#navigation)
+9. [Weapons Employment](#weapons-employment)
    - [M134 Minigun](#m134-minigun)
    - [M60 Door Guns](#m60-door-guns)
    - [2.75-inch Rockets (M157/M159)](#275-inch-rockets)
-6. [Defensive Procedures](#defensive-procedures)
-7. [Landing Checklist](#landing-checklist)
-8. [Shutdown Checklist](#shutdown-checklist)
-9. [Emergency Procedures](#emergency-procedures)
-10. [Keyboard & Joystick Reference](#keyboard--joystick-reference)
+10. [Defensive Procedures](#defensive-procedures)
+11. [Landing Checklist](#landing-checklist)
+12. [Shutdown Checklist](#shutdown-checklist)
+13. [Emergency Procedures (Detailed)](#emergency-procedures)
+14. [Keyboard & Joystick Reference](#keyboard--joystick-reference)
 
 ---
 
@@ -49,6 +53,51 @@
 | Radio panel | Center console | FM/UHF radios |
 | Armament panel | Center | Weapon system controls |
 | Governor switch | Collective | RPM governor on/off |
+
+---
+
+## 1. Operating Limitations
+
+| Parameter | Limit | Notes |
+|---|---|---|
+| **Max Takeoff Weight (MTOW)** | **9,500 lbs** | Standard max gross weight |
+| **Max Landing Weight** | **9,500 lbs** | Same as MTOW |
+| **VNE (Never Exceed)** | **124 KIAS** | At Sea Level; decreases with altitude and weight |
+| **G-Limits** | **+2.5 G / +3.0 G** | Low G (Pushovers) is **PROHIBITED** due to Mast Bumping risk* |
+| **Crosswind Limit** | **30-35 knots** | LTE risk increases with wind from 4 to 8 o'clock* |
+
+## 2. Performance & V-Speeds
+
+| Regime | Speed (KIAS) | Configuration / Notes |
+|---|---|---|
+| **Takeoff / Best Climb ($V_Y$)** | **60** | Standard climb speed |
+| **Cruise** | **80 - 90** | Typical cruise speed range |
+| **Landing Approach** | **60** | Normal approach, decelerate to hover |
+| **Autorotation** | **60** | Adjust cyclic to maintain 60 KIAS |
+| **Max Speed ($V_{NE}$)** | **124** | Do not exceed |
+
+## 3. Emergency Procedures (Quick Ref)
+
+| Emergency | Immediate Action Steps |
+|---|---|
+| **Engine Failure** (Hover/Low Altitude) | 1. **COLLECTIVE** — ADJUST to maintain Rotor RPM<br>2. **PEDALS** — CONTROL YAW<br>3. **CUSHION LANDING** — With Collective |
+| **Engine Failure** (Cruise/In-Flight) | 1. **AUTOROTATE** — ENTER<br>2. **CYCLIC** — ADJUST for 60 KIAS<br>3. **EMERGENCY FUEL SHUTOFF** — OFF (if fire suspected) |
+| **Engine Fire** (In Flight) | 1. **POWER** — OFF (Enter Autorotation)<br>2. **EMERGENCY FUEL SHUTOFF** — OFF<br>3. **CABIN HEAT** — OFF<br>4. **LAND IMMEDIATELY** |
+| **Hydraulic Failure** | 1. **AIRSPEED** — ADJUST to 60-80 KIAS (manageable forces)<br>2. **HYD CONT SWITCH** — OFF (if surging)<br>3. **LAND AS SOON AS PRACTICABLE** (Run-on landing) |
+| **Electrical Failure** (Main Gen) | 1. **GEN SWITCH** — RESET, then ON<br>2. **NON-ESSENTIAL EQUIP** — OFF (if power not restored)<br>3. **LAND AS SOON AS PRACTICABLE** |
+| **Loss of Tail Rotor Effectiveness (LTE)** | 1. **COLLECTIVE** — LOWER (Reduce Torque)<br>2. **CYCLIC** — FORWARD (Gain Airspeed)<br>3. **PEDALS** — AS REQUIRED |
+
+## 4. Weapons & Stores (Quick Ref)
+
+| Weapon / System | Type | Effective Range | Best Suited For | Simulation Notes |
+|---|---|---|---|---|
+| **M60D** | 7.62mm Door Gun | ~800m | Infantry, Soft Vehicles, Self-Defense | Operated by AI or player; limited side/rear arc |
+| **M134 Minigun** | 7.62mm Rotary MG | 1000 - 1500m | Heavy suppression, Light structures | High rate of fire (2400/4000 rpm); consumes ammo rapidly |
+| **Hydra 70 (M151)** | HE Rocket (10lb) | 1.5 - 3km | General purpose, Light vehicles | Standard HE rocket; requires manual compensation |
+| **Hydra 70 (M229)** | HE Rocket (17lb) | 1.5 - 3km | Structures, Dug-in infantry | Heavier warhead; slightly different trajectory than M151 |
+| **Hydra 70 (M156)** | White Phosphorus | 1.5 - 3km | Target marking, Incendiary | Creates significant smoke; good for marking for CAS |
+| **Hydra 70 (M257/M278)** | Illumination Flare | Varies | Night Ops, Battlefield Illum. | M257 (Visible), M278 (IR); aim high to deploy over target |
+| **Hydra 70 (M259)** | Smoke Screen | 1.5 - 3km | Obscuring friendly movement | Screening smoke |
 
 ---
 
@@ -187,6 +236,12 @@
 7. [ ] Pull off at 400 m minimum
 
 > **Note:** Rockets are most effective in diving runs. Hover rocket employment possible but exposes aircraft to ground fire.
+
+## Realism Notes
+* **Mast Bumping**: The DCS UH-1H module accurately models "Mast Bumping". Avoid low-G pushover maneuvers (cyclic forward) to prevent catastrophic rotor separation.
+* **LTE (Loss of Tail Rotor Effectiveness)**: High power settings combined with slow speeds and tailwinds (especially from the 4-8 o'clock position) can cause unrecoverable spins.
+* **Weapon Aiming**: There is no CCIP/CCRP. Rocket and fixed-minigun accuracy depends entirely on pilot skill with the reflex sight and manual estimation of windage/drop.
+* **Weight**: Fully loaded gunships (XM200 pods + Miniguns) have significantly reduced hover performance, especially in hot/high conditions.
 
 ---
 
@@ -332,3 +387,5 @@
 ---
 
 *Based on Eagle Dynamics DCS UH-1H documentation. For simulation use only.*
+
+<!-- Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com> -->
