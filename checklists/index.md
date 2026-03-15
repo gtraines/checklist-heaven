@@ -18,18 +18,27 @@
 | [UH-1H Huey](aircraft/uh-1h-huey.md) | Helicopter Utility/Attack | Startup, Shutdown, Nav, Weapons |
 | [Mi-24P Hind](aircraft/mi-24-hind.md) | Helicopter Gunship | Startup, Shutdown, Nav, Weapons |
 | [OH-58D Kiowa](aircraft/oh-58d-kiowa.md) | Helicopter Scout/Attack | Startup, Shutdown, Nav, Weapons |
-| [NS430 Navigation Module](aircraft/ns430.md) | Navigation System | Setup, Operation, Routes |
 
 ---
 
-## Procedures
+## Systems
+
+| System | Description |
+|---|---|
+| [NS430 Navigation Module](systems/ns430.md) | Garmin GNS 430-based GPS navigation; compatible with Huey, Mi-8, L-39, Ka-50 |
+
+---
+
+## Procedures & Courses
 
 | Procedure | Description |
 |---|---|
 | [9-Line CAS Procedures](procedures/9-line-cas.md) | Requesting and responding to Close Air Support |
-| [CCA vs. CAS Doctrine (Helicopters)](procedures/cca-vs-cas-helicopters.md) | Close Combat Attack vs. 9-Line CAS |
+| [CCA vs. CAS Doctrine (Helicopters)](procedures/cca-vs-cas-helicopters.md) | Close Combat Attack vs. 9-Line CAS distinction |
 | [Military Aviation Radio Communications](procedures/radio-communications.md) | Frequencies, formats, phraseology |
 | [Military Airfield & ATC Communications](procedures/airfield-atc-communications.md) | Tower, Ground, Approach, Departure |
+| [Basic & Intermediate Surface Attack Course](procedures/surface-attack-course.md) | Fixed-wing SA course: A-10A/C/II, Su-25/T — Phases 1–4 |
+| [Close Combat Attack (CCA) Course](procedures/cca-course.md) | Helicopter CCA course: UH-1H, OH-58D, Mi-24P — Phases 1–4 |
 
 ---
 
