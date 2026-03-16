@@ -35,7 +35,7 @@
   - KAB-500Kr: TV-guided; 3–10 km; CCRP-like release followed by steering the TV lock.
 - SEAD:
   - Kh-25MPU (with Fantasmagoria): 10–40 km envelope depending on altitude; loft/pop-up to maintain emitter lock.
-  - Threat reactions: Pre-brief jink directions; use beam + chaff not available, rely on break + terrain. Time on laser carefully; minimize hot runs.
+  - Threat reactions: Pre-brief jink directions; rely on beam maneuvers and terrain masking (no chaff carried). Time on laser carefully; minimize hot runs.
 
 ## Phase-Aligned Syllabus Notes (mirrors surface-attack-course.md)
 ### Phase 1: Basic Surface Attack (Fundamentals)
