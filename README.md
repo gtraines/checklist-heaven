@@ -35,5 +35,6 @@ Aviation-style checklists for DCS World aircraft, optimized for tablet viewing.
 | [Basic & Intermediate Surface Attack Course](checklists/procedures/surface-attack-course.md) | Fixed-wing SA course: A-10A/C/II, Su-25/T |
 | [Su-25T Surface Attack Course](checklists/procedures/su-25t-surface-attack-course.md) | Su-25T-only SA course with Su-25T systems and profiles |
 | [Close Combat Attack (CCA) Course](checklists/procedures/cca-course.md) | Helicopter CCA course: UH-1H, OH-58D, Mi-24P |
+| [Caucasus Su-25T SA Exercises](checklists/procedures/caucasus-su-25t-training-scenarios.md) | Su-25T-only practical reps for Phases 1–4 on the Caucasus map |
 | [NTTR Surface Attack Training Scenarios](checklists/procedures/nttr-training-scenarios.md) | Practical mission scenarios for all four SA course phases on the NTTR map |
 | [Caucasus Surface Attack Training Scenarios](checklists/procedures/caucasus-training-scenarios.md) | Practical mission scenarios for all four SA course phases on the Caucasus map |
