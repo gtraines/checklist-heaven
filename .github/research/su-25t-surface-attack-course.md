@@ -31,7 +31,8 @@
 - Guided/ATGM:
   - 9K121 Vikhr: 6–8 km envelope; keep within ±20° off boresight; pair laser with Shkval lock; ripple in pairs for high-value threats.
   - Kh-25ML: 3–10 km; laser-guided; stabilize platform; maintain lase through TOF.
-  - Kh-29L/T: 3–10 km (L), 3–12 km (T). Heavy; expect sluggish handling post-release. TV variant needs solid lock; laser variant needs continuous lase.
+  - Kh-29L (laser): 3–10 km; heavy; expect sluggish handling post-release; continuous lase required.
+  - Kh-29T (TV): 3–12 km; establish solid TV lock; maintain stable attitude to prevent break-lock.
   - KAB-500Kr: TV-guided; 3–10 km; CCRP-like release followed by steering the TV lock.
 - SEAD:
   - Kh-25MPU (with Fantasmagoria): 10–40 km envelope depending on altitude; loft/pop-up to maintain emitter lock.
@@ -67,7 +68,7 @@
 - Notes: No datalink—use clear, concise brevity; emphasize visual/landmark talk-ons and laser safety calls.
 
 ## Mission Editor Setup Guidance
-- Starts: Provide cold start at main base and hot start at range/FOB for reps. Enable ground power for quick INS-less ops.
+- Starts: Provide cold start at main base and hot start at range/FOB for reps. Enable ground power for quick power-up (platform lacks INS alignment).
 - Range layout: 
   - Box pattern lanes ~5×3 NM with initial/final headings marked by smoke or range towers.
   - Tactical pattern anchor points for wheel/butterfly (IP, egress, hold) with altitude blocks.
