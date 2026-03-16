@@ -39,7 +39,9 @@
 | [Military Airfield & ATC Communications](procedures/airfield-atc-communications.md) | Tower, Ground, Approach, Departure |
 | [Formation Flying Training Course](procedures/formation-flying-training.md) | Rotary & Fixed-Wing formation standards, visual references, and drills |
 | [Basic & Intermediate Surface Attack Course](procedures/surface-attack-course.md) | Fixed-wing SA course: A-10A/C/II, Su-25/T — Phases 1–4 |
+| [Su-25T Surface Attack Course](procedures/su-25t-surface-attack-course.md) | Su-25T-only SA course with Su-25T-specific systems and profiles |
 | [Close Combat Attack (CCA) Course](procedures/cca-course.md) | Helicopter CCA course: UH-1H, OH-58D, Mi-24P — Phases 1–4 |
+| [Caucasus Su-25T SA Exercises](procedures/caucasus-su-25t-training-scenarios.md) | Su-25T-only practical reps for Phases 1–4 on the Caucasus map |
 | [NTTR Surface Attack Training Scenarios](procedures/nttr-training-scenarios.md) | Practical mission scenarios for all four SA course phases on the NTTR map |
 | [Caucasus Surface Attack Training Scenarios](procedures/caucasus-training-scenarios.md) | Practical mission scenarios for all four SA course phases on the Caucasus map |
 
