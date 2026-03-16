@@ -10,12 +10,12 @@ Generate a Markdown research file (`.github/research/su-25t-surface-attack-cours
 # Research Requirements
 
 1. **Source Review**
-   * Use the DCS Su-25T Flight Manual, DCS mission editor behavior, and reputable open-source -25T references. Note where simulator behavior diverges from real-world data.
+   * Use the DCS Su-25T Flight Manual, DCS mission editor behavior, and reputable open-source Su-25T references. Note where simulator behavior diverges from real-world data.
    * Crosswalk to existing `surface-attack-course.md` sections so the future course author can slot content cleanly.
 
 2. **Platform Overview (Su-25T)**
    * Airframe traits impacting attack work: engines/throttle response, AoA/over-G limits, airbrake effectiveness, SAS channels, autopilot route/altitude hold, RWR (SPO-15).
-   * HUD/weapon delivery modes (CCIP/CCRP equivalent cues), depressions, and pipper behavior unique to the -25T.
+   * HUD/weapon delivery modes (CCIP/CCRP equivalent cues), depressions, and pipper behavior unique to the Su-25T.
    * Navigation aids relevant to attack runs (ARK-22/ADF, RSBN if applicable, INS, datalink absence).
 
 3. **Sensors & Targeting**
