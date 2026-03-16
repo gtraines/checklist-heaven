@@ -11,8 +11,8 @@
 1. [Overview](#overview)
 2. [Airfield & Navigation Reference](#airfield--navigation-reference)
 3. [Scenario 1 — IRON ANVIL 01-T (Phase 1: Basic)](#scenario-1--iron-anvil-01-t-phase-1-basic)
-4. [Scenario 2 — PRECISION STRIKE 02-T (Phase 2: Precision & Systems)](#scenario-2--precision-strike-02-t-phase-2-precision--systems)
-5. [Scenario 3 — CLOSE FIGHT 03-T (Phase 3: CAS/JTAC)](#scenario-3--close-fight-03-t-phase-3-casjtac)
+4. [Scenario 2 — PRECISION STRIKE 02-T (Phase 2: Precision and Systems)](#scenario-2--precision-strike-02-t-phase-2-precision-and-systems)
+5. [Scenario 3 — CLOSE FIGHT 03-T (Phase 3: CAS JTAC)](#scenario-3--close-fight-03-t-phase-3-cas-jtac)
 6. [Scenario 4 — IRON CONTROL 04-T (Phase 4: FAC-A)](#scenario-4--iron-control-04-t-phase-4-fac-a)
 
 ---
@@ -76,7 +76,7 @@ Four map-specific sorties that translate the [Su-25T Surface Attack Course](./su
 
 ---
 
-## Scenario 2 — PRECISION STRIKE 02-T (Phase 2: Precision & Systems)
+## Scenario 2 — PRECISION STRIKE 02-T (Phase 2: Precision and Systems)
 
 > **Focus:** Shkval/laser work, guided stores, laser discipline
 
@@ -103,7 +103,7 @@ Four map-specific sorties that translate the [Su-25T Surface Attack Course](./su
 
 ---
 
-## Scenario 3 — CLOSE FIGHT 03-T (Phase 3: CAS/JTAC)
+## Scenario 3 — CLOSE FIGHT 03-T (Phase 3: CAS JTAC)
 
 > **Focus:** 9-Line execution, talk-on with Shkval, keyhole geometry, mixed ordnance
 
