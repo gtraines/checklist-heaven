@@ -12,7 +12,7 @@
 2. [Platform Employment Notes](#platform-employment-notes)
 3. [Phase 1: Basic Surface Attack](#phase-1-basic-surface-attack)
 4. [Phase 2: Intermediate Surface Attack](#phase-2-intermediate-surface-attack)
-5. [Phase 3: CAS & JTAC Coordination](#phase-3-cas--jtac-coordination)
+5. [Phase 3: CAS & JTAC Coordination](#phase-3-cas-jtac-coordination)
 6. [Phase 4: Airborne FAC-A](#phase-4-airborne-fac-a)
 7. [Mission Editor Setup](#mission-editor-setup)
 8. [References & Realism Notes](#references--realism-notes)
