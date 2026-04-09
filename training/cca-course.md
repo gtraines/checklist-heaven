@@ -1,6 +1,6 @@
 # Close Combat Attack (CCA) Aviation Course
 > **Course:** Helicopter Close Combat Attack | **Aircraft:** UH-1H Huey, OH-58D Kiowa Warrior, Mi-24P Hind
-> [← Back to Index](../index.md)
+> [← Back to Index](index.md)
 
 ---
 
@@ -27,8 +27,8 @@ This course provides a structured progression in helicopter close combat attack 
 > Helicopter crews may execute either, depending on the tactical situation and proximity to friendly forces.
 
 **Prerequisites:**
-- Aircraft type qualification (see [UH-1H Checklist](../aircraft/uh-1h-huey.md), [OH-58D Checklist](../aircraft/oh-58d-kiowa.md), [Mi-24P Checklist](../aircraft/mi-24-hind.md))
-- Basic navigation and radio communications (see [Radio Communications](./radio-communications.md))
+- Aircraft type qualification (see [UH-1H Checklist](../checklists/aircraft/uh-1h-huey.md), [OH-58D Checklist](../checklists/aircraft/oh-58d-kiowa.md), [Mi-24P Checklist](../checklists/aircraft/mi-24-hind.md))
+- Basic navigation and radio communications (see [Radio Communications](../checklists/procedures/radio-communications.md))
 - Familiarity with NOE (Nap-of-the-Earth) and contour flight techniques
 
 **Course Structure:**
@@ -593,11 +593,11 @@ When the OH-58D or a designated aircraft is acting as FAC-A, it manages all rota
 | **FM 3-04.126** | Attack Reconnaissance Helicopter Operations (US Army) |
 | **JP 3-09.3** | Joint Procedures for Air Operations in CAS |
 | **MCWP 3-23.1** | Close Air Support (USMC) |
-| [UH-1H Huey Checklist](../aircraft/uh-1h-huey.md) | DCS UH-1H systems and procedures |
-| [OH-58D Kiowa Checklist](../aircraft/oh-58d-kiowa.md) | DCS OH-58D systems and procedures |
-| [Mi-24P Hind Checklist](../aircraft/mi-24-hind.md) | DCS Mi-24P systems and procedures |
+| [UH-1H Huey Checklist](../checklists/aircraft/uh-1h-huey.md) | DCS UH-1H systems and procedures |
+| [OH-58D Kiowa Checklist](../checklists/aircraft/oh-58d-kiowa.md) | DCS OH-58D systems and procedures |
+| [Mi-24P Hind Checklist](../checklists/aircraft/mi-24-hind.md) | DCS Mi-24P systems and procedures |
 | [Surface Attack Course](./surface-attack-course.md) | Fixed-wing equivalent course (A-10, Su-25) |
-| [Radio Communications](./radio-communications.md) | Frequencies, formats, and radio discipline |
+| [Radio Communications](../checklists/procedures/radio-communications.md) | Frequencies, formats, and radio discipline |
 
 ---
 

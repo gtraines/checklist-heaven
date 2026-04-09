@@ -1,0 +1,66 @@
+# DCS World Training Courses
+
+> **Training Syllabus Index** | Structured qualification courses for DCS World aircraft
+>
+> [← Back to Checklists](../checklists/index.md)
+
+---
+
+## Table of Contents
+1. [How to Use This Index](#how-to-use-this-index)
+2. [Fixed-Wing Courses](#fixed-wing-courses)
+3. [Helicopter Courses](#helicopter-courses)
+4. [Training Scenarios](#training-scenarios)
+5. [Course Completion Standards](#course-completion-standards)
+
+---
+
+## How to Use This Index
+
+Each course is a self-contained syllabus of sequential training events. Complete events in order. Do not advance to the next event until all completion standards for the current event are met.
+
+Each event contains:
+- **Ground Brief** — academic knowledge required before flying
+- **In-Sim Procedures** — step-by-step tasks with DCS keybinds
+- **Completion Standards** — measurable pass/fail criteria
+- **Common Errors** — known student failure points
+
+---
+
+## Fixed-Wing Courses
+
+| Course | Aircraft | Events | Level |
+|---|---|---|---|
+| [A-10A Basic Qualification Training](a-10a-bqt/overview.md) | A-10A Thunderbolt II | 6 | Basic (Level 100) |
+| [Su-25T Basic Qualification Training](su-25t-bqt/overview.md) | Su-25T Frogfoot-B | 5 | Basic (Level 100) |
+| [Su-25T Multiplayer Operations](su-25t-multiplayer-intro.md) | Su-25T Frogfoot-B | 1 | Basic |
+| [Su-25T Weapons Employment Course](su-25t-weapons/overview.md) | Su-25T Frogfoot-B | 7 | Intermediate (Level 200) |
+| [Basic & Intermediate Surface Attack Course](surface-attack-course.md) | A-10A/C/II, Su-25/T | 4 Phases | Basic–Intermediate |
+
+---
+
+## Helicopter Courses
+
+| Course | Aircraft | Events | Level |
+|---|---|---|---|
+| [Close Combat Attack (CCA) Course](cca-course.md) | UH-1H, OH-58D, Mi-24P | 4 Phases | Basic–Intermediate |
+| [Formation Flying Training Course](formation-flying-training.md) | All rotary & fixed-wing | Multi-phase | Basic |
+
+---
+
+## Training Scenarios
+
+| Scenario | Map | Description |
+|---|---|---|
+| [NTTR Surface Attack Training Scenarios](nttr-training-scenarios.md) | Nevada Test & Training Range | Practical missions for all 4 SA course phases |
+| [Caucasus Surface Attack Training Scenarios](caucasus-training-scenarios.md) | Caucasus | Practical missions for all 4 SA course phases |
+
+---
+
+## Course Completion Standards
+
+A student is considered **Basic Qualified** upon successful completion of all events in a BQT course, including a passing Check Ride with no Incomplete Items (IIs).
+
+---
+
+*Based on Eagle Dynamics DCS World documentation. For simulation use only.*

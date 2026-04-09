@@ -1,6 +1,6 @@
 # Basic and Intermediate Surface Attack Course
 > **Course:** Fixed-Wing Surface Attack | **Aircraft:** A-10A, A-10C, A-10C II, Su-25, Su-25T
-> [← Back to Index](../index.md)
+> [← Back to Index](index.md)
 
 ---
 
@@ -22,7 +22,7 @@ This course provides a structured progression from basic unguided surface attack
 
 **Prerequisites:**
 - Completion of aircraft-specific type qualification (see [aircraft checklists](#references))
-- Basic navigation and radio communications proficiency (see [Radio Communications](./radio-communications.md))
+- Basic navigation and radio communications proficiency (see [Radio Communications](../checklists/procedures/radio-communications.md))
 - Familiarity with air-to-ground weapons loading and arming procedures
 
 **Course Structure:**
@@ -218,7 +218,7 @@ Low-angle delivery is used for area suppression with rockets and for gun employm
 
 #### A-10C / A-10C II (High Fidelity)
 
-> See also: [A-10C Checklist](../aircraft/a-10c.md) | [A-10C II Checklist](../aircraft/a-10c-ii.md)
+> See also: [A-10C Checklist](../checklists/aircraft/a-10c.md) | [A-10C II Checklist](../checklists/aircraft/a-10c-ii.md)
 
 **Pre-Attack DSMS Configuration:**
 1. `DSMS` → Select weapon station(s).
@@ -247,7 +247,7 @@ Low-angle delivery is used for area suppression with rockets and for gun employm
 
 #### A-10A (FC3 — Simplified Avionics)
 
-> See also: [A-10A Checklist](../aircraft/a-10a.md)
+> See also: [A-10A Checklist](../checklists/aircraft/a-10a.md)
 
 The A-10A uses a simplified avionics suite. No DSMS or TGP are available. All weapons delivery is visual/HUD only.
 
@@ -272,7 +272,7 @@ The A-10A uses a simplified avionics suite. No DSMS or TGP are available. All we
 
 #### Su-25T (High Fidelity)
 
-> See also: [Su-25T Checklist](../aircraft/su-25t.md)
+> See also: [Su-25T Checklist](../checklists/aircraft/su-25t.md)
 
 **Pre-Attack Configuration:**
 1. `LShift+Space` → **Master Arm ON**.
@@ -300,7 +300,7 @@ The A-10A uses a simplified avionics suite. No DSMS or TGP are available. All we
 
 #### Su-25 (Standard — Visual Only)
 
-> See also: [Su-25 Checklist](../aircraft/su-25.md)
+> See also: [Su-25 Checklist](../checklists/aircraft/su-25.md)
 
 The standard Su-25 uses the ASP-17 optical gunsight. No TV or laser systems are available for unguided delivery.
 
@@ -354,7 +354,7 @@ Upon completion of Phase 2, the student will be able to:
 
 ### 2.1 A-10C / A-10C II — TGP & Laser-Guided Weapons
 
-> See also: [A-10C Checklist](../aircraft/a-10c.md)
+> See also: [A-10C Checklist](../checklists/aircraft/a-10c.md)
 
 #### TGP Employment
 
@@ -406,7 +406,7 @@ The AN/AAQ-28 LITENING TGP provides targeting, laser designation, and IR/CCD ima
 
 ### 2.2 A-10A — Maverick (Simplified)
 
-> See also: [A-10A Checklist](../aircraft/a-10a.md)
+> See also: [A-10A Checklist](../checklists/aircraft/a-10a.md)
 
 The A-10A employs Mavericks using an optical boresight (no TGP slaving).
 
@@ -423,7 +423,7 @@ The A-10A employs Mavericks using an optical boresight (no TGP slaving).
 
 ### 2.3 Su-25T — Shkval & Vikhr
 
-> See also: [Su-25T Checklist](../aircraft/su-25t.md)
+> See also: [Su-25T Checklist](../checklists/aircraft/su-25t.md)
 
 #### Shkval TV System Operation
 
@@ -469,7 +469,7 @@ The 9A-4172 Vikhr is a supersonic laser beam rider. The missile flies along the 
 
 ### 2.4 Su-25 — Semi-Active Laser Guided Missiles (Kh-25ML / Kh-29L)
 
-> See also: [Su-25 Checklist](../aircraft/su-25.md)
+> See also: [Su-25 Checklist](../checklists/aircraft/su-25.md)
 
 1. `RShift+O` → Laser rangefinder/designator ON.
 2. `D` → Cycle to Kh-25ML or Kh-29L.
@@ -676,7 +676,7 @@ Upon completion of Phase 4, the student will be able to:
 
 ### 4.1 FAC-A Platform Notes
 
-> See also: [UH-1H Huey Checklist](../aircraft/uh-1h-huey.md) (rotary-wing FAC-A)
+> See also: [UH-1H Huey Checklist](../checklists/aircraft/uh-1h-huey.md) (rotary-wing FAC-A)
 
 The FAC-A role can be performed from:
 
@@ -835,20 +835,20 @@ When acting as FAC-A, the student must brief the 9-Line **to** attacking aircraf
 
 | Platform | Checklist |
 | :--- | :--- |
-| A-10A (FC3) | [../aircraft/a-10a.md](../aircraft/a-10a.md) |
-| A-10C Thunderbolt II | [../aircraft/a-10c.md](../aircraft/a-10c.md) |
-| A-10C II Thunderbolt II | [../aircraft/a-10c-ii.md](../aircraft/a-10c-ii.md) |
-| Su-25 Grach | [../aircraft/su-25.md](../aircraft/su-25.md) |
-| Su-25T Frogfoot | [../aircraft/su-25t.md](../aircraft/su-25t.md) |
-| UH-1H Huey (FAC-A) | [../aircraft/uh-1h-huey.md](../aircraft/uh-1h-huey.md) |
+| A-10A (FC3) | [../aircraft/a-10a.md](../checklists/aircraft/a-10a.md) |
+| A-10C Thunderbolt II | [../aircraft/a-10c.md](../checklists/aircraft/a-10c.md) |
+| A-10C II Thunderbolt II | [../aircraft/a-10c-ii.md](../checklists/aircraft/a-10c-ii.md) |
+| Su-25 Grach | [../aircraft/su-25.md](../checklists/aircraft/su-25.md) |
+| Su-25T Frogfoot | [../aircraft/su-25t.md](../checklists/aircraft/su-25t.md) |
+| UH-1H Huey (FAC-A) | [../aircraft/uh-1h-huey.md](../checklists/aircraft/uh-1h-huey.md) |
 
 ### Related Procedures
 
 | Document | Link |
 | :--- | :--- |
-| 9-Line CAS Quick Reference | [./9-line-cas.md](./9-line-cas.md) |
-| Radio Communications | [./radio-communications.md](./radio-communications.md) |
-| Airfield ATC Communications | [./airfield-atc-communications.md](./airfield-atc-communications.md) |
+| 9-Line CAS Quick Reference | [./9-line-cas.md](../checklists/procedures/9-line-cas.md) |
+| Radio Communications | [./radio-communications.md](../checklists/procedures/radio-communications.md) |
+| Airfield ATC Communications | [./airfield-atc-communications.md](../checklists/procedures/airfield-atc-communications.md) |
 
 ### Doctrinal References
 

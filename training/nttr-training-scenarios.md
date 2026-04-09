@@ -2,7 +2,7 @@
 
 > **Map:** Nevada Test and Training Range (NTTR) | **Aircraft:** A-10A, A-10C, A-10C II, Su-25, Su-25T
 >
-> [← Back to Index](../index.md)
+> [← Back to Index](index.md)
 
 ---
 
@@ -397,8 +397,8 @@ Use the following 9-Line to brief the student before the attack:
 | Document | Link |
 | :--- | :--- |
 | Surface Attack Course (Academic) | [./surface-attack-course.md](./surface-attack-course.md) |
-| 9-Line CAS Quick Reference | [./9-line-cas.md](./9-line-cas.md) |
-| Radio Communications | [./radio-communications.md](./radio-communications.md) |
+| 9-Line CAS Quick Reference | [./9-line-cas.md](../checklists/procedures/9-line-cas.md) |
+| Radio Communications | [./radio-communications.md](../checklists/procedures/radio-communications.md) |
 
 ---
 

@@ -2,7 +2,7 @@
 
 > **Map:** Caucasus | **Aircraft:** A-10A, A-10C, A-10C II, Su-25, Su-25T
 >
-> [← Back to Index](../index.md)
+> [← Back to Index](index.md)
 
 ---
 
@@ -437,8 +437,8 @@ The main Caucasus range north of Sukhumi presents the most demanding FAC-A opera
 | :--- | :--- |
 | Surface Attack Course (Academic) | [./surface-attack-course.md](./surface-attack-course.md) |
 | NTTR Training Scenarios (Equivalent) | [./nttr-training-scenarios.md](./nttr-training-scenarios.md) |
-| 9-Line CAS Quick Reference | [./9-line-cas.md](./9-line-cas.md) |
-| Radio Communications | [./radio-communications.md](./radio-communications.md) |
+| 9-Line CAS Quick Reference | [./9-line-cas.md](../checklists/procedures/9-line-cas.md) |
+| Radio Communications | [./radio-communications.md](../checklists/procedures/radio-communications.md) |
 
 ---
 
