@@ -5,7 +5,7 @@ Checklists for stuff I forget
 
 Aviation-style checklists for DCS World aircraft, optimized for tablet viewing.
 
-### 📋 [View Master Index →](checklists/index.md)
+### 📋 [View Master Index →](checklists/index.md) | 🎓 [View Training Courses →](training/index.md)
 
 #### Aircraft Checklists
 | Aircraft | Type |
@@ -24,15 +24,23 @@ Aviation-style checklists for DCS World aircraft, optimized for tablet viewing.
 |---|---|
 | [NS430 Navigation Module](checklists/systems/ns430.md) | Garmin GNS 430-based GPS navigation system |
 
-#### Procedures & Courses
+#### Training Courses
+| Course | Aircraft | Level |
+|---|---|---|
+| [A-10A Basic Qualification Training](training/a-10a-bqt/overview.md) | A-10A Thunderbolt II | Basic (Level 100) |
+| [Su-25T Basic Qualification Training](training/su-25t-bqt/overview.md) | Su-25T Frogfoot-B | Basic (Level 100) |
+| [Su-25T Multiplayer Operations](training/su-25t-multiplayer-intro.md) | Su-25T Frogfoot-B | Basic |
+| [Su-25T Weapons Employment Course](training/su-25t-weapons/overview.md) | Su-25T Frogfoot-B | Intermediate (Level 200) |
+| [Basic & Intermediate Surface Attack Course](training/surface-attack-course.md) | A-10A/C/II, Su-25/T | Basic–Intermediate |
+| [Close Combat Attack (CCA) Course](training/cca-course.md) | UH-1H, OH-58D, Mi-24P | Basic–Intermediate |
+| [Formation Flying Training Course](training/formation-flying-training.md) | All rotary & fixed-wing | Basic |
+| [NTTR Surface Attack Training Scenarios](training/nttr-training-scenarios.md) | Fixed-wing | Scenarios |
+| [Caucasus Surface Attack Training Scenarios](training/caucasus-training-scenarios.md) | Fixed-wing | Scenarios |
+
+#### Procedures
 | Procedure | Description |
 |---|---|
 | [9-Line CAS Procedures](checklists/procedures/9-line-cas.md) | Requesting and responding to Close Air Support |
 | [Military Aviation Radio Communications](checklists/procedures/radio-communications.md) | Frequencies, formats, phraseology |
 | [Military Airfield & ATC Communications](checklists/procedures/airfield-atc-communications.md) | Tower, Ground, Approach, Departure |
-| [Formation Flying Training Course](checklists/procedures/formation-flying-training.md) | Rotary & Fixed-Wing formation standards, visual references, and drills |
 | [CCA vs. CAS Doctrine (Helicopters)](checklists/procedures/cca-vs-cas-helicopters.md) | Close Combat Attack vs. 9-Line CAS distinction |
-| [Basic & Intermediate Surface Attack Course](checklists/procedures/surface-attack-course.md) | Fixed-wing SA course: A-10A/C/II, Su-25/T |
-| [Close Combat Attack (CCA) Course](checklists/procedures/cca-course.md) | Helicopter CCA course: UH-1H, OH-58D, Mi-24P |
-| [NTTR Surface Attack Training Scenarios](checklists/procedures/nttr-training-scenarios.md) | Practical mission scenarios for all four SA course phases on the NTTR map |
-| [Caucasus Surface Attack Training Scenarios](checklists/procedures/caucasus-training-scenarios.md) | Practical mission scenarios for all four SA course phases on the Caucasus map |

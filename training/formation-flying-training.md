@@ -2,7 +2,7 @@
 
 > **Scope:** UH-1H, Mi-24P, OH-58D, Su-25/T, A-10A/C/II | **Target:** DCS World
 >
-> [← Back to Index](../index.md)
+> [← Back to Index](index.md)
 
 ---
 
