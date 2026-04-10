@@ -31,10 +31,13 @@ Each event contains:
 
 | Course | Aircraft | Events | Level |
 |---|---|---|---|
-| [A-10A Basic Qualification Training](a-10a-bqt/overview.md) | A-10A Thunderbolt II | 6 | Basic (Level 100) |
-| [Su-25T Basic Qualification Training](su-25t-bqt/overview.md) | Su-25T Frogfoot-B | 5 | Basic (Level 100) |
-| [Su-25T Multiplayer Operations](su-25t-multiplayer-intro.md) | Su-25T Frogfoot-B | 1 | Basic |
-| [Su-25T Weapons Employment Course](su-25t-weapons/overview.md) | Su-25T Frogfoot-B | 7 | Intermediate (Level 200) |
+| [A-10A Basic Qualification Training](a-10a/a-10a-bqt/overview.md) | A-10A Thunderbolt II | 6 | Basic (Level 100) |
+| [A-10A Weapons Employment Course](a-10a/a-10a-weapons/overview.md) | A-10A Thunderbolt II | 6 | Intermediate (Level 200) |
+| [A-10C Basic Qualification Training](a-10c/a-10c-bqt/overview.md) | A-10C Thunderbolt II | 8 | Basic (Level 100) |
+| [A-10C Weapons Employment Course](a-10c/a-10c-wec/overview.md) | A-10C / A-10C II Thunderbolt II | 8 | Intermediate (Level 200) |
+| [Su-25T Basic Qualification Training](su-25t/su-25t-bqt/overview.md) | Su-25T Frogfoot-B | 5 | Basic (Level 100) |
+| [Su-25T Multiplayer Operations](su-25t/su-25t-multiplayer-intro.md) | Su-25T Frogfoot-B | 1 | Basic |
+| [Su-25T Weapons Employment Course](su-25t/su-25t-weapons/overview.md) | Su-25T Frogfoot-B | 7 | Intermediate (Level 200) |
 | [Basic & Intermediate Surface Attack Course](surface-attack-course.md) | A-10A/C/II, Su-25/T | 4 Phases | Basic–Intermediate |
 
 ---

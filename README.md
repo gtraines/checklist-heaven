@@ -27,10 +27,13 @@ Aviation-style checklists for DCS World aircraft, optimized for tablet viewing.
 #### Training Courses
 | Course | Aircraft | Level |
 |---|---|---|
-| [A-10A Basic Qualification Training](training/a-10a-bqt/overview.md) | A-10A Thunderbolt II | Basic (Level 100) |
-| [Su-25T Basic Qualification Training](training/su-25t-bqt/overview.md) | Su-25T Frogfoot-B | Basic (Level 100) |
-| [Su-25T Multiplayer Operations](training/su-25t-multiplayer-intro.md) | Su-25T Frogfoot-B | Basic |
-| [Su-25T Weapons Employment Course](training/su-25t-weapons/overview.md) | Su-25T Frogfoot-B | Intermediate (Level 200) |
+| [A-10A Basic Qualification Training](training/a-10a/a-10a-bqt/overview.md) | A-10A Thunderbolt II | Basic (Level 100) |
+| [A-10A Weapons Employment Course](training/a-10a/a-10a-weapons/overview.md) | A-10A Thunderbolt II | Intermediate (Level 200) |
+| [A-10C Basic Qualification Training](training/a-10c/a-10c-bqt/overview.md) | A-10C Thunderbolt II | Basic (Level 100) |
+| [A-10C Weapons Employment Course](training/a-10c/a-10c-wec/overview.md) | A-10C / A-10C II Thunderbolt II | Intermediate (Level 200) |
+| [Su-25T Basic Qualification Training](training/su-25t/su-25t-bqt/overview.md) | Su-25T Frogfoot-B | Basic (Level 100) |
+| [Su-25T Multiplayer Operations](training/su-25t/su-25t-multiplayer-intro.md) | Su-25T Frogfoot-B | Basic |
+| [Su-25T Weapons Employment Course](training/su-25t/su-25t-weapons/overview.md) | Su-25T Frogfoot-B | Intermediate (Level 200) |
 | [Basic & Intermediate Surface Attack Course](training/surface-attack-course.md) | A-10A/C/II, Su-25/T | Basic–Intermediate |
 | [Close Combat Attack (CCA) Course](training/cca-course.md) | UH-1H, OH-58D, Mi-24P | Basic–Intermediate |
 | [Formation Flying Training Course](training/formation-flying-training.md) | All rotary & fixed-wing | Basic |
@@ -44,12 +47,3 @@ Aviation-style checklists for DCS World aircraft, optimized for tablet viewing.
 | [Military Aviation Radio Communications](checklists/procedures/radio-communications.md) | Frequencies, formats, phraseology |
 | [Military Airfield & ATC Communications](checklists/procedures/airfield-atc-communications.md) | Tower, Ground, Approach, Departure |
 | [CCA vs. CAS Doctrine (Helicopters)](checklists/procedures/cca-vs-cas-helicopters.md) | Close Combat Attack vs. 9-Line CAS distinction |
-<<<<<<< HEAD
-=======
-| [Basic & Intermediate Surface Attack Course](checklists/procedures/surface-attack-course.md) | Fixed-wing SA course: A-10A/C/II, Su-25/T |
-| [Su-25T Surface Attack Course](checklists/procedures/su-25t-surface-attack-course.md) | Su-25T-only SA course with Su-25T systems and profiles |
-| [Close Combat Attack (CCA) Course](checklists/procedures/cca-course.md) | Helicopter CCA course: UH-1H, OH-58D, Mi-24P |
-| [Caucasus Su-25T SA Exercises](checklists/procedures/caucasus-su-25t-training-scenarios.md) | Su-25T-only practical reps for Phases 1–4 on the Caucasus map |
-| [NTTR Surface Attack Training Scenarios](checklists/procedures/nttr-training-scenarios.md) | Practical mission scenarios for all four SA course phases on the NTTR map |
-| [Caucasus Surface Attack Training Scenarios](checklists/procedures/caucasus-training-scenarios.md) | Practical mission scenarios for all four SA course phases on the Caucasus map |
->>>>>>> e757aa8c918992c30ed82a4f720e4fa14b1e5c62
