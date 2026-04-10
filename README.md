@@ -35,6 +35,7 @@ Aviation-style checklists for DCS World aircraft, optimized for tablet viewing.
 | [Su-25T Multiplayer Operations](training/su-25t/su-25t-multiplayer-intro.md) | Su-25T Frogfoot-B | Basic |
 | [Su-25T Weapons Employment Course](training/su-25t/su-25t-weapons/overview.md) | Su-25T Frogfoot-B | Intermediate (Level 200) |
 | [Basic & Intermediate Surface Attack Course](training/surface-attack-course.md) | A-10A/C/II, Su-25/T | Basic–Intermediate |
+| [OH-58D Basic Qualification Training](training/oh-58d/oh-58d-bqt/overview.md) | OH-58D Kiowa Warrior | Basic (Level 100) |
 | [Close Combat Attack (CCA) Course](training/cca-course.md) | UH-1H, OH-58D, Mi-24P | Basic–Intermediate |
 | [Formation Flying Training Course](training/formation-flying-training.md) | All rotary & fixed-wing | Basic |
 | [NTTR Surface Attack Training Scenarios](training/nttr-training-scenarios.md) | Fixed-wing | Scenarios |
