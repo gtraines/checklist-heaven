@@ -46,6 +46,8 @@ Each event contains:
 
 | Course | Aircraft | Events | Level |
 |---|---|---|---|
+| [Mi-24P Basic Qualification Training](mi-24p/mi-24p-bqt/overview.md) | Mil Mi-24P Hind-F | 8 | Basic (Level 100) |
+| [Mi-24P Weapons Qualification Course](mi-24p/mi-24p-wqc/overview.md) | Mil Mi-24P Hind-F | 9 | Weapons (Level 200) |
 | [OH-58D Basic Qualification Training](oh-58d/oh-58d-bqt/overview.md) | OH-58D Kiowa Warrior | 8 | Basic (Level 100) |
 | [Close Combat Attack (CCA) Course](cca-course.md) | UH-1H, OH-58D, Mi-24P | 4 Phases | Basic–Intermediate |
 | [Formation Flying Training Course](formation-flying-training.md) | All rotary & fixed-wing | Multi-phase | Basic |
