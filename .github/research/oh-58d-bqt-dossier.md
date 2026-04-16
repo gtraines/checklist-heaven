@@ -4,7 +4,7 @@
 > **Course Level:** Basic Qualification (Level 100)
 > **Primary Reference:** TM 1-1520-248-10 (Operator's Manual), TM 1-1520-248-CL (Checklists)
 > **Supplementary References:** AR 95-1 (Flight Regulations), TC 3-04.4 (Fundamentals of Flight), TC 3-04.62 (Tactical Flight Procedures)
-> **DCS Module:** Polychop Simulations OH-58D Kiowa Warrior — Full-fidelity, clickable cockpit module. Every switch, dial, circuit breaker, and instrument is interactive. The module uses an advanced flight model (AFM) providing realistic rotor dynamics, autorotation, and retreating blade stall behavior.
+> **DCS Module:** Polychop Simulations OH-58D Kiowa Warrior — Full-fidelity, clickable cockpit module with advanced flight model (AFM).
 
 ---
 
@@ -12,19 +12,34 @@
 
 ### Purpose
 
-This document is the technical research foundation for an OH-58D Kiowa Warrior Basic Qualification Training (BQT) course in DCS World. It compiles systems knowledge, aerodynamic data, cockpit procedures, and emergency procedures into a single reference that will be converted into structured training events.
+This document is the technical research foundation for an OH-58D Kiowa Warrior Basic Qualification Training (BQT) course in DCS World. It compiles systems knowledge, aerodynamic data, cockpit procedures, communications, and emergency procedures into a single reference that will be converted into structured, simulation-accurate checklists.
 
 ### Scope
 
-**Covered:** Cold-and-dark startup through safe aircraft recovery in day VMC conditions — including hover work, basic flight maneuvers, navigation, traffic pattern operations, emergency procedures (academic and practice autorotations), and shutdown.
+**Covered:** Cold-and-dark startup through safe aircraft recovery in day VMC conditions — including communications setup, hover work, basic flight maneuvers, AHRS/GPS navigation, traffic pattern operations, emergency procedures (academic and practice autorotations), and shutdown.
 
 **Not Covered:** Combat employment (weapons delivery, Hellfire engagement, close combat attack, RSTA mission tactics, team scout/attack procedures). The Mast-Mounted Sight (MMS) is introduced at a familiarization level only. Weapons panels are identified but not employed.
 
 ### Aircraft Background
 
-The Bell OH-58D Kiowa Warrior is a single-engine, four-blade light observation and attack helicopter developed for the U.S. Army. Derived from the Bell 206 JetRanger, the OH-58D was extensively modified under the Army Helicopter Improvement Program (AHIP) with a Mast-Mounted Sight (MMS) housing TV, thermal imaging, and laser range finder/designator sensors. The "Warrior" upgrade added weapons pylons capable of carrying AGM-114 Hellfire missiles, 2.75-inch Hydra 70 rockets, AIM-92 Stinger air-to-air missiles, and the M296 .50 caliber machine gun. Powered by a single Rolls-Royce (Allison) 250-C30R/3 turboshaft engine (redesignated T703-AD-700A under military nomenclature) producing approximately 650 shaft horsepower, the OH-58D operates at a maximum gross weight of 5,500 lbs with a Vne of 110–120 KIAS depending on configuration.
+The Bell OH-58D Kiowa Warrior is a single-engine, four-blade light observation and attack helicopter developed for the U.S. Army. Derived from the Bell 206 JetRanger, the OH-58D was extensively modified under the Army Helicopter Improvement Program (AHIP) with a Mast-Mounted Sight (MMS) housing TV, thermal imaging, and laser range finder/designator sensors. The "Warrior" upgrade added weapons pylons capable of carrying AGM-114 Hellfire missiles, 2.75-inch Hydra 70 rockets, AIM-92 Stinger air-to-air missiles, and the M296 .50 caliber machine gun.
 
-The OH-58D served as the U.S. Army's primary armed reconnaissance helicopter from the late 1980s through its retirement in 2017, operating extensively in Operations Desert Storm, Iraqi Freedom, and Enduring Freedom. Its role has since been absorbed by the AH-64 Apache and unmanned systems.
+Powered by a single Rolls-Royce (Allison) 250-C30R/3 turboshaft engine (military designation T703-AD-700A) producing approximately 650 shaft horsepower, the OH-58D operates at a maximum gross weight of 5,500 lbs with a Vne of 110–120 KIAS depending on configuration. The aircraft features a four-blade, soft-in-plane (bearingless) composite main rotor system and a two-blade tail rotor.
+
+The OH-58D served as the U.S. Army's primary armed reconnaissance helicopter from the late 1980s through its retirement in 2017, operating extensively in Operations Desert Storm, Iraqi Freedom, and Enduring Freedom.
+
+### Key Characteristics vs. Other DCS Helicopters
+
+| Feature | OH-58D Kiowa | UH-1H Huey | Mi-24P Hind |
+|---|---|---|---|
+| **Rotor type** | 4-blade soft-in-plane (bearingless) | 2-blade teetering (semi-rigid) | 5-blade fully articulated |
+| **Engine control** | FADEC (auto + manual backup) | Throttle correlator + governor | Manual throttle + governors |
+| **Engine** | T703-AD-700A (~650 SHP) | T53-L-13B (~1,400 SHP) | 2× TV3-117V (~2,200 SHP each) |
+| **Max gross weight** | 5,500 lbs | 9,500 lbs | 26,500 lbs |
+| **Navigation** | AHRS/GPS + MFD moving map | ADF/VOR only (analog) | DISS + ARK-15 (analog) |
+| **Cockpit** | Hybrid analog/digital (MFD) | Fully analog | Fully analog |
+| **Unique risk** | Ground resonance (soft-in-plane) | Mast bumping (teetering) | Blade sailing (fully articulated) |
+| **Power margin** | Very limited — light helicopter | Moderate | Generous |
 
 ### Avionics Introduction Level
 
@@ -39,14 +54,28 @@ The student is introduced to the MFD (Multi-Function Display), AHRS/GPS navigati
 | AR 95-1 | Army Flight Regulations — general operating rules |
 | TC 3-04.4 | Fundamentals of Flight — rotary-wing aerodynamics, weather, ADM |
 | TC 3-04.62 | Tactical Flight Procedures — terrain flight context (reference only) |
-| TM 1-1520-248-23P | Maintenance allocation, parts — for systems context |
-| USAACE Training Circulars | Fort Rucker/Novosel training standards and maneuver descriptions |
+| USAACE Training Circulars | Fort Novosel training standards and maneuver descriptions |
 
 ### Source Priority Rule
 
 Real-world documentation is the **primary truth** for systems knowledge, limitations, aerodynamic behavior, and procedural structure. Where the DCS Polychop module diverges from real-world procedures or behavior, **the DCS procedure is what the student will actually execute** and is documented as the primary instruction. All divergences are footnoted:
 
 > *⚠ Realism Divergence: [explanation of the real-world procedure and how/why DCS differs.]*
+
+### Module Index
+
+| Module | Title | Key Topics |
+|---|---|---|
+| 1 | Aircraft Systems & Aerodynamics | T703 engine, FADEC, rotor system, transmission, fuel, hydraulic, electrical, aero phenomena |
+| 2 | Cockpit Familiarization | All panels, instruments, MFD, MMS, radios, controls, lighting |
+| 3 | Communications | ARC-164 UHF, ARC-201 FM, ICS, audio panel, phraseology, DCS Easy Comm/SRS |
+| 4 | Ground Operations | Cold-and-dark startup, AHRS alignment, rotor engagement, hover taxi, pre-takeoff |
+| 5 | Hover & Takeoff | Hover technique, power check, takeoff profiles, climb, ground resonance |
+| 6 | Basic Flight Maneuvers | Level flight, turns, climbs/descents, slow flight, autorotation practice, trim |
+| 7 | Navigation (AHRS/GPS & Conventional) | MFD nav page, waypoints, moving map, TACAN, ADF, radar altimeter, transponder |
+| 8 | Emergency Procedures (Academic) | Boldface items, full autorotation, LTE, VRS, FADEC failure, hydraulic, mast bumping |
+| 9 | Approach & Landing | VFR pattern, normal/steep/shallow approach, go-around, slope, confined area, pinnacle |
+| 10 | Shutdown & Post-Flight | Shutdown sequence, post-shutdown checks, cold-and-dark |
 
 ---
 
@@ -56,74 +85,90 @@ Real-world documentation is the **primary truth** for systems knowledge, limitat
 
 Upon completion of this module, the student will be able to:
 
-1. Describe the T703-AD-700A turboshaft engine's operating cycle, FADEC modes, and all engine limitations (continuous, transient, starting).
-2. Explain the main rotor system (4-blade, soft-in-plane) and tail rotor system (2-blade), including Nr governing, autorotation RPM range, and blade stall conditions.
-3. Identify the transmission system components (main gearbox, tail rotor gearbox, intermediate gearbox) and state torque, oil temperature, and oil pressure limits.
-4. Describe the fuel system architecture, capacity, boost pump function, and low-fuel warnings.
-5. Explain the single hydraulic system, what it powers, and the flight characteristics when hydraulics are lost.
-6. Describe the electrical system (DC generator, battery, bus architecture) and state battery endurance with generator offline.
-7. Explain FADEC auto vs. manual mode, recognize FADEC failure indications, and describe the handling qualities impact of FADEC-OFF operations.
-8. Describe the mechanical flight control system including mixing linkages, force trim, and hydraulic boost.
-9. Define and explain the following rotary-wing aerodynamic phenomena: translating tendency, translational lift (ETL), transverse flow effect, dissymmetry of lift, retreating blade stall, ground effect (IGE vs. OGE), settling with power, LTE, mast bumping, and dynamic rollover.
+1. Describe the T703-AD-700A engine and its FADEC system, including auto vs. manual modes, start sequence, and engine limitations.
+2. Explain the four-blade soft-in-plane (bearingless) main rotor system, its characteristics, and how it differs from teetering and fully articulated designs.
+3. Identify normal operating ranges and caution/warning thresholds for all engine and transmission parameters.
+4. Describe the fuel, hydraulic, and electrical systems, including emergency considerations for each.
+5. Explain key rotary-wing aerodynamic phenomena: ETL, dissymmetry of lift, retreating blade stall, VRS, LTE, mast bumping, ground resonance, and dynamic rollover.
+6. Identify the conditions that lead to ground resonance and state the correct immediate action.
 
 ---
 
-### 1.1 Powerplant — T703-AD-700A Turboshaft Engine
+### 1.1 Engine — T703-AD-700A (Rolls-Royce/Allison 250-C30R/3)
 
-The OH-58D is powered by a single Rolls-Royce (Allison) 250-C30R/3 turboshaft engine, designated **T703-AD-700A** under military nomenclature. It is a free-turbine design: the gas producer section (N1/Ng) is mechanically independent of the power turbine (N2/Np), which drives the main transmission and rotor system through a reduction gearbox.
+The OH-58D is powered by a single Rolls-Royce (Allison) 250-C30R/3 turboshaft engine, redesignated **T703-AD-700A** under military nomenclature. It is a free-turbine design: a gas producer section (compressor + combustor + gas producer turbine) drives a separate power turbine, which in turn drives the main transmission and rotor system through a freewheeling unit.
 
-#### Engine Operating Parameters
+#### Engine Specifications
 
-| Parameter | Value | Notes |
-|---|---|---|
-| **Engine Type** | Rolls-Royce 250-C30R/3 (T703-AD-700A) | Free-turbine turboshaft; gas producer + power turbine |
-| **Max Continuous Power** | ~650 SHP | Sea level, standard day; derated from 650+ SHP rating |
-| **Takeoff Power (5-min)** | ~650 SHP | Higher torque limit permitted for 5 minutes |
-| **Gas Producer (N1/Ng)** | Idle: ~62–64% / Max: 104% (do not exceed) | FADEC governs N1 in auto mode |
-| **Power Turbine (N2/Np)** | 100% = 6,016 RPM output shaft | Drives main rotor via transmission reduction |
-| **Turbine Outlet Temperature (TOT)** | Continuous: 737°C / Transient (10 sec): 810°C / Start (10 sec): 843°C | TOT is the primary engine health indicator |
-| **Idle RPM (Ground)** | N1 ~62%, Nr ~62–65% | Throttle at IDLE detent; rotor turns but below governed flight range |
-| **Flight Idle RPM** | N1 ~72%, Nr governing to 100% | Throttle at FLY detent; FADEC governs Nr |
-| **Spool-Up Time** | ~4–6 seconds (flight idle to max power) | Free turbine spools faster than fixed-shaft designs; still requires anticipation on collective inputs |
-| **Oil Pressure** | Normal: 90–130 PSI / Min: 60 PSI | Below 60 PSI = caution |
-| **Oil Temperature** | Normal: 70–107°C / Max: 107°C | Above 107°C = land as soon as practicable |
-| **Fuel Flow** | Cruise (~80 KIAS): ~250 lbs/hr / Hover (IGE): ~300 lbs/hr | Varies significantly with weight, altitude, temperature |
-
-#### FADEC Operation
-
-The FADEC (Full Authority Digital Engine Control) manages all engine parameters in **auto mode**, including:
-- Nr governing to 100% (adjusts fuel flow to maintain rotor RPM regardless of collective input)
-- TOT limiting (prevents exceedances during high-demand situations)
-- N1 overspeed protection
-- Engine start sequencing (automated light-off and acceleration schedule)
-
-In **manual mode** (FADEC failure or deliberate selection), the pilot must:
-- Manually control the throttle to maintain Nr within 98–100% (power on)
-- Monitor and respect TOT limits without automatic protection
-- Anticipate collective inputs with throttle adjustments (collective up = more throttle required)
-
-| FADEC Mode | Pilot Action | Nr Management | TOT Protection |
-|---|---|---|---|
-| **Auto** | Collective only; FADEC adjusts engine | Automatic (100%) | Automatic limiting |
-| **Manual** | Throttle + collective coordinated | Pilot responsibility | Pilot responsibility |
-
-> *⚠ Realism Divergence: In the real OH-58D, FADEC failure modes include partial authority degradation, intermittent N1 hunting, and nuanced manual reversion scenarios documented in TM 1-1520-248-10 Chapter 9. DCS models a simplified FADEC failure — typically a clean switchover to manual mode with a caution light. The real aircraft may exhibit transient Nr oscillations during transfer that DCS does not replicate.*
+| Parameter | Value |
+|---|---|
+| **Type** | Free-turbine turboshaft |
+| **Manufacturer** | Rolls-Royce (originally Allison) |
+| **Military designation** | T703-AD-700A |
+| **Commercial equivalent** | 250-C30R/3 |
+| **Max rated power** | ~650 SHP (takeoff, 5 min) |
+| **Max continuous power** | ~560 SHP |
+| **Compressor** | 6 axial + 1 centrifugal stage |
+| **Combustor** | Single reverse-flow annular |
+| **Gas producer turbine** | 2-stage axial |
+| **Power turbine** | 2-stage axial (free turbine) |
+| **Fuel type** | JP-8 / JP-5 / Jet A-1 |
+| **Engine oil** | MIL-PRF-23699 (synthetic) |
+| **Dry weight** | ~160 lbs |
 
 #### Engine Start Cycle
 
-1. Throttle at **IDLE** detent (cutoff position).
-2. Press **START** button — starter motor cranks N1/Ng.
-3. At approximately **15% N1**, fuel is introduced (light-off).
-4. TOT rises — monitor for hot start (TOT exceeding 843°C during start).
-5. N1 accelerates through **58–62%** to stabilize at ground idle (~62–64%).
-6. If TOT exceeds start limits or N1 hangs below idle → **abort start** (throttle OFF, motor to cool, attempt restart).
+1. **Battery ON** — provides electrical power for FADEC and starter.
+2. **FADEC self-test** — FADEC performs internal diagnostics (DCS: brief pause after battery; real-world: BIT test).
+3. **Throttle to IDLE / START position** — initiates FADEC-controlled start sequence.
+4. **Starter engagement** — starter-generator motors the gas producer (N1/Ng begins increasing).
+5. **Fuel introduction** — FADEC introduces fuel at the appropriate N1 (~12–15% Ng). Pilot monitors TOT for light-off (visible as TOT rise on the gauge).
+6. **TOT monitoring** — TOT rises through light-off, peaks, then settles. If TOT exceeds the starting limit → **HOT START** abort.
+7. **N1 acceleration** — gas producer accelerates through the self-sustaining speed (~55–58% Ng). If N1 stagnates below self-sustaining with rising TOT → **HUNG START** abort.
+8. **Idle stabilization** — N1 settles at ground idle (~62–65% Ng), TOT settles within continuous limits, oil pressure rising.
+9. **Starter disengage** — automatic (FADEC disengages starter after self-sustaining speed reached) or manual release.
 
-**Abort Criteria:**
-- **Hot start:** TOT exceeds 843°C during start cycle → throttle OFF immediately, motor to purge.
-- **Hung start:** N1 fails to accelerate to idle within ~60 seconds → throttle OFF, motor.
-- **No light-off:** No TOT rise by ~25% N1 → throttle OFF, check fuel boost, reattempt.
+#### Start Abort Criteria
 
-> *⚠ Realism Divergence: The real OH-58D requires precise throttle placement at the IDLE detent for the start sequence. DCS models this requirement but may have slightly different N1/TOT acceleration profiles. Real hot starts can cause turbine damage requiring maintenance; DCS models the temperature exceedance but does not track cumulative thermal damage.*
+| Condition | Indication | Action |
+|---|---|---|
+| **Hot start** | TOT exceeds starting limit (see limits table) | Throttle to OFF immediately; motor for 30 sec to cool |
+| **Hung start** | N1 stagnates below ~55% Ng with TOT rising | Throttle to OFF; motor 30 sec to purge |
+| **No light-off** | No TOT rise by ~25% Ng | Throttle to OFF; motor 30 sec to clear fuel |
+| **Starter duty cycle** | Exceeded continuous crank time | Throttle to OFF; wait per duty cycle limits before re-attempt |
+
+#### Engine Operating Modes
+
+| Mode | Description |
+|---|---|
+| **Ground idle** | ~62–65% Ng, Nr below flight RPM, FADEC governing at idle parameters |
+| **Flight idle (FLY)** | Nr at governed flight RPM (~100% / 395 RPM), FADEC managing power to maintain Nr |
+| **Continuous power** | Maximum power available without time restriction (torque ≤ continuous limit) |
+| **Takeoff power (5 min)** | Maximum rated power; time-limited to 5 minutes continuous |
+| **Transient (contingency)** | Above takeoff power; available momentarily — FADEC may allow brief exceedances |
+
+#### FADEC — Full Authority Digital Engine Control
+
+The T703-AD-700A uses a **FADEC** (Full Authority Digital Engine Control) that manages:
+
+- **Fuel metering** — continuously adjusts fuel flow to maintain demanded power
+- **Nr governing** — maintains rotor RPM at governed speed regardless of collective position
+- **Torque limiting** — prevents overtorque by limiting fuel flow
+- **TOT limiting** — prevents overtemperature by limiting fuel flow
+- **Start sequencing** — automates fuel introduction timing and starter control during start
+- **Overspeed protection** — prevents N1 and Nr from exceeding limits
+
+**Auto mode (normal):** FADEC has full authority. Pilot moves collective; FADEC adjusts fuel to maintain Nr. Throttle twist-grip is at the FLY detent and essentially a set-and-forget control.
+
+**Manual/Backup mode:** FADEC reverts to a degraded or backup control law. The pilot must **manually manage throttle** to maintain Nr. The collective-to-throttle correlator still provides a baseline fuel flow proportional to collective position, but the fine Nr governing is the pilot's responsibility. Handling qualities degrade — Nr will fluctuate with collective changes, and the pilot must anticipate and compensate.
+
+**FADEC failure indications:**
+- FADEC caution light on caution panel
+- Nr excursions (over-speed or under-speed)
+- Uncommanded power changes
+- TOT excursions
+
+> *⚠ Realism Divergence: The DCS Polychop module models FADEC auto and manual modes, but the fidelity of the backup mode may be simplified compared to the real T703 FADEC. Real-world FADEC has multiple redundancy levels and degraded modes; DCS likely models a single backup/manual mode. The start sequence in DCS is also somewhat accelerated compared to real-world turbine spool times.*
 
 ---
 
@@ -131,339 +176,378 @@ In **manual mode** (FADEC failure or deliberate selection), the pilot must:
 
 #### Main Rotor
 
-| Parameter | Value | Notes |
-|---|---|---|
-| **Configuration** | 4-blade, soft-in-plane, bearingless composite hub | Upgraded from original 2-blade teetering OH-58A/C rotor |
-| **Diameter** | 35 ft (10.67 m) | |
-| **Nr (Power On)** | 98–100% continuous | FADEC governs to 100% in auto mode |
-| **Nr (Power Off / Autorotation)** | 90–107% | 90% minimum for safe autorotation; above 107% = overspeed |
-| **Nr Transient Low Limit** | 90% (momentary) | Below 90% = rotor stall risk, reduced autorotation capability |
-| **Nr Transient High Limit** | 107% (momentary, power off) | Above 107% = structural risk to rotor head/mast |
-| **Rotor Direction** | Counterclockwise (viewed from above) | Standard U.S. configuration; determines translating tendency and yaw response |
+| Parameter | Value |
+|---|---|
+| **Configuration** | 4-blade, soft-in-plane (bearingless), composite |
+| **Diameter** | ~35 ft (10.7 m) |
+| **Rotation direction** | Counterclockwise (viewed from above) — standard U.S. |
+| **Governed RPM** | ~395 RPM (100% Nr) |
+| **Normal operating range** | 97–101% Nr (383–399 RPM) |
+| **Autorotation range** | ~90–107% Nr (~356–423 RPM) |
+| **Blade material** | Composite (fiberglass/carbon fiber) |
+| **Hub type** | Bearingless (flexures replace bearings for flap, lead-lag, and pitch change) |
 
-The 4-blade soft-in-plane rotor provides smoother ride characteristics and lower vibration than the original 2-blade teetering rotor of the OH-58A/C. The bearingless composite hub uses flexbeam elements for flapping and lead-lag articulation, reducing maintenance burden.
+The OH-58D's **bearingless (soft-in-plane)** rotor uses composite flexures instead of traditional hinges and bearings. This design:
 
-**Blade Stall:** At high gross weight, high altitude, high G, or high airspeed, the retreating blade may exceed its critical angle of attack. The 4-blade system is more resistant to blade stall onset than a 2-blade system, but pilots must respect Vne and G limits. Symptoms include vibration, uncommanded pitch-up or roll, and increased control forces.
+- **Eliminates** conventional flap, lead-lag, and pitch-change bearings — reducing maintenance
+- **Provides** lead-lag articulation through beam flexibility — this is what makes it "soft-in-plane"
+- **Stores more rotational energy** than a 2-blade teetering system due to four blades and greater total blade mass
+- **Is susceptible to ground resonance** due to the lead-lag degree of freedom (unlike a teetering rotor, which has no lead-lag articulation)
 
 #### Tail Rotor
 
-| Parameter | Value | Notes |
-|---|---|---|
-| **Configuration** | 2-blade, semi-rigid | Mounted on left side of vertical fin |
-| **Diameter** | 5.42 ft (1.65 m) | |
-| **Function** | Anti-torque, yaw control | Pedal input directly changes tail rotor blade pitch |
-| **Drive** | Driveshaft from main transmission through tail rotor gearbox | Loss of drive = loss of anti-torque |
+| Parameter | Value |
+|---|---|
+| **Configuration** | 2-blade, semi-rigid |
+| **Location** | Left side of tail boom (pusher) |
+| **Function** | Anti-torque; provides directional (yaw) control |
+| **Drive** | Tail rotor driveshaft from main transmission through 90° gearbox |
 
-> *⚠ Realism Divergence: The real OH-58D tail rotor can experience bearing wear and gearbox failures producing vibration and noise before catastrophic failure. DCS models tail rotor failure as a binary event (functional or failed) without progressive degradation.*
+#### Rotor RPM (Nr) Governing
+
+In **FADEC auto mode**, Nr is governed automatically. The FADEC adjusts fuel flow to maintain Nr at the governed speed (~100% / 395 RPM) regardless of collective position. The pilot does not need to manage throttle.
+
+In **FADEC manual/backup mode**, the correlator (mechanical linkage between collective and throttle) provides a proportional fuel flow, but the pilot must fine-tune with the twist-grip throttle to maintain Nr.
+
+**Nr excursion awareness:**
+- **Low Nr (below ~97%):** RPM warning audio sounds; increasing risk of blade stall and loss of rotor authority. If Nr continues to decay → autorotation entry may be required.
+- **High Nr (above ~101%):** Overspeed — reduce power or increase collective to load the rotor. FADEC normally prevents this, but monitor during manual mode.
+- **Autorotation Nr:** Nr will increase when collective is lowered (unloaded rotor in autorotation). Manage with collective — too much collective bleeds Nr; too little allows overspeed.
 
 ---
 
 ### 1.3 Transmission System
 
-| Component | Function | Key Limits |
-|---|---|---|
-| **Main Transmission** | Reduces engine output RPM to main rotor RPM | Torque: 100% continuous / 110% transient (10 sec) |
-| **Tail Rotor Gearbox** | Drives tail rotor from main transmission output | Oil temp/pressure monitored; chip detector equipped |
-| **Intermediate Gearbox** | 90° turn in driveshaft routing to tail boom | Oil temp/pressure monitored; chip detector equipped |
-| **Freewheeling Unit (Sprag Clutch)** | Allows rotor to spin freely when engine output drops below rotor RPM | Enables autorotation; must disengage cleanly or autorotation entry is degraded |
+| Component | Description |
+|---|---|
+| **Main transmission** | Combines engine power turbine output to main rotor shaft; reduction gearing |
+| **Tail rotor gearbox** | 90° gearbox at tail; drives tail rotor from driveshaft |
+| **Freewheeling unit** | One-way clutch allowing rotor to freewheel during autorotation (disconnects from engine) |
+| **Torque measurement** | Torque gauge reads main rotor drive torque (% or ft-lbs) |
 
 #### Transmission Limits
 
-| Parameter | Normal | Caution | Warning |
+| Parameter | Normal | Caution | Limit |
 |---|---|---|---|
-| **Torque (Q)** | ≤ 100% | 100–110% (10 sec max) | > 110% |
-| **Trans Oil Pressure** | 30–60 PSI | < 30 PSI | XMSN OIL PRESS caution |
-| **Trans Oil Temperature** | < 110°C | 110–120°C | > 120°C |
-| **Chip Detector** | Clear | — | CHIP light = metallic particles detected; land ASAP |
+| **Torque (continuous)** | ≤ 85% Q | 85–100% Q | > 100% Q (structural) |
+| **Torque (takeoff, 5 min)** | ≤ 100% Q | — | > 100% Q (time limit exceeded) |
+| **Trans oil pressure** | 30–90 PSI | < 30 PSI | XMSN OIL PRESS caution |
+| **Trans oil temperature** | < 110°C (230°F) | 110–120°C | > 120°C (248°F) |
 
-> *⚠ Realism Divergence: In the real OH-58D, chip detectors can distinguish between fuzz (minor) and hard metal particles (major) through maintenance crew burn-check procedures. In DCS, a chip light is a binary caution requiring the student to treat it as a "land as soon as possible" event.*
+> *Note: Torque limits may vary by block/configuration. The DCS module may use specific values — verify in-sim against the engine instrument markings and caution light trigger points.*
+
+**Chip detector:** Metallic particles in transmission oil indicate internal wear. CHIP DET caution light → land as soon as practicable; assess severity.
 
 ---
 
 ### 1.4 Fuel System
 
-| Parameter | Value | Notes |
-|---|---|---|
-| **Internal Fuel Capacity** | ~112 US gallons (~750 lbs JP-8) | Single crashworthy fuel cell |
-| **Fuel Type** | JP-8 (primary), JP-5, Jet-A acceptable | |
-| **Fuel Boost Pump** | Electric, pilot-controlled | Must be ON before start and during flight; gravity feed is emergency backup only |
-| **Fuel Quantity Indicator** | Instrument panel — calibrated in pounds | |
-| **Low Fuel Warning** | Caution light at approximately 83 lbs (~12 gal) remaining | Approximately 20 minutes of flight at cruise |
-| **Fuel Consumption (Hover IGE)** | ~300 lbs/hr | At sea level, mid gross weight |
-| **Fuel Consumption (Cruise ~80 KIAS)** | ~250 lbs/hr | At sea level, mid gross weight |
-| **Endurance (No Reserve)** | ~2.5–3.0 hours cruise | Varies significantly with weight, altitude, mission profile |
+| Parameter | Value |
+|---|---|
+| **Internal capacity** | ~110 US gallons (~730 lbs JP-8) |
+| **Fuel cells** | Crashworthy, self-sealing bladder cells |
+| **Fuel boost pump** | Electric; provides positive pressure to engine fuel system |
+| **Fuel quantity indication** | Analog gauge, reading in pounds |
+| **Low fuel warning** | Caution light at ~45 lbs (~6.8 gal) remaining |
+| **Fuel filter bypass** | Automatic bypass if filter clogs; FUEL FILTER BYPASS caution light |
+| **Typical cruise consumption** | ~200–250 lbs/hr (~30–38 gal/hr) at 80–90 KIAS |
+| **Endurance (approx.)** | ~2.5–3 hours (varies with power setting, weight, altitude) |
 
-The fuel system is a single-cell, crashworthy, self-sealing design. The electric boost pump provides positive fuel pressure to the engine; loss of the boost pump triggers a caution light and requires the pilot to monitor for engine fuel starvation. Gravity feed is available as a backup but is not reliable in all flight attitudes.
+**Fuel management notes:**
+- **Always start with FUEL BOOST pump ON** — verifies fuel pressure before engine start.
+- Low fuel warning triggers late — plan fuel stops conservatively.
+- The OH-58D is a **short-endurance aircraft** compared to medium/heavy helicopters. Mission planning must account for limited fuel.
 
-> *⚠ Realism Divergence: The real OH-58D has a more complex fuel system with a sump, filter/separator, and specific gravity feed limitations by flight attitude. DCS simplifies fuel feed — the boost pump caution triggers but gravity feed generally continues to supply fuel in normal flight attitudes without the attitude restrictions of the real aircraft.*
+> *⚠ Realism Divergence: DCS fuel consumption rates may not precisely match real-world tables. Verify in-sim fuel flow at various power settings and plan missions with appropriate margin.*
 
 ---
 
 ### 1.5 Hydraulic System
 
-| Parameter | Value | Notes |
-|---|---|---|
-| **System Type** | Single hydraulic system | No redundancy — single-point failure |
-| **Pressure** | ~1,000 PSI (system dependent) | |
-| **Powers** | Flight control servo actuators (cyclic, collective, tail rotor) | All flight controls are hydraulically boosted |
-| **Reservoir** | Single, with sight gauge | |
-| **Hydraulic-Off Flight** | Controllable but extremely high control forces | Run-on landing recommended; avoid hover |
+| Parameter | Value |
+|---|---|
+| **Configuration** | Single hydraulic system |
+| **Pump** | Engine-driven (runs whenever engine is turning) |
+| **Pressure** | ~1,000 PSI nominal |
+| **Function** | Powers irreversible flight control servo actuators (cyclic, collective, pedals) |
+| **Accumulator** | Provides brief hydraulic pressure after pump failure for limited control inputs |
 
-The OH-58D uses a **single hydraulic system** with no backup. This means any hydraulic failure (pump, line, or fluid loss) results in loss of all hydraulic boost to the flight controls. The aircraft is controllable without hydraulics but requires significant pilot strength — control forces increase dramatically, especially in the cyclic. A run-on landing at 40–60 KIAS is recommended to reduce the control forces required for a hover landing.
+**Hydraulic failure:**
+- Controls become **extremely heavy** — require significant pilot force to move
+- Aircraft is **flyable** but demanding; avoid hover operations
+- Recommended: **run-on landing** (shallow approach with forward speed at touchdown to avoid hover)
+- Accumulator provides ~4–10 control inputs after pump failure — use them wisely
 
-> *⚠ Realism Divergence: In the real OH-58D, hydraulic-off flight requires extreme physical effort — two-handed cyclic inputs and bracing against the collective. DCS models increased control forces but may not fully replicate the physical difficulty. Students should understand that real hydraulic failure is a much more demanding emergency than DCS depicts.*
+> *⚠ Realism Divergence: DCS may simplify hydraulic failure effects. Real-world hydraulic failure in the OH-58D requires approximately 40–50 lbs of force on the cyclic. DCS control forces may be modeled differently depending on controller hardware.*
 
 ---
 
 ### 1.6 Electrical System
 
-| Component | Function | Notes |
-|---|---|---|
-| **DC Starter-Generator** | Primary electrical power source (28V DC) | Engine-driven; comes online after engine start, generator switch ON |
-| **Battery** | 24V nickel-cadmium | Provides power for start and emergency bus; ~30 min endurance without generator |
-| **Essential Bus** | Powers critical instruments, caution panel, radios | Remains powered on battery alone |
-| **Non-Essential Bus** | Powers MFD, MMS, weapons systems, lighting | Shed in generator-off/battery-only operations |
-| **Inverter** | Converts DC to AC for AC-powered instruments | Required for attitude indicator, some avionics |
+| Component | Description |
+|---|---|
+| **Starter-generator** | 28V DC; provides starting torque and in-flight electrical generation |
+| **Battery** | 24V nickel-cadmium; provides backup power and starting |
+| **Essential bus** | Powers critical instruments, FADEC, caution panel, fire detection |
+| **Non-essential bus** | Powers radios, MFD, lighting, non-critical avionics |
+| **External power** | Receptacle for ground power unit (GPU) — used for maintenance |
 
-**Generator Failure Sequence:**
-1. GEN caution light illuminates.
-2. Attempt generator reset (GEN RESET button).
-3. If reset fails → shed non-essential bus (non-essential loads OFF).
-4. Monitor battery voltage — approximately 30 minutes endurance on essential bus.
-5. Land as soon as practicable.
+**Generator failure:**
+- GEN caution light illuminates
+- Non-essential bus load may need to be shed
+- Battery endurance: **~30 minutes** under reduced load (FADEC, essential instruments, one radio)
+- Action: attempt generator reset; if unsuccessful, shed non-essential loads, land as soon as practicable
 
-> *⚠ Realism Divergence: The real OH-58D electrical system includes specific load-shedding priorities and bus-tie logic that may not be fully modeled in DCS. The DCS module provides generator failure and battery-only operations, but the nuanced bus transfer behavior may be simplified.*
-
----
-
-### 1.7 FADEC — Full Authority Digital Engine Control
-
-The FADEC system deserves its own subsection due to its critical importance in single-engine helicopter operations.
-
-| Feature | Auto Mode | Manual Mode |
-|---|---|---|
-| **Nr Governing** | Automatic — maintains 100% | Pilot must correlate throttle with collective |
-| **TOT Limiting** | Automatic — prevents exceedance | Pilot must monitor and respect limits |
-| **N1 Overspeed Protection** | Active | Inactive — pilot manages throttle |
-| **Start Sequencing** | Automatic fuel scheduling | Manual throttle advancement |
-| **Collective Compensation** | Automatic fuel flow adjustment | Pilot must lead/lag throttle with collective changes |
-
-**Auto Mode (Normal Operations):**
-The pilot uses the collective freely. The FADEC adjusts fuel flow to maintain Nr at 100%. The only engine instrument that requires routine monitoring is torque (to avoid exceeding limits) and TOT (to verify FADEC is maintaining limits).
-
-**Manual Mode (Degraded Operations):**
-The pilot must coordinate throttle with collective. Increasing collective without adding throttle will cause Nr to decay; decreasing collective without reducing throttle will cause Nr to overspeed. This requires continuous scan of Nr and TOT while simultaneously flying the aircraft.
-
-**FADEC Failure Recognition:**
-- **FADEC caution light** illuminates
-- Nr may fluctuate or diverge from 100%
-- TOT may spike or oscillate
-- In DCS, the aircraft may yaw as Nr changes (torque effect on anti-torque requirements)
+**Circuit breaker panels:** Located on both sides of the cockpit. Students should know the location of critical circuit breakers (FADEC, fuel boost, hydraulic, generator) but should **not** routinely manipulate CBs in flight except as directed by emergency procedures.
 
 ---
 
-### 1.8 Flight Control System
+### 1.7 Flight Control System
 
-The OH-58D uses a conventional mechanical flight control system with hydraulic boost.
+| Component | Function |
+|---|---|
+| **Cyclic** | Tilts rotor disc — controls pitch and roll (direction of flight) |
+| **Collective** | Changes all blade pitch simultaneously — controls total rotor thrust (altitude) |
+| **Anti-torque pedals** | Changes tail rotor pitch — controls yaw (heading) |
+| **Throttle (twist-grip)** | On collective grip — controls fuel flow; FADEC normally manages automatically |
+| **Force trim** | Magnetic brake on cyclic and pedals; holds control position when set |
+| **Mechanical mixing** | Collective-to-yaw coupling (left pedal with collective increase); collective-to-cyclic coupling |
+| **Hydraulic boost** | Servo actuators reduce control forces to manageable levels |
 
-| Control | Function | Mechanism |
-|---|---|---|
-| **Cyclic** | Controls main rotor tip-path plane tilt (pitch and roll) | Mechanical linkage → swashplate → hydraulic servo |
-| **Collective** | Controls main rotor blade pitch angle (power/lift) | Mechanical linkage → swashplate → hydraulic servo |
-| **Anti-Torque Pedals** | Controls tail rotor blade pitch (yaw) | Mechanical linkage → tail rotor pitch change mechanism |
-| **Throttle** | Mounted on collective grip; twist-grip design | Controls engine power in manual FADEC mode; in auto, set to FLY and leave |
+**Force trim operation:**
+- **Set:** Hold desired control position → press and release trim button on cyclic → controls hold position
+- **Release:** Press and hold trim button → controls are free to move
+- **Re-trim:** Required whenever airspeed, power, or CG changes significantly
+- Force trim does **not** provide automatic stabilization — it simply holds the last-set position
 
-#### Mechanical Mixing
+**SAS/SCAS:** The real OH-58D has a limited stability augmentation system. In DCS, this may or may not be modeled. If present, it provides rate damping to reduce pilot workload in flight.
 
-The OH-58D incorporates mechanical mixing linkages:
-- **Collective-to-yaw mixing:** Increasing collective automatically increases tail rotor pitch to compensate for the increased main rotor torque reaction. This reduces but does not eliminate the yaw input required from the pilot.
-- **Collective-to-cyclic mixing:** Compensates for the pitch/roll tendency that accompanies collective changes.
-
-These mixing systems reduce pilot workload but do not fully eliminate the need for coordinated inputs.
-
-#### Force Trim
-
-The force trim system uses a magnetic brake to hold the cyclic and pedals at a set position. The pilot presses the **force trim release** button (typically on the cyclic grip) to move the controls, then releases to set the new trim position. This replaces the traditional fixed-wing trim tab concept.
-
-- **Force trim release:** Press-and-hold → move controls → release to set new reference
-- **Trim must be reset** any time airspeed, power, or CG changes significantly
-- Failure to re-trim results in the pilot fighting constant control forces
-
-> *⚠ Realism Divergence: The real OH-58D has distinct force trim feel characteristics (breakout force, gradient) that vary by airspeed due to aerodynamic feedback. DCS models force trim functionally but the control force gradient may not perfectly replicate the real aircraft's feel, particularly at low airspeed where real control forces are very light.*
+> *⚠ Realism Divergence: The DCS module may or may not fully model the OH-58D's SAS. Check in-sim whether a SAS switch exists and test its effect on handling. If not modeled, the aircraft will require more active pilot input than the real aircraft.*
 
 ---
 
-### 1.9 Survivability Features
+### 1.8 Survivability Features
 
 | Feature | Description | DCS Modeled? |
 |---|---|---|
-| **Crashworthy Fuel Cell** | Self-sealing, crash-resistant fuel bladder; resists puncture and reduces post-crash fire risk | Partially — crash damage modeled but self-sealing behavior simplified |
-| **Energy-Absorbing Crew Seats** | Stroking seats designed to attenuate vertical crash loads | Not directly — DCS models crew injury through damage model |
-| **Armored Crew Seats** | Ballistic protection against small-arms fire | Yes — damage model includes ballistic protection |
-| **IR Suppressor** | Engine exhaust mixing with ambient air to reduce IR signature | Visual model present; functional IR reduction modeled for AI targeting |
-| **Wire Strike Protection System (WSPS)** | Deflector blades and cutters above and below cockpit | Not modeled — no wire strike hazard in DCS |
-| **Redundant Flight Controls** | Dual push-pull tubes in critical linkage areas | Not individually modeled — battle damage may sever controls as a single event |
+| **Crashworthy fuel cells** | Self-sealing, rupture-resistant bladder cells | Partially (fuel leak on damage) |
+| **Energy-absorbing seats** | Crew seats designed to attenuate vertical crash loads | Visual only |
+| **Armored crew seats** | Ballistic protection panels in seat backs | Yes (damage model) |
+| **IR suppressor** | "Black Hole" exhaust system reduces IR signature | Yes (affects IR missile lock) |
+| **Wire strike protection** | WSPS — cutter blades above and below cockpit | Visual only |
 
 ---
 
-### 1.10 Rotary-Wing Aerodynamics
+### 1.9 Rotary-Wing Aerodynamics
 
-This section covers the aerodynamic phenomena critical to safe helicopter operations. Unlike fixed-wing aerodynamics (where the wing is fixed and airspeed generates lift), the rotary wing is a dynamic system where each blade experiences continuously changing relative wind, angle of attack, and velocity throughout every revolution.
+#### 1.9.1 Translating Tendency (Drift)
 
-#### Translating Tendency (Hover Drift)
+In hover, the tail rotor produces a lateral thrust (pushing the tail to the right for a counterclockwise-rotating main rotor), which causes the entire aircraft to drift **left**. The pilot compensates with a slight right cyclic input to maintain position. This is inherent to all single-rotor helicopters with counterclockwise main rotor rotation.
 
-In a hover, the tail rotor produces lateral thrust (to the right on U.S. helicopters with counterclockwise main rotor) to counteract main rotor torque. This lateral thrust causes the entire aircraft to drift **left**. The pilot compensates with a slight **right cyclic** input in hover.
+#### 1.9.2 Translational Lift (ETL)
 
-- **Effect in DCS:** Present. In a no-wind hover, the aircraft will drift left if the pilot does not apply right cyclic.
-- **Student Error:** Failure to apply right cyclic compensation in hover, leading to slow left drift.
+As the helicopter accelerates from a hover to forward flight, it begins to fly into undisturbed air rather than re-circulating its own rotor downwash. This dramatically increases rotor efficiency.
 
-#### Translational Lift (ETL)
-
-As forward airspeed increases through approximately **16–24 knots**, the rotor disc transitions from operating in its own disturbed downwash (hover) to operating in cleaner, undisturbed air. This produces a noticeable increase in lift efficiency called **Effective Translational Lift (ETL)**.
-
-| Indication | Description |
-|---|---|
-| **Airspeed** | 16–24 knots (develops progressively) |
-| **Aircraft Response** | Nose pitches up, aircraft tends to climb, vibration decreases |
-| **Required Correction** | Forward cyclic to maintain attitude, slight collective reduction, left pedal as power requirement decreases |
-
-- **Effect in DCS:** Modeled. The student will feel the aircraft "break free" of the hover power requirement and should anticipate the nose-up pitch.
-
-#### Transverse Flow Effect
-
-During transition through ETL, air passing through the aft portion of the rotor disc has a higher induced flow angle than air entering the forward portion. This causes the aft blades to operate at a lower angle of attack than the forward blades, creating a rolling moment (typically a **right roll** tendency and vibration at 10–20 knots).
-
-- **Effect in DCS:** Modeled as increased vibration and roll tendency during transition.
-- **Student Error:** Failure to anticipate the roll input required during acceleration through 10–20 knots.
-
-#### Dissymmetry of Lift and Blade Flapping
-
-In forward flight, the advancing blade (moving into the relative wind) experiences higher airspeed and produces more lift than the retreating blade (moving away from the relative wind). To equalize lift across the disc, the blades **flap** — the advancing blade flaps up (reducing angle of attack) and the retreating blade flaps down (increasing angle of attack).
-
-This flapping is inherent in the rotor design and occurs automatically. However, at high forward airspeeds, the retreating blade may reach its stall angle of attack, causing **retreating blade stall**.
-
-#### Retreating Blade Stall
-
-| Factor | Effect |
-|---|---|
-| **High Forward Airspeed** | Increases velocity differential between advancing and retreating blades |
-| **High Gross Weight** | Requires higher blade angles of attack to produce required lift |
-| **High Altitude (DA)** | Thinner air requires higher blade angles |
-| **High G Loading** | Increases required lift, increasing blade angles |
-| **Turbulence** | Random angle of attack excursions |
-
-**Symptoms:** Vibration (usually low-frequency), uncommanded pitch-up or roll, increasing control forces. In severe cases, loss of control.
-
-**Recovery:** Reduce airspeed (aft cyclic), reduce collective (lower blade angles), reduce G (level the aircraft), descend to lower altitude if possible.
-
-**OH-58D Vne** is set to protect against retreating blade stall onset:
-
-| Configuration | Vne (KIAS) | Notes |
+| Phase | Airspeed | Indication |
 |---|---|---|
-| **Doors On, Clean** | 120 KIAS | Standard configuration |
-| **Doors Off** | 110 KIAS | Increased drag shifts retreating blade stall onset |
-| **With External Stores** | 110–120 KIAS | Depends on specific stores and weight |
+| **ETL onset** | ~16 KIAS | Vibration increase, slight nose pitch-up tendency |
+| **ETL fully developed** | ~24 KIAS | Vibration decreases, significant performance improvement, nose pitches up, left yaw tendency |
 
-#### Ground Effect (IGE vs. OGE)
+**Required control inputs through ETL:**
+- **Forward cyclic** — counteract nose pitch-up
+- **Right pedal** — counteract left yaw (increased torque effect)
+- **Reduce collective slightly** — rotor is more efficient; less power needed for same lift
 
-| Condition | Definition | Performance Impact |
+#### 1.9.3 Transverse Flow Effect
+
+During transition through ETL, the air flowing over the rear of the rotor disc has a higher downwash angle than the front (the front encounters "fresh" air first). This creates a lateral vibration and a tendency to roll slightly right. Most pronounced at 10–20 KIAS.
+
+#### 1.9.4 Retreating Blade Stall
+
+At high forward airspeed, the retreating blade (moving opposite to the direction of flight) experiences reduced relative airspeed. To maintain lift equal to the advancing blade, it must increase angle of attack — eventually reaching the stall angle.
+
+**Symptoms:** Low-frequency vibration, nose pitch-up, left roll tendency.
+**Recovery:** Reduce airspeed (lower collective, aft cyclic), reduce bank angle, reduce gross weight if possible.
+**Relationship to Vne:** The Vne is set partly to prevent retreating blade stall at max gross weight and G-loading.
+
+#### 1.9.5 Dissymmetry of Lift and Flapping
+
+The advancing blade has higher relative airspeed than the retreating blade. Without correction, this would cause a dramatic rolling moment. The rotor system compensates through **blade flapping** — the advancing blade flaps up (reducing angle of attack) and the retreating blade flaps down (increasing angle of attack). In the OH-58D's bearingless system, flapping occurs through flexure bending rather than physical hinges.
+
+#### 1.9.6 Ground Effect (IGE vs. OGE)
+
+| Condition | Description | Performance Impact |
 |---|---|---|
-| **In Ground Effect (IGE)** | Hover altitude ≤ ~½ rotor diameter (≤ ~17 ft skid height) | Reduced power required; ground surface reflects downwash, reducing induced drag |
-| **Out of Ground Effect (OGE)** | Hover altitude > ~½ rotor diameter | Full induced power required; approximately 15–20% more power than IGE hover |
+| **In Ground Effect (IGE)** | Hover within ~½ rotor diameter of the ground (~17 ft for OH-58D) | Less power required; rotor downwash cushioned by ground |
+| **Out of Ground Effect (OGE)** | Hover above ~1 rotor diameter from ground (~35 ft) | More power required; full rotor downwash without ground cushion |
 
-**Significance:** A helicopter may be able to hover IGE but **not** OGE at the same weight/altitude/temperature. The pilot must verify OGE hover capability before departing a confined area where the hover-out will be above ground effect height.
+**Practical impact:** The OH-58D is power-limited. At high density altitude or heavy gross weight, it may be possible to hover IGE but **not** OGE. The hover power check determines this.
 
-**OH-58D Power Check:** Before takeoff, the student should verify that torque required to hover at 3–5 ft skid height is below the available torque limit, with adequate margin for OGE operations and maneuvering.
+#### 1.9.7 Settling with Power (Vortex Ring State — VRS)
 
-#### Settling with Power (Vortex Ring State)
+Occurs when the helicopter descends into its own rotor downwash, creating a vortex ring around the rotor disc that dramatically reduces lift.
 
-| Condition | Threshold |
-|---|---|
-| **Airspeed** | Below ETL (< ~16 knots) |
-| **Rate of Descent** | > 300 FPM |
-| **Power Applied** | Moderate to high (above 40–50% of available) |
+**Conditions (all three must be present):**
+1. Low airspeed (< 30 KIAS)
+2. High rate of descent (> 300 fpm)
+3. Power applied (20–100% of available power)
 
-When these three conditions combine, the rotor can enter its own downwash vortex. Applying more collective (more power) worsens the condition because the increased downwash feeds the vortex.
-
-**Recognition:** High rate of descent that does not arrest with collective application; erratic control response; vibration.
+**Recognition:** High rate of descent despite power application, aircraft shudder/vibration, uncontrollable sink.
 
 **Recovery:**
-1. Cyclic forward — **get airspeed** (break out of the vortex laterally)
-2. Reduce collective slightly (counterintuitive but reduces downwash feeding the vortex)
-3. As airspeed increases through ETL, the vortex breaks and normal powered flight resumes
+1. **Forward cyclic** — gain airspeed to fly out of the vortex
+2. **Reduce collective** — counterintuitive but breaks the vortex pattern
+3. Requires ~100–200 ft of altitude to recover
 
-> *⚠ Realism Divergence: DCS models vortex ring state aerodynamics. However, the onset may be slightly more or less abrupt than the real aircraft depending on the flight model iteration. The recovery technique (cyclic forward, reduce collective, gain airspeed) is identical in DCS and is fully effective.*
+**Prevention:** Avoid descending vertically at high rates with power applied. Maintain forward airspeed during descent whenever possible.
 
-#### Loss of Tail Rotor Effectiveness (LTE)
+#### 1.9.8 Loss of Tail Rotor Effectiveness (LTE)
 
-LTE is not a mechanical failure — it is an **aerodynamic condition** where the tail rotor cannot produce sufficient anti-torque thrust due to wind interaction with the main rotor downwash and fuselage wake.
+LTE is a reduction in tail rotor authority due to aerodynamic interference, not a mechanical failure. It results in an **uncommanded right yaw** that the pilot may not be able to counter with pedal input alone.
 
-**Critical Wind Azimuths (relative to aircraft nose):**
+**Three contributing phenomena and their critical wind azimuths (relative to the nose):**
 
-| Wind Direction | Azimuth | Mechanism |
+| Phenomenon | Wind Azimuth | Mechanism |
 |---|---|---|
-| **Main Rotor Disc Vortex Interference** | 285°–315° (left rear quartering) | Main rotor tip vortices are pushed into the tail rotor disc, reducing its effectiveness |
-| **Weathercock Instability** | 120°–240° (tail wind sector) | Fuselage weathercocks into the wind, which means the tail wants to swap with the nose |
-| **Tail Rotor Vortex Ring State** | 210°–330° (left crosswind to tail) | Tail rotor operates in its own recirculating vortex |
+| **Main rotor vortex interference** | 285°–315° (left rear) | Main rotor tip vortices are blown into the tail rotor, disrupting its airflow |
+| **Weathercock instability** | 120°–240° (rear arc) | Tailwind exceeds tail rotor authority; aircraft weathervanes |
+| **Tail rotor vortex ring state** | 210°–330° (left rear arc) | Crosswind from the left causes the tail rotor to enter its own vortex ring |
 
-**Recognition:** Uncommanded right yaw that increases despite left pedal application.
+**Most dangerous combined zone: ~210°–330° (left rear quadrant)**
 
-**Recovery (Boldface):**
-1. **COLLECTIVE — REDUCE** (reduce main rotor torque, reduce anti-torque demand)
-2. **CYCLIC — FORWARD** (gain airspeed to break the aerodynamic interference)
-3. **PEDALS — FULL LEFT** (as required)
-4. **AIRSPEED — INCREASE** (above ETL; translational lift and clean airflow restore tail rotor effectiveness)
+**Recognition:** Uncommanded right yaw, inability to maintain heading despite full left pedal, increasing yaw rate.
 
-> *⚠ Realism Divergence: DCS models LTE and the pilot will experience uncommanded yaw in the critical wind azimuths. However, the onset and severity may differ slightly from the real aircraft. The recovery technique is identical and fully effective in DCS.*
+**Recovery:**
+1. **Forward cyclic** — gain airspeed (most effective cure; breaks the LTE condition)
+2. **Reduce collective** — reduce torque demand on tail rotor
+3. **If yaw rate becomes uncontrollable** — enter autorotation (removes all torque → removes need for tail rotor)
 
-#### Mast Bumping
+#### 1.9.9 Mast Bumping
 
-Mast bumping occurs when the rotor hub contacts the mast in a **semi-rigid or teetering rotor system** during **low-G or negative-G** flight conditions. The OH-58D's 4-blade soft-in-plane system is **more resistant** to mast bumping than a 2-blade teetering design, but it is **not immune**.
+Mast bumping occurs when the rotor head contacts the mast, potentially causing **catastrophic structural failure** (mast separation, loss of rotor). It is caused by excessive flapping angles under **low-G or negative-G conditions**.
 
-**Conditions that can cause mast bumping:**
-- Low-G or negative-G maneuvers (pushovers, turbulence-induced unloading)
-- Abrupt cyclic inputs at low rotor loading
-- Excessive flapping angles
+**Conditions that cause low-G:**
+- Abrupt forward cyclic (pushing over)
+- Turbulence-induced unloading
+- Aggressive cyclic inputs at low G
+- Flying in the "dead man's curve" (high altitude, low airspeed)
 
-**Why it is catastrophic:** Contact between the rotor hub and mast can sever the mast, causing immediate loss of the rotor system. There is no recovery.
+**The OH-58D's 4-blade bearingless rotor is less susceptible** to mast bumping than the UH-1H's 2-blade teetering rotor because the bearingless flexures limit flapping more progressively. However, **low-G pushovers remain prohibited** — the risk of mast bumping still exists.
 
-**Prevention:**
-- Avoid abrupt pushovers or negative-G flight
-- Maintain positive G at all times
-- Avoid abrupt cyclic inputs, particularly at low airspeed
-- G-limits: +2.5 G to −0.5 G at max gross weight
+**Prevention:** Smooth control inputs. Never push forward cyclic aggressively. Avoid abrupt unloading maneuvers. Maintain positive G at all times.
 
-> *⚠ Realism Divergence: DCS may not model mast bumping with full fidelity. In the real aircraft, even momentary contact can cause catastrophic mast severance. Students should internalize the G limits and avoid negative-G flight regardless of whether DCS produces the full consequence.*
+**Recovery (if low-G is recognized before mast contact):** Apply **aft cyclic gently** to reload the rotor disc. **NEVER** push forward cyclic under low-G conditions.
 
-#### Pendular Action and Dynamic Rollover
+#### 1.9.10 Dynamic Rollover
 
-**Pendular Action:** The helicopter fuselage is suspended below the rotor system like a pendulum. During slope operations, crosswind hover, or abrupt cyclic inputs, the fuselage can oscillate laterally or longitudinally beneath the rotor disc.
+Dynamic rollover is an uncontrollable rolling motion that occurs when the helicopter pivots about a fixed skid (caught on an obstacle, slope lip, or tiedown). Once the roll rate exceeds the pilot's ability to correct with cyclic, the aircraft will roll over.
 
-**Dynamic Rollover:** Occurs when one skid is fixed (caught on ground obstruction, slope edge, or tiedown) and the pilot applies collective. The helicopter pivots around the fixed skid. Beyond a **critical rollover angle** (~5–15° depending on rate), the roll becomes self-sustaining and the helicopter rolls over regardless of control input.
+**Conditions:**
+- Slope operations (upslope skid acts as pivot)
+- Crosswind from the rollover direction
+- Skid caught on obstacle or tiedown
+- Sling load with lateral pull
 
-**Prevention:**
-- Apply collective slowly during slope takeoffs
-- Ensure both skids are clear before increasing collective
-- If roll begins, **immediately reduce collective** (this is counterintuitive — the pilot wants to "fly out" but must first unload the pivot point)
-- Maintain awareness of skid contact during crosswind hover and slope operations
+**Critical roll rate:** ~10°/second — beyond this, recovery may be impossible.
 
-**Slope Landing Limits:**
+**Prevention:** Slow, deliberate liftoffs on slopes. Verify skids are free before adding collective. Limit roll rate.
 
-| Condition | Maximum Slope |
-|---|---|
-| **Side Slope / Nose-Up Slope** | 10° |
-| **Nose-Down Slope** | 5° |
+**Recovery (early stage only):** Reduce collective to remove the rolling moment. If roll rate is already high, reducing collective may not be sufficient.
 
-#### Instructor Notes — Module 1
+#### 1.9.11 Ground Resonance
 
-| Common Student Error | Correction |
-|---|---|
-| Confusing Nr (rotor RPM) with N1 (gas producer RPM) | Emphasize: Nr is your **life** gauge. N1 is the engine speed. In auto FADEC, Nr should always be 100%. |
-| Not understanding collective-yaw coupling | Demonstrate in hover: raise collective → aircraft yaws right (main rotor torque increases). Mixing compensates partially, but pedal correction is always needed. |
-| Failing to anticipate ETL during acceleration | Brief the student that at 16–24 knots, the nose will pitch up and the aircraft will want to climb. Forward cyclic and collective reduction are required. |
-| Over-relying on FADEC | Explain that FADEC failure converts the aircraft into a "manual-everything" machine. The student must understand the engine, not just trust the computer. |
-| Dismissing LTE as rare | LTE is the #1 killer in light helicopters. Emphasis: never hover with wind from the left-rear (285°–315°), and always have an escape plan. |
-| Ignoring mast bumping risk because "it's not modeled perfectly in DCS" | Brief the G limits and negative-G prohibition. Build correct habits regardless of sim fidelity. |
+**Ground resonance is a critical risk for the OH-58D's soft-in-plane rotor system.** It is a self-excited oscillation that occurs when the lead-lag motion of the rotor blades couples with the natural frequency of the helicopter on its landing gear.
+
+**Conditions:**
+- Aircraft on the ground (typically hard surface)
+- One skid in contact, one partially lifted (unequal weight distribution)
+- Rotor system with lead-lag articulation (soft-in-plane = yes)
+- Degraded lead-lag dampers
+
+**Recognition:** Violent lateral oscillation that builds **extremely rapidly** (seconds). Distinct from normal vibration — the entire airframe shakes violently.
+
+**Immediate action — CRITICAL DECISION:**
+1. **If Nr is sufficient to fly:** FULL UP COLLECTIVE — fly away immediately. Once airborne, the landing gear is unloaded and the resonance condition breaks.
+2. **If Nr is low (ground idle, spooling up, spooling down):** IMMEDIATE ENGINE SHUTDOWN — throttle to OFF. Reduce Nr as quickly as possible to decouple the rotor from the fuselage.
+
+**Why hesitation is catastrophic:** Ground resonance can destroy the aircraft in seconds. The oscillation amplitude doubles with each cycle. There is no "wait and see" — the pilot must immediately execute one of the two actions above.
+
+> *⚠ Realism Divergence: DCS may or may not model ground resonance for the OH-58D. If it is modeled, it may occur with different frequency or severity than real-world. Test in DCS by deliberately creating uneven ground contact conditions (slope, one skid) to determine if the phenomenon is implemented. If not modeled, the student should still understand the concept for real-world knowledge.*
+
+---
+
+### 1.10 Engine & Systems Limits Quick Reference
+
+#### Engine Limits
+
+| Parameter | Normal | Caution | Limit |
+|---|---|---|---|
+| **TOT (continuous)** | < 738°C (1,360°F) | 738–810°C | > 810°C |
+| **TOT (takeoff, 5 min)** | ≤ 810°C (1,490°F) | — | > 810°C (time limit exceeded) |
+| **TOT (starting)** | < 810°C | — | > 810°C for > 10 sec → abort |
+| **N1/Ng (gas producer)** | 62–104% | — | > 104% (overspeed) |
+| **Nr (rotor RPM)** | 97–101% (383–399 RPM) | 90–97% or 101–107% | < 90% / > 107% |
+| **Torque (continuous)** | ≤ 85% Q | 85–100% Q | > 100% Q |
+| **Torque (takeoff, 5 min)** | ≤ 100% Q | — | Exceeded: reduce immediately |
+| **Engine oil pressure** | 40–130 PSI | < 40 or > 130 | < 25 PSI (critical) |
+| **Engine oil temperature** | < 107°C (225°F) | 107–150°C | > 150°C (302°F) |
+
+#### V-Speeds
+
+| Speed | Value | Notes |
+|---|---|---|
+| **Vne (never exceed)** | 110–120 KIAS | Configuration-dependent (clean vs. stores); decreases with altitude |
+| **Vy (best rate of climb)** | ~55–60 KIAS | Standard departure climb |
+| **Cruise** | 80–100 KIAS | Best range ~90 KIAS |
+| **Cruise climb** | ~80 KIAS | Enroute altitude gain |
+| **Autorotation (best glide)** | ~72 KIAS | Maximum distance from altitude |
+| **Autorotation (min sink)** | ~55 KIAS | Minimum rate of descent |
+| **ETL (translational lift)** | 16–24 KIAS | Power demand drops significantly above ~24 KIAS |
+
+> *Note: V-speed values are approximate and based on TM 1-1520-248-10 performance charts at standard conditions. Actual values vary with gross weight, altitude, and temperature. The DCS module may use slightly different values — verify in-sim.*
+
+#### Aircraft Limits
+
+| Parameter | Limit | Notes |
+|---|---|---|
+| **Max gross weight** | 5,500 lbs (2,495 kg) | Standard max; may be reduced at high DA |
+| **Max useful load** | ~2,100–2,400 lbs | Varies with fuel and configuration |
+| **Vne** | 110–120 KIAS | Configuration-dependent |
+| **Low-G / Pushovers** | **PROHIBITED** | Risk of mast bumping (all rotor types) |
+| **Max bank angle (normal)** | ~30° | Structural limit higher, but normal ops ≤ 30° |
+| **Max bank angle (structural)** | ~60° | Emergency only |
+| **Side slope limit** | ~10° | Dynamic rollover risk |
+| **LTE risk azimuth** | 210°–330° relative | Avoid prolonged hover with wind from left-rear arc |
+
+> *⚠ Realism Divergence: TOT and torque limits in the DCS OH-58D may be set to specific values that differ slightly from the -10 manual (e.g., the FADEC limiter thresholds may trip at different values). The student should observe the caution panel trigger points and gauge markings in DCS as the operative limits for simulation. The values in this table represent the real-world baseline.*
+
+---
+
+### 1.11 Cockpit Switch Reference — Module 1
+
+| Switch/Control | Location | Function | DCS Action |
+|---|---|---|---|
+| **Battery** | Overhead console — Electrical panel | Master electrical power | Mouse click toggle |
+| **Generator** | Overhead console — Electrical panel | Engages starter-generator for electrical generation | Mouse click toggle |
+| **Fuel valve** | Overhead console — Fuel panel (guarded) | Opens fuel supply to engine | Lift guard, mouse click |
+| **Fuel boost pump** | Overhead console — Fuel panel | Provides positive fuel pressure to engine | Mouse click toggle |
+| **FADEC mode** | Overhead console — Engine panel | AUTO / MANUAL selection | Mouse click toggle |
+| **Throttle** | Collective grip (twist-grip) | Controls fuel flow; IDLE → FLY detent | Axis or keyboard |
+| **Idle stop release** | Collective grip (button) | Allows throttle past IDLE detent to FLY | Button press while twisting |
+
+---
+
+### 1.12 Instructor Notes — Module 1
+
+**Common student errors:**
+
+1. **Forgetting FADEC mode awareness:** Students treat the FADEC as "set and forget" and are unprepared when asked to fly manual throttle. Practice manual throttle drills early and often.
+2. **Ground resonance confusion:** Students don't know the decision matrix (fly away vs. shut down based on Nr). Drill the two options repeatedly: "Nr good → fly. Nr bad → shutdown. No waiting."
+3. **Overtorque on takeoff:** The OH-58D is power-limited. Students raise collective too aggressively and exceed torque limits. Emphasize smooth, gradual collective inputs.
+4. **LTE surprise in hover:** Students hover with wind from the left rear and experience uncommanded right yaw. Teach wind awareness before every hover exercise.
+5. **VRS entry during steep descent:** Students descend at low airspeed with power and enter VRS. Teach the three conditions (low speed, high descent, power) and how to avoid all three simultaneously.
+6. **Nr management in autorotation practice:** Students fail to lower collective promptly. Emphasize: "Collective down is the first thing, every time, no exceptions."
+
 
 ---
 
@@ -473,2001 +557,2778 @@ Mast bumping occurs when the rotor hub contacts the mast in a **semi-rigid or te
 
 Upon completion of this module, the student will be able to:
 
-1. Identify all major cockpit panels by name and location (left console, right console, instrument panel, center pedestal, overhead console).
-2. Locate and describe the function of every engine instrument (Torque, TOT, N1, Nr, fuel flow, oil pressure/temperature).
-3. Power on and navigate the MFD through its default pages using OSB (Option Select Button) inputs.
-4. Describe the MMS sensor suite (TV, FLIR, laser rangefinder/designator) and locate the MMS controller — familiarization only.
-5. Identify the weapon panel switches (ARM/SAFE, weapon select) and state their function — identification only.
-6. Locate and interpret every caution/advisory indicator on the caution panel.
-7. Set and read the radar altimeter, including the low-altitude warning bug.
-8. Identify all flight instruments and state their power source (DC, AC/inverter, pitot-static).
-9. Locate and operate all cockpit and exterior lighting controls.
-10. Identify the HOTAS functions on the collective grip and cyclic grip.
+1. Identify all major cockpit panels and their functions (overhead console, instrument panel, center pedestal, left/right consoles).
+2. Locate and read all engine instruments (Torque, TOT, N1, Nr, fuel flow, oil P&T) and state their normal operating ranges.
+3. Locate and read all flight instruments (attitude indicator, ASI, altimeter, VSI, heading indicator/HSI, turn-and-slip).
+4. Identify all caution/advisory panel indicators and the master caution light.
+5. Describe the MFD pages at a basic level (NAV, ENG, SYS) and operate the OSB buttons.
+6. Identify the MMS controller and weapon panel at familiarization level.
+7. Identify radio control heads (ARC-164 UHF, ARC-201 FM) and the audio panel/ICS.
+8. Describe the HOTAS functions on the collective grip (throttle, idle stop, radio triggers, lights) and cyclic grip (force trim, weapons release).
 
 ---
 
 ### 2.1 Cockpit Layout Overview
 
-The OH-58D cockpit is a tandem-width (side-by-side) configuration seating pilot (right seat) and copilot/observer (left seat). The instrument panel is shared, with the MFD centrally mounted.
+The OH-58D cockpit is a tandem-style (side-by-side) arrangement with the **pilot in the right seat** and the **copilot/observer in the left seat**. The cockpit features a mix of analog instruments and digital avionics.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     OVERHEAD CONSOLE                         │
-│   Engine start panel  Generator  Fuel boost  Lighting       │
-├──────────┬──────────────────────────────────┬───────────────┤
-│  LEFT    │       INSTRUMENT PANEL            │   RIGHT      │
-│ CONSOLE  │                                   │  CONSOLE     │
-│          │  ┌─────┐  ┌─────────┐  ┌─────┐   │              │
-│ MMS      │  │Eng  │  │   MFD   │  │Eng  │   │ Weapon      │
-│ Control  │  │Instr│  │(Center) │  │Instr│   │ Panel       │
-│          │  │(L)  │  │         │  │(R)  │   │              │
-│ Circuit  │  └─────┘  └─────────┘  └─────┘   │ AHRS/GPS    │
-│ Breakers │                                   │ Control     │
-│          │  Attitude  Airspeed   Altimeter    │              │
-│ Comms    │  Indicator  Indicator  (Baro)     │ Radio       │
-│ Panel    │  VSI  Heading  Turn Coord  RadAlt │ Panels      │
-├──────────┴──────────────────────────────────┴───────────────┤
-│                     CENTER PEDESTAL                          │
-│   Throttle quadrant   Collective friction   Pedal adjust    │
-└─────────────────────────────────────────────────────────────┘
+│                    OVERHEAD CONSOLE                          │
+│  [BATT] [GEN] [FUEL VLV] [BOOST PMP] [FADEC] [STARTER]    │
+│  [PITOT HT] [ANTI-ICE] [RPM WARN] [CAUTION TEST]          │
+│  [EXTERIOR LIGHTS] [COCKPIT LIGHTS]                         │
+├──────────────────────┬──────────────────────────────────────┤
+│   COPILOT PANEL (L)  │         PILOT PANEL (R)              │
+│  ┌───┐ ┌───┐ ┌───┐  │  ┌───┐ ┌───┐ ┌───┐                  │
+│  │ATT│ │ASI│ │ALT│  │  │ATT│ │ASI│ │ALT│                  │
+│  └───┘ └───┘ └───┘  │  └───┘ └───┘ └───┘                  │
+│  ┌───┐ ┌───┐ ┌───┐  │  ┌───┐ ┌───┐ ┌───┐                  │
+│  │VSI│ │HSI│ │T&S│  │  │VSI│ │HSI│ │T&S│                  │
+│  └───┘ └───┘ └───┘  │  └───┘ └───┘ └───┘                  │
+│  ┌─────────────────────────────────────┐                    │
+│  │  ENGINE INSTRUMENTS (CENTER)         │                    │
+│  │  [TRQ %Q] [TOT °C] [N1 %] [Nr %]  │                    │
+│  │  [FUEL FLOW] [ENG OIL P/T]         │                    │
+│  │  [XMSN OIL P/T]                    │                    │
+│  └─────────────────────────────────────┘                    │
+│  ┌───────────────┐  ┌─────────────────┐                    │
+│  │ CAUTION PANEL │  │   FUEL QTY      │                    │
+│  └───────────────┘  └─────────────────┘                    │
+├──────────────────────────────────────────────────────────────┤
+│                    CENTER PEDESTAL                            │
+│  [ARC-164 UHF-AM]  [ARC-201 VHF/FM]  [AUDIO PANEL / ICS]  │
+│  [TRANSPONDER]                                               │
+├──────────────────────────────────────────────────────────────┤
+│                    MFD (Multi-Function Display)               │
+│  ┌────────────────────────────────────┐                      │
+│  │ [OSB 1] [OSB 2] [OSB 3] [OSB 4]  │                      │
+│  │                                    │                      │
+│  │      NAV / ENG / WPN / SYS        │                      │
+│  │                                    │                      │
+│  │ [OSB 5] [OSB 6] [OSB 7] [OSB 8]  │                      │
+│  └────────────────────────────────────┘                      │
+├──────────────────────────────────────────────────────────────┤
+│         MMS CONTROLLER (Copilot side, pilot accessible)      │
+│  [TV/FLIR select] [Zoom] [Slew] [Laser] [FOV]              │
+└──────────────────────────────────────────────────────────────┘
 ```
 
-| Panel Area | Location | Primary Contents |
+---
+
+### 2.2 Overhead Console
+
+The overhead console is located above both crew members and contains the primary systems switches for engine starting, electrical power, fuel management, and lighting.
+
+| Panel / Group | Switches | Function |
 |---|---|---|
-| **Overhead Console** | Above pilots' heads | Engine start switch, generator switch, fuel boost pump, battery, inverter, lighting master controls |
-| **Instrument Panel — Left** | Left of MFD | Pilot engine instruments (Torque, TOT, N1, Nr), fuel quantity, oil pressure/temperature |
-| **Instrument Panel — Center** | Center | MFD (Multi-Function Display), master caution, caution/advisory panel |
-| **Instrument Panel — Right** | Right of MFD | Flight instruments (attitude indicator, airspeed, altimeter, VSI, heading indicator, turn coordinator) |
-| **Left Console** | Pilot's left | MMS controller, circuit breaker panels, communications panel, collective quadrant |
-| **Right Console** | Pilot's right | Weapon panel, AHRS/GPS controller, radio panels, transponder |
-| **Center Pedestal** | Between seats, below instrument panel | Throttle quadrant, collective friction adjustment, pedal adjustment |
-| **Radar Altimeter** | Lower instrument panel | Analog radar altitude indicator with bug setting |
+| **Electrical panel** | BATT, GEN, INVERTER | Master electrical power, generator, AC power |
+| **Fuel panel** | FUEL VALVE (guarded), FUEL BOOST PUMP | Fuel supply to engine, fuel pressure |
+| **Engine panel** | FADEC MODE (AUTO/MANUAL), STARTER, RPM WARN | Engine control mode, starting, RPM audio warning |
+| **Environmental** | PITOT HEAT, ENGINE ANTI-ICE, DEFOG | Anti-ice and defogging systems |
+| **Lighting** | COCKPIT LIGHTS (rheostat), INSTRUMENT LIGHTS, CONSOLE LIGHTS | Interior lighting for day/night/NVG |
+| **Caution test** | CAUTION TEST button | Tests all caution panel bulbs |
 
 ---
 
-### 2.2 MFD (Multi-Function Display)
+### 2.3 Instrument Panel
 
-The MFD is the primary digital display, centrally mounted on the instrument panel. It provides navigation, weapons, engine, and sensor (MMS) information on selectable pages.
+#### Pilot's Flight Instruments (Right Side)
 
-| Feature | Description |
-|---|---|
-| **Display Type** | Color LCD, sunlight readable |
-| **OSB (Option Select Buttons)** | Bezel-mounted buttons around the display edge (typically 20 OSBs) |
-| **Power** | Non-essential bus (requires generator; lost on battery-only operations) |
-| **Default Pages** | Navigation (NAV), Engine (ENG), Tactical (TAC), MMS video feed |
-
-#### MFD Page Navigation
-
-| Page | Access | Primary Use |
-|---|---|---|
-| **NAV** | OSB press (labeled NAV) | Moving map, waypoints, bearing/distance/ETA, own-ship position |
-| **ENG** | OSB press (labeled ENG) | Digital engine parameters (mirrors analog gauges with trend data) |
-| **TAC** | OSB press (labeled TAC) | Tactical display (weapons employment — familiarization only) |
-| **MMS Video** | OSB press (labeled MMS/VIDEO) | Live video feed from the Mast-Mounted Sight (TV or FLIR) |
-
-#### Cockpit Switch Reference — MFD
-
-| Switch / Control | Location | Action | DCS Keybind |
+| Instrument | Location | Reading | Normal Range |
 |---|---|---|---|
-| MFD Power | Overhead console — Avionics section | Toggle ON/OFF (mouse click) | — |
-| MFD Brightness | MFD bezel — rotary knob | Rotate to adjust (mouse scroll) | — |
-| OSB Buttons | MFD bezel — surrounding display | Left-click to select page/option | — |
-| MFD Mode Select | MFD bezel — top row OSBs | Left-click to cycle NAV/ENG/TAC/MMS | — |
+| **Attitude indicator** | Center of pilot's T-panel | Pitch and bank attitude | Wings level, nose on horizon = level flight |
+| **Airspeed indicator (ASI)** | Left of attitude indicator | Indicated airspeed (KIAS) | 0–120+ KIAS; Vne marked |
+| **Barometric altimeter** | Right of attitude indicator | Pressure altitude (ft MSL) | Kollsman window set to current QNH |
+| **Vertical speed indicator (VSI)** | Below airspeed indicator | Rate of climb/descent (ft/min) | 0 in level flight; ± 500-1500 normal |
+| **Heading indicator / HSI** | Below attitude indicator | Magnetic heading; course deviation | Aligned to magnetic compass; heading bug settable |
+| **Turn-and-slip indicator** | Below altimeter | Rate of turn; slip ball coordination | Ball centered = coordinated flight |
 
-> *⚠ Realism Divergence: The real OH-58D MFD (typically the IDM/CDU combined display unit) has additional pages for data modem messaging, digital map overlays, and mission data loading that are not fully replicated in DCS. The DCS MFD provides NAV, ENG, and MMS video pages that are sufficient for BQT-level operations.*
+**The slip ball is critical** — it indicates coordinated flight and is a primary indicator of tail rotor failure (ball will be displaced and unable to be centered).
+
+#### Engine Instruments (Center Panel)
+
+| Instrument | Parameter | Normal Range | Caution | Limit |
+|---|---|---|---|---|
+| **Torque gauge (Q)** | Rotor drive torque (% Q) | ≤ 85% | 85–100% | > 100% |
+| **TOT gauge** | Turbine outlet temp (°C) | < 738°C | 738–810°C | > 810°C |
+| **N1 / Ng gauge** | Gas producer speed (%) | 62–104% | — | > 104% |
+| **Nr / N2 dual tach** | Rotor RPM and engine RPM (%) | 97–101% Nr | < 97% or > 101% | < 90% / > 107% |
+| **Fuel flow** | Engine fuel consumption (lbs/hr) | 150–350 typical | — | — |
+| **Engine oil P** | Engine oil pressure (PSI) | 40–130 | < 40 / > 130 | < 25 |
+| **Engine oil T** | Engine oil temperature (°C) | < 107°C | 107–150°C | > 150°C |
+| **Trans oil P** | Transmission oil pressure (PSI) | 30–90 | < 30 | XMSN caution |
+| **Trans oil T** | Transmission oil temperature (°C) | < 110°C | 110–120°C | > 120°C |
+| **Fuel quantity** | Fuel remaining (lbs) | Mission-dependent | ~100 lbs (plan RTB) | ~45 lbs (LOW FUEL caution) |
+
+**Dual tachometer (Nr/N2):** Two needles on one instrument — the outer needle reads Nr (rotor RPM), the inner needle reads N2 (power turbine/engine output RPM). In normal governed flight, both needles should be "married" (overlapping). Splitting indicates governor/FADEC issue or autorotation condition.
 
 ---
 
-### 2.3 MMS (Mast-Mounted Sight) — Familiarization
+### 2.4 Caution / Advisory Panel
 
-The MMS is the OH-58D's signature system — a sensor ball mounted above the main rotor hub on a mast extension, allowing the aircraft to observe targets from hull-defilade (only the MMS ball exposed above terrain/obstacles).
+The caution panel is a central annunciator with individual segment lights for each system. A **master caution light** illuminates whenever any caution indicator activates.
 
-**This module provides familiarization only.** Tactical employment (target acquisition, laser designation for Hellfire, RSTA procedures) is covered in follow-on weapons employment courses.
+| Indicator | System | Meaning |
+|---|---|---|
+| **MASTER CAUTION** | All systems | Any caution active — check panel for specific indicator |
+| **ENGINE OIL** | Engine | Oil pressure low or temperature high |
+| **XMSN OIL** | Transmission | Trans oil pressure low or temperature high |
+| **FUEL BOOST** | Fuel | Fuel boost pump pressure low |
+| **FUEL FILTER** | Fuel | Fuel filter bypassed (clogged filter) |
+| **LOW FUEL** | Fuel | Fuel quantity below ~45 lbs |
+| **FADEC** | Engine | FADEC malfunction or degraded mode |
+| **GEN** | Electrical | Generator offline or failure |
+| **CHIP DET** | Transmission | Metallic particles in transmission oil |
+| **HYD** | Hydraulic | Hydraulic pressure low |
+| **FIRE** | Fire detection | Engine compartment fire detection |
+| **RPM** | Rotor | Nr outside normal range (low or high) |
+| **GOV** | Engine | Governor/FADEC governing anomaly |
 
-| MMS Component | Function |
+**Master caution reset:** Press master caution light to acknowledge and reset. If the condition persists, the master caution will re-illuminate.
+
+---
+
+### 2.5 MFD (Multi-Function Display)
+
+The MFD is a color display (or monochrome in some configurations) located on the instrument panel, operated by **OSB (Option Select Buttons)** around the bezel.
+
+#### MFD Pages
+
+| Page | Function | Key Information Displayed |
+|---|---|---|
+| **NAV** | Navigation | Moving map, waypoints, bearing/distance/ETA, aircraft position, heading |
+| **ENG** | Engine monitoring | Digital readout of TRQ, TOT, N1, Nr, fuel flow, oil P/T — supplements analog gauges |
+| **WPN** | Weapons | Weapon inventory, arming status, selected weapon — **familiarization only** |
+| **SYS** | Systems status | Electrical, hydraulic, fuel system status summary |
+| **FLT** | Flight data | Airspeed, altitude, heading in digital format |
+
+#### MFD Operation
+
+- **Power on:** Controlled by avionics master or dedicated MFD switch; MFD goes through a boot sequence after power is applied.
+- **Page selection:** Press OSB buttons labeled for each page. Pages cycle or are directly selectable.
+- **Brightness:** Adjustable via control — important for day/night/NVG operations.
+- **OSB nomenclature:** Buttons are numbered around the bezel; specific labels change per page.
+
+> *⚠ Realism Divergence: The DCS Polychop MFD implementation may not include all real-world pages or may have simplified page content. The navigation page and engine page are the most critical for BQT; verify their functionality in-sim.*
+
+---
+
+### 2.6 MMS (Mast-Mounted Sight) — Familiarization Only
+
+The Mast-Mounted Sight is a sensor ball mounted **above the main rotor head** on a mast. This allows the OH-58D to observe targets while the aircraft body remains hidden behind terrain (hull-defilade).
+
+| Sensor | Function |
 |---|---|
-| **TV Camera** | Daytime visual observation; variable zoom |
-| **FLIR (Thermal)** | Night/obscured conditions observation; requires ~3–5 min warmup |
-| **Laser Rangefinder (LRF)** | Provides slant range to target; range data feeds navigation and weapons |
-| **Laser Designator (LD)** | Designates targets for semi-active laser (SAL) guided munitions (Hellfire) |
+| **TV (daylight)** | Daylight television camera; zoom capability |
+| **FLIR (thermal)** | Forward-looking infrared; detects heat signatures; usable day/night |
+| **Laser rangefinder** | Measures distance to target (slant range) |
+| **Laser designator** | Designates targets for laser-guided munitions (Hellfire, etc.) |
 
-#### MMS Controller
+**MMS controller:** Located primarily on the copilot side, but the pilot can access basic MMS controls through the cyclic grip or MFD interface. For BQT, the student only needs to:
+- Know what the MMS is and where it is
+- Understand its basic sensor modes (TV, FLIR, laser)
+- Know that tactical sensor employment is a separate course
+
+---
+
+### 2.7 Weapon Panel — Identification Only
 
 | Control | Location | Function |
 |---|---|---|
-| **MMS Slew** | Left console — hand controller (or cyclic hat switch in DCS) | Slew the MMS sensor ball in azimuth and elevation |
-| **Zoom In/Out** | MMS controller or keyboard | Adjust sensor field of view |
-| **Sensor Select (TV/FLIR)** | MFD OSB or MMS controller | Switch between TV and FLIR video |
-| **Laser Arm/Fire** | Weapon panel and/or cyclic trigger | Arm and activate laser (familiarization only) |
+| **Master ARM / SAFE** | Weapon panel (instrument panel or console) | Arms or safes all weapons systems |
+| **Weapon select** | Weapon panel | Selects active weapon type (Hellfire, rockets, .50 cal, Stinger) |
+| **Weapon quantity** | MFD WPN page or panel counters | Shows remaining ordnance |
 
-#### DCS Keybind Reference — MMS
-
-| Action | Default DCS Keybind | Notes |
-|---|---|---|
-| MMS Slew Up | `Numpad 8` | Continuous slew while held |
-| MMS Slew Down | `Numpad 2` | Continuous slew while held |
-| MMS Slew Left | `Numpad 4` | Continuous slew while held |
-| MMS Slew Right | `Numpad 6` | Continuous slew while held |
-| MMS Zoom In | `Numpad +` | Narrower FOV, higher magnification |
-| MMS Zoom Out | `Numpad -` | Wider FOV, lower magnification |
-| Laser Range/Designate | `O` | Activates laser (when armed) |
-| Video Switch (TV/FLIR) | MFD OSB (mouse click) | Select sensor on MFD page |
-
-> *⚠ Realism Divergence: The real MMS has additional operational modes (auto-track, scene lock, target handoff to other platforms via IDM) that are either simplified or not fully implemented in the DCS module. For BQT purposes, the student only needs to power on the MMS, select a sensor, and slew the sight to a general area.*
+**For BQT:** The student identifies the location of the weapon panel and knows that MASTER ARM must be in SAFE for all non-weapons training. No weapons employment procedures are taught.
 
 ---
 
-### 2.4 Weapon Panel — Identification Only
+### 2.8 Center Pedestal — Radios
 
-| Switch / Indicator | Location | Function | BQT Scope |
-|---|---|---|---|
-| **Master Arm** | Right console — Weapon Panel | ARM / SAFE — enables/disables all weapons | Identify location; leave in SAFE |
-| **Weapon Select** | Right console — Weapon Panel | Selects active weapon station/type | Identify location only |
-| **Weapon Release / Trigger** | Cyclic grip | Fires selected weapon when Master Arm is ARM | Identify location only |
-| **Rocket Pair/Ripple** | Weapon Panel | Selects rocket firing mode | Identify location only |
+| Radio | Designation | Type | Frequency Range | Primary Use |
+|---|---|---|---|---|
+| **UHF-AM** | ARC-164 | UHF amplitude modulation | 225.000–399.975 MHz | ATC communications, common frequencies, guard (243.0 MHz) |
+| **VHF/FM** | ARC-201 | VHF frequency modulation | 30.000–87.975 MHz | Tactical/inter-flight communication, ground coordination |
 
-**BQT Limitation:** The student must be able to **identify** these controls and state their function but will not employ weapons during the BQT course. The Master Arm switch will remain in SAFE throughout all BQT events.
+**ARC-164 (UHF-AM):**
+- Manual tune: frequency selector knobs
+- Preset channels: selectable via channel knob (up to 20 presets, mission-dependent)
+- Guard (243.0 MHz): selectable via GUARD position — monitors emergency frequency
+- Mode: OFF / MAIN / BOTH / ADF
 
----
+**ARC-201 (VHF/FM):**
+- Frequency selection: knobs or preset channels
+- Used primarily for tactical communications between flight members or with ground units
+- Manual tune or preset modes available
 
-### 2.5 AHRS/GPS Navigation System
+**Audio panel / ICS:** Controls which radio(s) the pilot hears and transmits on. Volume controls for each radio and ICS. ICS (intercom) connects pilot and copilot for crew coordination.
 
-| Component | Location | Function |
-|---|---|---|
-| **AHRS (Attitude Heading Reference System)** | Internal avionics bay | Provides heading, attitude, and position reference |
-| **GPS Receiver** | Internal avionics bay | Provides position and ground speed data |
-| **AHRS/GPS Controller** | Right console | Pilot interface for entering waypoints, selecting navigation mode |
-| **MFD NAV Page** | Center instrument panel — MFD | Displays moving map, waypoints, bearing/distance/ETA |
-
-#### Navigation Data Display
-
-| Data | Where Displayed | Notes |
-|---|---|---|
-| **Current Position** | MFD NAV page (own-ship symbol) | Lat/Long or MGRS depending on configuration |
-| **Bearing to Waypoint** | MFD NAV page, HSI | Magnetic bearing from current position |
-| **Distance to Waypoint** | MFD NAV page | Nautical miles |
-| **Ground Speed** | MFD NAV page | Knots |
-| **Heading** | Heading indicator (analog) + MFD | Magnetic heading |
-| **ETA** | MFD NAV page | Estimated time of arrival at selected waypoint |
-
-> *⚠ Realism Divergence: The real OH-58D uses an Embedded GPS/INS (EGI) with a more complex alignment and initialization process including crypto key loading for military GPS. DCS simplifies alignment to a shorter time period and does not require crypto loading. The basic navigation functionality (waypoint selection, bearing/distance) is functionally identical.*
+> *⚠ Realism Divergence: The real OH-58D may have additional radio systems (e.g., SINCGARS, Have Quick II) not modeled in DCS. The DCS module provides the ARC-164 and ARC-201 as the primary radios. SRS (SimpleRadio Standalone) may be required for multiplayer radio fidelity.*
 
 ---
 
-### 2.6 Engine Instruments
+### 2.9 AHRS/GPS Navigation System
 
-All engine instruments are located on the **left side of the instrument panel** (pilot's primary scan area) with digital readouts also available on the MFD ENG page.
+The OH-58D features an **Attitude Heading Reference System (AHRS)** coupled with a **GPS receiver**, providing:
 
-| Instrument | Location | Normal Range | Caution / Warning |
-|---|---|---|---|
-| **Torque (Q) Gauge** | Instrument panel — left | 0–100% | > 100% continuous = caution; > 110% = warning |
-| **TOT Gauge** | Instrument panel — left | < 737°C continuous | > 737°C = caution; > 810°C transient; > 843°C start |
-| **N1 (Gas Producer) Gauge** | Instrument panel — left | Ground idle: ~62% / Flight: ~72–100% | > 104% = overspeed |
-| **Nr (Rotor RPM) Gauge** | Instrument panel — left | Power on: 98–100% / Power off: 90–107% | < 90% = low rotor RPM (critical) |
-| **Fuel Flow Indicator** | Instrument panel — left | ~200–350 lbs/hr (varies) | Cross-reference with fuel quantity for endurance |
-| **Oil Pressure Gauge** | Instrument panel — left | 90–130 PSI | < 60 PSI = caution |
-| **Oil Temperature Gauge** | Instrument panel — left | 70–107°C | > 107°C = caution |
-| **Fuel Quantity Indicator** | Instrument panel — left | Calibrated in lbs | < 83 lbs = LOW FUEL caution |
+| Capability | Description |
+|---|---|
+| **Position** | Accurate lat/long from GPS; displayed on MFD NAV page |
+| **Heading** | AHRS-derived magnetic heading; more accurate than a magnetic compass alone |
+| **Waypoint navigation** | Pre-programmed or pilot-entered waypoints; bearing, distance, and ETA displayed |
+| **Moving map** | MFD NAV page displays aircraft position on a map with configurable scale and orientation |
+| **Ground speed / track** | GPS-derived ground speed and track over ground |
 
-**Primary Scan Pattern (Engine Instruments):**
-The student should develop a clockwise scan: Torque → TOT → N1 → Nr → Fuel Flow → Oil Pressure → Oil Temperature → Fuel Quantity, then transition to flight instruments.
+**Alignment:** The AHRS requires an alignment period after power-on. The aircraft must be **stationary** during alignment. Alignment quality improves with time; a minimum quality is required before navigation data is reliable.
 
 ---
 
-### 2.7 Caution/Advisory Panel
-
-| Indicator | Color | Meaning |
-|---|---|---|
-| **MASTER CAUTION** | Amber (illuminated) | One or more caution conditions exist — check individual lights |
-| **ENGINE OUT** | Red | Engine has failed or N1 below threshold |
-| **FADEC** | Amber | FADEC degraded or in manual mode |
-| **GEN** | Amber | Generator offline |
-| **FUEL BOOST** | Amber | Fuel boost pump pressure low or off |
-| **LOW FUEL** | Amber | Fuel quantity below ~83 lbs |
-| **XMSN OIL PRESS** | Amber | Transmission oil pressure below limits |
-| **XMSN OIL TEMP** | Amber | Transmission oil temperature above limits |
-| **CHIP** (Main Trans / Tail Rotor / Engine) | Amber | Metal particles detected in respective oil system |
-| **HYD** | Amber | Hydraulic pressure low or system failure |
-| **FIRE** | Red | Engine/APU fire detected (if fire detection system modeled) |
-
-#### Master Caution Reset
-
-| Action | Control | Location |
-|---|---|---|
-| Reset master caution light | MASTER CAUTION reset button | Instrument panel — near master caution light |
-
-The master caution light illuminates whenever a new caution condition triggers. Pressing the reset button extinguishes the master caution light but leaves the individual caution indicator illuminated until the condition is resolved.
-
-> *⚠ Realism Divergence: The real OH-58D caution panel includes additional indicators (EMER BUS, INV, MAIN XMSN OIL HOT, T/R CHIP, ENG CHIP, etc.) and some are configurable. DCS may not model every individual caution indicator. The student should know the major caution lights and understand that any amber or red light requires immediate attention and cross-reference with the emergency procedures.*
-
----
-
-### 2.8 Radar Altimeter
+### 2.10 Radar Altimeter
 
 | Feature | Description |
 |---|---|
-| **Type** | Analog radar altimeter (APN-209 or similar) |
-| **Location** | Lower instrument panel |
-| **Range** | 0–1,500 ft AGL (typical) |
-| **Low-Altitude Warning Bug** | Rotary knob sets the bug; audio and visual warning when descending through set altitude |
-| **Display** | Analog needle on circular gauge |
+| **Function** | Measures absolute altitude above ground level (AGL) using radar |
+| **Range** | Typically 0–1,500 ft AGL |
+| **Low-altitude warning** | Adjustable bug; audio/visual warning when descending below set altitude |
+| **Usage** | Critical during hover, low-level flight, and approach to landing |
 
-**Usage:** The radar altimeter provides **actual height above ground level (AGL)**, which is critical for:
-- Hover altitude verification (3–5 ft skid height for normal hover)
-- Low-level flight (terrain following/terrain avoidance reference)
-- Approach and landing (verifying altitude during deceleration to hover)
-
-**Setting the Low-Altitude Bug:**
-1. Rotate the bug-set knob to the desired warning altitude (e.g., 50 ft for approach, 200 ft for cruise).
-2. When the aircraft descends through the set altitude, the low-altitude warning activates (typically an audio tone and a visual flag).
+**Setting:** Rotate the bug to the desired warning altitude. The warning light and/or audio will activate when the aircraft descends below that altitude.
 
 ---
 
-### 2.9 Flight Instruments
-
-| Instrument | Location | Power Source | Function |
-|---|---|---|---|
-| **Attitude Indicator (AI)** | Instrument panel — right of center | AC (inverter required) | Pitch and roll reference |
-| **Airspeed Indicator (ASI)** | Instrument panel — left of AI | Pitot-static (no electrical) | Indicated airspeed (KIAS) |
-| **Barometric Altimeter** | Instrument panel — right of AI | Pitot-static (no electrical) | Pressure altitude; set local altimeter (Kollsman window) |
-| **Vertical Speed Indicator (VSI)** | Instrument panel — below altimeter | Pitot-static (no electrical) | Rate of climb/descent (ft/min) |
-| **Heading Indicator** | Instrument panel — below AI | AC (inverter required) or magnetic | Magnetic heading; requires periodic alignment with compass |
-| **Turn Coordinator / Slip Ball** | Instrument panel — lower center | DC or AC | Yaw coordination; critical for hover and pedal turn reference |
-| **Magnetic Compass** | Windshield frame (standby) | None (magnetic) | Backup heading reference; subject to errors in turns and accelerations |
-
-**Power Failure Impact:**
-- If the **inverter** fails: Attitude indicator and heading indicator (if electrically driven) become inoperative. The pilot must use the airspeed indicator, barometric altimeter, VSI, magnetic compass, and external visual references.
-- If **pitot-static** is blocked: Airspeed indicator, altimeter, and VSI become unreliable. The pilot must use power settings and known performance data to estimate airspeed.
-
----
-
-### 2.10 Lighting
-
-#### Cockpit Lighting
-
-| Control | Location | Function |
-|---|---|---|
-| **Instrument Panel Lights** | Overhead console — Lighting section | Illuminate instrument panel; rotary dimmer for brightness |
-| **Console Lights** | Overhead console — Lighting section | Illuminate left and right consoles |
-| **Standby Compass Light** | Overhead console | Illuminate magnetic compass |
-| **NVG Compatibility Mode** | Overhead console or individual filters | Reduces lighting to NVG-compatible wavelengths (blue-green filtered) |
-| **Caution Panel Brightness** | Near caution panel | Dim/bright for caution/advisory indicators |
-
-#### Exterior Lighting
-
-| Light | Location | Control | Purpose |
-|---|---|---|---|
-| **Position Lights (Nav Lights)** | Fuselage (red/green/white) | Overhead console — EXT LT section | Standard navigation lights; required for night flight |
-| **Anti-Collision Light** | Tail boom / top of fuselage | Overhead console — ANTI-COL | Flashing red/white beacon; alerting other aircraft |
-| **Landing Light** | Nose or skid-mounted | Collective grip switch or overhead console | High-intensity light for approach/landing |
-| **Search Light** | Nose-mounted (if equipped) | Collective grip switch | Directional illumination; can be slewed in some configurations |
-| **IR Formation Lights** | Various fuselage positions | Overhead console — IR | Visible only through NVGs; for NVG formation flight |
-
-> *⚠ Realism Divergence: The real OH-58D has specific ANVIS NVG lighting configurations and covert IR lighting that are critical for night combat operations. DCS models basic NVG effects and IR lighting, but the full range of lighting configurations and NVG compatibility modes may be simplified.*
-
----
-
-### 2.11 Collective and Cyclic Controls — HOTAS Functions
+### 2.11 Pilot Controls — Collective and Cyclic
 
 #### Collective Grip
 
-| Control | Location on Grip | Function |
+| Control | Location | Function |
 |---|---|---|
-| **Throttle** | Twist grip (left hand) | Engine power in manual FADEC mode; set to FLY in auto mode |
-| **Idle/Cutoff Detent** | Throttle rotation stops | IDLE = ground idle; OFF/CUTOFF = engine shutdown |
-| **FLY Detent** | Throttle full open position | Flight idle; FADEC governing active |
-| **Landing Light Switch** | Collective grip — forward | Toggle landing light ON/OFF |
-| **Search Light Switch** | Collective grip — forward (if equipped) | Toggle/slew search light |
-| **Radio Trigger (ICS/Radio)** | Collective grip — front | Press for intercom (ICS) or radio transmit |
-| **Starter Button** | Collective grip or overhead console | Engage engine starter motor |
+| **Throttle (twist-grip)** | Outboard end of collective grip | Controls fuel flow; FADEC manages in auto mode; detents: OFF → IDLE → FLY |
+| **Idle stop release** | Button on collective grip | Must press to advance throttle past IDLE to FLY |
+| **Landing light switch** | Collective grip | Extends/retracts and on/off for landing/taxi light |
+| **Searchlight control** | Collective grip | Extends/retracts and controls searchlight direction |
+| **Radio trigger** | Collective grip (front) | 1st detent = ICS (intercom); 2nd detent = selected radio transmit |
 
 #### Cyclic Grip
 
-| Control | Location on Grip | Function |
+| Control | Location | Function |
 |---|---|---|
-| **Force Trim Release** | Cyclic grip — thumb button | Press-and-hold to release force trim, reposition, release to set |
-| **Weapon Release / Trigger** | Cyclic grip — index finger trigger | Fires selected weapon (Master Arm must be ARM) — BQT: identification only |
-| **MMS Slew (Hat Switch)** | Cyclic grip — thumb hat (if configured) | Slew MMS sensor in azimuth/elevation |
-| **Radio Trigger (alternate)** | Cyclic grip (depending on configuration) | Radio transmit alternate position |
+| **Force trim release** | Button on cyclic grip | Press and release = set trim; press and hold = free controls |
+| **Weapons release** | Cyclic grip (front) | Fires selected weapon (when armed) — **BQT: not used** |
+| **MMS slew** | Cyclic grip or thumb controller | Slews MMS sensor — **BQT: familiarization only** |
 
-#### Anti-Torque Pedals
+#### Pedals
 
 | Control | Function |
 |---|---|
-| **Left Pedal** | Increases tail rotor thrust → yaw left (nose left) |
-| **Right Pedal** | Decreases tail rotor thrust → yaw right (nose right) |
-| **Pedal Adjust** | Center pedestal — pedal position adjustment for pilot leg length |
-
-> *⚠ Realism Divergence: The real OH-58D HOTAS grip layout varies by block modification and unit configuration. The DCS module implements a standardized HOTAS layout. Some functions available on the real aircraft's collective or cyclic grips may be mapped to keyboard shortcuts in DCS rather than clickable grip buttons.*
+| **Anti-torque pedals** | Left pedal = increase tail rotor thrust (counter torque at high power); Right pedal = decrease tail rotor thrust |
+| **Adjustment** | Fore/aft pedal position adjustable for pilot leg length |
 
 ---
 
-### Instructor Notes — Module 2
+### 2.12 Lighting
 
-| Common Student Error | Correction |
-|---|---|
-| Not knowing where engine instruments are in a scan | Force the student to verbalize the clockwise scan: Torque → TOT → N1 → Nr → Fuel → Oil. Repeat until automatic. |
-| Ignoring the caution panel | Brief that MASTER CAUTION = "something is wrong, find out what." The student must immediately scan individual lights. |
-| Failing to set radar altimeter bug | Include bug-setting in the before-takeoff check. Set bug to 50 ft for pattern work, adjustable for mission. |
-| Confusion between MFD pages | Walk through each page during cockpit familiarization. NAV = where am I, ENG = how is the engine, MMS = what do I see. |
-| Over-focusing on MMS during BQT | Redirect: "MMS is for familiarization. Your primary job in BQT is to fly the aircraft. MMS training comes later." |
-| Not understanding force trim | Demonstrate: without releasing trim, the cyclic fights back. With trim released, controls are free. Student must develop the habit of trimming constantly. |
+| Category | Controls | Notes |
+|---|---|---|
+| **Instrument lights** | Rheostat on overhead console | Adjusts panel/gauge illumination intensity |
+| **Console lights** | Rheostat on overhead console | Illuminates switch panels |
+| **Dome light** | Switch on overhead or side panel | White light for map reading; **off during NVG ops** |
+| **Position/nav lights** | Switch on overhead console | Standard red/green/white navigation lights |
+| **Anti-collision beacon** | Switch on overhead console | Red flashing beacon; on during flight |
+| **Landing light** | Collective grip switch | Retractable; extends and illuminates for landing/taxi |
+| **Searchlight** | Collective grip control | Retractable; steerable; for search/illumination |
+| **IR formation lights** | Switch on overhead or lighting panel | Infrared lights visible under NVG; for formation flight |
+
+**NVG compatibility:** The OH-58D cockpit is designed for ANVIS (Aviator Night Vision Imaging System) NVG operations. Instrument lighting can be dimmed to NVG-compatible levels. White lights (dome light, flashlights) must be **off** during NVG flight.
 
 ---
 
-## Module 3: Ground Operations
+### 2.13 Cockpit Switch Reference — Module 2
+
+| Switch/Control | Location | Function | DCS Action |
+|---|---|---|---|
+| **Attitude indicator** | Instrument panel — pilot's T | Pitch/bank reference | Read only; cage/uncage knob |
+| **Altimeter Kollsman** | Instrument panel — altimeter | Set barometric pressure (QNH) | Mouse scroll on knob |
+| **Heading bug** | HSI — heading indicator | Set desired heading | Mouse scroll on knob |
+| **Radar altimeter bug** | Radar altimeter | Set low-altitude warning | Mouse scroll on knob |
+| **MFD power** | Avionics panel or MFD bezel | Powers on MFD | Mouse click |
+| **MFD OSB buttons** | MFD bezel (surrounding display) | Page/function selection | Mouse click on specific OSB |
+| **MFD brightness** | MFD bezel (knob) | Adjust display brightness | Mouse scroll |
+| **Caution test** | Overhead console | Tests all caution panel bulbs | Mouse click (hold) |
+| **Master caution reset** | Caution panel (glare shield) | Acknowledges/resets master caution | Mouse click |
+| **Radio trigger** | Collective grip | ICS (1st detent) / Radio TX (2nd detent) | Keyboard or joystick button |
+| **Force trim** | Cyclic grip button | Set/release trim | Keyboard or joystick button |
+
+---
+
+### 2.14 Instructor Notes — Module 2
+
+**Common student errors:**
+
+1. **Ignoring the slip ball:** Students focus on the attitude indicator and heading indicator but neglect the turn-and-slip ball. Emphasize: "Ball centered = coordinated. Ball displaced = cross-controlled or tail rotor issue."
+2. **MFD page confusion:** Students cycle through MFD pages randomly. Teach a systematic page-selection workflow: NAV for transit, ENG for monitoring, SYS for status checks.
+3. **Dual tachometer misread:** Students confuse Nr (outer needle) with N2 (inner needle). Drill needle identification until it is automatic.
+4. **Radio trigger detent confusion:** Students key the wrong detent (ICS when they mean radio, or vice versa). Practice the trigger feel — 1st detent is a "half-pull" for crew, 2nd detent is a full pull for radio.
+5. **Forgetting Kollsman setting:** Students launch with a default altimeter setting and wonder why their altitude doesn't match the field elevation. Make altimeter setting part of the pre-takeoff checklist muscle memory.
+6. **Not using the radar altimeter:** Students rely on barometric altitude for hover and low-level work. Teach radar altimeter as the primary altitude reference below 200 ft AGL.
+
+
+---
+
+## Module 3: Communications
 
 ### Learning Objectives
 
 Upon completion of this module, the student will be able to:
 
-1. Perform a complete cold-and-dark startup from battery ON through engine running, avionics powered, and rotor system engaged — using cockpit switches, not autostart.
-2. State the engine start abort criteria (hot start, hung start, no light-off) and demonstrate the correct abort procedure.
-3. Perform the AHRS/GPS alignment procedure and confirm navigation system readiness.
-4. Conduct a complete flight control check (cyclic, collective, pedals) and verify hydraulic pressure.
-5. Transition the throttle from IDLE to FLY and verify Nr governing at 100%.
-6. Conduct hover taxi at less than 20 knots and less than 3 ft skid height.
-7. Complete all pre-takeoff checks from memory using the proper checklist flow.
+1. Identify and operate the OH-58D's radio systems: ARC-164 (UHF-AM) and ARC-201 (VHF/FM).
+2. Tune frequencies manually on each radio using the control head knobs.
+3. Configure the audio panel to select transmit and receive radios.
+4. Operate the ICS (intercom) system for crew communication, including hot mic and trigger-keyed modes.
+5. Use the collective radio trigger correctly (1st detent = ICS, 2nd detent = radio transmit).
+6. Make standard radio calls for all phases of BQT flight: startup, taxi, takeoff, pattern, approach, landing, shutdown.
+7. Monitor guard frequency (UHF 243.0 MHz).
+8. Understand the difference between DCS Easy Communication and realistic radio operation.
 
 ---
 
-### 3.1 Cold-and-Dark Startup — Full Switch-by-Switch Procedure
+### 3.1 Radio Systems Overview
 
-The following procedure takes the aircraft from a completely dead cockpit (all switches OFF, battery disconnected, engine cold) to fully operational with the rotor system turning and all avionics online.
+The OH-58D is equipped with two primary radios and an intercom system:
 
-#### Phase 1: Electrical Power-Up
-
-| Step | Switch / Action | Location | Expected Result |
-|---|---|---|---|
-| 1 | **BATTERY** — ON | Overhead console — Electrical panel | Battery bus energized; some caution lights illuminate for self-test |
-| 2 | **Caution Panel** — CHECK | Instrument panel — center | Verify caution lights illuminate for test, then extinguish (normal startup indications may persist until engine starts) |
-| 3 | **Warning Light Test** — PRESS and hold | Instrument panel or overhead console | All caution/advisory lights illuminate; verify no burned-out bulbs |
-| 4 | **INVERTER** — ON | Overhead console — Electrical panel | AC bus powered; attitude indicator and heading indicator begin to spool up |
-
-> *⚠ Realism Divergence: The real OH-58D has a specific bus-tie and battery contactors sequence with voltage checks. DCS simplifies this to battery ON → immediate bus power. The student should still follow the correct switch sequence for procedural discipline.*
-
-#### Phase 2: Fuel System
-
-| Step | Switch / Action | Location | Expected Result |
-|---|---|---|---|
-| 5 | **FUEL BOOST PUMP** — ON | Overhead console — Fuel panel | FUEL BOOST caution light extinguishes; fuel pressure indication on gauge |
-| 6 | **Fuel Quantity** — CHECK | Instrument panel — left | Verify adequate fuel for intended flight (minimum for BQT: ≥ 500 lbs recommended) |
-
-#### Phase 3: Engine Start
-
-| Step | Switch / Action | Location | Expected Result |
-|---|---|---|---|
-| 7 | **Throttle** — verify at **IDLE** (cutoff) detent | Collective grip — twist throttle | Throttle must be at idle detent for the start sequence to proceed |
-| 8 | **ENGINE START** — PRESS | Overhead console — Engine panel (or collective grip) | Starter motor engages; N1 begins to increase |
-| 9 | Monitor **N1** rising | Instrument panel — N1 gauge | N1 should accelerate smoothly |
-| 10 | At **~15% N1** — fuel introduces (light-off) | Automatic (FADEC controlled) | TOT begins to rise; confirm light-off |
-| 11 | Monitor **TOT** during start | Instrument panel — TOT gauge | **Must not exceed 843°C** (10-second start limit) |
-| 12 | N1 accelerates to **~62–64%** (ground idle) | Instrument panel — N1 gauge | Engine stabilizes at ground idle; TOT settles below 737°C |
-| 13 | **Oil Pressure** — CHECK | Instrument panel — Oil Press gauge | Within 90–130 PSI normal range; minimum 60 PSI |
-| 14 | **Oil Temperature** — MONITOR | Instrument panel — Oil Temp gauge | Rising toward normal range (70–107°C); will take several minutes to stabilize |
-
-**Engine Start Timeline (DCS):**
-
-| Time (approx.) | Event | N1 (%) | TOT |
-|---|---|---|---|
-| 0 sec | START button pressed | 0 → rising | Ambient |
-| ~5 sec | Starter cranking | ~10–12% | Ambient |
-| ~8 sec | Light-off (fuel ignition) | ~15% | Rising rapidly |
-| ~15 sec | Acceleration through | ~30–40% | Peak (monitor for hot start) |
-| ~25 sec | Approaching idle | ~55–60% | Decreasing from peak |
-| ~30–35 sec | Ground idle stabilized | ~62–64% | < 737°C continuous |
-
-#### Start Abort Criteria
-
-| Condition | Indication | Immediate Action |
-|---|---|---|
-| **Hot Start** | TOT exceeds 843°C during start | **THROTTLE — OFF** immediately; motor to purge residual fuel; wait 2 min before reattempt |
-| **Hung Start** | N1 fails to accelerate past ~40% within 60 sec | **THROTTLE — OFF**; motor for 30 sec to clear; reattempt |
-| **No Light-Off** | No TOT rise by ~25% N1 | **THROTTLE — OFF**; check FUEL BOOST is ON; motor to purge; reattempt |
-| **Oil Pressure Failure** | Oil pressure does not rise within 30 sec of idle | **THROTTLE — OFF**; do not attempt further starts; maintenance required |
-
-> *⚠ Realism Divergence: In the real OH-58D, a hot start can cause turbine blade thermal damage requiring borescope inspection and possible engine change. DCS models the temperature exceedance and prevents start completion but does not track cumulative thermal damage. The real aircraft also requires a specific motoring procedure (starter engaged, throttle OFF) to purge fuel and cool the turbine — DCS models this but the cooling may be compressed in time.*
-
-#### Phase 4: Post-Start / Generator and Avionics
-
-| Step | Switch / Action | Location | Expected Result |
-|---|---|---|---|
-| 15 | **GENERATOR** — ON | Overhead console — Electrical panel | GEN caution light extinguishes; generator powering DC bus |
-| 16 | **Voltmeter** — CHECK | Instrument panel or overhead console | ~28V DC (generator output) |
-| 17 | Engine warm-up — **2 minutes at IDLE** | — | Allow oil to circulate and engine temperatures to stabilize |
-| 18 | **MFD** — ON | Overhead console — Avionics section or MFD power switch | MFD powers on; displays initial page |
-| 19 | **AHRS/GPS** — ON | Right console — AHRS/GPS controller | System begins alignment (see Section 3.2) |
-| 20 | **Radios** — ON | Right console — Radio panels | VHF/FM (ARC-201), UHF (ARC-164) power on; set frequencies |
-| 21 | **Transponder** — ON and set | Right console — Transponder panel | Set to assigned squawk code |
-| 22 | **MMS** — ON (optional for BQT) | Left console or overhead — MMS power | MMS powers on; FLIR requires ~3–5 min warmup |
-
-> *⚠ Realism Divergence: The real OH-58D avionics power-on sequence includes additional steps for IDM (Improved Data Modem) initialization, HAVE QUICK radio setup, and IFF/AIMS crypto loading. DCS simplifies avionics initialization — radios power on immediately with frequency selection only.*
-
-#### Phase 5: Hydraulic and Flight Control Check
-
-| Step | Switch / Action | Location | Expected Result |
-|---|---|---|---|
-| 23 | **Hydraulic Pressure** — CHECK | Instrument panel — HYD gauge | ~1,000 PSI (system nominal); HYD caution light OFF |
-| 24 | **Flight Control Check** — full deflection: cyclic (forward, aft, left, right), collective (full up, full down), pedals (full left, full right) | All controls — physical movement | Controls move smoothly through full range with hydraulic assist; no binding or unusual resistance |
-| 25 | **Force Trim** — CHECK | Cyclic grip — force trim release button | Press-and-release: controls should hold position; release and feel for detent/lock |
-
----
-
-### 3.2 AHRS/GPS Alignment
-
-| Phase | Duration (DCS) | Duration (Real) | Indication |
-|---|---|---|---|
-| **Coarse Alignment** | ~30 sec | ~2 min | AHRS/GPS controller shows ALIGN status |
-| **Fine Alignment** | ~2–3 min | ~5–8 min | Status transitions from ALIGN to NAV |
-| **Navigation Ready** | Total ~3 min | Total ~8–10 min | NAV mode active; position and heading valid |
-
-**Procedure:**
-1. AHRS/GPS controller — power ON (already completed in Phase 4, Step 19).
-2. Verify aircraft is **stationary** during alignment (movement degrades alignment quality).
-3. Monitor alignment status on AHRS/GPS controller or MFD NAV page.
-4. When status shows **NAV** — alignment is complete; position and heading data are valid.
-5. Verify displayed position against known parking location (gross error check).
-
-> *⚠ Realism Divergence: The real OH-58D EGI alignment takes 8–10 minutes for full accuracy and can be degraded by aircraft movement, vibration, or nearby magnetic interference. DCS compresses alignment time to approximately 3 minutes. The real system also has a stored heading alignment mode (~90 sec) with degraded accuracy that DCS may not differentiate.*
-
----
-
-### 3.3 Rotor Engagement
-
-| Step | Action | Expected Result | Caution |
-|---|---|---|---|
-| 1 | Verify engine stabilized at ground idle (~62% N1, TOT < 737°C) | Engine instruments in normal range | Do not advance throttle until engine is stable and warmed up |
-| 2 | **Throttle** — rotate smoothly from **IDLE** to **FLY** (flight idle detent) | N1 increases to ~72%+; FADEC governs Nr toward 100% | Advance throttle smoothly — abrupt advancement can cause TOT spike |
-| 3 | Monitor **Nr** increasing | Nr climbs from ground idle (~62–65%) toward 100% | Takes ~15–30 sec for Nr to stabilize at 100% |
-| 4 | Nr stabilizes at **100%** | Nr gauge reads 100% ± 1% | If Nr does not reach 100%, check FADEC mode — ensure AUTO |
-| 5 | Verify **Torque (Q)** reading | Should be ~20–35% at flat pitch (collective full down) on the ground | Higher torque at flat pitch may indicate dragging brakes or mis-rigged controls |
-
-**Rotor Engagement Cautions:**
-- **Never advance throttle abruptly** — this can cause TOT overshoot and N1 overspeed.
-- **Ensure area is clear** — rotor blade tip path describes a 35 ft diameter circle.
-- **Collective must be full down** (flat pitch) during throttle advancement — blade pitch at flat minimizes load on the engine during rotor spin-up.
-- **Crew and ground personnel** must be briefed on rotor engagement; remain clear of the rotor disc arc.
-
----
-
-### 3.4 Ground Taxi (Hover Taxi)
-
-The OH-58D has **fixed skids** — there is no wheeled ground taxi capability. All ground movement is accomplished by **hover taxi** at less than 20 knots and less than 3 ft skid height.
-
-| Parameter | Value | Notes |
-|---|---|---|
-| **Max Hover Taxi Speed** | < 20 knots ground speed | Higher speeds in hover regime risk uncontrolled translation |
-| **Hover Taxi Height** | < 3 ft skid height | Minimizes ground effect turbulence on other aircraft/personnel |
-| **Surface Awareness** | Continuously scan for obstacles, personnel, loose debris | Rotor downwash can lift FOD and endanger nearby personnel |
-
-**Technique:**
-1. From a stable hover at 3–5 ft skid height, apply slight forward cyclic to begin forward movement.
-2. Use pedals to maintain heading.
-3. Collective adjustments to maintain constant altitude (terrain changes require collective response).
-4. Speed control: more forward cyclic = more speed; aft cyclic (flare) to decelerate.
-5. To stop: aft cyclic to arrest forward movement, then stabilize in a hover.
-
-**Hover Taxi Hazards:**
-- **Brownout/whiteout:** Over dusty or snowy surfaces, rotor downwash can create zero-visibility conditions. Maintain constant scan of visual references at the periphery.
-- **FOD:** Loose debris becomes projectiles in rotor downwash.
-- **Confined areas:** Be aware of rotor clearance (35 ft diameter) when taxiing near buildings, other aircraft, or obstacles.
-
----
-
-### 3.5 Pre-Takeoff Checks
-
-Conduct at the hover spot or holding area before departing into the traffic pattern or departing the airfield.
-
-| Check | Action | Verify |
-|---|---|---|
-| **Engine Instruments** | Scan Torque, TOT, N1, Nr, Oil Press, Oil Temp | All in normal operating range |
-| **Torque Available (Power Check)** | Note torque required to hover at 3–5 ft IGE; compare to torque limit (100% continuous) | Adequate margin for OGE operations and maneuvering (typically need ~15–20% margin above hover torque) |
-| **Nr** | Verify FADEC governing | 100% ± 1% |
-| **Caution Panel** | Scan all indicators | No caution lights illuminated |
-| **Flight Controls** | Verify free and correct response | Cyclic, collective, pedals respond normally |
-| **Force Trim** | Check set and functional | Cyclic holds position when released |
-| **Radios** | Check comm on assigned frequencies | Two-way comm established with tower/flight |
-| **Altimeter** | Set to local altimeter setting (QNH) | Barometric altimeter shows field elevation ± 75 ft |
-| **Radar Altimeter** | Set low-altitude bug as appropriate | Bug set (e.g., 50 ft for pattern work) |
-| **Transponder** | Verify squawking assigned code | Transponder in ALT mode |
-| **Doors/Harness** | Doors secured; harness tight and locked | — |
-
-#### Cockpit Switch Reference — Pre-Takeoff
-
-| Item | Switch / Action | Location |
-|---|---|---|
-| Engine instruments scan | Visual check of all gauges | Instrument panel — left |
-| Caution panel check | Visual scan | Instrument panel — center |
-| Altimeter set | Rotate Kollsman knob | Instrument panel — right (altimeter) |
-| Radar alt bug set | Rotate bug-set knob | Lower instrument panel — radar altimeter |
-| Transponder set | Select mode and code | Right console — transponder panel |
-| Radio check | Key radio trigger on collective grip | Collective grip — radio trigger |
-
----
-
-### Instructor Notes — Module 3
-
-| Common Student Error | Correction |
-|---|---|
-| Starting engine with throttle not at IDLE detent | Critical: DCS requires throttle at IDLE for start. If not in detent, starter will engage but no light-off occurs. Brief the student to verify throttle position before every start attempt. |
-| Not monitoring TOT during start | Emphasize: TOT is the instrument to watch during start. N1 can be checked with peripheral vision, but TOT exceedances cause damage. |
-| Advancing throttle too quickly from IDLE to FLY | Demo the smooth, continuous twist. A jerky advancement causes TOT spike and possible Nr overshoot. "Like turning a volume knob, not flipping a switch." |
-| Skipping the flight control check | Reinforce: the flight control check confirms hydraulics are working and controls are not jammed. In a real aircraft, this check catches rigging errors and hydraulic failures before they matter. |
-| Moving the aircraft during AHRS alignment | The aircraft must be stationary. Any movement (including wind rocking) degrades alignment. Wait for NAV indication before hover taxi. |
-| Attempting to hover taxi too fast | Hover taxi is slow and deliberate. Students from fixed-wing backgrounds want to "taxi to the runway" — brief that hover taxi is measured, with constant altitude and heading corrections. |
-| Not conducting a power check before departure | The power check confirms the aircraft can hover OGE and has maneuvering margin. Without it, the student may lift off and discover insufficient power to clear obstacles. |
-
----
-
-## Module 4: Hover & Takeoff
-
-### Learning Objectives
-
-Upon completion of this module, the student will be able to:
-
-1. Pick the aircraft up to a stable 3–5 ft hover from the ground using smooth, coordinated collective, cyclic, and pedal inputs.
-2. Perform a hover power check and determine if adequate power is available for OGE operations.
-3. Execute 360° hover pedal turns (left and right) while maintaining position and altitude within ±5 ft and ±3 ft respectively.
-4. Conduct hover taxi (forward, sideward, rearward) at speeds below 20 knots while maintaining altitude and heading.
-5. Perform a normal takeoff: accelerate from hover through ETL, manage aircraft attitude changes, and establish a climb at Vy (55–60 KIAS).
-6. Describe and execute a no-hover takeoff and a maximum performance takeoff profile.
-7. Recognize and respond to ground resonance indications.
-
----
-
-### 4.1 Hover Technique
-
-#### Picking Up to a Hover
-
-This is the foundational rotary-wing skill. The student transitions the aircraft from resting on the skids to a stable hover at 3–5 ft AGL.
-
-**Procedure:**
-1. Verify collective is at the **full-down** (flat pitch) position.
-2. Verify pedals are approximately centered (slight left pedal anticipated for torque compensation).
-3. Pick an outside visual reference point (a spot on the ground 20–30 ft ahead at approximately 1 o'clock position).
-4. **Slowly and smoothly increase collective** — as the aircraft becomes light on the skids:
-   - Add **left pedal** to compensate for increasing torque (main rotor torque reaction causes right yaw).
-   - Apply **slight right cyclic** to compensate for translating tendency (left drift).
-   - Adjust **fore/aft cyclic** to prevent drift.
-5. Continue increasing collective until the aircraft lifts to 3–5 ft skid height on the radar altimeter.
-6. **Stop collective input** and make fine adjustments to stabilize.
-
-| Control Input | Purpose | Common Error |
-|---|---|---|
-| Collective (up) | Increases rotor blade pitch angle → more lift | Over-pulling: launches to 10+ ft; under-pulling: never leaves the ground |
-| Left pedal | Counteracts main rotor torque reaction (right yaw) | Late pedal input: aircraft yaws right significantly before correction |
-| Right cyclic (slight) | Counteracts translating tendency (left drift) | None applied: aircraft drifts left; over-applied: aircraft drifts right |
-| Fore/aft cyclic | Maintains position over the spot | Over-controlling: pilot-induced oscillation (PIO) |
-
-**Key Torque Reference for Hover:**
-
-| Condition | Approximate Hover Torque | Notes |
-|---|---|---|
-| Light (4,000 lbs, sea level, ISA) | ~55–65% | Significant power margin available |
-| Mid (4,800 lbs, sea level, ISA) | ~70–80% | Normal BQT training weight |
-| Heavy (5,500 lbs, sea level, ISA) | ~85–95% | Near max; minimal OGE margin |
-| High/Hot (5,000 lbs, 5,000 ft DA) | ~80–95% | Density altitude significantly reduces power available |
-
-> *⚠ Realism Divergence: In the real OH-58D, hover technique requires constant micro-corrections with all four controls simultaneously. DCS models this accurately, but control force feedback (if using a non-force-feedback stick) may feel different. The student should develop the habit of making small, smooth inputs — the OH-58D responds quickly due to its light weight.*
-
----
-
-#### Hover Power Check
-
-Before departing the hover spot, the student must verify that adequate power is available for the planned operation.
-
-**Procedure:**
-1. Establish a stable hover at 3–5 ft IGE.
-2. Note torque required to hover (e.g., 72%).
-3. Compare to maximum continuous torque (100%).
-4. Calculate margin: 100% − 72% = **28% margin**.
-5. Determine if margin is sufficient:
-   - **OGE hover:** Typically requires 15–20% more torque than IGE hover.
-   - **Maneuvering margin:** Need at least 5–10% above OGE hover torque for safe maneuvering.
-   - If IGE hover torque is **above 80%**, OGE operations and obstacle clearance may be marginal.
-
-| Decision | Criteria | Action |
-|---|---|---|
-| **GO** | IGE hover torque ≤ 80% (sea level) | OGE capable with adequate margin |
-| **MARGINAL** | IGE hover torque 80–90% | OGE possible but limited margin; consider running takeoff |
-| **NO-GO (for normal takeoff)** | IGE hover torque > 90% | Cannot sustain OGE hover; must use no-hover or running takeoff or reduce weight |
-
----
-
-#### Hover Pedal Turns (360° Turns)
-
-**Purpose:** Develop yaw control skill and demonstrate the relationship between power, torque, and pedal authority.
-
-**Procedure:**
-1. Establish stable hover at 3–5 ft.
-2. Apply **left pedal** to begin a left (counterclockwise) turn.
-3. Maintain altitude with collective — pedal turns change yaw, which changes the tail rotor thrust vector, which changes power demand slightly.
-4. Maintain position over the ground reference — the aircraft will tend to translate in the direction of the turn due to tail rotor thrust.
-5. Complete a smooth 360° turn and stabilize on the original heading.
-6. Repeat to the **right** (right pedal turn) — note that right pedal turns require **less** left pedal authority and may be faster/easier.
-
-**Standards:**
-- Maintain position within ±5 ft of the reference point.
-- Maintain altitude within ±3 ft.
-- Complete 360° turn smoothly without abrupt stops or jerks.
-- Constant rate of turn throughout.
-
-**Hazard — LTE during Pedal Turns:**
-During a right pedal turn (nose moving clockwise), the tail may pass through the critical LTE azimuths relative to the wind. If the wind is from the front-right quadrant, the tail will momentarily face the wind during the turn, and as it passes through the 285°–315° sector, LTE can develop.
-
-**Mitigation:** Perform hover pedal turns into the wind (wind on the nose) when possible. Be prepared to apply forward cyclic and reduce collective if uncommanded right yaw develops.
-
----
-
-#### Hover Taxi (Forward, Sideward, Rearward)
-
-| Direction | Technique | Max Speed | Hazard |
-|---|---|---|---|
-| **Forward** | Slight forward cyclic from hover; pedals maintain heading; collective maintains altitude | < 20 kts | Overtaxiing — too much speed in hover regime leads to uncontrolled acceleration |
-| **Sideward (Right)** | Right cyclic from hover; pedals maintain heading; collective maintains altitude | 35 kts (structural) / < 20 kts (practical) | LTE if wind aligns with critical azimuths; tail strike on obstacles |
-| **Sideward (Left)** | Left cyclic from hover; pedals maintain heading; collective maintains altitude | 35 kts (structural) / < 20 kts (practical) | Tail rotor clearance on obstacles to the right (tail rotor is on left side, but fuselage translates left) |
-| **Rearward** | Aft cyclic from hover; pedals maintain heading; collective maintains altitude | 35 kts (structural) / < 20 kts (practical) | Cannot see behind; requires crew coordination or ground guide; tail strike risk |
-
-> *⚠ Realism Divergence: Sideward and rearward hover taxi limits in DCS may not enforce the 35-knot structural limit with the same fidelity as the real aircraft. The student should self-impose the 20-knot practical limit for safety.*
-
----
-
-### 4.2 Takeoff Profiles
-
-#### Normal Takeoff (From Hover)
-
-The standard departure: from a stable hover, accelerate into forward flight and climb.
-
-**Procedure:**
-1. From a stable hover at 3–5 ft IGE, facing into the wind (or as assigned).
-2. Apply **forward cyclic** to begin forward acceleration.
-3. As the aircraft accelerates through **10–15 knots**, expect:
-   - Increased vibration (transverse flow effect).
-   - Slight right roll tendency.
-   - Correct with left cyclic.
-4. As the aircraft accelerates through **16–24 knots (ETL)**:
-   - Nose pitches up (translational lift kicks in — rotor becomes more efficient).
-   - Aircraft tends to climb — **reduce collective slightly** to maintain desired climb rate.
-   - Aircraft yaws left (reduced torque requirement = reduced anti-torque demand = nose yaws left) — **right pedal** correction.
-   - Apply **forward cyclic** to maintain accelerating attitude.
-5. Continue accelerating to **Vy (55–60 KIAS)** and establish climb.
-6. At 500 ft AGL or clear of obstacles, continue to cruise climb or level off as briefed.
-
-| Phase | Airspeed | Expected Aircraft Behavior | Pilot Correction |
-|---|---|---|---|
-| Hover → acceleration | 0–10 kts | Forward translation begins | Forward cyclic; pedals maintain heading |
-| Transverse flow | 10–20 kts | Vibration, right roll | Left cyclic; maintain heading |
-| ETL | 16–24 kts | Nose up, yaw left, climb tendency | Forward cyclic, right pedal, reduce collective slightly |
-| Climb established | 55–60 kts (Vy) | Stable climb; smoother ride | Trim for Vy; adjust collective for desired climb rate |
-
----
-
-#### No-Hover Takeoff (Performance Limited)
-
-Used when the aircraft **cannot sustain a hover** at the current weight/altitude/temperature, but can fly in forward flight (where translational lift provides the additional efficiency needed).
-
-**Procedure:**
-1. Aircraft on the ground, rotor at 100%, collective at flat pitch.
-2. Smoothly and continuously increase collective while simultaneously applying **forward cyclic**.
-3. The aircraft will become light on the skids and begin to slide forward before achieving a full hover.
-4. As forward speed builds and translational lift develops, the aircraft will become airborne.
-5. Continue accelerating to Vy and climb.
-
-**Caution:** This technique requires a clear, unobstructed departure path. The aircraft may not clear obstacles in the initial climb segment.
-
----
-
-#### Maximum Performance Takeoff
-
-Used when obstacles (trees, buildings, wires) immediately surround the takeoff area and the pilot needs to gain maximum altitude in minimum distance.
-
-**Procedure:**
-1. From a stable hover at maximum available altitude (5–10 ft IGE, or as high as power permits).
-2. Verify maximum torque available (do not exceed 110% transient).
-3. Apply **maximum collective** (up to transient torque limit) while simultaneously applying **forward cyclic** to begin acceleration.
-4. Maintain a steep nose-up attitude (~10–15° nose up) to trade airspeed for altitude during the initial climb.
-5. As the aircraft clears the obstacles, transition to Vy attitude and reduce torque to continuous limits.
-
-**Standards:**
-- Maximum altitude gain in minimum distance.
-- Torque may exceed 100% (transient limit: 110% for 10 seconds).
-- This is a high-workload, high-risk maneuver — brief it thoroughly before execution.
-
-> *⚠ Realism Divergence: The real OH-58D max performance takeoff is limited by actual engine/transmission torque available on the day (weight, altitude, temperature). DCS models torque limitations, but the pilot should practice this maneuver at different weight/altitude combinations to understand the actual margins.*
-
----
-
-### 4.3 Climb Profiles
-
-| Profile | Airspeed (KIAS) | Purpose | Notes |
-|---|---|---|---|
-| **Vy (Best Rate of Climb)** | 55–60 | Maximum altitude gain per unit time | Standard departure climb |
-| **Cruise Climb** | 70–80 | Balance between climb rate and forward progress | Used when distance is a factor |
-| **Vx (Best Angle of Climb)** | 45–50 | Maximum altitude gain per unit distance | Obstacle clearance after max performance takeoff |
-
-**Climb Power Setting:**
-- Vy climb: torque as required to maintain 55–60 KIAS at desired climb rate, not to exceed 100% continuous.
-- Expected climb rate (sea level, mid weight): ~800–1,200 ft/min.
-- Higher altitude and weight reduce climb rate significantly.
-
----
-
-### 4.4 Departure Procedures
-
-**Standard VFR Departure:**
-1. After takeoff, climb on runway/takeoff heading to 500 ft AGL.
-2. At 500 ft AGL, begin turn to departure heading as briefed (or as directed by ATC/tower).
-3. Continue climb to pattern altitude or cruise altitude.
-4. Depart the traffic area as briefed.
-
-**Communication:**
-- Before takeoff: "Tower/Traffic, [callsign], [location], departing [direction]."
-- After clearing the traffic area: switch to en-route frequency.
-
----
-
-### 4.5 Ground Resonance
-
-**What It Is:** Ground resonance is a self-exciting, rapidly divergent oscillation that occurs when the helicopter is in contact with the ground and the lead-lag motion of the main rotor blades becomes coupled with the natural frequency of the fuselage on its landing gear. In the OH-58D, this can occur on hard surfaces when one skid has more contact than the other (partial contact), or when a landing shock excites the rotor system.
-
-**Conditions:**
-- Hard or paved surface (soft ground absorbs energy and prevents the resonance from building)
-- One skid contact (partial ground contact during takeoff or landing)
-- Rotor RPM in a critical range (usually near normal operating RPM)
-- Unbalanced rotor condition (blade damage, ice accumulation)
-
-**Recognition:** Violent lateral or longitudinal oscillation that **increases rapidly** in amplitude. The oscillation develops in seconds and can destroy the aircraft within 5–10 seconds if not corrected.
-
-**Immediate Action (Boldface):**
-
-| Condition | Action | Rationale |
-|---|---|---|
-| **Nr is in the normal flight range (≥ 90%)** | **COLLECTIVE — FULL UP** (fly away from the ground) | Breaking ground contact eliminates the ground resonance coupling. Once airborne, the oscillation ceases immediately. |
-| **Nr is below safe flight range (< 90%)** or engine is not running | **THROTTLE — OFF / MIXTURE — CUTOFF** and **COLLECTIVE — FULL DOWN** | Cannot fly; must stop the rotor as quickly as possible to prevent structural failure |
-
-> *⚠ Realism Divergence: Ground resonance is more common in helicopters with articulated rotors and especially on hard surfaces. The OH-58D's soft-in-plane rotor system is designed to be resistant to ground resonance, but it is not immune. DCS may or may not model ground resonance with full fidelity — the student should know the procedure regardless, because the correct response (fly or shut down) is the same across all helicopter types.*
-
----
-
-### Instructor Notes — Module 4
-
-| Common Student Error | Correction |
-|---|---|
-| Over-pulling collective on initial hover pickup | "Slowly" is the key word. Demonstrate a smooth, 3–5 second collective pull from flat pitch to hover. The aircraft should rise gently, not leap. |
-| Failing to add left pedal during collective increase | Brief the coupling: "Collective up = right yaw. You must lead with left pedal as you pull collective, or the aircraft will yaw right before you can correct." |
-| Pilot-Induced Oscillation (PIO) in hover | The OH-58D is responsive. Students over-correct, then over-correct the correction, creating oscillation. Teach: "Small inputs. Wait for the aircraft to respond before adding more. Relax your grip." |
-| Not conducting hover power check | Make it a mandatory checklist item. "What's your hover torque? What's your torque available? Can you fly OGE?" If the student can't answer, they don't depart. |
-| Panic during ETL transition | Brief extensively: "At 16–24 knots, the aircraft will pitch up and you'll feel a bump. It's translational lift — it's good. Forward cyclic, slight right pedal, reduce collective slightly." |
-| Attempting maximum performance takeoff without proper briefing | This is a high-risk maneuver. Do not introduce it until the student has demonstrated consistent normal takeoffs. Brief the power limits and abort criteria before every max performance attempt. |
-| Ignoring ground resonance briefing | Even if DCS doesn't fully model it, the student must know: "If the aircraft shakes violently on the ground — fly or die." The response must be instinctive. |
-
----
-
-## Module 5: Basic Flight Maneuvers
-
-### Learning Objectives
-
-Upon completion of this module, the student will be able to:
-
-1. Maintain straight-and-level flight at various airspeeds (40, 60, 80, 100 KIAS) and altitudes using proper trim technique.
-2. Execute coordinated turns at 15°, 30°, and 45° of bank while maintaining altitude within ±100 ft.
-3. Perform climbs and descents at specified airspeeds and rates, managing power and Nr throughout.
-4. Demonstrate slow flight characteristics near and below ETL, recognizing the increased power requirement and control sensitivity.
-5. Execute a practice autorotation entry at altitude: lower collective, maintain Nr, establish autorotation airspeed (60–80 KIAS), and perform a power recovery.
-6. Demonstrate proper force trim technique — trimming for each airspeed, power setting, and configuration change.
-7. Execute smooth acceleration and deceleration between different cruise speeds while maintaining altitude.
-
----
-
-### 5.1 Straight-and-Level Flight
-
-#### Power and Speed Relationships
-
-Unlike fixed-wing aircraft where power primarily controls altitude and pitch controls speed, in a helicopter **collective (power) and cyclic (attitude) are interdependent for both altitude and speed**. The relationship is:
-- **More forward cyclic** → nose down → airspeed increases → altitude tends to decrease → add collective to maintain altitude.
-- **More collective** → more lift → altitude increases → aircraft decelerates unless cyclic is adjusted.
-
-In practice, the student should think: "Cyclic controls where I'm going, collective controls whether I stay at this altitude."
-
-#### Cruise Speed Reference
-
-| Airspeed (KIAS) | Approximate Torque (mid-weight, SL) | Flight Regime | Notes |
-|---|---|---|---|
-| 40 | 55–65% | Slow cruise / approaching ETL boundary | High power, nose-up attitude, sensitive controls |
-| 60 | 45–55% | Normal cruise (low) | Good visibility, moderate power |
-| 80 | 40–50% | Normal cruise (efficient) | Typical cross-country speed |
-| 100 | 45–55% | High-speed cruise | Near max range speed; approaching Vne at high weight |
-| 110–120 | 50–60%+ | Vne region | Do not exceed; configuration dependent |
-
-**Note:** The power-required curve for helicopters is "bucket-shaped" — power required is high at very low airspeeds (hover), decreases to a minimum in the 60–80 KIAS range, then increases again at high airspeeds due to parasite drag. The student should understand this concept to manage fuel endurance.
-
-#### Trim Technique
-
-The OH-58D force trim system requires active management:
-
-1. As airspeed changes, the aerodynamic forces on the rotor system change, altering the cyclic forces the pilot feels.
-2. **After any airspeed or power change**, the pilot should:
-   - Press and hold the **force trim release** button (cyclic grip).
-   - Reposition the cyclic to the desired neutral position.
-   - Release the force trim button — the cyclic is now "set" at the new position.
-3. If the pilot does not re-trim, they will be fighting constant cyclic forces, increasing fatigue and degrading precision.
-
-**Trim Scenarios:**
-
-| Situation | Required Trim Action |
-|---|---|
-| Accelerate from 60 to 80 KIAS | Trim forward — nose wants to pitch up as you accelerate (cyclic moves forward, trim the new position) |
-| Decelerate from 80 to 60 KIAS | Trim aft — nose wants to pitch down as you decelerate |
-| Increase collective for climb | Trim cyclic slightly (aircraft tendency changes); trim pedals (more torque = more left pedal) |
-| Decrease collective for descent | Trim cyclic and pedals for the new power setting |
-
----
-
-### 5.2 Coordinated Turns
-
-**Technique:**
-1. Pick a visual reference on the horizon in the direction of the turn.
-2. Apply **cyclic in the direction of the turn** (left stick for left turn, right stick for right turn).
-3. As the bank establishes, apply **slight aft cyclic** to maintain the nose on the horizon (prevents nose from dropping in the turn).
-4. Add **collective** as bank increases to maintain altitude — a banked turn increases the load factor, requiring more total lift.
-5. Add **pedal as needed** to keep the slip ball centered (coordinated flight).
-6. To roll out: apply **opposite cyclic** to level the wings, reduce collective to level-flight setting, adjust pedals.
-
-#### Bank Angle and G-Loading
-
-| Bank Angle | Load Factor (G) | Collective Increase Required | Notes |
-|---|---|---|---|
-| 15° | 1.04 G | Negligible | Gentle turn — training standard |
-| 30° | 1.15 G | ~5% torque increase | Moderate turn — standard maneuvering |
-| 45° | 1.41 G | ~15% torque increase | Aggressive turn — significant power required |
-| 60° | 2.0 G | ~40% torque increase | **Near structural limit** (max 2.5 G); avoid at high gross weight |
-
-**G-Limit Awareness:** The OH-58D is limited to +2.5 G at max gross weight. At 60° of bank, the load factor is 2.0 G — leaving only 0.5 G of margin. Students must be aware that high-bank-angle turns at heavy weights rapidly approach structural limits.
-
-> *⚠ Realism Divergence: DCS models G-loading effects on the aircraft structure and rotor system. However, the pilot may not receive as much physical feedback (seat-of-the-pants G feel) as in the real aircraft. The student should monitor the G-meter (if available on MFD) and limit bank to 45° during BQT maneuvers.*
-
----
-
-### 5.3 Climbs and Descents
-
-#### Climbs
-
-| Type | Airspeed (KIAS) | Technique | Power Setting |
-|---|---|---|---|
-| **Normal Climb (Vy)** | 55–60 | Forward cyclic to maintain Vy, increase collective for desired climb rate | As required, ≤ 100% torque continuous |
-| **Cruise Climb** | 70–80 | Slight collective increase from cruise, maintain airspeed with cyclic | ~5–10% above cruise torque |
-| **Max Angle Climb (Vx)** | 45–50 | Steep nose-up attitude; maximum altitude per distance | Maximum continuous power |
-
-**Nr Awareness in Climbs:**
-During a climb, the engine works harder. In FADEC auto mode, Nr should remain at 100%. If the pilot demands more power than available (pulling collective above the torque limit), FADEC will attempt to maintain Nr but TOT will approach limits. The student must monitor torque and TOT.
-
-#### Descents
-
-| Type | Airspeed (KIAS) | Technique | Power Setting |
-|---|---|---|---|
-| **Normal Descent** | 80 | Reduce collective to reduce power, forward cyclic to maintain airspeed, descend at 500–1,000 FPM | Reduced from cruise |
-| **Cruise Descent** | 80–100 | Slight collective reduction; gradual descent | ~5–10% below cruise torque |
-| **Emergency Descent** | 80 | Aggressive collective reduction; may use autorotation profile | Near flat pitch; Nr management critical |
-
-**Nr Awareness in Descents:**
-Reducing collective rapidly can cause **Nr to increase above 100%** (the rotor blades are unloaded and windmilling). The FADEC will attempt to govern, but rapid collective reductions in combination with descent can cause Nr overshoot. The student must reduce collective smoothly and monitor Nr, especially in autorotation-entry practice.
-
-> *⚠ Realism Divergence: In the real OH-58D, Nr overspeed above 107% (power off) is a structural concern for the rotor head and mast. DCS models Nr governing and overspeed to varying degrees of fidelity. The student should develop the habit of smooth, progressive collective changes rather than abrupt inputs.*
-
----
-
-### 5.4 Slow Flight
-
-Slow flight occurs at airspeeds **below ETL** (approximately < 24 knots), where the helicopter transitions from translational flight back toward the hover regime.
-
-**Characteristics of Slow Flight:**
-- **Power required increases** as translational lift diminishes.
-- **Control sensitivity increases** — cyclic inputs produce larger attitude changes.
-- **Pedal authority changes** — more left pedal required as torque increases to maintain altitude.
-- **Aircraft instability increases** — the helicopter is less stable in all axes below ETL.
-- **Settling with power risk** increases if the aircraft is descending while slow.
-
-**Training Purpose:** The student must understand the transition between forward flight and hover, and recognize the visual/tactile cues (increased vibration, nose-up pitch tendency, increased power demand) that indicate ETL is decaying.
-
-| Speed Range | Characteristics | Required Inputs |
-|---|---|---|
-| 30–24 KIAS | Beginning transition; slight power increase needed | Small collective increase; forward cyclic to maintain speed |
-| 24–16 KIAS | ETL decaying; noticeable power increase; vibration increases (transverse flow) | Significant collective increase; pedal adjustment; cyclic becomes more sensitive |
-| < 16 KIAS | Hover regime; maximum power required for altitude maintenance | Full hover control technique; coordinated inputs on all controls |
-
----
-
-### 5.5 Autorotation Entry (Practice)
-
-**Purpose:** The autorotation is the single most critical emergency maneuver in single-engine helicopter operations. In the BQT course, the student practices **autorotation entry and power recovery at altitude** — not a full autorotation to the ground. Full autorotations are introduced in later training.
-
-#### What Is Autorotation?
-
-When the engine fails (or the freewheeling unit disengages the engine from the rotor), the main rotor is no longer powered. However, the rotor can continue to spin if the pilot **immediately lowers the collective** (reduces blade pitch). Air flowing upward through the rotor disc (as the aircraft descends) drives the rotor — the rotor becomes a windmill, using the aircraft's gravitational potential energy to maintain rotor RPM.
-
-#### Entry Procedure (Engine Failure in Forward Flight)
-
-| Step | Action | Reason |
-|---|---|---|
-| 1 | **COLLECTIVE — FULL DOWN** (immediately) | Reduces blade pitch to allow air to drive the rotor; prevents Nr decay |
-| 2 | **PEDALS — ADJUST** (right pedal in autorotation) | With no engine torque, less anti-torque is needed; the aircraft will yaw right if pedals are not adjusted |
-| 3 | **CYCLIC — ADJUST** for autorotation airspeed (60–80 KIAS) | 60 KIAS = minimum rate of descent; 80 KIAS = maximum glide distance |
-| 4 | **Nr — MONITOR** (must remain 90–107%) | Nr below 90% = rotor stall risk; above 107% = structural risk |
-
-#### Autorotation Key Data
-
-| Parameter | Value | Notes |
-|---|---|---|
-| **Autorotation Airspeed (Min RoD)** | 60 KIAS | Minimum rate of descent — best for hovering autorotation or when landing site is close |
-| **Autorotation Airspeed (Max Glide)** | 80 KIAS | Maximum distance — best when landing site is farther away |
-| **Nr Range (Autorotation)** | 90–107% | Must remain in this range throughout; FADEC is not governing (engine is failed) |
-| **Rate of Descent (Autorotation)** | ~1,500–2,000 FPM | Varies with weight and airspeed; the OH-58D descends rapidly in autorotation |
-| **Glide Ratio** | ~4:1 | For every 1,000 ft of altitude, the aircraft glides approximately 4,000 ft forward at max glide speed |
-| **Available Reaction Time** | ~1–2 seconds | Time from engine failure recognition to collective-down before Nr decays below safe limits |
-
-**Practice Autorotation at Altitude (Power Recovery):**
-1. Instructor announces "simulated engine failure" (or reduces throttle to idle in DCS).
-2. Student **immediately lowers collective to full down**.
-3. Student adjusts pedals and cyclic for autorotation airspeed (60–80 KIAS).
-4. Student monitors Nr (should stabilize in 90–107% range).
-5. After demonstrating stable autorotation glide for ~500–1,000 ft altitude loss:
-   - **COLLECTIVE — INCREASE** (smooth, not abrupt)
-   - **THROTTLE — FLY** (if manually reduced)
-   - FADEC re-governs Nr to 100%.
-   - Student resumes powered flight.
-
-> *⚠ Realism Divergence: In the real OH-58D, autorotation entry must occur within approximately 1 second of engine failure to prevent Nr from decaying below 90%. DCS models Nr decay rate accurately enough for training purposes, but the sensation of urgency may be less intense without physical motion cues. The instructor should emphasize that autorotation entry is a reflex, not a decision — "The collective goes down before you finish thinking about it."*
-
----
-
-### 5.6 Speed Changes (Acceleration / Deceleration)
-
-#### Acceleration (e.g., 60 → 100 KIAS)
-
-1. Apply forward cyclic (nose down) → airspeed increases.
-2. As the aircraft accelerates, nose will want to pitch back up — maintain forward pressure.
-3. Collective may need to increase slightly to maintain altitude (drag increases at higher speed).
-4. **Trim** for the new airspeed.
-5. Pedal adjustment for the new power setting.
-
-#### Deceleration (e.g., 100 → 60 KIAS)
-
-1. Apply aft cyclic (nose up) → airspeed decreases.
-2. As the aircraft decelerates, power required changes (follows the bucket curve — initially decreases, then increases as you approach hover).
-3. Collective must increase as airspeed decreases below ~80 KIAS to maintain altitude.
-4. **Trim** for the new airspeed.
-5. Pedal adjustment for the new power setting.
-6. **If decelerating below ETL:** Significant collective increase required; full hover control technique applies.
-
----
-
-### 5.7 Straight-and-Level Flight at Various Airspeeds
-
-The student must be able to maintain straight-and-level flight at 40, 60, 80, and 100 KIAS, demonstrating understanding of how control feel and power requirements change across the airspeed range.
-
-| Airspeed | Attitude (Nose) | Power (Torque) | Control Feel | Stability |
+| System | Designation | Type | Frequency Range | Primary Role |
 |---|---|---|---|---|
-| **40 KIAS** | Nose up ~5–8° | High (~55–65%) | Sensitive; sluggish yaw response | Low — near ETL boundary; requires active control |
-| **60 KIAS** | Nose level to slight up | Moderate (~45–55%) | Responsive; balanced | Moderate — in translational lift; reasonable stability |
-| **80 KIAS** | Slight nose down | Low-moderate (~40–50%) | Firm; good feedback | Good — efficient regime; most stable |
-| **100 KIAS** | Nose down ~3–5° | Moderate (~45–55%) | Firm; higher control forces | Good — approaching Vne; parasite drag increasing |
+| **UHF-AM** | AN/ARC-164 | UHF Amplitude Modulation | 225.000–399.975 MHz | ATC communications, common/tower frequencies, guard (243.0 MHz) |
+| **VHF/FM** | AN/ARC-201 | VHF Frequency Modulation | 30.000–87.975 MHz | Tactical inter-flight communications, ground coordination |
+| **ICS** | Intercom | Wired intercom | N/A | Pilot-to-copilot crew coordination |
+
+**General radio doctrine:**
+- **UHF-AM (ARC-164)** is the primary radio for communicating with ATC (tower, approach, departure, ground control) and for common tactical frequencies. UHF-AM is the standard military aviation band.
+- **VHF/FM (ARC-201)** is used for tactical inter-flight communication (flight lead to wingman), coordination with ground forces, and SINCGARS-compatible networks (in real-world; DCS may simplify).
+- **ICS** is used for all crew communication within the cockpit — callouts, confirmations, warnings, and coordination.
 
 ---
 
-### Instructor Notes — Module 5
+### 3.2 ARC-164 (UHF-AM) — Detailed Operation
 
-| Common Student Error | Correction |
+| Feature | Description |
 |---|---|
-| Not trimming after speed changes | Every speed change = re-trim. The student should develop the habit of releasing and resetting force trim as a reflexive action after any power or speed adjustment. |
-| Losing altitude in turns | Brief: "Turns require more lift. As you bank, add collective to maintain altitude. The steeper the bank, the more collective." |
-| Abrupt collective reduction in descent | The collective controls Nr when you reduce power. Abrupt reduction = Nr overshoot. "Move the collective like you're adjusting a volume knob." |
-| Delayed autorotation entry | The single most dangerous error. Drill: "Engine fails → collective DOWN. No thinking. No diagnosis first. Collective DOWN, then figure out what happened." |
-| Fear of autorotation practice | Normalize it: "We're going to practice this at altitude with plenty of room. I'll recover if needed. Your job is to get the collective down fast and find 60 knots." |
-| Over-controlling at low airspeed | Below ETL, the aircraft is more responsive and less stable. Students from cruise-speed practice over-control when slow. "Smaller inputs. Let the aircraft settle." |
-| Not monitoring Nr during autorotation | Nr is the student's life in autorotation. If it decays below 90%, the rotor will not produce enough lift for a safe flare and landing. Drill the Nr scan into the autorotation procedure. |
+| **Frequency range** | 225.000–399.975 MHz (25 kHz spacing) |
+| **Modes** | OFF / MAIN / BOTH / ADF |
+| **Preset channels** | Up to 20 presets (mission-programmable) |
+| **Guard frequency** | 243.0 MHz — international UHF emergency frequency |
+| **GUARD/MAIN+GUARD** | BOTH mode monitors guard simultaneously with main frequency |
+| **Squelch** | Adjustable; reduces background noise |
+
+#### Tuning the ARC-164
+
+**Manual tune:**
+1. Ensure mode is set to MAIN (or BOTH for simultaneous guard monitoring).
+2. Use the frequency selector knobs to set desired frequency (MHz on the left knob, kHz on the right knob).
+3. Verify frequency displayed in the window matches desired frequency.
+
+**Preset channels:**
+1. Select PRESET mode on the control head.
+2. Rotate channel selector to the desired preset number.
+3. The radio automatically tunes to the pre-programmed frequency for that channel.
+
+**Guard monitoring (recommended):**
+- Set mode to BOTH — this monitors 243.0 MHz (guard) simultaneously with the selected main frequency.
+- Guard is the emergency frequency — all aircraft should monitor it when possible.
+
+#### Common UHF Frequencies (DCS)
+
+| Frequency | Use |
+|---|---|
+| **243.0 MHz** | Guard (emergency) |
+| **251.0 MHz** | Common UHF air-to-air |
+| **253.0 MHz** | DCS common ground/tower (varies by mission) |
+| **275.8 MHz** | AWACS / GCI (common in DCS MP) |
+| **Mission-specific** | Per briefing — tower, approach, departure, JTAC |
+
+> *Note: DCS frequencies are mission-dependent. The student should check the mission briefing for assigned frequencies before startup.*
 
 ---
 
-## Module 6: Navigation (Basic AHRS/GPS)
+### 3.3 ARC-201 (VHF/FM) — Detailed Operation
+
+| Feature | Description |
+|---|---|
+| **Frequency range** | 30.000–87.975 MHz (25 kHz spacing) |
+| **Modes** | OFF / SC (single channel) / FH (frequency hopping) |
+| **Usage** | Tactical/inter-flight communication, ground forces coordination |
+| **SINCGARS compatible** | Real-world: yes (frequency hopping). DCS: simplified — typically single-channel mode only |
+
+#### Tuning the ARC-201
+
+**Single channel (SC) mode:**
+1. Set mode to SC.
+2. Use frequency selector knobs to set desired frequency.
+3. Verify frequency displayed matches desired frequency.
+
+**Frequency hopping (FH):** Real-world SINCGARS uses a shared crypto key and hopping pattern. In DCS, this is typically not modeled — use single-channel mode.
+
+#### Common FM Frequencies (DCS)
+
+| Frequency | Use |
+|---|---|
+| **30.0 MHz** | Common FM default |
+| **40.0 MHz** | Inter-flight coordination (common in DCS) |
+| **Mission-specific** | Per briefing — JTAC, FAC, ground forces |
+
+---
+
+### 3.4 Audio Panel / ICS
+
+The audio panel controls which radio(s) the pilot hears and transmits on.
+
+| Control | Function |
+|---|---|
+| **UHF volume** | Adjusts ARC-164 receive volume in the pilot's headset |
+| **FM volume** | Adjusts ARC-201 receive volume in the pilot's headset |
+| **ICS volume** | Adjusts intercom volume |
+| **Transmit select** | Selects which radio the radio trigger (2nd detent) transmits on: UHF or FM |
+| **ICS mode** | Hot mic (always transmitting on ICS) or keyed (trigger 1st detent to transmit on ICS) |
+
+#### Transmit/Receive Configuration
+
+**Typical BQT setup:**
+- **Transmit:** UHF (ARC-164) selected for ATC communications
+- **Receive:** Both UHF and FM volumes up (monitor both)
+- **ICS:** Hot mic for crew coordination (or keyed if preferred)
+
+**Changing transmit radio:**
+- Use the transmit select switch on the audio panel to toggle between UHF and FM
+- When switching to talk on FM (e.g., to a wingman), select FM as transmit radio, make the call, then switch back to UHF for ATC
+
+---
+
+### 3.5 Intercom (ICS) System
+
+The ICS connects pilot and copilot for crew communication without transmitting on any radio.
+
+| Mode | Description |
+|---|---|
+| **Hot mic** | Both crew members hear each other at all times — no trigger press needed |
+| **Keyed** | Must press radio trigger to 1st detent to speak on ICS |
+| **Recommended for BQT** | Hot mic — reduces workload during training, especially in hover and emergency practice |
+
+**Collective trigger positions:**
+- **1st detent (partial squeeze):** ICS only — crew communication
+- **2nd detent (full squeeze):** Selected radio transmit — broadcasts on UHF or FM (per transmit select)
+
+**Keying technique:** The trigger is a graduated squeeze. The student must develop muscle memory to distinguish between:
+- A light squeeze (1st detent) for talking to the copilot
+- A full squeeze (2nd detent) for transmitting on the radio
+
+**Common error:** Accidentally transmitting on the radio when intending to speak on ICS (squeezing too hard), or speaking on ICS when intending to transmit (not squeezing enough). This can result in unintended radio transmissions or missed calls.
+
+---
+
+### 3.6 Standard Radio Calls — BQT Environment
+
+The following are standard radio calls the student must be able to make during BQT training flights.
+
+#### ATC Communication (UHF-AM)
+
+| Phase | Call | Example |
+|---|---|---|
+| **Startup clearance** | "[Ground/Tower], [Callsign], [Location], request startup" | "Batumi Ground, Army Kiowa 16, ramp parking, request startup and ATIS information" |
+| **Taxi** | "[Ground], [Callsign], request hover taxi [destination]" | "Batumi Ground, Kiowa 16, request hover taxi to runway 13 via taxiway Alpha" |
+| **Takeoff** | "[Tower], [Callsign], ready for departure [runway/direction]" | "Batumi Tower, Kiowa 16, holding short runway 13, ready for departure to the south" |
+| **Departure** | "[Tower/Departure], [Callsign], departing [direction], climbing [altitude]" | "Batumi Tower, Kiowa 16, departing south, climbing to pattern altitude" |
+| **Pattern entry** | "[Tower], [Callsign], entering [position] for runway [number]" | "Batumi Tower, Kiowa 16, entering left downwind runway 13" |
+| **Base turn** | "[Tower], [Callsign], turning base" | "Batumi Tower, Kiowa 16, turning base runway 13" |
+| **Final** | "[Tower], [Callsign], final runway [number], [type] landing" | "Batumi Tower, Kiowa 16, final runway 13, full stop" |
+| **Go-around** | "[Tower], [Callsign], going around" | "Batumi Tower, Kiowa 16, going around" |
+| **Landing clearance** | Listen for "[Callsign], cleared to land runway [number]" | Respond: "Cleared to land runway 13, Kiowa 16" |
+| **Taxi after landing** | "[Ground], [Callsign], clear of runway [number], request taxi to parking" | "Batumi Ground, Kiowa 16, clear runway 13, request taxi to ramp" |
+| **Shutdown** | "[Ground], [Callsign], parking, shutting down" | "Batumi Ground, Kiowa 16, ramp parking, shutting down" |
+
+#### Inter-Flight Communication (FM)
+
+| Situation | Call | Example |
+|---|---|---|
+| **Check-in** | "[Callsign], up [frequency]" | "Kiowa 16, up Button 3" |
+| **Position report** | "[Callsign], [position], [altitude], [heading]" | "Kiowa 16, 5 miles south, 1000 feet, heading north" |
+| **Tactical** | Military brevity as appropriate | Per unit SOP |
+
+#### Phraseology Notes
+
+- **Readback required:** Runway assignments, altimeter settings, hold short instructions, clearance limits
+- **"Roger"** = received and understood (not agreement)
+- **"Wilco"** = will comply
+- **"Say again"** = repeat last transmission
+- **"Unable"** = cannot comply with instruction
+- **"Mayday"** (×3) = emergency distress call on guard or current frequency
+
+---
+
+### 3.7 Guard Frequency Monitoring
+
+| Frequency | Band | Purpose |
+|---|---|---|
+| **243.0 MHz** | UHF | International military emergency frequency |
+| **121.5 MHz** | VHF | International civil emergency frequency |
+
+**Best practice:** Monitor guard (243.0 MHz) on UHF by setting ARC-164 to BOTH mode. This allows simultaneous monitoring of main frequency and guard.
+
+If an emergency is heard on guard, relay to appropriate ATC if able. If declaring an emergency yourself, transmit on guard and current ATC frequency.
+
+---
+
+### 3.8 DCS-Specific Radio Operations
+
+#### Easy Communication Mode
+
+DCS offers an **Easy Communication** mode that simplifies radio operation:
+- Radio menus appear via keyboard shortcut (default: `\` backslash)
+- No need to tune frequencies or configure audio panels
+- ATC responses are automatic
+- **Not recommended for BQT** — students should learn realistic radio operation
+
+#### Realistic Radio Mode
+
+With Easy Communication **off**, the student must:
+1. Tune the correct frequency on the appropriate radio
+2. Select the correct radio for transmit on the audio panel
+3. Key the radio trigger (2nd detent) to transmit
+4. Listen for responses on the tuned frequency
+
+#### SRS (SimpleRadio Standalone)
+
+For multiplayer operations, **SRS** provides realistic radio simulation:
+- Radios must be tuned to communicate with other players
+- Transmissions are proximity- and frequency-dependent
+- ICS works between crew members
+- Separate software installation required; integrates with DCS cockpit radios
+
+> *⚠ Realism Divergence: In single-player DCS with Easy Communication off, ATC interactions are still somewhat scripted/simplified compared to real-world radio procedures. SRS in multiplayer provides the most realistic radio experience but requires additional setup. The student should be proficient with cockpit radio operation regardless of communication mode.*
+
+---
+
+### 3.9 Cockpit Switch Reference — Module 3
+
+| Switch/Control | Location | Function | DCS Action |
+|---|---|---|---|
+| **ARC-164 mode** | Center pedestal — UHF control head | OFF / MAIN / BOTH / ADF | Mouse click to cycle |
+| **ARC-164 frequency** | Center pedestal — UHF control head | MHz and kHz selector knobs | Mouse scroll on each knob |
+| **ARC-164 preset channel** | Center pedestal — UHF control head | Select preset channel number | Mouse scroll on channel knob |
+| **ARC-164 volume** | Center pedestal — UHF control head or audio panel | UHF receive volume | Mouse scroll |
+| **ARC-201 mode** | Center pedestal — FM control head | OFF / SC / FH | Mouse click to cycle |
+| **ARC-201 frequency** | Center pedestal — FM control head | Frequency selector knobs | Mouse scroll on each knob |
+| **ARC-201 volume** | Center pedestal — FM control head or audio panel | FM receive volume | Mouse scroll |
+| **Audio panel — TX select** | Center pedestal — audio panel | Select UHF or FM for transmit | Mouse click toggle |
+| **Audio panel — ICS mode** | Center pedestal — audio panel | Hot mic or keyed | Mouse click toggle |
+| **Radio trigger** | Collective grip | 1st detent: ICS / 2nd detent: radio TX | Joystick button or keyboard |
+
+**Keyboard defaults (DCS — verify in-sim):**
+
+| Key | Function |
+|---|---|
+| `RAlt + \` | UHF transmit (Easy Comm menu) |
+| `RCtrl + \` | VHF/FM transmit (Easy Comm menu) |
+| `\` | Easy Comm menu (if enabled) |
+
+> *Note: Actual key binds may differ by DCS version and user configuration. Always verify in Controls settings.*
+
+---
+
+### 3.10 Instructor Notes — Module 3
+
+**Common student errors:**
+
+1. **Wrong trigger detent:** Students transmit on radio when they meant ICS, or talk on ICS when they meant to transmit. Drill the trigger feel repeatedly. Use the callout "ICS check" and "Radio check" to practice.
+2. **Forgetting to switch transmit radio:** Students call ATC on FM instead of UHF (or vice versa). Teach a workflow: before every transmission, glance at the transmit select indicator.
+3. **Not monitoring guard:** Students leave UHF in MAIN mode instead of BOTH. Make BOTH mode part of the startup checklist.
+4. **Poor readback discipline:** Students say "Roger" when they should read back a clearance. Drill: runway assignments, altimeter settings, and hold-short instructions always require readback.
+5. **Talking too fast:** Students rush radio calls. Teach the cadence: key the mic, pause half a beat, speak clearly at conversational pace, unkey.
+6. **Forgetting to tune before transmitting:** Students try to make a call without first verifying the correct frequency is set. Teach: "Tune — Verify — Key — Speak."
+7. **Easy Communication crutch:** Students who learned with Easy Comm struggle with realistic radio operation. Start BQT with Easy Comm off from the first training event.
+
+
+---
+
+## Module 4: Ground Operations
 
 ### Learning Objectives
 
 Upon completion of this module, the student will be able to:
 
-1. Select and navigate to a pre-programmed waypoint using the MFD NAV page.
-2. Read and interpret bearing, distance, ground speed, and ETA to the active waypoint.
-3. Create or modify a waypoint using the AHRS/GPS controller or MFD interface (enter coordinates in Lat/Long or MGRS format).
-4. Orient the MFD moving map (north-up vs. track-up) and maintain situational awareness of own-ship position.
-5. Set and use the heading bug on the heading indicator / HSI for course tracking.
-6. Set the radar altimeter low-altitude warning bug and explain its use during low-level navigation.
-7. Use TACAN (if modeled in DCS) for bearing and distance to a ground station.
+1. Perform a complete cold-dark start of the OH-58D Kiowa Warrior, switch by switch.
+2. Understand the FADEC auto-start sequence and monitor parameters for a normal start.
+3. Detect and respond to a hot start, hung start, or failed start during engine startup.
+4. Align the AHRS/GPS system and verify navigation readiness.
+5. Perform rotor engagement and track main rotor RPM (Nr) to governed speed.
+6. Configure all cockpit systems for flight (radios, instruments, lighting, MFD).
+7. Perform a complete before-taxi checklist.
+8. Hover taxi safely, maintaining directional control and awareness of ground resonance.
+9. Perform a pre-takeoff check at the holding point.
 
 ---
 
-### 6.1 AHRS/GPS Navigation System Overview
+### 4.1 Cold-Dark Cockpit — Starting Condition
 
-The OH-58D uses an AHRS (Attitude Heading Reference System) integrated with a GPS receiver to provide the primary navigation solution. This system feeds data to the MFD, which displays the navigation information to the pilot.
+The training scenario begins with the OH-58D in a cold-dark state on the ramp. All switches are off, rotors are stationary, and no systems are powered.
 
-| Component | Function | Location |
+**Pre-start walkaround (conceptual):** In real-world operations, the pilot performs an exterior inspection before entering the cockpit. In DCS, this is simulated by visual inspection from the external view:
+- Rotor blades — no visible damage
+- Pitot tube — uncovered
+- Tail rotor — intact
+- Landing skids — no obstructions
+- Engine exhaust / IR suppressor — clear
+
+---
+
+### 4.2 Engine Start — Complete Procedure
+
+The OH-58D features a FADEC-controlled engine start. In AUTO mode, the FADEC sequences the start automatically once the starter is engaged. The pilot's role is to monitor instruments and be prepared to abort if parameters exceed limits.
+
+#### Step-by-Step Cold Start Sequence
+
+| Step | Action | Expected Result |
 |---|---|---|
-| **AHRS** | Provides attitude (pitch, roll) and magnetic heading reference | Internal avionics bay (no pilot interaction except alignment) |
-| **GPS Receiver** | Provides latitude/longitude position, ground speed, ground track | Internal avionics bay |
-| **AHRS/GPS Controller** | Pilot input device: waypoint entry, mode selection, alignment commands | Right console |
-| **MFD NAV Page** | Primary navigation display: map, waypoints, route, bearing/distance | Center instrument panel |
-| **Heading Indicator / HSI** | Analog heading display with heading bug and course pointer | Instrument panel — right |
-| **Magnetic Compass** | Standby heading reference | Windshield frame |
+| 1 | **Battery** — ON | Electrical bus powered; caution panel illuminates with multiple warnings (normal for cold start). Battery voltage should read ~24–28V DC. |
+| 2 | **Verify caution/warning panel** — Check for pre-existing faults | Note any unexpected cautions. All cautions at this stage are normal (engine off, generators off, etc.). |
+| 3 | **Fuel shutoff** — OPEN (verify) | Fuel valve open, allowing fuel to reach the engine. May already be in the open position. |
+| 4 | **Throttle** — IDLE detent (or OFF then IDLE, per DCS model) | Throttle at idle detent position. FADEC auto mode will control fuel scheduling from here. |
+| 5 | **FADEC mode** — Verify AUTO | FADEC auto mode selected. This is the default and normal mode for all operations. |
+| 6 | **Rotor brake** — OFF (released) | Rotor brake released, allowing rotor rotation once engine drives the transmission. |
+| 7 | **Starter button** — PRESS AND HOLD (or press momentarily per DCS) | Starter motor engages. N1 (gas generator) begins to spool up. |
+| 8 | **Monitor N1 rise** — Observe N1 gauge increasing | N1 should begin rising smoothly. If N1 stalls below ~15%, suspect a hung start. |
+| 9 | **FADEC introduces fuel** — Automatic (at ~15–20% N1) | TOT begins to rise as combustion occurs. A slight "light-off" indication on TOT. |
+| 10 | **Monitor TOT during start** — Must remain below 810°C | TOT rises, peaks, then decreases as N1 continues to accelerate. Peak TOT during start should not exceed 810°C for more than ~10 seconds. |
+| 11 | **Release starter** — When N1 reaches self-sustaining speed (~58–62% N1) | The engine is now self-sustaining. FADEC continues to manage acceleration to idle. |
+| 12 | **Engine stabilizes at ground idle** | N1 stabilizes at ground idle (~62–65% N1). TOT stabilizes well below limits. Nr begins to increase as the transmission is engaged. |
+| 13 | **Monitor Nr rise** — Track Nr on tachometer | Nr (main rotor RPM) increases as the freewheeling unit engages and the engine drives the rotor system through the transmission. |
+| 14 | **Nr reaches governed speed** — ~100% (395 RPM) | FADEC governs Nr at 100%. All normal. Torque indication at ground idle is low (~10–20% Q). |
+| 15 | **Generator(s)** — ON | Main generator comes online. Electrical load transfers from battery to generator. Caution lights for generator should extinguish. |
+| 16 | **Verify electrical panel** — All buses powered | AC and DC buses show proper voltage. Inverter operating. |
 
----
+> *⚠ Realism Divergence: The DCS OH-58D start sequence may be simplified compared to the real aircraft. The real aircraft has a more nuanced starter engagement sequence with specific N1 callouts. In DCS, pressing the starter button may automatically sequence the entire start with the FADEC doing all fuel scheduling. The key pilot actions — monitoring TOT and N1 — remain the same.*
 
-### 6.2 Waypoint Navigation
+#### Start Abnormalities
 
-#### Selecting a Waypoint
-
-1. On the MFD, navigate to the **NAV page** (press the NAV OSB).
-2. The NAV page displays:
-   - Own-ship position symbol (centered or offset on the moving map).
-   - Waypoints (numbered triangles or symbols on the map).
-   - Active waypoint (highlighted or connected by a course line).
-3. To **select a different waypoint as active**: use the OSB buttons to cycle through waypoints, or use the AHRS/GPS controller to enter the desired waypoint number.
-
-#### Navigation Data Display
-
-| Data | Display Location | How to Read |
+| Abnormality | Indication | Action |
 |---|---|---|
-| **Bearing to Waypoint (BRG)** | MFD NAV page — data block | Magnetic bearing in degrees (e.g., 270°) |
-| **Distance to Waypoint (DIST)** | MFD NAV page — data block | Nautical miles (e.g., 12.4 NM) |
-| **Ground Speed (GS)** | MFD NAV page — data block | Knots (e.g., 85 kts) |
-| **Estimated Time of Arrival (ETA)** | MFD NAV page — data block | Time or minutes to waypoint |
-| **Ground Track** | MFD NAV page — own-ship symbol direction | Direction of travel over the ground |
-| **Current Position** | MFD NAV page — data block or cursor | Lat/Long or MGRS coordinates |
-
-#### Course Tracking Technique
-
-1. Note the bearing to the active waypoint (e.g., 270°).
-2. Set the heading bug on the heading indicator to the bearing (270°).
-3. Turn to the heading and maintain it.
-4. Periodically check the MFD NAV page — if the bearing changes (e.g., now 275°), adjust heading to re-intercept the course.
-5. Wind correction: if the aircraft drifts off course, apply a wind correction angle (crab into the wind) to maintain a straight ground track to the waypoint.
-
-> *⚠ Realism Divergence: The real OH-58D EGI system provides HSI course deviation indication (CDI) similar to a VOR needle. The DCS module may or may not implement a full CDI display. The student should use the MFD NAV page bearing/distance readout and heading indicator as the primary course-tracking method.*
+| **Hot start** | TOT exceeds 810°C and continues rising | Immediately abort: throttle OFF, motor starter to assist cooling airflow if possible. Allow engine to cool completely before reattempt. |
+| **Hung start** | N1 stabilizes below normal idle (~62%) and does not continue to accelerate | Abort: throttle OFF, wait 30 seconds minimum before reattempt. May indicate insufficient battery voltage or starter issue. |
+| **No light-off** | N1 rises but TOT shows no indication of combustion by ~25% N1 | Abort: throttle OFF, check fuel shutoff valve is open. Purge residual fuel by dry-motoring (starter only, no fuel) if available. |
+| **Compressor stall** | Loud bangs, fluctuating TOT and N1 | Abort: throttle OFF immediately. Do not reattempt until cause is investigated. |
 
 ---
 
-### 6.3 Waypoint Entry / Modification
+### 4.3 Post-Start Checks
 
-**Creating a New Waypoint:**
+After the engine has stabilized at ground idle with Nr at 100%:
+
+| System | Check | Expected |
+|---|---|---|
+| **Engine instruments** | N1, TOT, torque, oil pressure, oil temperature | All in green/normal ranges |
+| **Nr** | Tachometer | 100% (±1%), governed by FADEC |
+| **Caution/warning panel** | Scan for any illuminated cautions | Only expected cautions (e.g., parking brake if applicable). No master warning. |
+| **Hydraulic pressure** | Gauge | ~1,000 PSI (within normal range) |
+| **Generator** | On, voltage normal | ~28V DC bus voltage |
+| **Fuel quantity** | Fuel gauge | Expected fuel load for the mission; note starting fuel. |
+| **AHRS/GPS** | Begin alignment (see 4.4) | AHRS initializing. |
+| **Flight controls** | Cyclic, collective, pedals — check freedom of movement | Full travel, no binding, control response on rotor head. |
+| **Caution panel test** | Press test button | All caution lights should illuminate during test, then extinguish when released. |
+
+---
+
+### 4.4 AHRS/GPS Alignment
+
+The OH-58D uses an Attitude Heading Reference System (AHRS) integrated with GPS for navigation and attitude reference.
 
 | Step | Action | Notes |
 |---|---|---|
-| 1 | Access the waypoint entry page on the AHRS/GPS controller or MFD | Typically through OSB on MFD NAV page → WPT EDIT |
-| 2 | Select an empty waypoint number (e.g., WPT 10) | Overwriting a pre-programmed waypoint is possible |
-| 3 | Enter coordinates in **Lat/Long** (e.g., N 42°15'30" E 043°30'00") or **MGRS** (e.g., 38T LP 1234 5678) | DCS may support one or both formats depending on module |
-| 4 | Confirm entry (press ENTER / ENT OSB) | Waypoint is saved and appears on the moving map |
-| 5 | Select the new waypoint as active (if desired) | Route sequence updates |
+| 1 | **AHRS** — ON (should be on with battery) | AHRS begins gyro alignment. |
+| 2 | **Ensure aircraft is stationary** | AHRS alignment requires the aircraft to be still. Do not move the aircraft during alignment. |
+| 3 | **Wait for alignment complete** | Alignment time varies: fast align (~30–90 seconds typical in DCS), full align (~2–5 minutes real world. DCS may accelerate this). |
+| 4 | **Verify AHRS status on MFD** | NAV page or SYS page should show AHRS aligned. Heading and attitude indications become valid. |
+| 5 | **GPS acquisition** | GPS acquires satellites and provides position. Verify position on MFD moving map matches known ramp location. |
+| 6 | **Heading check** | Compare AHRS heading indication to known runway/ramp heading. Should agree within a few degrees. |
 
-**Mark Point (Capture Current Position):**
-
-| Step | Action | Notes |
-|---|---|---|
-| 1 | While in flight (or hover), press the **MARK** function on the MFD or AHRS/GPS controller | Captures current GPS position |
-| 2 | The mark point is stored as a waypoint (next available number) | Useful for marking POIs, landing zones, or reference points |
-| 3 | Note the waypoint number assigned | Can be navigated to later or shared with flight |
-
-> *⚠ Realism Divergence: The real OH-58D uses the Control Display Unit (CDU) integrated with the IDM for detailed waypoint management, including importing waypoints from a mission data transfer device (MDTD) and sharing waypoints over the digital data link. DCS simplifies waypoint entry to manual keyboard input through the MFD/AHRS controller interface.*
+> *⚠ Realism Divergence: DCS AHRS alignment time may be significantly faster than real-world. The real OH-58D AHRS requires a precise alignment procedure with position input and can take several minutes. DCS may simplify this to an automatic alignment that completes quickly after power-on. The student should still practice the full alignment procedure conceptually.*
 
 ---
 
-### 6.4 MFD Moving Map
+### 4.5 Systems Configuration for Flight
 
-The MFD NAV page can display a moving map showing terrain, cultural features, and overlaid navigation data.
+After engine start and AHRS alignment, configure remaining systems:
 
-| Feature | Description |
+#### Avionics & MFD
+
+| Step | Action |
 |---|---|
-| **Orientation** | North-up (map always oriented north) or Track-up (map rotates so direction of flight is always up) |
-| **Range Scale** | Adjustable zoom level (e.g., 5 NM, 10 NM, 25 NM rings) |
-| **Own-Ship Symbol** | Aircraft position and heading on the map |
-| **Waypoints** | Displayed as numbered symbols on the map |
-| **Route Line** | Connecting line between sequential waypoints (if a route is programmed) |
-| **Range Rings** | Concentric circles at selected distances for situational awareness |
+| 1 | **MFD** — Power on (if not already on with battery). Verify MFD displays correctly. |
+| 2 | **MFD page** — Select NAV page. Verify moving map shows current position. |
+| 3 | **Waypoints** — If applicable, verify waypoint data is loaded and correct per mission brief. |
+| 4 | **ENG page** — Briefly check engine page to verify all instruments reading normally via MFD. |
 
-**Map Orientation Selection:**
-- **North-Up:** Best for correlating with paper maps and maintaining geographic awareness. The own-ship symbol rotates as the aircraft turns.
-- **Track-Up:** Best for intuitive situational awareness during flight. The map rotates so the direction of flight is always "up." This is the recommended setting for BQT-level navigation.
+#### Radios (per Module 3)
 
----
-
-### 6.5 Heading Indicator / HSI
-
-| Feature | Function |
+| Step | Action |
 |---|---|
-| **Compass Card** | Rotating card showing magnetic heading; lubber line at top reads current heading |
-| **Heading Bug** | Pilot-settable reference marker; set to desired heading or course to waypoint |
-| **Course Pointer** | May display bearing to active waypoint (if HSI mode connected to AHRS/GPS) |
-| **Heading Bug Set** | Rotary knob on the heading indicator bezel |
+| 1 | **ARC-164 (UHF)** — Set to BOTH mode (main + guard). Tune tower/ground frequency per mission brief. |
+| 2 | **ARC-201 (FM)** — Set to SC mode. Tune inter-flight frequency per mission brief. |
+| 3 | **Audio panel** — TX select to UHF. UHF and FM volumes up. ICS volume up. Hot mic on. |
+| 4 | **Radio check** — Contact ground/tower: "[Callsign], radio check" and listen for response. |
 
-**DCS Usage:**
-- The heading bug is set by rotating the knob on the heading indicator (mouse scroll in DCS).
-- Use the heading bug as a visual aid for maintaining course to the next waypoint.
-- Cross-check heading indicator with magnetic compass periodically (heading indicator may precess and require reset).
+#### Flight Instruments
 
----
-
-### 6.6 Radar Altimeter Usage for Navigation
-
-While the radar altimeter's primary purpose is altitude awareness, it is also a critical tool during low-level navigation.
-
-| Scenario | Bug Setting | Purpose |
-|---|---|---|
-| **Pattern Work** | 50 ft | Alerts pilot if descending below pattern altitude unintentionally |
-| **Low-Level Navigation** | 100–200 ft | Terrain clearance warning during low-level flight |
-| **Approach** | Decision height (e.g., 50 ft) | Alerts pilot at minimum altitude for go-around decision |
-| **NOE / Terrain Flight** | 25–50 ft | Advanced — not BQT scope, but student should understand the concept |
-
----
-
-### 6.7 Radio Navigation Aids
-
-#### TACAN (If Modeled)
-
-| Feature | Description |
+| Step | Action |
 |---|---|
-| **TACAN** | Tactical Air Navigation — provides bearing (BRG) and distance (DME) to a ground TACAN station |
-| **Channel Selection** | Set via avionics panel; channels 1–126, X or Y band |
-| **Mode** | T/R (Transmit/Receive) for ground station; A/A for air-to-air TACAN (if modeled) |
-| **Display** | Bearing on HSI course pointer; DME on MFD or dedicated DME display |
+| 1 | **Altimeter** — Set to current QNH/QFE per ATIS or mission brief. |
+| 2 | **Radar altimeter** — ON. Set decision height bug if applicable. |
+| 3 | **Heading indicator / HSI** — Verify heading agrees with AHRS and known orientation. |
+| 4 | **Attitude indicator** — Verify level and erect. |
 
-**Usage:**
-- TACAN is useful for navigating to airfields or reference points when GPS is unavailable or as a cross-check.
-- In DCS, TACAN stations are pre-placed on the map. The pilot selects the correct channel for the desired station.
+#### Lighting (as required)
 
-#### ADF (If Modeled)
-
-| Feature | Description |
+| Step | Action |
 |---|---|
-| **ADF (Automatic Direction Finder)** | Provides relative bearing to an NDB (Non-Directional Beacon) |
-| **Frequency Selection** | Set via avionics panel; frequency in kHz |
-| **Display** | ADF needle on the heading indicator or RMI |
-
-> *⚠ Realism Divergence: The real OH-58D is equipped with TACAN (AN/ARN-149) and ADF capabilities. The DCS module may implement TACAN at a basic level but may not fully model ADF. If TACAN is not modeled, the student relies entirely on AHRS/GPS for navigation. The core BQT navigation skills (waypoint selection, bearing/distance, map orientation) remain GPS-based and are not affected by the absence of TACAN/ADF.*
-
----
-
-### 6.8 Scope Limitation
-
-This module covers **basic "point A to point B" navigation**:
-- Selecting and navigating to pre-programmed waypoints.
-- Creating mark points and entering new waypoints.
-- Reading navigation instruments (bearing, distance, ETA).
-- Using the heading indicator and radar altimeter to support navigation.
-
-**The following are OUT OF SCOPE for BQT:**
-- Mission planning and route development.
-- Tactical route planning (terrain masking, threat avoidance).
-- Nap-of-the-earth (NOE) and contour navigation.
-- Digital communication / IDM waypoint sharing.
-- Multi-ship navigation and coordination.
+| 1 | **Position lights** — As required (on for all flight operations). |
+| 2 | **Anti-collision light** — ON before rotor engagement if not already on. Required whenever rotors are turning. |
+| 3 | **Instrument lights** — Adjust for conditions (night operations: NVG-compatible green). |
+| 4 | **Landing/search light** — Verify function, set to retract for taxi/takeoff. |
 
 ---
 
-### Instructor Notes — Module 6
+### 4.6 Before-Taxi Checklist
 
-| Common Student Error | Correction |
-|---|---|
-| Fixating on the MFD during navigation | "The MFD is a tool, not a window. Look outside 80% of the time, glance at the MFD 20%. Your job is to not hit anything while flying to the waypoint." |
-| Not setting the heading bug | The heading bug is a quick, reliable cross-reference. Make it a standard procedure: new waypoint selected → check bearing → set heading bug → turn to heading. |
-| Confusing bearing with heading | Bearing = direction TO the waypoint FROM you. Heading = direction your nose is pointing. They should be similar if you're on course, but wind may separate them. |
-| Not cross-checking position | After long flights, cross-check MFD position against known landmarks (rivers, airfields, roads). GPS is reliable but not infallible. |
-| Ignoring radar altimeter in cruise | The radar altimeter is always relevant. Even at pattern altitude, the bug should be set as a safety backup. |
-| Not understanding map orientation | Demonstrate both north-up and track-up. North-up correlates with paper maps; track-up is more intuitive for flight. Let the student choose, but recommend track-up for BQT. |
+Complete this checklist before requesting taxi clearance:
 
----
-
-## Module 7: Emergency Procedures (Academic)
-
-### Learning Objectives
-
-Upon completion of this module, the student will be able to:
-
-1. Recite from memory all boldface/immediate-action emergency procedures for the OH-58D.
-2. Describe the engine failure procedure for both forward flight and hover/low-altitude conditions.
-3. Explain the complete autorotation procedure from entry through touchdown.
-4. Describe the recovery procedure for Loss of Tail Rotor Effectiveness (LTE).
-5. Describe the conditions, recognition, and recovery for settling with power (vortex ring state).
-6. Explain FADEC failure modes and the transition from auto to manual engine control.
-7. Describe hydraulic system failure indications and the recommended approach/landing technique.
-8. Describe electrical failure response and battery-only endurance limitations.
-9. Identify transmission failure indications (chip lights, oil pressure/temperature) and state the appropriate pilot response.
-10. Explain mast bumping and dynamic rollover prevention, recognition, and (where possible) recovery.
-11. Identify which emergency scenarios DCS models vs. simplifies or omits.
+- [ ] **Engine instruments** — All green, N1/TOT/Q normal
+- [ ] **Nr** — 100% governed
+- [ ] **Hydraulic pressure** — ~1,000 PSI, normal
+- [ ] **Generators** — ON, bus voltage normal
+- [ ] **AHRS/GPS** — Aligned, position valid
+- [ ] **Radios** — Tuned, transmit check complete
+- [ ] **Flight instruments** — Set (altimeter, DG, radar alt)
+- [ ] **Caution panel** — No unexpected cautions
+- [ ] **Fuel** — Sufficient for mission, quantity noted
+- [ ] **Flight controls** — Full and free, response correct
+- [ ] **Anti-collision light** — ON
+- [ ] **Doors** — Closed and secure (DCS: verify via external view or cockpit check)
+- [ ] **MFD** — NAV page, moving map active
 
 ---
 
-### 7.1 Boldface / Immediate-Action Emergency Procedures
+### 4.7 Hover Taxi
 
-Boldface procedures are memorized verbatim and executed **immediately** without reference to a checklist. These procedures address time-critical emergencies where delay can be fatal.
+#### Requesting Taxi
 
-#### ENGINE FAILURE — IN FLIGHT
+Contact ground control on UHF:
+> "[Ground], [Callsign], [position], request hover taxi to [destination]"
 
-| Step | Action | Notes |
-|---|---|---|
-| 1 | **COLLECTIVE — LOWER** (immediately) | Maintain Nr within 90–107% (autorotation range) |
-| 2 | **PEDALS — ADJUST** | Compensate for loss of engine torque (right pedal as torque is now zero) |
-| 3 | **CYCLIC — ADJUST** | Establish autorotation airspeed: 60 KIAS (min descent) or 80 KIAS (max glide) |
-| 4 | **LANDING — ACCOMPLISH** | Select landing site, maneuver to it, flare, collective pull, touchdown |
+Read back taxi instructions, including route and any hold-short instructions.
 
-**Time-Critical:** The collective must be lowered within **approximately 1–2 seconds** of engine failure to prevent Nr from decaying below 90%. Below 90% Nr, the rotor will not produce sufficient lift for a safe autorotation flare and landing.
-
----
-
-#### ENGINE FAILURE — HOVER / LOW ALTITUDE (Below 500 ft AGL)
-
-| Step | Action | Notes |
-|---|---|---|
-| 1 | **COLLECTIVE — MAINTAIN / INCREASE** (as needed) | At low altitude, the priority is to cushion the landing, not establish a glide |
-| 2 | **PEDALS — ADJUST** | Maintain heading alignment with available landing area |
-| 3 | **CYCLIC — LEVEL ATTITUDE** | Prevent excessive nose-down or bank angle close to the ground |
-| 4 | **CUSHION LANDING** with remaining Nr | Pull collective just before touchdown to arrest descent rate |
-
-**Low-Altitude Engine Failure:** Below ~500 ft AGL (altitude depends on speed), the pilot may not have enough altitude to establish a full autorotation glide. The response changes from "establish glide" to "cushion the impact with available rotor energy." At very low altitude (below 100 ft), the pilot trades Nr for lift — the rotor will slow, but the touchdown will be survivable.
-
----
-
-#### ENGINE FIRE — IN FLIGHT
-
-| Step | Action | Notes |
-|---|---|---|
-| 1 | **LAND IMMEDIATELY** | This is a "land now" emergency — any suitable area |
-| 2 | **EMERGENCY SHUTDOWN — ACCOMPLISH** (once on ground) | Throttle OFF → Fuel Boost OFF → Battery OFF |
-
----
-
-#### EMERGENCY SHUTDOWN
-
-| Step | Action | Notes |
-|---|---|---|
-| 1 | **THROTTLE — OFF** | Engine fuel supply cut |
-| 2 | **FUEL BOOST — OFF** | Prevent fuel pressure from feeding a fire |
-| 3 | **BATTERY — OFF** | Remove all electrical power |
-| 4 | **ROTOR BRAKE — APPLY** (as required) | Stop the rotor if conditions warrant (fire on the ground) |
-
----
-
-#### FADEC FAILURE
-
-| Step | Action | Notes |
-|---|---|---|
-| 1 | **FADEC caution light** — NOTE | Confirm FADEC failure indication |
-| 2 | **COLLECTIVE — ADJUST** | If Nr overspeed: increase collective (load the rotor); if Nr underspeed: decrease collective (unload the rotor) |
-| 3 | **THROTTLE — ADJUST** | Manually correlate throttle to maintain Nr at 100% ± 2% |
-| 4 | **FADEC MODE SWITCH — CHECK** | Verify if in MANUAL mode; if switchable to AUTO and fault clears, attempt reselection |
-| 5 | **LAND AS SOON AS PRACTICABLE** | Manual throttle operation is high workload; minimize flight time |
-
----
-
-#### HYDRAULIC SYSTEM FAILURE
-
-| Step | Action | Notes |
-|---|---|---|
-| 1 | **AIRSPEED — ADJUST** to 60–80 KIAS | Moderate airspeed reduces control forces |
-| 2 | **HYDRAULIC SWITCH — OFF** (if uncommanded inputs or hardover) | Isolates the hydraulic system from the flight controls |
-| 3 | **LAND AS SOON AS POSSIBLE** | Run-on landing at 40–60 KIAS recommended; avoid hover (extreme control forces) |
-
----
-
-#### TAIL ROTOR FAILURE (Complete Loss of Thrust)
-
-| Step | Action | Notes |
-|---|---|---|
-| 1 | **AUTOROTATION — ENTER** | The only way to control yaw without a tail rotor is to eliminate engine torque |
-| 2 | **THROTTLE — IDLE** (or OFF prior to touchdown) | Zero torque = zero yaw tendency from the engine |
-| 3 | **LANDING — ACCOMPLISH** | Run-on landing if possible (maintains directional control with airspeed); full autorotation to a clear area |
-
-**Note:** Without the tail rotor, the aircraft will spin uncontrollably in powered flight. Autorotation eliminates the torque that causes the spin. The landing will be a full autorotation with potential for some yaw at touchdown.
-
----
-
-### 7.2 Loss of Tail Rotor Effectiveness (LTE) — Expanded
-
-LTE was introduced in Module 1. This section provides the expanded emergency response.
-
-**Conditions (Review):**
-- Low airspeed (hover or slow flight below ETL)
-- Wind from critical azimuths (285°–315° left rear quartering; 120°–240° tail wind; 210°–330° tail rotor VRS)
-- High power setting (high torque = high anti-torque demand)
-
-**Recognition:**
-- Uncommanded right yaw that does not respond to normal left pedal correction
-- Yaw rate may increase despite full left pedal application
-- Often occurs during hover turns, confined area hover, or crosswind hover
-
-**Recovery Procedure (Boldface):**
-
-| Step | Action | Rationale |
-|---|---|---|
-| 1 | **COLLECTIVE — REDUCE** | Reduces main rotor torque → reduces anti-torque demand → slows or stops the yaw |
-| 2 | **CYCLIC — FORWARD** | Initiates forward acceleration to gain airspeed |
-| 3 | **PEDALS — FULL LEFT** (as required) | Maximum available anti-torque input |
-| 4 | **AIRSPEED — INCREASE** above ETL | Translational lift restores clean airflow to the tail rotor; effectiveness returns |
-
-**Critical Teaching Point:** LTE is **not a mechanical failure** — the tail rotor is working, but the air it's operating in is disrupted. The fix is to change the aerodynamic environment by gaining airspeed or reducing the anti-torque demand (reducing power).
-
-**Prevention:**
-- Always hover into the wind when possible.
-- Avoid hover or slow flight with wind from the left rear quarter (285°–315°).
-- During hover pedal turns, be aware of the wind direction relative to your tail.
-- Maintain situational awareness of wind direction and speed at all times.
-- If landing in a confined area, plan the approach so that the wind is on the nose during the final deceleration to hover.
-
----
-
-### 7.3 Settling with Power (Vortex Ring State) — Expanded
-
-**Conditions (Review):**
-- Airspeed below ETL (< ~16 knots)
-- Rate of descent exceeding ~300 FPM
-- Power applied (moderate to high — above 40–50% of available)
-
-**Recognition:**
-- High rate of descent that does not arrest with collective application
-- Aircraft may feel "mushy" — controls respond but altitude continues to decrease
-- Vibration and erratic attitude changes
-- VSI shows increasing descent rate despite collective increase
-
-**Recovery Procedure:**
-
-| Step | Action | Rationale |
-|---|---|---|
-| 1 | **CYCLIC — FORWARD** (aggressively) | Break out of the vortex laterally by gaining airspeed |
-| 2 | **COLLECTIVE — REDUCE** (slightly, if altitude permits) | Reduces downwash feeding the vortex |
-| 3 | **AIRSPEED — INCREASE** through ETL | Translational lift breaks the vortex ring; normal powered flight resumes |
-
-**Counterintuitive Aspect:** The natural instinct when descending is to pull more collective (more power). In vortex ring state, this **worsens** the condition because the increased downwash feeds the recirculating vortex. The correct response is to get **airspeed** first, which requires trading altitude for speed — hence the forward cyclic.
-
-**Altitude Required for Recovery:** Approximately 200–500 ft of altitude may be lost during recovery. If at low altitude when vortex ring state develops, recovery may not be possible before ground contact.
-
-**Prevention:**
-- Never descend vertically at rates exceeding 300 FPM without significant forward airspeed.
-- During approaches, maintain airspeed above ETL until the final deceleration to hover.
-- If conducting a steep approach, monitor rate of descent and maintain airspeed.
-
----
-
-### 7.4 Autorotation — Full Procedure
-
-#### Phase 1: Entry (0–3 seconds)
-
-| Action | Purpose |
-|---|---|
-| **COLLECTIVE — FULL DOWN** (immediately) | Reduce blade pitch; allow rotor to autorotate; preserve Nr |
-| **PEDALS — ADJUST** (right pedal) | Compensate for loss of engine torque; maintain heading |
-| **CYCLIC — ADJUST** for autorotation airspeed | 60 KIAS (min descent rate) or 80 KIAS (max glide distance) |
-
-#### Phase 2: Glide (Majority of autorotation)
+#### Hover Taxi Technique
 
 | Parameter | Value |
 |---|---|
-| **Airspeed** | 60–80 KIAS (student choice based on distance to landing area) |
-| **Nr** | 90–107% (monitor continuously) |
-| **Rate of Descent** | ~1,500–2,000 FPM |
-| **Collective** | Near full down (may adjust slightly to manage Nr within limits) |
-| **Heading** | Toward the selected landing area |
-| **Turns** | Gentle banks only (< 30°); excessive bank increases descent rate and risks Nr decay |
+| **Hover height** | 3–5 feet skid height (AGL) |
+| **Taxi speed** | Walking pace — approximately 5–10 knots ground speed |
+| **Directional control** | Pedals for heading; cyclic for lateral/fore-aft position |
+| **Power management** | Collective adjusts height; anticipate power changes for wind gusts |
 
-**Landing Area Selection:**
-- Pick the largest, flattest, most obstacle-free area within glide range.
-- Glide ratio ~4:1 at 80 KIAS (e.g., from 1,000 ft AGL, can glide approximately 4,000 ft / ~0.66 NM).
-- Into the wind is preferred (reduces ground speed at touchdown).
+**Procedure:**
+1. From the ground, slowly raise the collective to establish a 3–5 foot hover.
+2. Allow the aircraft to stabilize in hover before beginning movement.
+3. Apply gentle forward cyclic to begin forward movement at walking pace.
+4. Use pedals to maintain heading along the taxiway centerline.
+5. Maintain constant awareness of rotor clearance from obstacles (buildings, other aircraft, light poles).
+6. Stop at designated holding points by neutralizing cyclic and maintaining hover.
 
-#### Phase 3: Flare (50–100 ft AGL)
+**Critical cautions during hover taxi:**
 
-| Action | Purpose |
-|---|---|
-| **CYCLIC — AFT** (nose up ~15–20°) | Decelerates the aircraft; trades airspeed for rotor energy (Nr increases) |
-| **Nr will INCREASE** during flare | This is desired — you are "storing" energy in the rotor for the final collective pull |
-| **Airspeed decreases** through the flare | From 60–80 to near 0 at touchdown |
-
-#### Phase 4: Collective Pull / Cushion (Near the ground, ~10–15 ft AGL)
-
-| Action | Purpose |
-|---|---|
-| **CYCLIC — LEVEL** (level the aircraft) | Prevent tail strike or excessive nose-up attitude at touchdown |
-| **COLLECTIVE — PULL** (smooth, firm upward) | Uses the stored rotor energy to arrest the descent rate just before touchdown |
-| **Nr will DECAY** rapidly during collective pull | This is expected — you are spending the stored energy; touchdown must occur before Nr decays completely |
-
-#### Phase 5: Touchdown
-
-| Action | Notes |
-|---|---|
-| Aircraft contacts ground at minimal forward speed and descent rate | Skids absorb the landing; aircraft should be level or slightly nose-up |
-| **COLLECTIVE — FULL DOWN** after contact | Prevent dynamic rollover or tip-over from residual rotor thrust |
-| **THROTTLE — OFF** | Secure the engine (if not already failed) |
-
-#### Autorotation Decision Tree
-
-| Altitude at Engine Failure | Recommended Profile |
-|---|---|
-| **Above 500 ft AGL, in forward flight** | Full autorotation — establish glide, select landing area, flare, cushion, land |
-| **200–500 ft AGL, in forward flight** | Abbreviated autorotation — less time for site selection; focus on maintaining Nr and cushioning |
-| **Below 200 ft AGL, in forward flight** | Minimal time — lower collective, maintain attitude, cushion with available Nr |
-| **In a hover (3–5 ft)** | Cushion with collective — maintain level attitude, absorb the drop (skid-height hover has minimal energy to manage) |
-| **In a hover (above 50 ft)** | Lower collective, establish autorotation, limited flare, cushion — very challenging; altitude-speed diagram "deadman's curve" applies |
-
-> *⚠ Realism Divergence: DCS models autorotation aerodynamics, including Nr behavior during entry, glide, flare, and cushion. However, the physical sensation of sink rate, G-loading during flare, and the timing judgment for the collective pull are significantly harder to replicate without motion cues. Students should practice autorotation entries and power recoveries extensively before attempting full autorotations to the ground. The "feel" in DCS is adequate for procedural training but does not fully replicate the real experience.*
+| Hazard | Description | Mitigation |
+|---|---|---|
+| **Ground resonance** | Vibration building rapidly after lifting to a hover or during light ground contact | Immediate action: if Nr is in normal range, pull collective and fly away. If Nr is low, immediately reduce collective and shut down. Do NOT attempt to "ride it out." |
+| **Weathervaning** | Crosswind causes the aircraft to yaw into the wind | Active pedal inputs; taxi at slower speed in strong crosswinds |
+| **Recirculation** | In confined areas, rotor downwash recirculates and reduces lift | Expect higher power required; monitor torque |
+| **Foreign object damage (FOD)** | Loose debris on the ramp area | Approach and taxi through ramp areas at minimum speed; check for debris on walkaround |
+| **Obstacle clearance** | Rotor blade tip clearance from structures | Maintain at least half a rotor diameter (17+ feet) clearance from obstacles |
 
 ---
 
-### 7.5 FADEC Failure — Expanded
+### 4.8 Pre-Takeoff Check
 
-**Failure Modes:**
+At the holding point (runway hold-short line or designated departure point), perform the pre-takeoff check:
 
-| Mode | Indication | Nr Behavior | Pilot Action |
+- [ ] **Engine instruments** — All green (scan N1, TOT, Q, oil pressure/temp)
+- [ ] **Nr** — 100% governed
+- [ ] **Fuel** — Sufficient, balanced (if applicable)
+- [ ] **Flight instruments** — Altimeter set, heading indicator aligned, attitude indicator erect
+- [ ] **Radios** — Correct frequencies, transmit on UHF for tower
+- [ ] **MFD** — NAV page, waypoints verified
+- [ ] **Radar altimeter** — ON, decision height set
+- [ ] **Caution panel** — Clear of unexpected warnings
+- [ ] **Anti-collision & position lights** — ON
+- [ ] **Doors & harness** — Secure
+- [ ] **Departure plan** — Reviewed (direction, altitude, initial heading per clearance)
+- [ ] **Emergency plan** — Briefed (abort criteria, forced landing area, emergency actions)
+
+**Request takeoff clearance:**
+> "[Tower], [Callsign], holding short runway [number], ready for departure [direction/VFR]"
+
+---
+
+### 4.9 Cockpit Switch Reference — Module 4
+
+| Switch/Control | Location | Function | DCS Action |
 |---|---|---|---|
-| **Auto → Manual Transfer** | FADEC caution light; possible Nr fluctuation during transfer | Nr may briefly overspeed or underspeed before pilot assumes throttle control | Immediately correlate throttle with collective; stabilize Nr at 100% |
-| **Complete FADEC Loss** | FADEC caution light; no automatic fuel control | Nr is entirely pilot-controlled via throttle | Manual correlation: collective up = throttle up; collective down = throttle down |
-| **Intermittent FADEC** | FADEC caution light flickers; Nr hunting (oscillating) | Nr surges and sags unpredictably | Attempt to reselect AUTO; if unstable, switch to MANUAL and land |
-
-**Manual Throttle Correlation:**
-In manual mode, the pilot must anticipate every collective change with a corresponding throttle change:
-- **Collective UP** (more blade pitch, more drag on rotor) → **Throttle UP** (more fuel, more engine power) → Nr maintained
-- **Collective DOWN** (less blade pitch, less drag) → **Throttle DOWN** (less fuel, less power) → Nr maintained
-- If the pilot raises collective without adding throttle, Nr decays. If collective is lowered without reducing throttle, Nr overspeeds.
-
-**This is the highest-workload emergency in the OH-58D.** The pilot is simultaneously flying, navigating to a landing site, managing engine power manually, and communicating. Minimize flight time — land as soon as practicable.
-
-> *⚠ Realism Divergence: The real OH-58D FADEC can experience partial authority failures where some functions remain operative (e.g., TOT limiting works but Nr governing does not). DCS typically models a cleaner auto-to-manual transfer without the partial failure modes. The manual throttle correlation technique is identical in both.*
-
----
-
-### 7.6 Hydraulic System Failure — Expanded
-
-**Identification:**
-- HYD caution light illuminates.
-- Flight controls become **extremely heavy** — the pilot must physically force the cyclic, collective, and pedals.
-- Possible uncommanded control inputs (hardover) if a servo fails to a fixed position.
-
-**Flight Characteristics Without Hydraulics:**
-- **Cyclic:** Requires two-handed input; very high forces, especially at low airspeed.
-- **Collective:** Heavy but manageable with deliberate inputs.
-- **Pedals:** Heavy; may require full leg pressure for yaw corrections.
-- The aircraft is controllable but **not maneuverable** in the way the student expects. Precision hover is essentially impossible.
-
-**Recommended Approach:**
-1. Maintain airspeed at **60–80 KIAS** (control forces are most manageable in this range).
-2. Plan a **run-on landing** (approach at 40–60 KIAS with forward speed at touchdown).
-3. Do not attempt to hover — the control forces required for hover without hydraulics are extreme.
-4. Use a **shallow approach angle** to minimize the power and control changes required.
-5. Accept a running landing on a suitable surface (runway, taxiway, flat field).
-
-> *⚠ Realism Divergence: DCS models increased control forces in hydraulic failure but may not fully replicate the physical difficulty. In the real OH-58D, hydraulic failure requires the pilot to brace against the seat and use both hands on the cyclic. The student should understand that real hydraulic failure is far more physically demanding than DCS depicts, and a hover landing is effectively impossible without hydraulic assist.*
+| **Battery switch** | Overhead console / electrical panel | Master battery ON/OFF | Mouse click |
+| **Fuel shutoff valve** | Overhead console / engine panel | Open/close fuel to engine | Mouse click |
+| **Throttle** | Collective assembly (twist grip) | Idle / Fly / Off positions | Keyboard or axis |
+| **FADEC mode** | Engine control panel | AUTO / MAN | Mouse click |
+| **Starter button** | Overhead console / engine panel | Engages starter motor | Mouse click (hold or momentary per DCS) |
+| **Rotor brake** | Overhead console | Engage/release rotor brake | Mouse click |
+| **Generator switch** | Overhead console / electrical panel | Generator ON/OFF | Mouse click |
+| **AHRS mode** | Avionics panel | OFF / ALIGN / NAV | Mouse click to cycle |
+| **Altimeter knob** | Instrument panel — altimeter | Set QNH/QFE (Kollsman window) | Mouse scroll |
+| **Radar altimeter** | Instrument panel | ON/OFF + decision height knob | Mouse click / scroll |
+| **Anti-collision light** | Overhead console / lighting panel | ON/OFF | Mouse click |
+| **Position lights** | Overhead console / lighting panel | OFF / DIM / BRT | Mouse click to cycle |
+| **Instrument lights** | Overhead console / lighting panel | Brightness rheostat | Mouse scroll |
+| **Caution panel test** | Caution panel | Press to test all lights | Mouse click |
 
 ---
 
-### 7.7 Electrical Failure — Expanded
+### 4.10 Instructor Notes — Module 4
+
+**Common student errors:**
+
+1. **Not monitoring TOT during start:** Students press the starter and look away. Drill: "Eyes on TOT from the moment you hit the starter until the engine stabilizes." TOT exceedance during start is the most common start emergency.
+2. **Moving during AHRS alignment:** Students get impatient and begin taxiing before AHRS is aligned. The AHRS needs the aircraft to be stationary. Verify alignment status on MFD before any movement.
+3. **Skipping the before-taxi checklist:** Students are eager to fly and rush through or skip checks. Enforce the discipline: checklist complete before radio call for taxi.
+4. **Abrupt collective inputs during hover taxi:** Students raise or lower the collective too quickly, causing altitude excursions or hard ground contact. Teach: "Small, smooth, steady" — and anticipate power changes rather than reacting.
+5. **Failure to check six (360° clearance) before hover:** Students pull collective without verifying the area behind and above is clear. Teach: "Clear left, clear right, clear above, clear behind — pulling" as a verbal flow.
+6. **Ground resonance ignorance:** Students feel a vibration and freeze instead of taking immediate action. This must be drilled: vibration = immediate decision (fly away or shut down). No hesitation. Ground resonance can destroy the aircraft in seconds.
+7. **Not briefing the emergency plan before takeoff:** Students reach the runway without discussing abort criteria or forced landing areas. Make the emergency brief a required item in the pre-takeoff check.
+8. **Forgetting anti-collision light:** Students start taxiing without the anti-collision light on. This is a safety hazard — other aircraft may not see rotor rotation. Include it as one of the first items after engine start.
+
+
+---
+
+## Module 5: Hover & Takeoff
+
+### Learning Objectives
+
+Upon completion of this module, the student will be able to:
+
+1. Perform a controlled hover at 3–5 feet skid height using coordinated collective, cyclic, and pedal inputs.
+2. Execute a power check (hover power assessment) to determine aircraft capability for the conditions.
+3. Perform a normal takeoff from a hover with a smooth transition through translational lift.
+4. Perform a no-hover takeoff (surface-level wind, clear departure path).
+5. Perform a maximum performance takeoff (obstacle clearance departure from confined area).
+6. Perform a running takeoff (from forward taxi when hover OGE is not possible).
+7. Identify and respond to ground resonance during hover or ground contact.
+8. Transition from hover to forward flight, managing translational lift and climb.
+
+---
+
+### 5.1 Hovering — Fundamentals
+
+The hover is the foundation of all helicopter operations. The OH-58D hovers at a standard 3–5 foot skid height for normal operations.
+
+#### Hover Aerodynamics
+
+| Concept | Description |
+|---|---|
+| **In Ground Effect (IGE)** | Hovering within approximately 1 rotor diameter of the surface (~35 ft for OH-58D). Ground effect provides a "cushion" — the rotor downwash is trapped and increases efficiency. Requires ~10–15% less power than OGE hover. |
+| **Out of Ground Effect (OGE)** | Hovering above approximately 1 rotor diameter from the surface. No ground effect benefit. Requires maximum hover power. |
+| **Translating tendency** | The OH-58D has a tendency to drift right in a hover due to tail rotor thrust. Compensate with slight left cyclic input. |
+| **Tail rotor drift** | As left pedal is applied to counteract main rotor torque, the tail rotor produces a right-pushing thrust. The pilot must compensate with left cyclic. |
+| **Pendular action** | The fuselage, suspended below the rotor head, tends to oscillate like a pendulum. Smooth, small inputs prevent pilot-induced oscillations (PIO). |
+
+#### Hover Technique
+
+**Controls coordination in hover:**
+- **Collective** → controls altitude (up = climb, down = descend)
+- **Cyclic** → controls horizontal position (forward/back/left/right drift)
+- **Pedals** → controls heading (yaw left/right to maintain heading)
+- **Throttle** → managed by FADEC in auto mode; pilot does not normally adjust
+
+**Procedure — establishing a hover from the ground:**
+
+| Step | Action | Notes |
+|---|---|---|
+| 1 | Ensure Nr is 100% governed | FADEC auto mode |
+| 2 | Smoothly increase collective | Raise slowly — approximately 1–2 seconds from ground to hover height |
+| 3 | As aircraft becomes light on skids, increase pedal input as needed | Left pedal to counteract torque as collective increases |
+| 4 | Maintain heading with pedals, position with cyclic | Small, smooth corrections — avoid over-controlling |
+| 5 | Stabilize at 3–5 ft skid height | Cross-check radar altimeter if available; primary reference is external visual |
+| 6 | Perform hover checks | Verify instruments, announce "Stable in a hover" |
+
+**Common hover errors and corrections:**
+
+| Error | Cause | Correction |
+|---|---|---|
+| Overcontrolling / PIO | Excessive or rapid control inputs | Use smaller inputs; relax grip; focus on a distant reference point, not the ground directly below |
+| Drifting right | Not compensating for translating tendency | Apply slight left cyclic; this is a constant trim requirement |
+| Yaw oscillation | Over-correcting pedal inputs | Smaller pedal corrections; anticipate rather than react |
+| Sinking after reaching hover height | Insufficient collective as aircraft settles | Slowly add collective to maintain altitude; check for overloaded condition |
+| Bouncing off the ground | Raising collective too quickly, then reducing abruptly | Smooth, continuous collective raise; if bouncing starts, smoothly increase collective to fly out of it — do NOT slam collective down |
+
+---
+
+### 5.2 Power Check (Hover Power Assessment)
+
+Before takeoff, the pilot performs a power check to verify the aircraft can hover, climb, and maintain safe flight margins.
+
+**Purpose:** Determine the power available vs. power required. If the aircraft cannot hover in ground effect (IGE), it certainly cannot hover out of ground effect (OGE) or perform a normal takeoff.
+
+#### Procedure
+
+| Step | Action | Expected |
+|---|---|---|
+| 1 | Establish a stable 3-foot hover, into the wind | Note torque required to hover |
+| 2 | Record hover torque (% Q) | This is "hover power required" |
+| 3 | Compare to aircraft limits | Max continuous torque: 85% Q. Max takeoff torque: 100% Q. |
+| 4 | Assess margins | If hovering at 75% Q, you have 25% margin to max takeoff. Adequate for normal operations. If hovering at 90% Q, you have only 10% margin — high DA or heavy aircraft. Consider reducing load. |
+
+**Power assessment criteria:**
+
+| Condition | Hover Torque | Assessment |
+|---|---|---|
+| **Normal** | ≤75% Q IGE | Adequate power for all maneuvers including OGE hover and max performance takeoff |
+| **Marginal** | 75–85% Q IGE | Sufficient for normal takeoff. OGE hover may not be possible. Max performance limited. |
+| **Critical** | 85–95% Q IGE | Normal takeoff possible with caution. Running takeoff may be preferred. No OGE capability. |
+| **Insufficient** | >95% Q IGE (or cannot hover) | Cannot perform normal takeoff. Reduce weight or wait for conditions to improve. Running takeoff only option. |
+
+> *Note: These are general guidelines. Actual limits depend on density altitude, wind, aircraft weight, and configuration. Always cross-reference the performance planning card / TM limits.*
+
+---
+
+### 5.3 Translational Lift
+
+As the helicopter accelerates from a hover to forward flight, it encounters **translational lift** — a marked increase in rotor efficiency that occurs at approximately **16–24 knots** airspeed.
+
+| Phase | Airspeed | Effect |
+|---|---|---|
+| **Hover** | 0 knots | Rotor is working through its own downwash; least efficient |
+| **Approaching ETL** | 10–16 knots | Turbulent airflow — vibration increases |
+| **Effective Translational Lift (ETL)** | ~16–24 knots | Rotor encounters clean, undisturbed air. Significant lift increase. Aircraft "jumps" upward. |
+| **Beyond ETL** | >24 knots | Continued improvement in efficiency. Less power required for sustained flight. |
+
+**Pilot actions through ETL:**
+1. As speed increases toward ETL, the aircraft will tend to climb and the nose will pitch up.
+2. Apply slight forward cyclic to maintain the desired rate of acceleration and climb angle.
+3. Reduce collective slightly if necessary to maintain desired climb rate (power margin increases through ETL).
+4. Maintain heading with pedals — torque effect changes as power changes.
+
+---
+
+### 5.4 Normal Takeoff (from a Hover)
+
+The normal takeoff is the standard departure method when power margins are adequate and the departure path is clear.
+
+#### Procedure
+
+| Step | Action | Parameters |
+|---|---|---|
+| 1 | Establish a stable 3–5 ft hover, into the wind | Verify power check complete |
+| 2 | Smoothly apply forward cyclic | Begin forward acceleration |
+| 3 | As speed increases, apply slight collective increase to maintain altitude and begin climb | Maintain 3–5 ft until approaching ETL |
+| 4 | Transition through ETL (~16–24 kts) | Expect the aircraft to want to climb and pitch up. Apply forward cyclic to maintain acceleration. |
+| 5 | Establish a positive rate of climb | Climb at ~55–60 KIAS (Vy — best rate of climb speed) |
+| 6 | Accelerate to Vy (55–60 KIAS) and climb | Maintain coordinated flight — ball centered |
+| 7 | At 200 ft AGL, begin transition to cruise climb | Accelerate to 70–80 KIAS climb speed (or as desired) |
+| 8 | At pattern altitude or assigned altitude, level off | Reduce power to cruise (~55–65% Q depending on conditions) |
+
+**Key parameters:**
+
+| Parameter | Value |
+|---|---|
+| **Best rate of climb (Vy)** | ~55–60 KIAS |
+| **Best angle of climb (Vx)** | ~45–50 KIAS (for obstacle clearance) |
+| **Normal climb torque** | 75–90% Q (depending on weight/DA) |
+| **ETL** | ~16–24 knots |
+
+---
+
+### 5.5 No-Hover Takeoff
+
+Used when a hover check has been performed and conditions allow a direct departure without establishing a sustained hover (e.g., adequate wind, clear departure path, minimizing time in the hover).
+
+#### Procedure
+
+| Step | Action |
+|---|---|
+| 1 | From the ground, smoothly raise collective while simultaneously applying slight forward cyclic. |
+| 2 | Aircraft lifts and immediately begins forward acceleration — do not hover. |
+| 3 | Continue acceleration through ETL with coordinated cyclic and collective. |
+| 4 | At ETL, establish a positive climb at Vy (55–60 KIAS). |
+| 5 | Continue as a normal departure. |
+
+**Note:** The no-hover takeoff is quicker but requires a clear departure path and confidence in the power available (based on prior hover check or performance planning).
+
+---
+
+### 5.6 Maximum Performance Takeoff
+
+Used for departure from confined areas where obstacles must be cleared immediately after takeoff. This maneuver uses maximum available power to achieve the steepest climb angle possible.
+
+#### Procedure
+
+| Step | Action | Notes |
+|---|---|---|
+| 1 | Establish a stable hover, facing into the wind and toward the departure path | Identify obstacles and clearance path |
+| 2 | Note hover torque — verify adequate power available | Must have margin above hover to climb |
+| 3 | Smoothly apply forward cyclic and increase collective simultaneously toward max takeoff power (up to 100% Q, 5 min limit) | Aggressive but smooth — do not exceed limits |
+| 4 | Accelerate to Vx (~45–50 KIAS) — best angle of climb speed | Vx gives the steepest climb angle to clear obstacles |
+| 5 | Clear the obstacle | Maintain Vx until obstacle is cleared |
+| 6 | After clearing the obstacle, lower the nose and accelerate to Vy (55–60 KIAS) | Transition to best rate of climb for altitude gain |
+| 7 | Reduce power to max continuous (85% Q) when able | Do not exceed 100% Q for more than 5 minutes |
+
+**Critical notes:**
+- Maximum performance takeoff is a planned, deliberate maneuver — not an emergency procedure.
+- If the aircraft cannot hover at the departure point, it cannot perform a max performance takeoff (use running takeoff or reduce weight).
+- Always have an abort plan if the aircraft fails to climb as expected.
+
+---
+
+### 5.7 Running Takeoff
+
+Used when the aircraft is too heavy or density altitude is too high for a hover, but sufficient level ground is available for a surface-level acceleration through ETL.
+
+#### Procedure
+
+| Step | Action | Notes |
+|---|---|---|
+| 1 | Align the aircraft into the wind along the longest available clear surface | Departure path must be clear |
+| 2 | From the ground, smoothly increase collective to become light on the skids | Aircraft should be "skimming" — skids lightly on the surface |
+| 3 | Apply forward cyclic to begin forward acceleration while remaining near the ground | Maintain slight positive pressure on the skids or just barely airborne |
+| 4 | Accelerate through ETL (~16–24 kts) | As translational lift builds, the aircraft will become airborne naturally |
+| 5 | At ETL, establish a positive rate of climb | Do not attempt to climb before achieving ETL |
+| 6 | Accelerate to Vy (55–60 KIAS) and climb normally | Standard departure from this point |
+
+**Critical caution:** If the aircraft will not accelerate or become airborne before the end of the available surface, abort the takeoff: reduce collective, decelerate, and stop. Reassess weight and conditions.
+
+---
+
+### 5.8 Ground Resonance — Expanded Detail
+
+Ground resonance is a critical risk during hover operations, particularly for the OH-58D with its 4-blade soft-in-plane bearingless rotor system.
+
+| Aspect | Detail |
+|---|---|
+| **What is it** | A destructive oscillation caused by an imbalance in the lead-lag motion of the rotor blades coupling with the natural frequency of the aircraft on its landing gear (skids). |
+| **Why the OH-58D is susceptible** | The soft-in-plane bearingless rotor design has rotor blade lead-lag frequencies that can couple with fuselage oscillation modes. Fully articulated and teetering rotors are less susceptible. |
+| **When it occurs** | Typically during ground contact with power on — liftoff, touchdowns, hover taxi with skid-dragging. Most likely during partial contact (one skid touching, other light). |
+| **How it feels** | Rapidly building lateral vibration/oscillation. The aircraft shakes violently with increasing amplitude. |
+| **Time to failure** | Seconds — ground resonance can destroy an airframe in under 10 seconds if not corrected immediately. |
+
+#### Immediate Action — BOLDFACE
+
+**If Nr is in normal range (97–101%):**
+> **COLLECTIVE — INCREASE (FLY AWAY IMMEDIATELY)**
+
+Get the aircraft completely off the ground to break the ground contact that sustains the resonance. Hover or climb — any positive separation from the ground stops the feedback loop.
+
+**If Nr is low or decaying:**
+> **COLLECTIVE — FULL DOWN**
+> **THROTTLE — IDLE / OFF**
+> **ROTOR BRAKE — APPLY (when Nr is low enough)**
+
+Shut down the rotor system as fast as possible. A low-Nr rotor does not have the centrifugal force to fly away safely and the resonance will worsen.
+
+**Key principle:** React instantly. Do not hesitate, do not try to diagnose, do not try to "damp it out" with cyclic. The ONLY options are fly or shut down. Hesitation = aircraft destruction.
+
+> *⚠ Realism Divergence: DCS may or may not fully model ground resonance for the OH-58D. If modeled, it will typically occur during improper ground contact at operating Nr. If not modeled, the student should still understand the procedure conceptually, as it is a critical real-world consideration for this rotor system. Test in DCS: attempt light skid contact during hover — if the aircraft develops lateral oscillation, ground resonance is modeled.*
+
+---
+
+### 5.9 Climb Profiles
+
+| Profile | Speed | Torque | Use |
+|---|---|---|---|
+| **Best rate (Vy)** | 55–60 KIAS | 75–90% Q | Normal departure — maximum altitude gain per unit time |
+| **Best angle (Vx)** | 45–50 KIAS | Max available (up to 100% Q) | Obstacle clearance — steepest flight path angle |
+| **Cruise climb** | 70–80 KIAS | 65–80% Q | En route climb — compromise between climb rate and forward speed |
+| **Max performance** | Vx initially, Vy after obstacle | Up to 100% Q (5 min limit) | Confined area departure with obstacle clearance |
+
+---
+
+### 5.10 Cockpit Switch Reference — Module 5
+
+| Control | Location | Function | DCS Action |
+|---|---|---|---|
+| **Collective** | Left hand — collective lever | Controls blade pitch / power demand | Joystick axis (throttle axis or dedicated) |
+| **Cyclic** | Right hand — cyclic stick | Controls rotor disc tilt / aircraft attitude | Joystick X/Y axis |
+| **Pedals** | Feet — anti-torque pedals | Controls tail rotor pitch / yaw | Rudder pedals or keyboard (`Z` / `X` default) |
+| **Throttle** | Collective — twist grip | FLY detent for powered flight; IDLE for ground/shutdown | Keyboard or axis |
+| **Radar altimeter** | Instrument panel | Displays AGL height; useful for hover height reference | Visual reference only |
+| **Torque gauge** | Instrument panel | Monitor power output during maneuvers | Visual reference |
+| **Nr tachometer** | Instrument panel | Monitor rotor RPM — critical for ground resonance decisions | Visual reference |
+| **Rotor brake** | Overhead console | Apply to stop rotor in emergency ground resonance (low Nr only) | Mouse click |
+
+---
+
+### 5.11 Instructor Notes — Module 5
+
+**Common student errors:**
+
+1. **Overcontrolling in the hover:** The #1 beginner problem. Students make large, rapid inputs trying to correct drift, which creates pilot-induced oscillations (PIO). Teach: "Make a correction half the size you think you need, then wait for the response." Focus vision on a distant reference, not the ground directly below.
+2. **Failing to apply left pedal during collective increase:** As collective increases, torque increases, and the aircraft yaws right. Students forget to add left pedal. Teach: "Collective and pedal move together."
+3. **Pulling too much collective during takeoff:** Students try to "jump" off the ground instead of a smooth transition. This over-torques and can exceed limits. Teach: "Smooth raise to hover height, pause, then transition to forward flight."
+4. **Not managing ETL transition:** Students are surprised by the pitch-up and altitude gain at ETL. Teach: "Expect ETL at 16–24 knots — the aircraft will want to climb and pitch up. Lead it with forward cyclic."
+5. **Attempting to hover at max gross weight on a hot day:** Students don't perform a proper power check and find they cannot hover. Teach performance planning awareness — weight, DA, wind all affect hover capability.
+6. **Ignoring ground resonance vibration:** Students feel vibration and either freeze or try to diagnose it. Drill the immediate action relentlessly: "If you feel it, you have 2–3 seconds to decide: fly or shut down. No other option."
+7. **Not setting up for maximum performance takeoff correctly:** Students don't face into the wind or don't identify the obstacle clearance path. Teach: "Plan the max perf takeoff before you pull collective — wind, obstacles, abort plan."
+8. **Running takeoff — trying to climb before ETL:** Students pull collective before reaching translational lift speed and the aircraft settles. Teach: "Stay near the surface until ETL — the lift will come to you."
+
+
+---
+
+## Module 6: Basic Flight Maneuvers
+
+### Learning Objectives
+
+Upon completion of this module, the student will be able to:
+
+1. Maintain straight and level flight at a specified airspeed and altitude.
+2. Perform coordinated level turns at 15°, 30°, and 45° angles of bank.
+3. Execute controlled climbs and descents at specified rates.
+4. Perform speed changes (acceleration and deceleration) while maintaining altitude.
+5. Demonstrate slow flight near the lower end of the airspeed envelope.
+6. Perform basic autorotation practice entries (power recovery).
+7. Use trim effectively to reduce pilot workload in steady flight.
+8. Understand and manage fuel consumption during flight.
+
+---
+
+### 6.1 Straight and Level Flight
+
+Straight and level flight is the baseline maneuver — maintaining a constant heading, altitude, and airspeed.
+
+#### Procedure
+
+| Parameter | Target | Tolerance |
+|---|---|---|
+| **Altitude** | As assigned (e.g., 1,500 ft MSL) | ±100 ft |
+| **Heading** | As assigned | ±10° |
+| **Airspeed** | Cruise: 80–100 KIAS (typical) | ±5 kts |
+| **Torque** | Whatever is required to maintain speed at level altitude | Monitor, don't fixate |
+| **Ball** | Centered (coordinated flight) | Slight deflection acceptable in calm air |
+
+**Technique:**
+1. Establish the desired airspeed and altitude.
+2. Adjust collective to set the power required to maintain level flight at that airspeed. For the OH-58D at typical gross weights, cruise at 80–90 KIAS requires approximately 55–65% Q.
+3. Trim any cyclic forces — use the trim (force trim release) button to relieve cyclic pressure.
+4. Scan: Altitude → Heading → Airspeed → Engine instruments → Outside → Repeat.
+5. Make small corrections early rather than large corrections late.
+
+**Trim usage:**
+- The OH-58D uses a force trim system. Press the force trim release button (typically on the cyclic grip), move the cyclic to the desired position, then release the button to set the new trim point.
+- Trim should be adjusted whenever the pilot is holding a sustained cyclic force. Well-trimmed flight reduces fatigue and allows smoother inputs.
+
+> *⚠ Realism Divergence: DCS force trim behavior may differ from the real aircraft. In some DCS modules, the force trim sets a return-to-center position for the cyclic. In others, it acts as a friction-hold. The student should experiment in DCS to understand the specific force trim implementation for the OH-58D module.*
+
+---
+
+### 6.2 Level Turns
+
+Turns are classified by bank angle. The OH-58D is a light, responsive helicopter — coordinated turns require simultaneous cyclic, collective, and pedal inputs.
+
+#### Bank Angle Categories
+
+| Category | Bank Angle | Load Factor | Use |
+|---|---|---|---|
+| **Shallow** | Up to 15° | ~1.0 G | Normal heading changes, pattern turns |
+| **Medium** | 15°–30° | ~1.0–1.15 G | Standard maneuvering, course corrections |
+| **Steep** | 30°–45° | ~1.15–1.41 G | Aggressive turns, avoidance, tactical maneuvering |
+| **>45°** | >45° | >1.41 G | Not recommended for BQT — advanced tactical only |
+
+#### Procedure — Medium Turn (30° bank)
+
+| Step | Action | Notes |
+|---|---|---|
+| 1 | Select a reference point for roll-out (90°, 180°, 360° turn as desired) | Anticipate roll-out by ~10° of heading before reaching desired heading |
+| 2 | Apply coordinated cyclic in the direction of turn | Smooth, gradual roll to 30° bank angle |
+| 3 | Apply slight aft cyclic to maintain altitude | In a bank, the vertical component of lift decreases — the nose tends to drop |
+| 4 | Add slight collective (power) to maintain altitude | Additional lift is needed to compensate for the bank angle |
+| 5 | Apply pedal as needed to keep the ball centered | Inside pedal (direction of turn) is typically needed |
+| 6 | Maintain bank angle, altitude, and airspeed throughout the turn | Scan: Bank → Altitude → Airspeed → Ball → Outside |
+| 7 | Anticipate roll-out — begin leveling ~10° before desired heading | Roll wings level, release aft cyclic and power, neutralize pedals |
+| 8 | Resume straight and level flight on new heading | Re-trim as needed |
+
+**Key principle: "Lift the collective to turn."** In a helicopter, a turn requires more power than straight and level flight because the effective lift vector is tilted. The pilot must add collective to maintain altitude. This is unlike fixed-wing aircraft where the pilot primarily uses back pressure.
+
+#### Altitude Loss in Turns
+
+| Bank Angle | Additional Collective Required | Altitude Loss Tendency |
+|---|---|---|
+| 15° | Minimal | Slight — easily corrected |
+| 30° | Noticeable | Moderate — must actively add collective |
+| 45° | Significant | Substantial — requires deliberate power addition |
+
+---
+
+### 6.3 Climbs and Descents
+
+#### Climbs
+
+| Type | Speed | Power | Use |
+|---|---|---|---|
+| **Normal climb** | 55–60 KIAS (Vy) | 75–90% Q | Departure, altitude gain |
+| **Cruise climb** | 70–80 KIAS | 65–80% Q | En route altitude change — trades climb rate for forward speed |
+| **Max angle climb** | 45–50 KIAS (Vx) | Max available (100% Q, 5 min) | Obstacle clearance |
+
+**Climb technique:**
+1. Increase collective to desired climb power.
+2. Adjust cyclic to maintain desired climb speed.
+3. Maintain heading with pedals (torque change causes yaw).
+4. Trim.
+5. At desired altitude, lower collective to cruise power and accelerate/decelerate to cruise speed.
+
+**Climb rate estimation:** At Vy (55–60 KIAS) with 85% Q, the OH-58D at moderate gross weight achieves approximately 500–1,000 fpm rate of climb (highly dependent on weight, DA, and temperature).
+
+#### Descents
+
+| Type | Speed | Power | Rate of Descent |
+|---|---|---|---|
+| **Normal descent** | 70–80 KIAS | Reduced (40–55% Q) | 300–500 fpm |
+| **Cruise descent** | 80–100 KIAS | Slightly reduced | 200–300 fpm |
+| **Rapid descent** | 80–90 KIAS | Low power (30–40% Q) | 800–1,500 fpm |
+
+**Descent technique:**
+1. Reduce collective to below cruise power.
+2. Adjust cyclic to maintain desired descent speed.
+3. Maintain heading with pedals.
+4. Monitor rate of descent on VSI — do not exceed 1,500 fpm in normal operations.
+5. At desired altitude, increase collective to cruise power and level off.
+
+**Level-off technique:** Begin level-off approximately 50 ft before desired altitude for a 500 fpm descent, or 100 ft before for a 1,000 fpm descent. Add power smoothly to arrest the descent rate.
+
+---
+
+### 6.4 Speed Changes
+
+The ability to change airspeed while maintaining altitude is a fundamental skill.
+
+#### Acceleration (slow to fast)
+
+| Step | Action |
+|---|---|
+| 1 | Lower the nose (forward cyclic) to accelerate |
+| 2 | As speed increases, the aircraft will tend to climb — reduce collective to maintain altitude |
+| 3 | As desired speed is reached, adjust nose attitude to maintain speed |
+| 4 | Re-trim and adjust power for level flight at new speed |
+
+#### Deceleration (fast to slow)
+
+| Step | Action |
+|---|---|
+| 1 | Raise the nose (aft cyclic) to decelerate |
+| 2 | As speed decreases, the aircraft will tend to descend — increase collective to maintain altitude |
+| 3 | At desired speed, adjust nose attitude and power for level flight |
+| 4 | Re-trim |
+
+**Key principle:** In a helicopter, speed changes at constant altitude require power changes. Slowing down requires *more* power (closer to hover, which is the highest power state). Speeding up requires *less* power (more efficient in forward flight due to translational lift).
+
+---
+
+### 6.5 Slow Flight
+
+Slow flight is flight at speeds near but above ETL (approximately 25–40 KIAS). This regime provides familiarity with the aircraft's handling at low speed and prepares the student for approach and hover.
+
+#### Characteristics of Slow Flight
+
+| Aspect | Detail |
+|---|---|
+| **Power required** | Higher than cruise — approaching hover power requirements |
+| **Control response** | Reduced — cyclic and pedals have less aerodynamic effect at low speed |
+| **Stability** | Decreased — more pilot attention required to maintain parameters |
+| **Vibration** | Increased near ETL as rotor is at the edge of clean airflow |
+| **Susceptibility to LTE** | Increased — low speed with high power and tail rotor demand |
+
+**Procedure:**
+1. From cruise, gradually decelerate by raising the nose and adding collective.
+2. Stabilize at 30–40 KIAS, noting the increased power required and reduced control authority.
+3. Practice maintaining altitude, heading, and speed in this regime.
+4. Accelerate back to cruise: lower the nose, reduce collective slightly, and accelerate through ETL.
+
+> *Note: Slow flight is where the aircraft transitions from airplane-like aerodynamic control authority to helicopter-like thrust-borne control. Students should be comfortable in this regime before practicing approaches and hovers.*
+
+---
+
+### 6.6 Autorotation Practice — Power Recovery
+
+Autorotation is the most critical emergency maneuver in helicopter flight. This module covers the **practice entry and power recovery** — the full autorotation to touchdown is covered in Module 8 (Emergencies).
+
+#### What is Autorotation?
+
+When the engine fails or is deliberately disengaged from the rotor, the rotor system is driven by airflow from below (upward through the rotor disc) rather than by the engine. This is autorotation. The rotor continues to produce lift, but the helicopter descends.
+
+**Key parameters for OH-58D autorotation:**
+
+| Parameter | Value |
+|---|---|
+| **Best autorotation glide speed** | ~72 KIAS |
+| **Minimum sink speed** | ~55 KIAS |
+| **Rotor RPM range (autorotation)** | ~90–107% Nr |
+| **Rate of descent** | ~1,500–2,000 fpm (varies with weight and speed) |
+| **Autorotation entry** | Immediate — lower collective to full down, maintain Nr |
+
+#### Practice Autorotation — Power Recovery Procedure
+
+This is practiced at altitude with a recovery before touchdown. The purpose is to build muscle memory for the entry and manage Nr/airspeed.
+
+| Step | Action | Notes |
+|---|---|---|
+| 1 | **Altitude:** Minimum 1,500 ft AGL for practice. Airspeed: 70–80 KIAS. | Verbal callout: "Practicing autorotation" |
+| 2 | **Throttle — IDLE** (simulate engine failure) or instructor calls "Engine failure" | In DCS, roll the throttle to idle (or use a keybind to simulate engine failure) |
+| 3 | **Collective — FULL DOWN immediately** | This is the critical initial action. Lowering collective maintains Nr by reducing blade pitch (reducing drag on the rotor). If collective is not lowered promptly, Nr decays rapidly. |
+| 4 | **Maintain Nr in 90–107% range** | Monitor tachometer. Nr should stabilize or increase slightly with collective down at glide speed. |
+| 5 | **Airspeed — 72 KIAS (best glide)** or **55 KIAS (minimum sink)** | Adjust nose attitude with cyclic to achieve target airspeed. |
+| 6 | **Pedals — Maintain coordinated flight** | Without engine torque, pedal input changes significantly. Right pedal is typically needed (less left pedal since no torque to counteract). |
+| 7 | **Observe descent rate** — ~1,500–2,000 fpm | The aircraft descends. This is normal. |
+| 8 | **At recovery altitude (~500–800 ft AGL), RECOVER:** | Verbal callout: "Recovering" |
+| 9 | **Throttle — FLY detent** | Re-engage engine power |
+| 10 | **Collective — Increase smoothly to arrest descent** | Do not yank collective — smooth application |
+| 11 | **Resume normal flight** | Climb, accelerate, and re-trim |
+
+**Critical notes on autorotation entry:**
+- The collective must go **full down** within approximately **1–2 seconds** of engine failure. Delay causes Nr to decay below the autorotation range, which can be unrecoverable.
+- At altitude, the entry is the most critical part. If Nr is maintained, you have time to select a landing area and set up the approach (covered in Module 8).
+- In DCS, the response to simulated engine failure may feel different from the real aircraft. Nr decay rate and autorotation characteristics are model-dependent.
+
+> *⚠ Realism Divergence: DCS autorotation modeling varies in fidelity. The OH-58D module's autorotation may or may not accurately replicate real-world Nr decay rates, glide distances, and flare effectiveness. The student should practice extensively in DCS to learn the module's specific autorotation characteristics, which may differ from published real-world data. The fundamental procedure (lower collective, maintain Nr, establish glide speed) remains the same regardless of sim fidelity.*
+
+---
+
+### 6.7 Fuel Management
+
+| Parameter | Value |
+|---|---|
+| **Total fuel capacity** | ~110 US gallons (~730 lbs JP-8) |
+| **Fuel burn rate (cruise)** | ~40–50 gallons/hour (varies significantly with power setting and DA) |
+| **Endurance (cruise)** | ~2–2.5 hours (with reserve) |
+| **Low fuel warning** | ~45 lbs remaining |
+| **Minimum landing fuel** | Plan to land with at least 20 minutes reserve |
+
+**Fuel monitoring procedure:**
+1. Note starting fuel quantity before takeoff.
+2. Calculate expected fuel burn for the planned mission duration.
+3. Monitor fuel gauge periodically (include in instrument scan).
+4. Low fuel caution light — if it illuminates, land as soon as practical.
+5. Track elapsed time as a cross-check against fuel gauge.
+
+---
+
+### 6.8 Cockpit Switch Reference — Module 6
+
+| Control | Function | DCS Action |
+|---|---|---|
+| **Collective** | Controls power/lift for climbs, descents, turns, hover | Joystick throttle axis or dedicated axis |
+| **Cyclic** | Controls pitch/roll attitude for speed, direction, and turns | Joystick X/Y |
+| **Pedals** | Controls yaw for heading maintenance, coordinated flight | Rudder pedals or `Z`/`X` keys |
+| **Force trim release** | Sets new cyclic trim point to relieve control pressure | Joystick button (configurable) |
+| **Throttle** | Fly/Idle/Off — used for autorotation practice | Keyboard or axis |
+| **VSI (Vertical Speed Indicator)** | Shows rate of climb/descent in fpm | Visual reference |
+| **Airspeed indicator** | Shows indicated airspeed in knots | Visual reference |
+| **Torque gauge** | Monitor power output | Visual reference |
+| **Nr tachometer** | Critical for autorotation — monitor rotor RPM | Visual reference |
+| **Fuel gauge** | Monitor remaining fuel | Visual reference |
+
+---
+
+### 6.9 Instructor Notes — Module 6
+
+**Common student errors:**
+
+1. **Fixating on one instrument:** Students stare at the altimeter during altitude-hold exercises and let heading and airspeed wander. Teach the scan pattern: "Altitude — Heading — Airspeed — Engine — Outside" in a continuous loop.
+2. **Not trimming:** Students fight the cyclic for entire flights, building fatigue and degrading precision. Drill: "Any time you're holding a force for more than 5 seconds, trim it out."
+3. **Losing altitude in turns:** Students forget to add collective when banking. Drill: "Bank and pull" — as you roll into the bank, add collective to maintain altitude.
+4. **Uncoordinated turns:** Students focus on bank angle and forget the pedals. The ball drifts. Drill: "Step on the ball" — whichever side the ball is on, push that pedal.
+5. **Autorotation — delayed collective drop:** The most critical error. Students hesitate to push the collective all the way down. Drill this until it's pure muscle memory: "Engine failure — COLLECTIVE DOWN." The entry must be instinctive.
+6. **Autorotation — fixating on the descent:** Students watch the altimeter unwind and freeze, forgetting to establish glide speed. Drill: "Collective down → airspeed → Nr → look outside for landing area." It's a sequence, not a single action.
+7. **Speed control during deceleration:** Students raise the nose too aggressively when slowing down, causing a balloon (altitude gain) followed by a sink. Teach: "Small attitude changes — the aircraft will decelerate; be patient."
+8. **Not maintaining ball centered:** Students focus on pitch and roll and completely ignore the ball (slip/skid indicator). This leads to uncoordinated flight, which wastes power and is uncomfortable. Include the ball in every scan callout.
+
+
+---
+
+## Module 7: Navigation
+
+### Learning Objectives
+
+Upon completion of this module, the student will be able to:
+
+1. Program and navigate using waypoints on the MFD NAV page.
+2. Interpret the MFD moving map display for situational awareness.
+3. Use the AHRS/GPS system for position awareness and navigation.
+4. Navigate using TACAN (if available in the DCS module).
+5. Use the radar altimeter for terrain awareness and low-level flight.
+6. Set and use the transponder for identification.
+7. Perform basic dead-reckoning and pilotage navigation as a backup.
+8. Plan and execute a cross-country navigation route using the MFD.
+
+---
+
+### 7.1 Navigation Systems Overview
+
+The OH-58D Kiowa Warrior has a modern (for its era) digital navigation suite centered on the AHRS/GPS and displayed on the MFD. This is a significant capability advantage over analog-only helicopters like the UH-1H.
+
+| System | Type | Function |
+|---|---|---|
+| **AHRS** | Attitude Heading Reference System | Provides attitude (pitch/roll) and magnetic heading. Gyro-stabilized. |
+| **GPS** | Global Positioning System | Provides precise lat/long position, ground speed, ground track. |
+| **MFD** | Multi-Function Display | Displays moving map, waypoints, navigation data, route lines. |
+| **TACAN** | Tactical Air Navigation | UHF-based distance and bearing to a TACAN station (if equipped/modeled in DCS). |
+| **Radar altimeter** | Radio altitude | Precise AGL altitude — critical for low-level flight and approach. |
+| **Transponder** | IFF / Identification | Squawks Mode 1/2/3/4 for identification by ATC and friendly forces. |
+
+---
+
+### 7.2 MFD NAV Page — Detailed Operation
+
+The MFD NAV page is the primary navigation display. It shows a moving map centered on the aircraft's current position with overlaid waypoints, route lines, and navigation data.
+
+#### NAV Page Elements
+
+| Element | Description |
+|---|---|
+| **Moving map** | Top-down map showing terrain, coastlines, roads, towns (detail depends on DCS map) |
+| **Aircraft symbol** | Centered on the display — shows current position and heading |
+| **Waypoints** | Displayed as symbols (typically numbered) on the map along the programmed route |
+| **Active waypoint** | Highlighted waypoint the system is navigating to |
+| **Route line** | Line connecting waypoints in sequence |
+| **Bearing pointer** | Arrow/indicator showing direction to the active waypoint |
+| **Distance to waypoint** | Nautical miles to the active waypoint (displayed digitally) |
+| **Ground speed** | Current ground speed in knots |
+| **Ground track** | Current track over the ground (degrees magnetic) |
+| **ETE/ETA** | Estimated time en route / estimated time of arrival to active waypoint (if displayed) |
+| **Scale/Zoom** | Map scale — adjustable via OSB buttons |
+
+#### NAV Page Controls (OSB Buttons)
+
+| OSB | Function |
+|---|---|
+| **Scale +/−** | Zoom in/out on the moving map (e.g., 5 NM, 10 NM, 20 NM, 50 NM ranges) |
+| **WPT (waypoint)** | Select active waypoint / cycle through waypoints |
+| **D-WPT (direct to waypoint)** | Navigate directly to a selected waypoint, skipping intermediate waypoints |
+| **MAP mode** | Switch between track-up and north-up orientation |
+| **Page select** | Cycle to other MFD pages (ENG, WPN, SYS, FLT) |
+
+---
+
+### 7.3 Waypoint Programming
+
+Waypoints are typically pre-loaded for DCS missions, but the pilot should verify and be able to modify them.
+
+#### Verifying Waypoints
+
+| Step | Action |
+|---|---|
+| 1 | Select MFD NAV page |
+| 2 | Cycle through waypoints using WPT OSB |
+| 3 | For each waypoint, verify the position on the map matches the mission brief |
+| 4 | Verify the sequence is correct (WPT 1 → WPT 2 → WPT 3, etc.) |
+
+#### Navigating a Route
+
+| Step | Action |
+|---|---|
+| 1 | Ensure NAV page is displayed on MFD |
+| 2 | The active waypoint is displayed with bearing and distance |
+| 3 | Turn to the bearing indicated and fly toward the waypoint |
+| 4 | When the aircraft reaches the waypoint (or near it), the system automatically sequences to the next waypoint |
+| 5 | If you want to skip to a specific waypoint, use D-WPT (direct to) to select it |
+
+#### Direct-To Navigation
+
+| Step | Action |
+|---|---|
+| 1 | Press D-WPT OSB on the NAV page |
+| 2 | Select the desired waypoint number |
+| 3 | The system provides a direct bearing and distance to that waypoint, ignoring intermediate waypoints |
+| 4 | Fly the indicated bearing to navigate directly to the selected waypoint |
+
+---
+
+### 7.4 Map Orientation Modes
+
+| Mode | Description | Use |
+|---|---|---|
+| **Track-up** | Map rotates so the aircraft's track is always pointing "up" on the display | Most intuitive for en route navigation — "up" is where you're going |
+| **North-up** | Map is fixed with north at the top; the aircraft symbol rotates | Better for map reading, coordinate reference, and planning |
+
+**Recommendation for BQT:** Use track-up for normal navigation. Switch to north-up when correlating the MFD position with a paper map or mission coordinates.
+
+---
+
+### 7.5 TACAN Navigation
+
+TACAN (Tactical Air Navigation) provides bearing and distance to a ground-based TACAN station (or to another aircraft with TACAN A/A capability).
+
+| Feature | Description |
+|---|---|
+| **Channels** | 1–126 (X and Y bands) |
+| **Bearing** | Magnetic bearing TO the station |
+| **Distance** | Slant range in nautical miles |
+| **Modes** | T/R (transmit/receive — bearing and distance), REC (receive only — bearing only), A/A (air-to-air) |
+
+#### TACAN Operation
+
+| Step | Action |
+|---|---|
+| 1 | Set TACAN to desired channel and band (per mission brief or published TACAN chart) |
+| 2 | Set mode to T/R for full bearing and distance |
+| 3 | Verify bearing and distance readout — bearing pointer on HSI should point toward the station |
+| 4 | Navigate by flying the bearing to the station or tracking a specific radial |
+
+**Common TACAN stations in DCS Caucasus map:**
+
+| Station | Channel | Location |
+|---|---|---|
+| Batumi | 16X | Batumi airfield |
+| Senaki | 31X | Senaki-Kolkhi airfield |
+| Kutaisi | 44X | Kutaisi-Kopitnari airfield |
+| Tbilisi | 25X | Tbilisi-Lochini airfield |
+| Sukhumi | 32X | Sukhumi-Babushara airfield |
+
+> *Note: TACAN channels and availability vary by DCS map and mission setup. Always verify per mission brief.*
+
+> *⚠ Realism Divergence: TACAN availability and implementation in the DCS OH-58D module may be simplified or may not be fully modeled. If the module does not include TACAN, the student should rely on AHRS/GPS and the MFD moving map for navigation. The GPS-based navigation system provides equivalent or superior accuracy for DCS purposes.*
+
+---
+
+### 7.6 Radar Altimeter
+
+The radar altimeter provides precise height above ground level (AGL) by bouncing radio waves off the terrain directly below the aircraft.
+
+| Feature | Description |
+|---|---|
+| **Function** | Displays AGL altitude — precise to within a few feet |
+| **Range** | Typically 0–5,000 ft AGL (varies by system) |
+| **Decision height bug** | Adjustable bug that provides a visual/audio alert at a set AGL altitude |
+| **Primary use** | Low-level flight, approach to hover, terrain awareness |
+
+#### Radar Altimeter Operation
+
+| Step | Action |
+|---|---|
+| 1 | **Power** — ON (should be powered with avionics) |
+| 2 | **Decision height** — Set as desired (e.g., 200 ft for approach, 50 ft for low-level) |
+| 3 | **Interpretation** — AGL altitude displayed on gauge. This differs from barometric altitude (MSL). |
+| 4 | **Low altitude warning** — When descending through the decision height, an alert (light or tone) activates |
+
+**Important distinction:**
+- **Barometric altimeter** = height above sea level (MSL) — set by QNH
+- **Radar altimeter** = height above the ground directly below (AGL) — automatic, no setting
+- Both are needed: barometric for ATC altitude assignments, radar alt for terrain clearance
+
+**Terrain awareness:**
+- In mountainous terrain, the radar altimeter provides critical terrain clearance information that the barometric altimeter cannot.
+- Example: If flying at 3,000 ft MSL over a 2,500 ft ridge, the barometric altimeter shows 3,000 ft, but the radar altimeter correctly shows 500 ft AGL.
+- Always cross-reference radar altimeter with barometric altimeter and outside visual references.
+
+---
+
+### 7.7 Transponder / IFF
+
+The transponder provides identification and altitude encoding for ATC and friendly forces.
+
+| Mode | Function |
+|---|---|
+| **Mode 1** | Military identification (2-digit code, unit/mission specific) |
+| **Mode 2** | Military identification (4-digit code, individual aircraft specific) |
+| **Mode 3/A** | Standard ATC transponder code (4-digit squawk code) |
+| **Mode C** | Altitude encoding — automatically transmits barometric altitude to ATC |
+| **Mode 4** | Encrypted IFF — crypto-based friend/foe identification |
+
+#### Transponder Operation
+
+| Step | Action |
+|---|---|
+| 1 | Set transponder to STBY (standby) during startup |
+| 2 | Set Mode 3/A squawk code per ATC assignment or mission brief (e.g., 1200 for VFR, or assigned discrete code) |
+| 3 | Before takeoff, set transponder to ON (or ALT for altitude encoding) |
+| 4 | If directed by ATC: "Squawk [code]" — set the assigned code |
+| 5 | If directed: "Ident" — press the IDENT button (sends a highlighted return to ATC radar) |
+| 6 | After landing, set transponder back to STBY |
+
+> *⚠ Realism Divergence: Transponder/IFF implementation in DCS varies by module. The OH-58D module may have a simplified transponder panel or may not model all modes. In many DCS missions, the transponder is not critical for gameplay. The student should set it per SOP for procedural discipline.*
+
+---
+
+### 7.8 Dead Reckoning and Pilotage
+
+Even with GPS and the MFD, the pilot should be capable of basic visual navigation.
+
+#### Pilotage (Visual Navigation)
+
+| Technique | Description |
+|---|---|
+| **Map reading** | Correlate visible ground features (rivers, roads, coastlines, towns, mountains) with the map |
+| **Checkpoint navigation** | Identify planned checkpoints (visual waypoints) and navigate between them |
+| **Time-distance** | Use known ground speed and elapsed time to estimate position between checkpoints |
+
+#### Dead Reckoning
+
+| Step | Action |
+|---|---|
+| 1 | From a known position, fly a known heading at a known ground speed |
+| 2 | After a measured time interval, estimate current position along the planned track |
+| 3 | Correct for wind drift by comparing planned track to actual ground track |
+
+**When to use dead reckoning:**
+- GPS failure or degradation
+- AHRS failure (heading unreliable) — use magnetic compass as backup
+- Verification of GPS position against visual references (trust but verify)
+
+---
+
+### 7.9 Cross-Country Navigation Procedure
+
+A basic cross-country flight using the MFD:
+
+| Phase | Action |
+|---|---|
+| **Pre-flight** | Review mission brief for waypoints, altitudes, frequencies, NOTAMs. Verify waypoints loaded on MFD. Plan fuel for the route. |
+| **Departure** | After takeoff and climb to en route altitude, verify NAV page shows active waypoint and bearing. Turn to intercept the course line. |
+| **En route** | Follow bearing/distance to each waypoint. Monitor ground speed and ETE. Compare MFD position to outside visual references. Adjust heading for wind drift. |
+| **At each waypoint** | Verify position agrees with expected visual references. System should auto-sequence to next waypoint. If not, manually select next waypoint. |
+| **Arrival** | As destination appears on the map and visually, transition to approach navigation (pattern entry, ATC communications). |
+
+---
+
+### 7.10 Cockpit Switch Reference — Module 7
+
+| Control | Location | Function | DCS Action |
+|---|---|---|---|
+| **MFD NAV page** | MFD bezel — OSB buttons | Select and operate NAV page | Mouse click on OSB |
+| **MFD scale/zoom** | MFD bezel — OSB | Adjust map zoom level | Mouse click on +/− OSB |
+| **MFD WPT select** | MFD bezel — OSB | Cycle active waypoint | Mouse click |
+| **MFD D-WPT** | MFD bezel — OSB | Direct-to waypoint navigation | Mouse click |
+| **MFD map mode** | MFD bezel — OSB | Toggle track-up / north-up | Mouse click |
+| **TACAN channel** | TACAN control panel | Set channel and X/Y band | Mouse scroll / click |
+| **TACAN mode** | TACAN control panel | OFF / REC / T/R / A/A | Mouse click to cycle |
+| **Radar altimeter** | Instrument panel | ON/OFF, decision height knob | Mouse click / scroll |
+| **Transponder mode** | Transponder panel | OFF / STBY / ON / ALT | Mouse click to cycle |
+| **Transponder code** | Transponder panel | Set Mode 3/A squawk code (4 digits) | Mouse scroll on each digit |
+| **IDENT button** | Transponder panel | Sends identification pulse to ATC | Mouse click |
+| **Magnetic compass** | Instrument panel (standby) | Backup heading reference | Visual reference only |
+| **Barometric altimeter** | Instrument panel | QNH/QFE setting via knob | Mouse scroll |
+
+---
+
+### 7.11 Instructor Notes — Module 7
+
+**Common student errors:**
+
+1. **GPS fixation / head-down:** Students stare at the MFD moving map and lose outside visual awareness. Drill: "The MFD is a tool, not a windshield. 80% outside, 20% instruments." For VFR flight, outside visual reference is primary.
+2. **Wrong map scale:** Students leave the map zoomed in too tight and lose the big picture, or zoomed out too far and can't correlate local features. Teach: "Use tight zoom (5–10 NM) for local pattern work, medium (20 NM) for en route, wide (50 NM) for big-picture SA."
+3. **Not verifying waypoints before departure:** Students assume the loaded waypoints are correct and discover errors en route. Drill: "Brief and verify every waypoint on the ground."
+4. **Confusing barometric and radar altitude:** Students report AGL when ATC asks for altitude (MSL), or fly a barometric altitude in mountainous terrain without checking radar alt. Drill the distinction: "ATC speaks MSL. Terrain speaks AGL. Know which you need."
+5. **Forgetting to set altimeter QNH:** Students fly with the previous flight's or a default altimeter setting, causing altitude errors. Include altimeter setting in every pre-flight checklist.
+6. **Not correlating MFD with visual:** Students trust the MFD blindly and don't verify position against outside references. This is a problem if GPS degrades. Drill: "At every waypoint, look outside and confirm you see what you expect to see."
+7. **Transponder left in standby:** Students forget to set the transponder to ON/ALT before takeoff, making them invisible to ATC radar. Include transponder in the pre-takeoff checklist.
+8. **Poor track keeping:** Students wander off course between waypoints, making lazy S-turns instead of flying direct. Teach: "Point the aircraft at the waypoint, correct for wind, and hold the heading."
+
+
+---
+
+## Module 8: Emergency Procedures
+
+### Learning Objectives
+
+Upon completion of this module, the student will be able to:
+
+1. Execute all boldface (memory) emergency procedures without reference.
+2. Perform a full autorotation to touchdown.
+3. Recognize and recover from Vortex Ring State (VRS / Settling with Power).
+4. Recognize and recover from Loss of Tail Rotor Effectiveness (LTE).
+5. Respond to a FADEC failure (auto to manual transition).
+6. Respond to a hydraulic failure (degraded flight controls).
+7. Respond to electrical and generator failures.
+8. Respond to transmission oil pressure/temperature cautions.
+9. Recognize and respond to dynamic rollover.
+10. Recognize and respond to ground resonance.
+11. Perform emergency procedures for in-flight fire (engine, electrical, cabin).
+12. Understand which emergencies are modeled in DCS and which are conceptual.
+
+---
+
+### 8.1 Boldface Emergency Procedures
+
+**Boldface** items are memorized emergency procedures that must be executed immediately from memory. They are called "boldface" because they are printed in bold in the aircraft Technical Manual (-10). These are time-critical emergencies where delay could be catastrophic.
+
+#### ENGINE FAILURE — IN FLIGHT
+
+> **1. COLLECTIVE — FULL DOWN (immediately)**
+> **2. AIRSPEED — 72 KIAS (best glide) or 55 KIAS (minimum sink)**
+> **3. Nr — MONITOR (maintain 90–107%)**
+> **4. THROTTLE — IDLE (if not already)**
+> **5. MAYDAY call — "MAYDAY, MAYDAY, MAYDAY, [Callsign], engine failure, [position], [altitude], [souls on board]"**
+> **6. SELECT LANDING AREA — Turn toward the best available landing site**
+> **7. EXECUTE AUTOROTATION TO TOUCHDOWN (see 8.2)**
+
+#### ENGINE FAILURE — AT HOVER (LOW ALTITUDE)
+
+> **1. COLLECTIVE — MAINTAIN (cushion the landing)**
+> **2. LEVEL the aircraft with cyclic**
+> **3. PEDALS — Maintain heading if possible**
+> **4. ACCEPT the landing — do NOT try to fly away**
+
+*At very low altitude/hover, there is not enough height to enter autorotation. The stored energy in the rotor system is used to cushion the landing. The collective should NOT be dumped — use whatever rotor inertia is available to reduce the sink rate at touchdown.*
+
+#### GROUND RESONANCE
+
+> **If Nr is NORMAL (97–101%):**
+> **1. COLLECTIVE — INCREASE (FLY AWAY IMMEDIATELY)**
+>
+> **If Nr is LOW or DECAYING:**
+> **1. COLLECTIVE — FULL DOWN**
+> **2. THROTTLE — OFF**
+> **3. ROTOR BRAKE — APPLY (when safe)**
+
+#### FADEC FAILURE / MANUAL REVERSION
+
+> **1. THROTTLE — ASSUME MANUAL CONTROL**
+> **2. Nr — MAINTAIN 97–101% with throttle**
+> **3. AVOID RAPID COLLECTIVE INPUTS (throttle response is slower in manual)**
+> **4. LAND AS SOON AS PRACTICABLE**
+
+#### HYDRAULIC FAILURE
+
+> **1. CONTROLS — EXPECT VERY HEAVY FORCES**
+> **2. AVOID ABRUPT INPUTS**
+> **3. AIRSPEED — MAINTAIN 60–80 KIAS (manageable control forces)**
+> **4. LAND AS SOON AS POSSIBLE — RUN-ON LANDING RECOMMENDED**
+> **5. Do NOT attempt to hover** (control forces in hover are extreme without hydraulics)
+
+#### TAIL ROTOR FAILURE / LOSS OF TAIL ROTOR AUTHORITY
+
+> **1. ENTER AUTOROTATION (reduce power to eliminate torque)**
+> **2. AIRSPEED — 72 KIAS (best autorotation glide)**
+> **3. EXECUTE AUTOROTATION TO TOUCHDOWN**
+> **4. At touchdown, use directional control available (skid friction, collective reduction)**
+
+#### ENGINE FIRE — IN FLIGHT
+
+> **1. THROTTLE — IDLE**
+> **2. FUEL SHUTOFF — CLOSED**
+> **3. ENTER AUTOROTATION**
+> **4. LAND IMMEDIATELY**
+> **5. EVACUATE AIRCRAFT after touchdown**
+
+#### ELECTRICAL FIRE
+
+> **1. BATTERY — OFF**
+> **2. GENERATOR — OFF**
+> **3. IDENTIFY and isolate the source if possible**
+> **4. VENTILATE cockpit (open vents/windows if possible)**
+> **5. LAND AS SOON AS POSSIBLE**
+> **6. If fire persists after electrical shutdown, LAND IMMEDIATELY and evacuate**
+
+---
+
+### 8.2 Full Autorotation — Touchdown Procedure
+
+This expands on the practice autorotation entry (Module 6) to include the full sequence through touchdown.
+
+#### Phase 1: Entry (0–3 seconds)
+
+| Step | Action | Notes |
+|---|---|---|
+| 1 | **Collective — FULL DOWN** | Immediate — this is the most critical action. Preserves Nr. |
+| 2 | **Airspeed — Establish 72 KIAS (best glide)** or **55 KIAS (min sink)** | 72 KIAS for maximum glide distance to a landing zone. 55 KIAS for minimum rate of descent (less distance covered). |
+| 3 | **Nr — Monitor 90–107%** | Nr should stabilize in this range with collective down at glide speed. |
+| 4 | **Pedals — Adjust for coordination** | Right pedal typically needed (no engine torque to counteract). |
+| 5 | **MAYDAY call** | Transmit on current frequency and/or guard. |
+
+#### Phase 2: Glide (majority of descent)
+
+| Step | Action | Notes |
+|---|---|---|
+| 1 | **Select landing area** | Ideally flat, clear, into the wind. Accept the best available option. |
+| 2 | **Turn toward landing area** | Gentle banked turns — avoid steep turns that increase sink rate. |
+| 3 | **Maintain 72 KIAS and monitor Nr** | Cross-check airspeed and Nr throughout the glide. |
+| 4 | **Plan the approach** | Aim for a point approximately 1/3 from the near edge of the landing area. |
+| 5 | **Descent rate** | ~1,500–2,000 fpm — rapid descent. The OH-58D has limited glide distance. |
+
+#### Phase 3: Flare (approximately 75–100 ft AGL)
+
+| Step | Action | Notes |
+|---|---|---|
+| 1 | **Begin flare — aft cyclic** | At approximately 75–100 ft AGL, pull the cyclic aft to raise the nose. |
+| 2 | **Purpose of flare** | Reduces forward airspeed and rate of descent. Trades airspeed for rotor RPM — Nr increases. |
+| 3 | **Nr increase** | The flare causes the rotor to speed up (windmilling effect). This stores energy in the rotor for the collective pull in Phase 4. |
+| 4 | **Airspeed decreasing** | From 72 KIAS, airspeed should decrease through the flare to approximately 20–30 KIAS. |
+| 5 | **Attitude** | Nose high — approximately 20–30° nose up during the flare. |
+
+#### Phase 4: Cushion and Touchdown (last 10–15 ft)
+
+| Step | Action | Notes |
+|---|---|---|
+| 1 | **Level the aircraft** — forward cyclic to bring the nose toward level | The aircraft should be approximately level or slightly nose-up at touchdown |
+| 2 | **Collective — PULL** — apply collective to use remaining rotor energy to cushion the landing | This is the "collective pull" — timing is critical. Too early and you run out of rotor energy high. Too late and you hit hard. |
+| 3 | **Touchdown** — accept the landing | Expect a firm but survivable landing. Skids should contact the ground at near-zero forward speed if the flare was properly timed. |
+| 4 | **After touchdown** — collective full down, throttle off, secure aircraft | Shut down all systems. Evacuate if fire or fuel leak is suspected. |
+
+**Autorotation performance data (OH-58D approximate):**
+
+| Parameter | Value |
+|---|---|
+| **Best glide speed** | 72 KIAS |
+| **Minimum sink speed** | 55 KIAS |
+| **Rate of descent (glide)** | ~1,500–2,000 fpm |
+| **Glide ratio** | Approximately 4:1 (4 ft forward for every 1 ft of altitude lost) — *estimated* |
+| **Nr range** | 90–107% (autorotation) |
+| **Flare initiation** | ~75–100 ft AGL |
+| **Minimum altitude for autorotation entry** | ~500+ ft AGL at speed; lower if already established in autorotation profile |
+
+> *⚠ Realism Divergence: DCS autorotation behavior varies significantly from real-world. The flare effectiveness, cushion timing, and touchdown dynamics may be simplified or differ from the real aircraft. The student should practice extensively in DCS to learn the module's specific autorotation "feel." Common DCS-specific issues include: overly sensitive/insensitive flare, Nr decay rate differences, and touchdown impact tolerance. Real-world autorotation to touchdown in a Kiowa is a complex skill requiring extensive practice — in DCS, the physics model may be more forgiving or less forgiving depending on the implementation.*
+
+---
+
+### 8.3 Vortex Ring State (VRS) / Settling with Power
+
+VRS occurs when the helicopter descends into its own rotor downwash, creating a turbulent vortex around the rotor disc that dramatically reduces lift.
+
+#### Conditions for VRS
+
+All three conditions must be present simultaneously:
+1. **Low airspeed** — below effective translational lift (below ~16–24 KIAS)
+2. **High rate of descent** — typically exceeding 300–500 fpm
+3. **Power applied** — collective is not full down (not in autorotation)
+
+#### Recognition
+
+| Indication | Description |
+|---|---|
+| **Vibration increase** | Turbulent airflow causes noticeable vibration |
+| **Uncommanded descent** | Rate of descent increases despite collective input |
+| **Power ineffective** | Adding collective does not arrest the descent — it may worsen it |
+| **Erratic instruments** | Airspeed indicator and VSI may fluctuate |
+| **Mushing / wallowing** | Aircraft feels sluggish and unresponsive |
+
+#### Recovery Procedure
+
+> **1. CYCLIC — FORWARD (lower the nose aggressively)**
+> **2. GAIN AIRSPEED — Accelerate through ETL**
+> **3. COLLECTIVE — Adjust as speed increases (may need to reduce initially to help nose drop)**
+> **4. ALTITUDE — Sacrifice altitude for airspeed**
+
+**The key recovery action is to fly out of the vortex ring by gaining forward airspeed.** Once the rotor disc moves through clean air (above ETL speed), normal lift generation resumes.
+
+**Prevention:**
+- Avoid descending vertically or at very low airspeed with power on.
+- In approaches, maintain at least 30+ KIAS until short final or descend at rates below 300 fpm.
+- If conditions require a steep/vertical descent, lower the collective and enter autorotation (controlled descent through the vortex ring from below does not create VRS).
+
+---
+
+### 8.4 Loss of Tail Rotor Effectiveness (LTE)
+
+LTE is a condition where the tail rotor becomes unable to counteract main rotor torque, resulting in an uncommanded yaw (spin) to the right (for American helicopters with counterclockwise-rotating main rotors).
+
+#### Conditions Favoring LTE
+
+| Condition | Description |
+|---|---|
+| **Low airspeed** | Below ETL, the tail rotor receives disturbed airflow |
+| **High power setting** | High collective = high torque = high tail rotor demand |
+| **Left crosswind** | Wind from the left can blank or interfere with tail rotor effectiveness |
+| **Tail wind** | Tail wind can reduce the relative airflow over the tail rotor |
+| **Right turns at low speed** | Entering a right turn at low speed can place the tail rotor in the main rotor's vortex wake |
+
+#### Recognition
+
+| Indication | Description |
+|---|---|
+| **Uncommanded right yaw** | Aircraft yaws right and pedal input cannot stop it |
+| **Spin** | If uncorrected, the yaw accelerates into a spin |
+| **Full left pedal — no effect** | The tail rotor is stalled or blanked; pedal authority is lost |
+
+#### Recovery Procedure
+
+> **1. PEDALS — FULL LEFT (attempt to stop the yaw)**
+> **2. COLLECTIVE — REDUCE (decrease torque, which reduces tail rotor demand)**
+> **3. CYCLIC — FORWARD (gain airspeed to restore tail rotor effectiveness)**
+> **4. IF UNABLE TO RECOVER — Enter autorotation (collective full down eliminates torque completely)**
+
+**Prevention:**
+- Avoid hovering with a left crosswind or tailwind.
+- Avoid high-power, low-airspeed flight conditions.
+- Be cautious during right pedal turns at low speed.
+- Maintain awareness of wind direction during all low-speed operations.
+
+---
+
+### 8.5 FADEC Failure — Manual Reversion
+
+If the FADEC fails or must be manually overridden, the pilot assumes throttle control.
+
+#### Indications of FADEC Failure
+
+| Indication | Description |
+|---|---|
+| **FADEC caution light** | Illuminates on the caution panel |
+| **Nr fluctuation** | Rotor RPM may vary if FADEC cannot govern |
+| **TOT exceedance** | FADEC no longer limiting TOT — pilot must monitor |
+| **Uncommanded power changes** | Engine power may surge or droop |
+
+#### Procedure
+
+| Step | Action | Notes |
+|---|---|---|
+| 1 | **Recognize FADEC failure** | Caution light, Nr fluctuation, uncommanded power change |
+| 2 | **FADEC mode — MANUAL** (if not already) | Switch from AUTO to MAN on the FADEC panel |
+| 3 | **Throttle — Assume manual control** | The pilot must now manage Nr by adjusting the throttle manually |
+| 4 | **Nr — Maintain 97–101%** | The throttle correlator provides a baseline, but the pilot must fine-tune |
+| 5 | **Avoid rapid collective inputs** | Without FADEC, Nr response to collective changes is slower; large collective inputs cause Nr droop or overspeed |
+| 6 | **Monitor TOT and torque manually** | FADEC no longer protects against exceedances — the pilot must stay within limits |
+| 7 | **Land as soon as practicable** | MANUAL mode is a degraded state — the aircraft is flyable but pilot workload is significantly increased |
+
+> *⚠ Realism Divergence: DCS FADEC failure implementation may differ significantly from the real aircraft. The real T703 has multi-level FADEC redundancy before full manual reversion. DCS may provide a single AUTO/MAN toggle with simplified throttle dynamics. The student should practice manual throttle management in DCS to understand the module's specific behavior. Key differences to test: Nr response time to collective changes, TOT behavior during power changes, and hover stability without FADEC.*
+
+---
+
+### 8.6 Hydraulic Failure
+
+The OH-58D has a single hydraulic system powering irreversible servo actuators for the flight controls.
+
+#### Indications
+
+| Indication | Description |
+|---|---|
+| **HYD PRESS caution light** | Hydraulic pressure has dropped below normal |
+| **Heavy controls** | Cyclic, collective, and pedals become extremely difficult to move |
+| **Hydraulic pressure gauge** | Reads low or zero (normal: ~1,000 PSI) |
+
+#### Procedure
+
+| Step | Action | Notes |
+|---|---|---|
+| 1 | **Confirm hydraulic failure** | HYD PRESS light, heavy controls, gauge reading |
+| 2 | **Do NOT make abrupt control inputs** | Without hydraulic boost, forces are extreme. Sudden inputs can cause structural damage or loss of control. |
+| 3 | **Maintain 60–80 KIAS** | This speed range provides the most manageable control forces |
+| 4 | **Avoid hover** | Hovering without hydraulics requires ~40–50 lbs of cyclic force. It is nearly impossible to maintain precision hover without hydraulics. |
+| 5 | **Plan a run-on landing** | Fly an approach that terminates in a forward-speed touchdown (run-on) rather than a hover. |
+| 6 | **Approach at 50–60 KIAS** | Maintain speed through the approach. Accept a forward-speed touchdown on a runway or flat surface. |
+| 7 | **Touchdown** | Allow the aircraft to slide on the skids at forward speed. Do not attempt to bring the aircraft to a hover before landing. |
+| 8 | **After landing** — Shut down normally | Control forces return to normal once the rotor stops. |
+
+> *⚠ Realism Divergence: DCS hydraulic failure may not accurately replicate the extreme control forces experienced in the real aircraft (estimated ~40–50 lbs cyclic force in hover, ~10–20 lbs at speed). The DCS implementation may feel "heavy" but manageable in ways that would be unrealistic. The student should still practice the correct procedure: avoid hover, fly a run-on landing, maintain 60–80 KIAS.*
+
+---
+
+### 8.7 Electrical Failures
 
 #### Generator Failure
 
 | Step | Action | Notes |
 |---|---|---|
-| 1 | **GEN caution light** — NOTE | Confirm generator offline |
-| 2 | **GEN RESET** — PRESS | Attempt to reset the generator |
-| 3 | **GEN SWITCH** — verify ON | If generator resets, GEN light extinguishes; resume normal operations |
-| 4 | If generator **does not reset**: **NON-ESSENTIAL BUS — OFF** | Shed non-essential loads to conserve battery |
-| 5 | **LAND AS SOON AS PRACTICABLE** | Battery endurance ~30 minutes on essential bus |
+| 1 | **GEN caution light** illuminates | Generator has dropped offline |
+| 2 | **Check generator switch** — Verify ON | May have tripped — try resetting |
+| 3 | **If generator does not reset** — Aircraft is now on battery power only | Battery endurance: ~30 minutes under reduced load |
+| 4 | **Reduce electrical load** | Turn off non-essential equipment (MMS, search light, any non-critical avionics) |
+| 5 | **Land as soon as practicable** | Battery time is limited |
 
-#### Battery-Only Operations
+#### Complete Electrical Failure
 
-| System | Status | Notes |
+| Step | Action | Notes |
 |---|---|---|
-| **Essential Bus** | Powered | Critical instruments, caution panel, radios (limited) |
-| **Non-Essential Bus** | OFF (shed) | MFD, MMS, weapons systems — all lost |
-| **Inverter** | May be lost (depends on bus) | Attitude indicator and heading indicator may fail |
-| **Navigation** | Degraded — GPS may be lost with non-essential bus | Rely on magnetic compass and visual navigation |
-| **Endurance** | ~30 minutes | Depends on battery state of charge and electrical load |
-
-**Priority:** Fly the aircraft, navigate to the nearest suitable landing area using visual references and the magnetic compass, and land before battery is exhausted.
+| 1 | **Loss of all electrical power** | All instruments, lights, radios, and caution panel go dark |
+| 2 | **Engine continues to run** | The T703 engine with FADEC may continue running on residual power, but the student should be prepared for engine complications |
+| 3 | **Fly by standby instruments** | Magnetic compass (no power required), standby attitude indicator (if battery-backed), outside visual references |
+| 4 | **Attempt to restore power** | Battery switch — cycle OFF then ON. Generator — cycle OFF then ON. |
+| 5 | **If power cannot be restored** — Land as soon as possible | Without instruments, land at the nearest suitable location using visual references. |
 
 ---
 
-### 7.8 Transmission Failure Indications
+### 8.8 Transmission Oil System Cautions
 
-| Indication | Severity | Response |
+| Caution | Meaning | Action |
 |---|---|---|
-| **CHIP light** (main transmission, tail rotor gearbox, or engine) | Serious — metallic particles in oil | **LAND AS SOON AS POSSIBLE**; minimize maneuvering; monitor torque and temperature |
-| **XMSN OIL PRESS low** | Critical — potential gearbox seizure | **LAND AS SOON AS POSSIBLE**; reduce torque if feasible |
-| **XMSN OIL TEMP high** | Serious — gearbox overheating | **LAND AS SOON AS POSSIBLE**; reduce torque; monitor for noise/vibration |
-| **Noise / Vibration from transmission** | Critical — imminent failure possible | **LAND IMMEDIATELY**; prepare for potential autorotation if transmission seizes |
+| **XMSN OIL PRESS** | Transmission oil pressure low | Land as soon as possible. Transmission failure can be catastrophic. Monitor for unusual vibration or noise. |
+| **XMSN OIL TEMP** | Transmission oil temperature high | Reduce power if possible. Land as soon as practicable. High temperature degrades lubricant and can lead to transmission seizure. |
 
-**Transmission Seizure:** If the main transmission seizes, the rotor stops. There is no recovery. The aircraft will not autorotate because the rotor is mechanically locked. This is immediately catastrophic. The chip lights and oil indications are early warnings designed to get the aircraft on the ground **before** seizure occurs.
+**Transmission failure (catastrophic):** If the transmission seizes, the main rotor may decouple from the engine. Immediate autorotation is required. This is one of the most serious emergencies — the student should recognize transmission cautions early and land before catastrophic failure occurs.
 
 ---
 
-### 7.9 Mast Bumping — Awareness
+### 8.9 Dynamic Rollover
 
-Covered in detail in Module 1 (Section 1.10). Key reminders:
+Dynamic rollover occurs when the helicopter begins to rotate about a fixed point on the ground (typically a skid) and the roll rate exceeds the pilot's ability to correct it.
 
-- The OH-58D 4-blade soft-in-plane rotor is more resistant than a 2-blade teetering rotor, but not immune.
-- Avoid low-G and negative-G flight (**G limits: +2.5 to −0.5**).
-- Avoid abrupt cyclic inputs at low rotor loading.
-- If mast contact occurs, the result is immediate and catastrophic — there is no recovery procedure.
-- **Prevention is the only strategy.**
+#### Conditions
 
----
-
-### 7.10 Dynamic Rollover — Awareness
-
-Covered in detail in Module 1 (Section 1.10). Key reminders:
-
-- Occurs when one skid is fixed and collective is applied, causing the helicopter to pivot over the fixed point.
-- Critical rollover angle is approximately **5–15°** depending on rate.
-- Beyond the critical angle, the rollover is self-sustaining regardless of control input.
-- **Immediate action if rollover begins:** REDUCE COLLECTIVE (unload the pivot point).
-- Prevention: apply collective smoothly; ensure both skids are clear; be aware during slope operations, crosswind hover, and after a hard landing where one skid may have penetrated soft ground.
-
----
-
-### 7.11 DCS-Specific Emergency Notes
-
-| Emergency | DCS Modeling Fidelity | Notes |
-|---|---|---|
-| **Engine Failure** | **Modeled** — engine can fail (triggered by damage or instructor-induced) | Autorotation dynamics are functional; Nr decay and recovery respond correctly |
-| **FADEC Failure** | **Modeled** — FADEC can fail, requiring manual throttle | Transfer to manual mode is functional; Nr must be managed by pilot |
-| **Hydraulic Failure** | **Partially Modeled** — increased control forces | May not fully replicate the extreme physical difficulty of the real aircraft |
-| **Tail Rotor Failure** | **Modeled** — tail rotor can be damaged/destroyed | Aircraft enters uncontrolled yaw; autorotation is the correct response |
-| **LTE** | **Modeled** — uncommanded yaw in critical wind azimuths | Recovery technique (reduce collective, forward cyclic, gain airspeed) works in DCS |
-| **Settling with Power** | **Modeled** — vortex ring state aerodynamics present | Recovery technique (forward cyclic, reduce collective, gain airspeed) works in DCS |
-| **Electrical Failure (Generator)** | **Modeled** — generator can fail | Battery-only operations functional; avionics shed |
-| **Transmission Chip Light** | **Partially Modeled** — may appear with battle damage | Full progressive gearbox wear not modeled |
-| **Mast Bumping** | **Limited Modeling** — may or may not cause rotor separation in DCS | Student should respect G limits regardless |
-| **Ground Resonance** | **Limited Modeling** — may not be present in DCS | Student should know the procedure; it's a universal helicopter emergency |
-| **Dynamic Rollover** | **Partially Modeled** — aircraft can roll over on slopes | Severity and onset angle may differ from real aircraft |
-| **Engine Fire** | **Modeled** — fire can occur from battle damage | Fire detection and response may be simplified |
-
----
-
-### Instructor Notes — Module 7
-
-| Common Student Error | Correction |
+| Condition | Description |
 |---|---|
-| Hesitating on autorotation entry | "The collective goes down FIRST. Before you think. Before you diagnose. Down. You have 1–2 seconds before Nr decays below recovery." Drill this as a reflex. |
-| Pulling collective in settling with power | "I know it feels wrong, but pulling collective in a vortex is like pouring gas on a fire. Push the cyclic forward. Get airspeed. Then climb out." |
-| Applying right pedal during LTE (uncommanded right yaw) | "Left pedal — FULL if needed. And reduce collective. You're fighting torque, not the tail rotor. Reduce power, and the yaw stops." |
-| Not memorizing boldface items | "These are not guidelines. They are the exact words you say and the exact actions you take, in order, from memory. There is no time to look them up." Test verbally at the start of every flight. |
-| Over-relying on FADEC — not prepared for manual | "FADEC makes your life easy. FADEC failure makes your life very hard. Practice manual correlation: collective up, throttle up. Collective down, throttle down. It must be natural." |
-| Attempting to hover with hydraulic failure | "You will not hover without hydraulics. Plan a run-on landing from the start. 60 knots, shallow approach, accept the run." |
-| Not understanding "land as soon as possible" vs. "land as soon as practicable" | "ASAP = land at the nearest suitable spot; don't fly past a good field looking for a runway. Practicable = get to an airfield if one is close, but don't extend the flight unnecessarily." |
+| **One skid on the ground** | One skid is in contact while the other lifts — slope landing, crosswind, lateral drift |
+| **Increasing collective** | Adding collective while one skid is anchored creates a rolling moment |
+| **Lateral cyclic insufficient** | The cyclic cannot overcome the roll once a critical angle is passed (~5–8° depending on conditions) |
+
+#### Recognition
+
+| Indication | Description |
+|---|---|
+| **Lateral roll that does not respond to cyclic** | The aircraft continues rolling despite opposite cyclic input |
+| **One skid lifting while the other is planted** | Visible through peripheral vision or attitude indicator |
+| **Increasing roll rate** | Once past the critical angle, the roll accelerates |
+
+#### Recovery (if roll has not exceeded critical angle)
+
+> **1. COLLECTIVE — REDUCE (lower the lifting force)**
+> **2. CYCLIC — INTO the roll (attempt to level the aircraft)**
+> **3. Allow the aircraft to settle back onto both skids**
+
+**If past the critical angle:** The roll is unrecoverable. The aircraft will roll over. Collective reduction is still the primary action — it may reduce the violence of the rollover.
+
+**Prevention:**
+- Lift off and land vertically — avoid lateral drift during takeoff and landing
+- On slopes, use proper slope landing technique (uphill skid first on landing, downhill skid last on takeoff)
+- Be cautious in crosswinds during ground operations
+- Move the cyclic to the downslope side before raising the collective on a slope
 
 ---
 
-## Module 8: Approach & Landing
+### 8.10 Mast Bumping (Less Relevant to OH-58D)
+
+The OH-58D's bearingless rotor system does not have the classic flap stop / mast bumping vulnerability of teetering (semi-rigid) rotor systems like the UH-1H. However, the student should understand:
+
+- **Low-G / pushover risk:** Aggressive forward cyclic (pushing the nose down) in any helicopter can unload the rotor disc. In extreme cases, the blade can contact the mast or fuselage.
+- **Prevention:** Avoid abrupt forward cyclic inputs, particularly at low airspeed or during turbulence. Maintain positive G loading at all times.
+
+---
+
+### 8.11 In-Flight Fire
+
+#### Engine Fire
+
+| Step | Action |
+|---|---|
+| 1 | **Throttle — IDLE** |
+| 2 | **Fuel shutoff — CLOSED** |
+| 3 | **Enter autorotation** |
+| 4 | **Land immediately** |
+| 5 | **Evacuate after touchdown** |
+
+#### Electrical Fire
+
+| Step | Action |
+|---|---|
+| 1 | **Battery — OFF** |
+| 2 | **Generator — OFF** |
+| 3 | **Identify source** — smell, smoke location, circuit breaker popped |
+| 4 | **Ventilate** — open vents if available |
+| 5 | **If fire extinguishes** — Land as soon as possible |
+| 6 | **If fire persists** — Land immediately, evacuate |
+
+#### Cabin Fire (non-electrical)
+
+| Step | Action |
+|---|---|
+| 1 | **Attempt to extinguish** with onboard extinguisher if available |
+| 2 | **Land immediately** |
+| 3 | **Evacuate** |
+
+---
+
+### 8.12 DCS-Modeled vs. Conceptual Emergencies
+
+Not all emergencies are modeled in DCS. The student should know which can be practiced in-sim and which are conceptual knowledge.
+
+| Emergency | DCS Modeled? | Notes |
+|---|---|---|
+| **Engine failure** | ✅ Yes | Can simulate by rolling throttle to idle or using failure menu |
+| **Autorotation** | ✅ Yes | Modeled — fidelity varies; practice extensively |
+| **FADEC failure** | ⚠ Partially | May be triggered via failure menu; manual mode behavior may be simplified |
+| **Hydraulic failure** | ⚠ Partially | May be triggered via failure menu; control force modeling varies |
+| **VRS / Settling with power** | ✅ Yes | Usually well-modeled in DCS helicopter modules |
+| **LTE** | ⚠ Partially | May be modeled; test by hovering with left crosswind at high power |
+| **Ground resonance** | ⚠ Unknown | May or may not be modeled for the OH-58D; test empirically |
+| **Dynamic rollover** | ⚠ Partially | Some DCS modules model this; test on slopes |
+| **Mast bumping** | ❌ Unlikely | Not typically modeled for bearingless rotor systems |
+| **Transmission failure** | ⚠ Partially | May be available via failure menu |
+| **Generator failure** | ✅ Yes | Available via failure menu |
+| **Complete electrical failure** | ✅ Yes | Available via failure menu |
+| **Engine fire** | ⚠ Partially | Visual fire effects may be modeled; damage model varies |
+| **Electrical fire** | ❌ Unlikely | Typically not modeled with visual effects |
+
+> *To practice emergencies in DCS: use the in-game Mission Editor failure triggers, the in-flight failure menu, or the DCS "Random Failures" option. The student should practice each modeled emergency multiple times until the boldface procedures are automatic.*
+
+---
+
+### 8.13 Cockpit Switch Reference — Module 8
+
+| Control | Function | DCS Action |
+|---|---|---|
+| **Collective** | Full down for autorotation entry; cushion for low-altitude engine failure | Joystick axis |
+| **Throttle** | IDLE for autorotation practice; OFF for shutdown | Keyboard or axis |
+| **Fuel shutoff** | CLOSED for engine fire or fuel emergency | Mouse click |
+| **FADEC mode** | AUTO / MAN — switch during FADEC failure | Mouse click |
+| **Battery switch** | OFF for electrical fire | Mouse click |
+| **Generator switch** | OFF for electrical fire / generator failure | Mouse click |
+| **Rotor brake** | Apply during ground resonance shutdown procedure | Mouse click |
+| **Caution panel** | Monitor for all emergency indications | Visual reference |
+| **Nr tachometer** | Critical during autorotation and ground resonance decisions | Visual reference |
+| **TOT gauge** | Monitor during FADEC failure (manual mode) | Visual reference |
+| **Hydraulic pressure gauge** | Confirm hydraulic failure | Visual reference |
+
+---
+
+### 8.14 Instructor Notes — Module 8
+
+**Common student errors:**
+
+1. **Delayed collective drop on engine failure:** This is the #1 killer in real-world autorotations and the #1 error in simulation. Students hesitate, try to diagnose, or instinctively pull collective (wrong direction). Drill: "Engine failure = collective DOWN. No thinking. No diagnosing. Down." Practice the entry 50+ times until it is purely reflexive.
+2. **Flare timing — too early or too late:** Too early: the aircraft arrests forward speed but still has a high sink rate and no rotor energy left. Too late: the aircraft hits the ground at high speed. Drill: "Start the flare at 75–100 ft AGL. Watch the ground, not the altimeter."
+3. **Not looking for a landing area during the glide:** Students fixate on instruments during autorotation and forget to look outside for a landing zone. Drill: "Instruments tell you how you're doing. Your eyes tell you where you're going. Look outside."
+4. **VRS panic — pulling collective:** Students in VRS instinctively pull collective (more power), which worsens VRS by increasing the rate of descent. Drill: "VRS = nose down, get speed. Do NOT pull."
+5. **LTE — not reducing power:** Students in LTE try to fight the yaw with pedal alone. If pedal is insufficient, they must reduce collective to reduce torque. Drill: "Can't stop the yaw with pedal? Lower the collective."
+6. **Hydraulic failure — attempting to hover:** Students forget that hovering without hydraulics requires extreme force and attempt a normal approach to a hover. This almost always results in loss of control. Drill: "Hydraulic failure = run-on landing. Period. No hover."
+7. **Not declaring MAYDAY:** Students forget to make emergency radio calls, especially under stress. Drill: after the boldface items are complete and the aircraft is under control, the next action is always MAYDAY.
+8. **Ground resonance — hesitation:** Students feel the vibration and try to diagnose it instead of acting immediately. Ground resonance destroys aircraft in seconds. Drill: "Vibration on the ground = fly or shut down. NOW. No thinking."
+9. **Dynamic rollover — not reducing collective:** Students try to stop a roll with cyclic alone. Once the roll starts, collective must come down to remove the lifting force. Drill: "Rolling on the ground? Collective DOWN first, then cyclic."
+10. **FADEC manual mode — not monitoring TOT:** Students switch to manual and focus entirely on Nr, forgetting that FADEC is no longer protecting TOT. A TOT exceedance in manual mode can damage the engine. Drill: "In manual mode, you ARE the FADEC. Monitor Nr AND TOT AND torque."
+
+
+---
+
+## Module 9: Approach & Landing
 
 ### Learning Objectives
 
 Upon completion of this module, the student will be able to:
 
-1. Fly a standard VFR helicopter traffic pattern (downwind, base, final) at the appropriate altitude and airspeeds.
-2. Execute a normal decelerating approach from 60–80 KIAS to a hover over the intended landing point.
-3. Execute a steep approach appropriate for obstacle-rich or confined environments.
-4. Execute a shallow approach / running landing when power margins are limited.
-5. Transition from a stable hover to ground contact with controlled collective reduction.
-6. Execute a go-around / wave-off from any point during the approach.
-7. Apply crosswind correction techniques during approach and landing, with awareness of LTE risk.
-8. Describe slope landing technique and limitations (10° side slope, 5° nose-down).
-9. Describe confined area approach considerations (power check, approach angle, escape route).
+1. Fly a standard VFR traffic pattern (downwind, base, final) with correct altitudes, airspeeds, and radio calls.
+2. Perform a normal approach to a hover and landing.
+3. Perform a steep approach (for confined areas or obstacle clearance on short final).
+4. Perform a shallow approach (for low-obstacle environments or reduced power situations).
+5. Execute a go-around from any point in the approach.
+6. Perform a crosswind approach and landing.
+7. Perform a slope landing.
+8. Perform a confined area approach and landing.
+9. Perform a pinnacle approach and landing.
+10. Manage the deceleration from cruise to hover through the approach phase.
 
 ---
 
-### 8.1 VFR Helicopter Traffic Pattern
+### 9.1 VFR Traffic Pattern
 
-Helicopter traffic patterns differ from fixed-wing patterns. Helicopters typically fly a tighter, lower pattern and the approach terminates in a hover rather than a runway touchdown.
+The standard VFR helicopter traffic pattern is similar to fixed-wing but typically flown at lower altitudes and speeds.
 
 #### Pattern Geometry
 
-| Leg | Altitude (AGL) | Airspeed (KIAS) | Notes |
-|---|---|---|---|
-| **Upwind / Departure** | Climbing from hover to pattern altitude | 55–60 (Vy) → accelerate | After takeoff, climb on runway heading |
-| **Crosswind Turn** | ~300–500 ft AGL | 60–80 | Turn 90° from departure heading |
-| **Downwind** | 500 ft AGL (standard) | 80 | Parallel to landing direction, offset ~500–800 ft |
-| **Base Turn** | Begin descent on base | 70 → decelerating | Turn 90° toward landing area; begin descent |
-| **Final Approach** | Descending from ~300 ft to hover | 60 → decelerating to hover | Align with landing point; progressive deceleration |
+```
+                   Crosswind                              
+              ┌─────────────────┐                         
+              │                 │                         
+  Departure   │                 │   Base                  
+  (Upwind)    │                 │                         
+              │                 │                         
+  ────────────┘   Downwind      └────────────────         
+  ◄─── Runway ────────────────────────────►  Final        
+       13                                  Approach       
+```
 
-**Pattern Entry:**
-- From the traffic area: enter the downwind at pattern altitude (500 ft AGL) and pattern airspeed (80 KIAS).
-- From a departure: climb to pattern altitude, crosswind turn, then downwind.
-- Adjust pattern for wind: keep turns into the wind when possible.
+#### Pattern Parameters
 
-**Communications:**
-- Downwind: "[Callsign], downwind, [runway/landing area], [type approach]."
-- Base: "[Callsign], base."
-- Final: "[Callsign], final."
-
-> *⚠ Realism Divergence: Helicopter traffic patterns at Army airfields follow AR 95-1 and local ATSOP (Air Traffic Standing Operating Procedures), which may specify different altitudes and geometries than civilian or USAF patterns. DCS airfields may not have specific helicopter traffic patterns defined — the student should use 500 ft AGL and the standard geometry as a default, adjusting for the specific training scenario.*
-
----
-
-### 8.2 Normal Approach (Decelerating Approach to Hover)
-
-The normal approach is the standard technique for transitioning from forward flight to a hover over the intended landing point. It is a **constant angle, decelerating** approach.
-
-#### Procedure
-
-| Phase | Altitude (AGL) | Airspeed (KIAS) | Power (Torque) | Actions |
+| Leg | Altitude (AGL) | Airspeed | Distance from Runway | Notes |
 |---|---|---|---|---|
-| **Initial Approach** | 300–500 ft | 60–80 | Cruise power | Align with landing point; set approach angle (~8–10°) |
-| **Mid Approach** | 200–300 ft | 50–60 | Reducing | Progressive aft cyclic to decelerate; lower collective as airspeed decreases; maintain approach angle |
-| **Short Final** | 100–200 ft | 30–50 | Increasing (ETL fading) | Power increases as translational lift diminishes; pedal adjustments for torque changes |
-| **Transition to Hover** | 50–100 ft | 10–30 | Hover power approaching | Through ETL — expect transverse flow vibration, yaw left, pitch up |
-| **Hover** | 3–5 ft | 0 | Hover power | Stabilize over the intended landing point; verify position and altitude |
+| **Departure (Upwind)** | Climbing through pattern alt | 55–60 KIAS (Vy) | Over the runway | Straight ahead climb after takeoff |
+| **Crosswind** | At pattern altitude | 70–80 KIAS | Turning 90° from runway heading | Turn crosswind at ~300–500 ft AGL |
+| **Downwind** | Pattern altitude (500–700 ft AGL typical) | 80–90 KIAS | ~½ to 1 mile parallel to runway | Abeam the numbers, begin approach checks |
+| **Base** | Descending | 60–70 KIAS | Turning 90° toward runway | Begin descent, reduce speed |
+| **Final** | Descending to landing | 50–60 KIAS, decelerating | Aligned with runway/landing zone | Final approach, decelerate to hover |
 
-#### Approach Angle Reference
+> *Note: Pattern altitude and distance may vary by airfield and local procedures. In DCS, typical helicopter pattern altitude is 500–700 ft AGL. Check mission brief or published procedures.*
 
-A normal approach uses approximately an **8–10° glide path** — shallower than a steep approach but steeper than a running landing. The pilot can visualize this by placing the landing point approximately **1/3 up from the bottom of the windshield** and maintaining that visual angle throughout the approach.
+#### Radio Calls in the Pattern
 
-#### Key Technique Points
-
-1. **Collective and airspeed are coupled during the approach:** As you decelerate (aft cyclic), the aircraft wants to climb. Reduce collective to maintain the approach angle. As airspeed decreases below ETL, the power required increases — add collective to prevent sinking.
-2. **The ETL transition is the critical moment:** As the aircraft decelerates through 24–16 knots, translational lift diminishes. Power required jumps. The nose will pitch up. Vibration increases. The pilot must smoothly add collective and adjust cyclic/pedals.
-3. **Visual references are primary:** The pilot should aim for the landing point using the windshield and peripheral references, cross-checking instruments (airspeed, radar altimeter, torque) periodically.
-
-> *⚠ Realism Divergence: The visual cues and approach angle perception in DCS depend on monitor setup, FOV settings, and VR headset (if used). The approach technique is identical, but students may struggle with depth perception and altitude judgment in DCS. Encourage use of the radar altimeter as a cross-check during approach.*
+| Position | Call |
+|---|---|
+| **Entering downwind** | "[Tower], [Callsign], entering left/right downwind runway [number]" |
+| **Turning base** | "[Tower], [Callsign], turning base runway [number]" |
+| **Final** | "[Tower], [Callsign], final runway [number], [type] landing" |
+| **Go-around** | "[Tower], [Callsign], going around" |
+| **Clear of runway** | "[Ground], [Callsign], clear of runway [number]" |
 
 ---
 
-### 8.3 Steep Approach
+### 9.2 Approach — Abeam-to-Touchdown Sequence
 
-Used when obstacles (trees, buildings, wires) surround the landing area and a shallower approach angle would not clear them.
+The approach begins abeam the intended landing point on the downwind leg and ends at touchdown.
+
+#### Downwind Leg (Abeam the Numbers)
+
+| Step | Action |
+|---|---|
+| 1 | **Abeam the landing zone** — note position, begin pre-landing checks |
+| 2 | **Pre-landing checklist:** |
+|   | • Fuel — sufficient for go-around and re-pattern |
+|   | • Engine instruments — green |
+|   | • Landing light — as required |
+|   | • Radar altimeter — set decision height (e.g., 50 ft) |
+|   | • Harness — locked |
+| 3 | **Report:** "[Tower], [Callsign], abeam, downwind, runway [number]" (optional, per local procedure) |
+
+#### Base Turn
+
+| Step | Action |
+|---|---|
+| 1 | **Approximately 45° past the abeam point**, turn base |
+| 2 | **Begin descent** — reduce collective, maintain 60–70 KIAS |
+| 3 | **Announce:** "[Tower], [Callsign], turning base" |
+| 4 | **Rate of descent** — approximately 300–500 fpm |
+| 5 | **Configure for approach** — begin decelerating toward approach speed |
+
+#### Final Approach
+
+| Step | Action |
+|---|---|
+| 1 | **Roll wings level on final** — aligned with the landing zone |
+| 2 | **Airspeed** — 50–60 KIAS, decelerating |
+| 3 | **Glide path** — approximately 6–10° (normal approach angle) |
+| 4 | **Announce:** "[Tower], [Callsign], final runway [number], full stop" |
+| 5 | **Continue deceleration** — coordinated aft cyclic, collective as needed to manage descent rate |
+| 6 | **At ~200 ft AGL / ½ mile** — airspeed ~40–50 KIAS, descent rate decreasing |
+| 7 | **At ~100 ft AGL** — airspeed ~30–40 KIAS, clearly decelerating toward hover |
+| 8 | **At ~50 ft AGL** — approaching hover speed, near-hover power applied |
+| 9 | **Arrive at hover** over intended landing point at 3–5 ft skid height, zero forward speed |
+| 10 | **Hover and verify position** — clear of obstacles, stable |
+| 11 | **Land** — slowly lower collective, settle onto skids |
+
+---
+
+### 9.3 Normal Approach — Detailed
+
+The normal approach is a constant-angle, constant-deceleration approach terminating in a hover over the intended landing point.
+
+| Parameter | Value |
+|---|---|
+| **Approach angle** | ~6–10° (moderate) |
+| **Entry airspeed** | 60–70 KIAS (turning final) |
+| **Termination** | Hover at 3–5 ft over the landing point |
+| **Power** | Gradually increasing from reduced (descent) to hover power |
+| **Key skill** | Coordinating deceleration and descent so that the aircraft arrives at the landing point at hover speed and hover height simultaneously |
+
+**The approach is essentially managing two variables to arrive at the same point at the same time:**
+1. **Forward speed** → must reach zero (hover) at the landing point
+2. **Altitude** → must reach hover height (~3–5 ft) at the landing point
+
+If the student arrives at the landing point too fast, they overshoot (go-around). If too slow/high, they must hover forward or descend further. If too low, they risk dragging the skids before reaching the point.
+
+---
+
+### 9.4 Steep Approach
+
+Used when obstacles on the approach path require a steeper-than-normal glide angle, or when landing in a confined area surrounded by tall obstacles.
+
+| Parameter | Value |
+|---|---|
+| **Approach angle** | ~12–15° (steep) |
+| **Entry airspeed** | 50–60 KIAS (slower than normal) |
+| **Power** | Lower than normal approach initially (to descend steeply), increasing as speed decreases |
+| **Risk** | Higher sink rate near the ground if power management is poor; VRS risk if descending too steeply at low airspeed |
+| **Termination** | Hover or near-hover over the landing point |
 
 #### Procedure
 
-| Phase | Description | Notes |
-|---|---|---|
-| **Entry** | Align with landing point at 60 KIAS, approximately 300–500 ft AGL | Steeper than normal — approach angle ~15–20° |
-| **Deceleration** | Aft cyclic and collective reduction — faster deceleration rate than normal | The aircraft descends more steeply; rate of descent is higher |
-| **Power Management** | Power increases significantly during deceleration (translational lift fading faster due to steeper angle) | Watch for torque limits; settling with power risk increases |
-| **Transition to Hover** | Arrive at hover altitude over the landing point | May need high power to arrest descent; careful collective management |
-
-**Hazards:**
-- **Settling with power:** The steep approach combines low airspeed and high rate of descent — exactly the conditions for vortex ring state. Maintain airspeed above ETL as long as possible and avoid descent rates exceeding 300 FPM at airspeeds below ETL.
-- **Over-torque:** The power demand during a steep approach can exceed normal limits. Monitor torque.
-- **Visual illusion:** The steep approach angle can create the illusion of a faster-than-normal closure rate with the ground.
+| Step | Action |
+|---|---|
+| 1 | On final, establish a steeper nose-down attitude with reduced power |
+| 2 | Maintain 50–60 KIAS initially |
+| 3 | Decelerate progressively — the approach angle requires a more aggressive deceleration profile |
+| 4 | As speed decreases below 40 KIAS, increase collective to arrest the descent rate |
+| 5 | Transition smoothly to a hover over the landing point |
+| 6 | Do NOT let the descent rate exceed 500 fpm below 40 KIAS — VRS risk |
 
 ---
 
-### 8.4 Shallow Approach / Running Landing
+### 9.5 Shallow Approach
 
-Used when **power margins are limited** (high gross weight, high density altitude, hot day) and the aircraft cannot sustain a hover at the current conditions. The aircraft lands with forward speed and slides to a stop on the skids.
+Used when obstacles are minimal and a shallow angle is preferred (e.g., power-limited conditions, long clear approach path).
+
+| Parameter | Value |
+|---|---|
+| **Approach angle** | ~3–5° (shallow) |
+| **Entry airspeed** | 70–80 KIAS |
+| **Power** | Slightly reduced from cruise — gradual descent |
+| **Advantage** | Lower power required throughout; more gradual deceleration |
+| **Disadvantage** | Requires a long, clear approach path; longer time at low altitude |
+| **Termination** | Hover or run-on landing |
 
 #### Procedure
 
-| Phase | Description | Notes |
+| Step | Action |
+|---|---|
+| 1 | On final, maintain a shallow descent angle with moderate power |
+| 2 | Decelerate gradually — the shallow angle provides more distance to reduce speed |
+| 3 | Continue a long, gradual deceleration to the landing point |
+| 4 | Transition to a hover at the landing point, or continue to a run-on landing if power-limited |
+
+---
+
+### 9.6 Go-Around
+
+A go-around can be initiated from any point in the approach when the approach becomes unstabilized, the landing area is obstructed, or conditions become unsafe.
+
+#### Decision Criteria for Go-Around
+
+| Condition | Action |
+|---|---|
+| **Approach unstabilized** | Speed too high, too low, too fast, off-centerline — go around |
+| **Landing area obstructed** | Vehicle, aircraft, or personnel on the landing zone — go around |
+| **Wind shift** | Significant tailwind or crosswind exceeds comfort — go around |
+| **Instrument warning** | Engine or transmission caution during approach — go around and assess |
+| **"Doesn't feel right"** | Trust your instincts — go around |
+
+#### Procedure
+
+| Step | Action |
+|---|---|
+| 1 | **Collective — INCREASE** to arrest descent and begin climbing |
+| 2 | **Cyclic — FORWARD** to accelerate and transition away from the landing area |
+| 3 | **Announce:** "[Tower], [Callsign], going around" |
+| 4 | **Climb to pattern altitude** at Vy (55–60 KIAS) |
+| 5 | **Re-enter the pattern** as directed by ATC or by own judgment |
+| 6 | **Brief what went wrong** and correct on the next approach |
+
+**Golden rule:** A go-around is always the safe choice. There is never a penalty for going around. There is always a penalty for pressing a bad approach.
+
+---
+
+### 9.7 Crosswind Approach and Landing
+
+Crosswinds require the pilot to compensate for lateral drift throughout the approach and in the hover/landing.
+
+#### Techniques
+
+| Technique | Description | Use |
 |---|---|---|
-| **Entry** | Align with landing area at 60 KIAS, ~300 ft AGL | Approach angle ~3–5° (very shallow) |
-| **Deceleration** | Gentle deceleration — maintain airspeed higher than normal approach | Keep ETL until near the ground |
-| **Touchdown** | Contact the ground with **forward speed** (~20–30 KIAS) and a slight nose-up attitude | The aircraft will slide forward on the skids |
-| **Slide** | Skids slide on the surface; aircraft decelerates due to friction | Reduce collective progressively; do not slam collective down (may cause nose-down pitch) |
-| **Stop** | Aircraft comes to rest; verify stable | Ensure both skids are evenly on the ground before fully lowering collective |
+| **Crab method** | Point the nose into the wind (heading offset from course) during the approach, then align with the landing zone just before hover | Most common during the approach phase |
+| **Sideslip method** | Maintain runway alignment with cyclic while using opposite pedal to keep heading aligned | More common at hover and during the landing |
 
-**Surface Requirements:**
-- Flat, smooth, hard surface (runway, taxiway, or firm flat ground).
-- Debris-free — the skids will slide and kick up anything on the surface.
-- Adequate length to decelerate (~100–200 ft of clear area beyond touchdown point).
+#### Procedure
 
-> *⚠ Realism Divergence: Running landings in DCS depend on the ground handling model and skid friction. The DCS module may handle running landings differently than the real aircraft — the student should practice on a known flat surface (runway) before attempting on unprepared terrain.*
+| Step | Action |
+|---|---|
+| 1 | On approach, crab into the wind to maintain ground track toward the landing zone |
+| 2 | As speed decreases on short final, transition to a sideslip — use cyclic to counteract drift while maintaining heading with pedals |
+| 3 | In the hover, maintain position with cyclic (into the wind) and heading with pedals |
+| 4 | Land: slowly lower collective — be prepared for the aircraft to weathervane (yaw into the wind) as it settles |
+| 5 | Once on the ground, lower collective fully and neutralize controls |
 
----
-
-### 8.5 Hover to Landing (Touchdown from Hover)
-
-Once stabilized in a hover over the landing point, the final step is to place the aircraft on the ground.
-
-**Procedure:**
-1. From a stable hover at 3–5 ft skid height.
-2. Verify position is correct over the intended landing point.
-3. **Smoothly and progressively lower the collective** — the aircraft will descend.
-4. As the skids approach the ground, continue reducing collective.
-5. **Touchdown:** Feel the skids contact the ground.
-6. **After contact:** Verify the aircraft is stable (not on a slope, not rocking). Continue reducing collective to flat pitch.
-7. If the aircraft rocks or one skid is not firmly on the ground — **increase collective** to return to hover and reposition.
-
-**Hazard — Dynamic Rollover on Landing:**
-If one skid contacts the ground before the other (slope, uneven surface, crosswind), the aircraft can pivot around that skid. Reduce collective smoothly and ensure both skids make contact simultaneously when possible.
+**Crosswind limitations:** The OH-58D can generally handle crosswinds up to ~15–20 knots. Beyond this, consider using a more into-wind landing direction if available.
 
 ---
 
-### 8.6 Go-Around / Wave-Off
+### 9.8 Slope Landing
 
-A go-around is initiated at any point during the approach when the pilot determines the approach is unstable, the landing area is unsuitable, or safety of flight is compromised.
+Landing on a slope requires a modified technique to prevent dynamic rollover.
 
-**Decision Criteria:**
-- Approach is too fast, too slow, too steep, or too shallow to correct safely.
-- Landing area obstruction discovered (vehicle, personnel, debris).
-- Crosswind or tailwind exceeds comfort level.
-- Rate of descent is excessive and not arresting with normal correction.
-- Power demand approaching limits with insufficient margin.
-- Any uncertainty about the safety of the landing.
+#### Procedure — Landing Upslope
 
-**Procedure:**
+| Step | Action |
+|---|---|
+| 1 | Approach into the wind (if possible) toward the slope |
+| 2 | Establish a hover over the intended landing point |
+| 3 | Slowly lower collective to begin descending onto the slope |
+| 4 | **Uphill skid contacts first** — the aircraft begins to tilt toward the slope |
+| 5 | Apply cyclic toward the downhill side to keep the rotor disc level |
+| 6 | Continue lowering collective as the downhill skid settles |
+| 7 | Once both skids are on the ground, lower collective fully and hold cyclic to keep the aircraft from sliding |
 
-| Step | Action | Notes |
+**Critical caution:** If the aircraft begins to roll downhill and cyclic cannot arrest it, **immediately increase collective and fly away.** Do not fight a dynamic rollover on a slope — if the roll exceeds ~5–8°, it is unrecoverable.
+
+**Maximum slope for OH-58D:** Approximately 6–8° lateral slope (refer to -10 manual for exact limit). Beyond this, the landing is considered unsafe.
+
+---
+
+### 9.9 Confined Area Landing
+
+A confined area is any landing zone surrounded by obstacles that restrict approach and departure paths.
+
+#### Procedure
+
+| Step | Action |
+|---|---|
+| 1 | **Reconnaissance:** Overfly the area at altitude to assess size, obstacles, wind, surface condition, and approach/departure paths |
+| 2 | **Plan the approach:** Select the approach path with the best obstacle clearance, into the wind if possible |
+| 3 | **Steep approach:** Use a steep approach angle (12–15°) to clear obstacles on the approach path |
+| 4 | **Touchdown:** Terminate in a hover over the landing point, verify clear of obstacles, then land |
+| 5 | **Departure plan:** Before shutting down, note the departure path (may be different from the approach path) |
+
+**Key considerations:**
+- Recirculation: Rotor downwash in a confined area may recirculate, reducing lift. Expect higher power requirements.
+- Obstacles: Maintain awareness of rotor clearance from trees, walls, or structures. OH-58D rotor diameter is ~35 ft — need 17+ ft clearance on each side.
+- Wind turbulence: Obstacles can create turbulence and unpredictable wind patterns. Be prepared for unexpected gusts.
+
+---
+
+### 9.10 Pinnacle Landing
+
+A pinnacle is an elevated point (hilltop, ridgeline, rooftop) with limited landing area and exposure to wind from multiple directions.
+
+#### Procedure
+
+| Step | Action |
+|---|---|
+| 1 | **Reconnaissance:** Fly around the pinnacle to assess wind, landing surface, obstacles, and escape routes |
+| 2 | **Wind assessment:** Determine wind direction. Approach into the wind. On a pinnacle, wind may be unpredictable due to terrain effects. |
+| 3 | **Approach:** Fly a normal or steep approach to the pinnacle, maintaining escape routes (ability to go around) |
+| 4 | **High reconnaissance:** At hover height over the pinnacle, assess the landing surface and surrounding obstacles |
+| 5 | **Land** — slowly lower collective to settle onto the pinnacle |
+| 6 | **Caution:** Be prepared for rapid wind changes and updrafts/downdrafts near the pinnacle edge |
+
+**Specific risks:**
+- **Downdrafts on the lee side:** Wind flowing over a pinnacle creates downdrafts on the downwind side. Do not approach from the downwind side.
+- **Turbulence:** The pinnacle disrupts airflow, creating unpredictable gusts at the landing zone.
+- **Limited landing area:** Precision hover and landing skills are essential. Overshoot = fly off the pinnacle.
+- **Escape route:** Always maintain an escape route (ability to fly away) until committed to the landing.
+
+---
+
+### 9.11 Landing — Final Touchdown
+
+Regardless of the approach type, the final landing follows the same sequence:
+
+| Step | Action |
+|---|---|
+| 1 | **Stable hover** at 3–5 ft over the landing point |
+| 2 | **Verify position** — clear of obstacles, over the intended point |
+| 3 | **Slowly lower collective** — descend at ~1–2 ft/sec |
+| 4 | **Maintain heading with pedals** — the aircraft may yaw as collective changes |
+| 5 | **Maintain position with cyclic** — prevent drift as the aircraft settles |
+| 6 | **Ground contact** — feel the skids touch, then continue lowering collective to full down |
+| 7 | **On the ground** — collective full down, cyclic centered, pedals neutral |
+| 8 | **Confirm on the ground** — stable, no sliding, no tip-over tendency |
+
+---
+
+### 9.12 Cockpit Switch Reference — Module 9
+
+| Control | Function | DCS Action |
 |---|---|---|
-| 1 | **COLLECTIVE — INCREASE** (smoothly but assertively) | Apply power to arrest descent and begin climbing |
-| 2 | **CYCLIC — FORWARD** | Lower the nose to accelerate; gain airspeed to Vy (55–60 KIAS) |
-| 3 | **PEDALS — ADJUST** | Left pedal to compensate for increased torque |
-| 4 | **CLIMB** to pattern altitude | Re-enter the pattern for another approach |
-
-**Key Point:** The go-around decision must be made **early**. Attempting to salvage an unstable approach at low altitude and low airspeed consumes power, altitude, and options. The earlier the go-around is initiated, the more margin is available.
-
-> *⚠ Realism Divergence: Go-arounds in DCS are procedurally identical to the real aircraft. The timing and judgment are the same. The student should develop the habit of executing a go-around proactively rather than waiting until the situation deteriorates.*
-
----
-
-### 8.7 Crosswind Approach and Landing
-
-**Effects of Crosswind on Approach:**
-- The aircraft drifts in the direction of the wind; the pilot must crab (point the nose into the wind) or apply a sideslip (wing-low) correction to maintain ground track to the landing point.
-- On short final, as the aircraft decelerates through ETL, the crosswind effect becomes more pronounced because the tail rotor is working harder (more power = more torque = more anti-torque demand).
-- **LTE awareness:** If the crosswind comes from the left rear quadrant (relative to the aircraft on final), LTE risk increases during the hover phase.
-
-**Technique:**
-1. During the approach, crab into the wind to maintain ground track.
-2. On short final (~100 ft and below), transition from crab to a **sideslip** (use pedals to align the nose with the landing direction, use cyclic to correct for drift).
-3. In the hover, position the aircraft directly over the landing point and use pedal to maintain heading aligned with the wind or as desired.
-4. Touch down with the upwind skid slightly first if on a slope, or simultaneously on flat ground.
-
-**Crosswind Limits:**
-
-| Condition | Maximum Crosswind |
-|---|---|
-| **General Hover / Sideward Flight** | 35 knots |
-| **Practical Comfort for BQT Students** | 15–20 knots | Students should build crosswind experience progressively |
+| **Collective** | Power management throughout the approach; final descent to landing | Joystick axis |
+| **Cyclic** | Attitude/speed management; position hold in hover | Joystick X/Y |
+| **Pedals** | Heading management throughout approach and hover | Rudder pedals or keys |
+| **Radar altimeter** | AGL height reference during approach | Visual reference |
+| **Airspeed indicator** | Critical for approach speed management | Visual reference |
+| **VSI** | Rate of descent monitoring | Visual reference |
+| **Torque gauge** | Power monitoring — especially on steep approach and hover | Visual reference |
+| **Landing light** | Illuminate landing area (night/dusk) | Mouse click — ON/OFF |
 
 ---
 
-### 8.8 Slope Landing
+### 9.13 Instructor Notes — Module 9
 
-**Technique:**
-1. Approach the slope from the downhill side when possible (allows escape route if power is insufficient).
-2. Hover over the intended landing point.
-3. Slowly lower the collective to descend toward the slope.
-4. **Uphill skid contacts first** (for a side slope) — maintain collective pressure to keep the aircraft light on the uphill skid.
-5. Slowly continue lowering collective to place the downhill skid on the ground.
-6. Once both skids are on the ground and the aircraft is stable, lower collective to flat pitch.
+**Common student errors:**
 
-**Hazards:**
-- **Dynamic rollover:** If the uphill skid is fixed and the pilot continues to apply collective, the aircraft will roll over the uphill skid toward the downhill side. **If rollover begins, immediately reduce collective.**
-- **Slope exceeds limits:** If the cyclic reaches the stop (full deflection) before the downhill skid contacts the ground, the slope exceeds the aircraft's capability. Lift off and select a new landing site.
+1. **Arriving at the landing point too fast:** Students don't decelerate enough during the approach and overshoot the intended landing point. Drill: "Start decelerating abeam the numbers on downwind. If you're still at 60 KIAS on short final, go around."
+2. **Flaring too aggressively on final:** Students pull back hard on the cyclic on short final, causing the aircraft to balloon (gain altitude) and then sink rapidly. Drill: "Smooth, gradual deceleration — not an emergency stop."
+3. **Not going around when needed:** Students press a bad approach because they don't want to "waste" the pattern work. Drill: "A go-around is the correct maneuver when the approach is unstable. It's never wrong."
+4. **Losing altitude awareness on final:** Students focus on airspeed and position and let the aircraft descend below glide path. Use the radar altimeter as a cross-check. Drill: "If you're below 100 ft AGL and still above 50 KIAS, you're likely too low — go around."
+5. **Crosswind landing — not compensating for drift:** Students let the crosswind blow them off the landing zone during the final deceleration to hover. Drill: "Into the wind with cyclic, heading with pedals. Don't let it push you."
+6. **Slope landing — dynamic rollover:** Students don't apply enough downhill cyclic on a slope landing and the aircraft begins to roll. If this happens, immediate collective increase to fly away. Prevention: "Before you lower the collective on a slope, position the cyclic to the downhill side."
+7. **Confined area — no reconnaissance:** Students fly directly into a confined area without overflying it first. This is a setup for disaster — obstacles, poor surface, no departure path. Drill: "Always overfly first. If you can't see the entire landing zone and the departure path, don't land."
+8. **Pinnacle — approaching from the downwind side:** Students approach a pinnacle from the wrong direction and encounter severe downdrafts. Drill: "Wind goes OVER the pinnacle. You approach INTO the wind, from the UPWIND side."
+9. **Hard landing from too high:** Students misjudge hover height and lower collective from 10+ ft instead of 3–5 ft. The landing is hard and risks skid damage or dynamic rollover. Drill: "Use the radar altimeter or hover at a height where you can see the ground clearly. 3–5 feet is 'standing on a chair' height."
 
-**Slope Limits:**
-
-| Slope Direction | Maximum Angle |
-|---|---|
-| **Side Slope / Nose-Up** | 10° |
-| **Nose-Down** | 5° |
-
-**Slope Departure:**
-1. Increase collective to become light on the skids.
-2. Lift the downhill skid first (cyclic toward the uphill side).
-3. Once both skids are clear, establish a level hover.
-4. Depart normally.
 
 ---
 
-### 8.9 Confined Area Operations
-
-**Definition:** A confined area is a landing zone surrounded by obstacles (trees, buildings, terrain) that restrict the approach and departure path. Confined area operations require careful planning and execution.
-
-**Planning Considerations:**
-
-| Factor | Consideration |
-|---|---|
-| **Wind** | Determine wind direction and speed; plan approach into the wind |
-| **Obstacles** | Identify highest obstacles on the approach and departure paths; ensure obstacle clearance |
-| **Power Required** | Will the aircraft need to hover OGE to clear obstacles? Verify power margin |
-| **Escape Route** | Identify an escape route (direction to fly if a go-around is needed) before beginning the approach |
-| **Surface** | Assess landing surface (slope, softness, debris, water) |
-| **Sun/Shadows** | Determine if the approach will be into the sun (visibility concerns) |
-
-**Procedure:**
-1. **Reconnaissance orbit:** Fly over or around the confined area at a safe altitude to assess wind, obstacles, surface, and plan the approach path.
-2. **Power check:** Before descending into the confined area, verify that the aircraft has adequate power for an OGE hover and go-around.
-3. **Approach:** Fly the planned approach path, clearing all obstacles by a safe margin.
-4. **Landing:** Terminate in a hover over the landing point, verify position, and descend to the ground.
-5. **Departure plan:** Before shutting down (if applicable), mentally rehearse the departure path and escape route.
-
-> *⚠ Realism Divergence: Confined area operations in DCS are limited by the map's terrain and object modeling. Some obstacles may not be physically modeled (trees may be penetrable, wires may not exist). The student should treat all visible obstacles as real and practice proper confined area procedures regardless of whether DCS enforces them.*
-
----
-
-### 8.10 DCS-Specific Landing Notes
-
-| Topic | DCS Behavior | Real Aircraft |
-|---|---|---|
-| **Autostart** | DCS provides an autostart function that completes the startup sequence automatically. For reference only — the student must learn manual start. Autostart may not properly configure all systems for flight. | N/A |
-| **Skid-Ground Interaction** | DCS models skid contact and ground friction. The aircraft will slide on some surfaces and grip on others. Ground handling may feel different than the real aircraft, especially on slopes. | Real skids have specific friction coefficients and can dig into soft ground |
-| **Ground Effect** | DCS models ground effect, but the boundary and intensity may differ from the real aircraft. The student should use the power check as the primary reference for performance capability. | Real ground effect is well-defined and consistent |
-| **Approach Angle Judgment** | Depth perception in DCS (especially on 2D monitors) can make approach angle judgment difficult. Recommend using radar altimeter and VSI as cross-checks. | Real visual references (depth perception, peripheral vision) are available |
-
----
-
-### Instructor Notes — Module 8
-
-| Common Student Error | Correction |
-|---|---|
-| Approach too fast — overshooting the landing point | "Start decelerating earlier. Watch the landing point in the windshield — if it's moving down, you're going too fast. If it's moving up, you're going too slow." |
-| Not adding power during ETL transition on approach | "As you slow through ETL, the aircraft sinks. If you don't add collective, you'll hit the ground before you're ready. Anticipate the power increase." |
-| Go-around decision too late | "If in doubt — go around. Every approach you fly is a decision loop: 'Can I land from here?' If the answer is 'maybe,' the answer is 'go around.'" |
-| Slamming collective down on touchdown | "Lower the collective smoothly. The aircraft is still a helicopter on the ground — abrupt inputs cause the fuselage to rock and the rotor disc to tilt. Smooth, all the way to flat pitch." |
-| Ignoring crosswind effects on approach | "Wind doesn't stop because you're landing. As you slow down, the crosswind has more effect. Plan for it: where is the wind? How will it push you? When will LTE become a factor?" |
-| Approaching a slope too aggressively | "Slope landings are slow and deliberate. Place the uphill skid first, then slowly lower to the downhill. If the cyclic hits the stop, the slope is too steep — go around." |
-| Not doing a recon orbit for confined areas | "You never fly into a confined area blind. Orbit first: wind, obstacles, surface, escape route. Then approach." |
-
----
-
-## Module 9: Shutdown
+## Module 10: Shutdown & Post-Flight
 
 ### Learning Objectives
 
 Upon completion of this module, the student will be able to:
 
-1. Hover taxi the aircraft to a designated parking spot and set down safely.
-2. Execute a complete shutdown from engine running to cold-and-dark using the proper switch-by-switch procedure.
-3. State the correct throttle sequencing (FLY → IDLE → OFF) and the monitoring required during engine spool-down.
-4. Identify the correct avionics and electrical power-down sequence.
-5. Describe rotor brake usage (if applicable) during shutdown.
+1. Perform a complete engine shutdown sequence from a normal post-landing condition.
+2. Cool the engine properly before shutdown to prevent thermal damage.
+3. Secure all cockpit systems in the correct order.
+4. Apply the rotor brake safely and understand rotor brake limitations.
+5. Achieve a full cold-and-dark cockpit state.
+6. Perform a post-flight inspection (conceptual / DCS external view).
+7. Understand the correct sequencing of shutdown steps to prevent damage.
 
 ---
 
-### 9.1 Post-Landing / Hover to Parking
+### 10.1 Post-Landing — Before Shutdown
 
-After completing the last approach and landing, the aircraft must be repositioned to a designated parking spot.
+After landing and confirming the aircraft is stable on the ground:
 
 | Step | Action | Notes |
 |---|---|---|
-| 1 | From the landing point, lift to a 3-ft hover | Standard hover pickup |
-| 2 | Hover taxi to the designated parking spot | < 20 knots, < 3 ft skid height |
-| 3 | Position the aircraft over the parking spot | Align with parking markings or ground crew signals |
-| 4 | Slowly lower collective to set down | Ensure both skids contact the ground simultaneously |
-| 5 | Once firmly on the ground, lower collective to **flat pitch** | Aircraft stable on skids; no tendency to rock or slide |
-| 6 | Verify stable | Aircraft is not on a slope, skids are firmly planted |
+| 1 | **Confirm on the ground** — collective full down, stable on skids | No sliding, no rocking |
+| 2 | **Parking position** — confirm you are in an authorized parking area | Clear of taxiways, other aircraft, and obstacles |
+| 3 | **Radio call** | "[Ground], [Callsign], [location], shutting down" |
+| 4 | **Transponder** — STBY | No longer needed; set to standby |
+| 5 | **Landing/search light** — OFF | |
+| 6 | **Radar altimeter** — OFF (or leave for shutdown sequence) | |
 
 ---
 
-### 9.2 Shutdown Procedure — Full Switch-by-Switch
+### 10.2 Engine Cooldown
 
-#### Phase 1: Engine Cooldown and Throttle Sequencing
-
-| Step | Switch / Action | Location | Expected Result |
-|---|---|---|---|
-| 1 | **Throttle — IDLE** (rotate from FLY to IDLE detent) | Collective grip — twist throttle | Nr decreases from 100% to ground idle (~62–65%); engine at ground idle; TOT decreases |
-| 2 | Wait **2 minutes** at IDLE for engine cooldown | — | Allow TOT to stabilize and turbine to cool; prevents thermal shock to hot-section components |
-| 3 | Monitor **TOT** during cooldown | Instrument panel — TOT gauge | TOT should decrease steadily; if TOT remains elevated, continue cooling |
-| 4 | **Throttle — OFF** (rotate to cutoff) | Collective grip — twist throttle past IDLE to OFF | Fuel supply cut; engine begins to spool down |
-| 5 | Monitor **N1** decreasing | Instrument panel — N1 gauge | N1 should decrease smoothly to 0% |
-| 6 | Monitor **Nr** decreasing | Instrument panel — Nr gauge | Rotor RPM decreases as engine spools down; rotor coasts to a stop |
-| 7 | Monitor **TOT** decreasing | Instrument panel — TOT gauge | TOT should decrease to ambient; any TOT rise during spool-down could indicate a fuel leak |
-
-**Engine Cooldown Time:**
-
-| Condition | Recommended Cooldown | Rationale |
-|---|---|---|
-| **Normal (post-cruise)** | 2 minutes at IDLE | Standard thermal management |
-| **Post-high-power (post-hover, post-climb)** | 3–5 minutes at IDLE | Hot-section temperatures are higher; more cooling needed |
-| **Emergency shutdown** | No cooldown — throttle OFF immediately | Engine damage is accepted to address the emergency |
-
-> *⚠ Realism Divergence: In the real OH-58D, the 2-minute cooldown at idle is a mandatory maintenance requirement to prevent thermal shock to the turbine blades and hot-section components. Skipping cooldown can cause thermal stress cracking. DCS does not model turbine thermal damage from shutdown without cooldown, but the student should develop the habit of performing the cooldown for procedural discipline.*
-
-#### Phase 2: Avionics and Electrical Power-Down
-
-| Step | Switch / Action | Location | Expected Result |
-|---|---|---|---|
-| 8 | **MMS — OFF** | Left console or overhead — MMS power | MMS sensor ball powers down |
-| 9 | **Radios — OFF** | Right console — Radio panels | VHF/FM, UHF, transponder powered down |
-| 10 | **AHRS/GPS — OFF** | Right console — AHRS/GPS controller | Navigation system powered down |
-| 11 | **MFD — OFF** | Overhead console — Avionics section or MFD power switch | MFD display blanks |
-| 12 | **Transponder — OFF** (if not already with radios) | Right console — Transponder panel | Transponder stops transmitting |
-
-#### Phase 3: Electrical System Shutdown
-
-| Step | Switch / Action | Location | Expected Result |
-|---|---|---|---|
-| 13 | **GENERATOR — OFF** | Overhead console — Electrical panel | Generator disconnected from bus; aircraft on battery power only |
-| 14 | **INVERTER — OFF** | Overhead console — Electrical panel | AC bus de-energized; attitude indicator and heading indicator spin down |
-| 15 | **FUEL BOOST PUMP — OFF** | Overhead console — Fuel panel | Fuel boost pump stops; FUEL BOOST caution light illuminates (expected) |
-| 16 | **BATTERY — OFF** | Overhead console — Electrical panel | All electrical power removed; cockpit goes dark; caution lights extinguish |
-
-#### Phase 4: Rotor Stop and Securing
+Before shutting down the engine, the pilot must allow the turbine to cool to prevent thermal shock to the hot section components.
 
 | Step | Action | Notes |
 |---|---|---|
-| 17 | Monitor rotor coasting to a stop | Rotor will coast from 100% to 0% over 1–3 minutes depending on wind and blade condition |
-| 18 | **ROTOR BRAKE — APPLY** (if equipped and desired) | Rotor brake slows rotor to stop more quickly; apply only below ~40% Nr to avoid damage |
-| 19 | When rotor is fully stopped, verify all switches OFF | Final cockpit scan — all switches in the OFF position |
-| 20 | Aircraft is **cold and dark** | Shutdown complete |
+| 1 | **Maintain Nr at 100% (ground idle)** | Do not roll the throttle to idle prematurely |
+| 2 | **Allow engine to idle for 2–3 minutes minimum** | TOT should decrease to a stabilized idle temperature |
+| 3 | **Monitor TOT** — should be well below limits and stable | If TOT is still elevated (e.g., from a high-power approach), extend the cooldown |
+| 4 | **Purpose:** Gradual cooling prevents thermal stress on turbine blades and hot section components | Shutting down a hot engine abruptly can cause warping and shorten engine life |
 
-**Rotor Brake Usage:**
-
-| Condition | Rotor Brake Action |
-|---|---|
-| **Normal Shutdown** | Optional — may apply below 40% Nr to expedite rotor stop |
-| **High-Wind Shutdown** | Recommended — rotor can windmill in strong wind, maintaining rotation indefinitely |
-| **Emergency** | Per emergency procedure (e.g., ground resonance: apply rotor brake with shutdown if Nr is too low to fly) |
-
-> *⚠ Realism Divergence: The real OH-58D rotor brake must not be applied above approximately 40% Nr to avoid overheating the brake and damaging the brake disc. DCS may not enforce this restriction. The student should apply the rotor brake only after Nr has decayed significantly (below 40%).*
+> *⚠ Realism Divergence: DCS does not model long-term engine wear from improper cooldown. However, the student should practice proper cooldown procedure for procedural discipline and habit formation. In DCS, a 1–2 minute idle period before shutdown is sufficient to demonstrate the procedure.*
 
 ---
 
-### 9.3 Complete Shutdown Summary (Quick Reference)
+### 10.3 Shutdown Sequence — Step by Step
 
-| # | Action | Location |
+After the engine cooldown period:
+
+| Step | Action | Expected Result |
 |---|---|---|
-| 1 | Throttle → IDLE | Collective grip |
-| 2 | Wait 2 min (cooldown) | — |
-| 3 | Throttle → OFF | Collective grip |
-| 4 | MMS → OFF | Left console / overhead |
-| 5 | Radios → OFF | Right console |
-| 6 | AHRS/GPS → OFF | Right console |
-| 7 | MFD → OFF | Overhead / MFD switch |
-| 8 | Generator → OFF | Overhead console |
-| 9 | Inverter → OFF | Overhead console |
-| 10 | Fuel Boost Pump → OFF | Overhead console |
-| 11 | Battery → OFF | Overhead console |
-| 12 | Rotor Brake → APPLY (below 40% Nr) | As equipped |
-| 13 | Verify all switches OFF | Full cockpit scan |
+| 1 | **Avionics / MFD** — OFF | MFD screen goes dark. Navigation and display systems powered down. |
+| 2 | **Radios** — OFF (ARC-164 and ARC-201) | Radio control heads powered down. |
+| 3 | **Position lights** — OFF | External navigation lights off. |
+| 4 | **Anti-collision light** — OFF | Strobe/beacon off. (Turn off AFTER rotors stop if following strict procedure, or at pilot discretion during shutdown.) |
+| 5 | **Throttle** — IDLE (roll to idle detent) | Engine power reduces. Nr begins to decrease. |
+| 6 | **Throttle** — OFF (full cutoff) | Fuel flow ceases. Engine spools down. Nr decreases. |
+| 7 | **Monitor Nr decay** | Nr decreases as the rotor system decelerates. Do not apply rotor brake until Nr is below a safe threshold (see 10.4). |
+| 8 | **Fuel shutoff** — CLOSED | Ensures no fuel reaches the engine. Safety measure. |
+| 9 | **Generator** — OFF | Generator disconnected from electrical bus. Aircraft on battery only. |
+| 10 | **Inverter** — OFF (if separate switch) | AC power removed. |
+| 11 | **Rotor brake** — APPLY when Nr is below ~40% | See 10.4 for details. Rotor decelerates to a stop. |
+| 12 | **Wait for rotors to stop completely** | Rotors coast to a stop with the rotor brake applied. |
+| 13 | **Battery** — OFF | All electrical power removed. Cockpit goes dark. |
+| 14 | **Aircraft is now cold and dark** | Shutdown complete. |
 
 ---
 
-### Instructor Notes — Module 9
+### 10.4 Rotor Brake
 
-| Common Student Error | Correction |
+The rotor brake is used to decelerate and stop the rotor system after the engine is shut down.
+
+| Parameter | Detail |
 |---|---|
-| Skipping the engine cooldown | "Two minutes at idle. Every time. The turbine is at 700°C+ after hover work. Slamming it to OFF is like dumping ice water on a hot pan — thermal shock cracks metal. Build the habit now." |
-| Shutting off battery before generator | "Generator off before battery. If you shut battery off first with the generator still running, you can spike voltage on the bus and damage avionics. Generator → Inverter → Fuel Boost → Battery." |
-| Not monitoring engine spool-down | "Watch N1 and TOT as the engine spools down. N1 should decrease smoothly. TOT should decrease. If TOT rises during spool-down, something is wrong (possible fuel leak into hot section). Call it out." |
-| Applying rotor brake too early (high Nr) | "Rotor brake below 40% Nr only. Above that, you'll overheat the brake disc. Just let it coast." |
-| Leaving avionics on during spool-down | "Avionics off before generator off. If you kill the generator with avionics still powered, they switch to battery and drain it unnecessarily. Clean sequence: avionics → generator → inverter → fuel boost → battery." |
-| Not doing a final cockpit scan | "Before you walk away from the aircraft, every switch should be OFF. One missed switch (fuel boost left on, for example) can drain the battery overnight or create a hazard." |
+| **Purpose** | Stops the rotor from windmilling after engine shutdown |
+| **When to apply** | Only after Nr has decayed below ~40% (consult -10 manual for exact figure) |
+| **Never apply at high Nr** | Applying the rotor brake at high rotor RPM can overheat and damage the brake, or cause a sudden rotor deceleration that stresses the rotor system |
+| **Release if necessary** | If the brake overheats (smell, smoke), release and allow the rotor to slow naturally |
+
+#### Procedure
+
+| Step | Action |
+|---|---|
+| 1 | After engine shutdown, monitor Nr on the tachometer |
+| 2 | When Nr drops below ~40%, apply the rotor brake |
+| 3 | Nr will decelerate to zero. The rotors stop. |
+| 4 | After rotors stop, you may release the brake or leave it applied (aircraft-specific SOP) |
+
+> *⚠ Realism Divergence: DCS rotor brake behavior may be simplified. In some modules, the rotor brake stops the rotor almost instantly regardless of Nr. The student should still practice correct procedure: wait for Nr to decay before applying the brake.*
 
 ---
 
-## Appendix: Master Limitations Summary
+### 10.5 Cold-and-Dark State Verification
 
-| Parameter | Normal | Caution | Warning / Limit |
+After shutdown, verify the aircraft is fully secured:
+
+| System | Status |
+|---|---|
+| **Battery** | OFF |
+| **Generator** | OFF |
+| **Engine** | Shut down, Nr = 0 |
+| **Fuel shutoff** | CLOSED |
+| **Throttle** | OFF / Cutoff |
+| **All avionics** | OFF |
+| **Radios** | OFF |
+| **MFD** | OFF |
+| **Lighting** | All OFF |
+| **Transponder** | OFF |
+| **Radar altimeter** | OFF |
+| **Caution panel** | Dark (no power) |
+| **Rotor brake** | Applied or released per SOP |
+| **Collective** | Full down |
+| **Cyclic** | Centered or secured |
+| **Pedals** | Neutral |
+
+---
+
+### 10.6 Post-Flight Inspection (Conceptual)
+
+In real-world operations, the pilot performs a post-flight walkaround after shutdown. In DCS, this is simulated by external view inspection:
+
+| Area | Check |
+|---|---|
+| **Rotor blades** | No visible damage (DCS: visual check from external view) |
+| **Tail rotor** | Intact, no damage |
+| **Engine exhaust** | No visible fire or damage |
+| **Skids** | No visible damage from hard landing or slope operations |
+| **Airframe** | No combat damage, bird strikes, or other visible issues |
+| **Fuel** | Note remaining fuel for next mission or maintenance |
+
+---
+
+### 10.7 Cockpit Switch Reference — Module 10
+
+| Switch/Control | Location | Function | DCS Action |
 |---|---|---|---|
-| **Nr (Power On)** | 98–100% | < 98% or > 100% | < 90% (critical low) / > 107% (overspeed) |
-| **Nr (Power Off)** | 90–107% | — | < 90% / > 107% |
-| **Torque (Q)** | ≤ 100% | 100–110% (10 sec transient) | > 110% |
-| **TOT (Continuous)** | < 737°C | 737–810°C | > 810°C (transient) / > 843°C (start) |
-| **N1 (Gas Producer)** | ≤ 100% | — | > 104% (overspeed) |
-| **Oil Pressure** | 90–130 PSI | 60–90 PSI | < 60 PSI |
-| **Oil Temperature** | 70–107°C | — | > 107°C |
-| **Trans Oil Pressure** | 30–60 PSI | < 30 PSI | XMSN OIL PRESS caution |
-| **Trans Oil Temperature** | < 110°C | 110–120°C | > 120°C |
-| **Fuel Quantity** | > 83 lbs | — | ≤ 83 lbs (LOW FUEL caution) |
-| **G-Limits** | +1.0 to +2.0 G | > +2.0 G | +2.5 G max / −0.5 G min |
-| **Vne (Doors On)** | ≤ 120 KIAS | — | > 120 KIAS |
-| **Vne (Doors Off)** | ≤ 110 KIAS | — | > 110 KIAS |
-| **Max Gross Weight** | ≤ 5,500 lbs | — | > 5,500 lbs |
-| **Slope (Side/Nose-Up)** | ≤ 10° | — | > 10° |
-| **Slope (Nose-Down)** | ≤ 5° | — | > 5° |
-| **Crosswind (Hover)** | ≤ 35 kts | > 20 kts (LTE awareness) | > 35 kts |
+| **MFD power** | MFD bezel / avionics panel | Power off the MFD | Mouse click |
+| **ARC-164 mode** | UHF control head | OFF | Mouse click |
+| **ARC-201 mode** | FM control head | OFF | Mouse click |
+| **Position lights** | Lighting panel | OFF | Mouse click |
+| **Anti-collision light** | Lighting panel | OFF | Mouse click |
+| **Throttle** | Collective — twist grip | IDLE → OFF (cutoff) | Keyboard or axis |
+| **Fuel shutoff** | Engine / overhead panel | CLOSED | Mouse click |
+| **Generator** | Electrical panel | OFF | Mouse click |
+| **Rotor brake** | Overhead console | APPLY / RELEASE | Mouse click |
+| **Battery** | Electrical panel | OFF | Mouse click |
+| **Transponder** | Transponder panel | OFF | Mouse click |
+| **Radar altimeter** | Instrument panel | OFF | Mouse click |
 
 ---
 
-## Appendix: V-Speed Reference
+### 10.8 Instructor Notes — Module 10
 
-| V-Speed | Value (KIAS) | Purpose |
+**Common student errors:**
+
+1. **Skipping the engine cooldown:** Students shut down immediately after landing (rolling the throttle to off while TOT is still high). Drill: "Idle for 2 minutes after landing before shutdown. Let the turbine cool."
+2. **Wrong shutdown order:** Students turn off the battery before shutting down the engine, or turn off the generator before the engine is shut down. Drill: "Engine first, then electrical. Think of it as the reverse of startup."
+3. **Applying rotor brake at high Nr:** Students apply the rotor brake immediately after engine shutdown while Nr is still at 80%+. This damages the brake. Drill: "Wait for Nr below 40% before touching the rotor brake."
+4. **Forgetting to close fuel shutoff:** Students shut down the engine but leave the fuel shutoff open. This is a safety hazard (fuel leaks). Drill: "Fuel shutoff CLOSED is part of every shutdown."
+5. **Not making the shutdown radio call:** Students shut down without informing ATC. Drill: "You checked in with ground, you check out with ground."
+6. **Leaving lights on after battery off:** Students wonder why the anti-collision light is still on after they turned the battery off (it's not — in DCS, external models may still show lights). Teach that the shutdown sequence turns off lights before battery for procedural completeness, even if DCS doesn't always reflect it.
+7. **Not verifying cold-and-dark:** Students rush through shutdown and miss switches. Teach: "After shutdown, do a full panel scan — left to right, bottom to top. Every switch should be in the OFF position. If something is still illuminated, you missed a step."
+
+
+---
+
+## Appendix A: DCS Key Binds Reference
+
+> *All key binds listed are DCS defaults for the OH-58D Kiowa Warrior module. Key binds may vary by DCS version, user configuration, or mod version. Always verify in the DCS Controls settings (Options → Controls → OH-58D).*
+
+### A.1 Flight Controls
+
+| Function | Default Key/Axis | Notes |
 |---|---|---|
-| **Vy (Best Rate of Climb)** | 55–60 | Maximum altitude gain per unit time |
-| **Vx (Best Angle of Climb)** | 45–50 | Maximum altitude gain per unit distance |
-| **Cruise** | 80–100 | Normal cross-country speed; best range ~90–100 |
-| **Vne (Doors On)** | 120 | Maximum airspeed — structural/retreating blade stall |
-| **Vne (Doors Off)** | 110 | Reduced for increased drag |
-| **Autorotation (Min RoD)** | 60 | Minimum rate of descent; best for close landing sites |
-| **Autorotation (Max Glide)** | 80 | Maximum distance; best for distant landing sites |
-| **ETL** | 16–24 | Effective Translational Lift — efficiency increases through this range |
-| **Hover Taxi Max** | 20 | Maximum hover taxi speed |
-| **Sideward / Rearward Max** | 35 | Structural limit for lateral and rearward flight |
+| **Cyclic pitch (fore/aft)** | Joystick Y-axis | Forward = nose down, Back = nose up |
+| **Cyclic roll (left/right)** | Joystick X-axis | Left = roll left, Right = roll right |
+| **Collective (up/down)** | Throttle axis or `PgUp`/`PgDn` | Up = more pitch/power, Down = less |
+| **Pedals (anti-torque)** | Rudder axis or `Z`/`X` | `Z` = left pedal, `X` = right pedal |
+| **Throttle (twist grip)** | Separate axis or `PgUp`/`PgDn` with modifier | Idle / Fly / Off detents |
+| **Force trim release** | Joystick button (configurable) | Hold to move cyclic, release to set new trim |
+| **Trim reset** | `LCtrl + T` | Resets trim to neutral (verify in module) |
+
+### A.2 Engine & Systems
+
+| Function | Default Key | Notes |
+|---|---|---|
+| **Engine start** | `Home` | Initiates FADEC auto-start sequence |
+| **Engine stop** | `End` | Cuts throttle / shuts down engine |
+| **Throttle — Idle** | `RShift + End` or axis | Rolls throttle to idle detent |
+| **Throttle — Cutoff (Off)** | `RShift + End` (hold/full back) | Full cutoff — engine shutdown |
+| **Rotor brake — Toggle** | `LCtrl + R` | Engages/disengages rotor brake (verify in module) |
+| **FADEC mode — Toggle** | Module-specific | AUTO ↔ MAN toggle (check in controls) |
+| **Battery — Toggle** | `LShift + L` | Battery ON/OFF (verify in module) |
+| **Generator — Toggle** | Module-specific | Generator ON/OFF |
+| **Fuel shutoff — Toggle** | Module-specific | Open/Close fuel to engine |
+
+### A.3 Weapons & Combat (if applicable)
+
+| Function | Default Key | Notes |
+|---|---|---|
+| **Master Arm — Toggle** | Module-specific | Arms/disarms weapons |
+| **Weapon release / Fire** | `Space` or joystick trigger | Fires selected weapon |
+| **Weapon select — Cycle** | `D` | Cycles through available weapons |
+
+> *Note: The OH-58D in DCS may be equipped with the Mast Mounted Sight (MMS), .50 cal gun pod, Hellfire missiles, and/or rocket pods depending on the module version and mission loadout. Weapon-specific key binds are mission-dependent.*
+
+### A.4 Radios & Communications
+
+| Function | Default Key | Notes |
+|---|---|---|
+| **Easy Communication menu** | `\` (backslash) | Opens the simplified radio menu (if Easy Comm is enabled) |
+| **UHF radio transmit** | `RAlt + \` | Transmit on ARC-164 (UHF) |
+| **VHF/FM radio transmit** | `RCtrl + \` | Transmit on ARC-201 (FM) |
+| **ICS transmit** | Joystick button (1st detent) | Crew intercom — configurable |
+| **Radio transmit (selected)** | Joystick button (2nd detent) | Transmits on the currently selected radio |
+
+### A.5 Navigation & Instruments
+
+| Function | Default Key | Notes |
+|---|---|---|
+| **MFD — Page cycle** | Module-specific OSB | Cycle through NAV/ENG/WPN/SYS/FLT pages |
+| **MFD — OSB buttons** | Mouse click on bezel | Context-dependent — select options on MFD |
+| **Altimeter — Set QNH** | `LShift + RShift + PgUp/PgDn` or mouse scroll | Adjusts Kollsman window |
+| **Radar altimeter — ON/OFF** | Module-specific | Toggle radar altimeter power |
+| **TACAN channel** | Module-specific | Adjust TACAN channel (mouse scroll in cockpit) |
+| **Transponder — Mode** | Module-specific | Cycle transponder modes |
+
+### A.6 Lighting
+
+| Function | Default Key | Notes |
+|---|---|---|
+| **Position lights — Cycle** | `RCtrl + L` | OFF / DIM / BRT |
+| **Anti-collision light** | `LShift + RCtrl + L` | ON/OFF (verify in module) |
+| **Landing/search light** | `LShift + L` | ON/OFF (verify in module) |
+| **Instrument panel lights** | `LCtrl + L` | Brightness adjustment (or mouse in cockpit) |
+| **Cockpit flood light** | Module-specific | Interior lighting for night operations |
+| **NVG-compatible mode** | Module-specific | Green-filtered lighting for NVG operations |
+
+### A.7 Views & Camera
+
+| Function | Default Key | Notes |
+|---|---|---|
+| **Cockpit view** | `F1` | Internal cockpit view |
+| **External view** | `F2` | Chase camera |
+| **Fly-by view** | `F3` | External tracking view |
+| **Padlock — Nearest enemy** | `F6` or `;` | Locks view to nearest threat |
+| **Look around** | Mouse + `RAlt` or TrackIR/VR | Free look in cockpit |
+| **Snap view — Front** | `Numpad 5` | Centered forward view |
+| **Snap view — Left** | `Numpad 4` | Quick look left |
+| **Snap view — Right** | `Numpad 6` | Quick look right |
+| **Snap view — Up** | `Numpad 8` | Quick look up (for overhead panel) |
+| **Snap view — Down** | `Numpad 2` | Quick look down (for center console) |
+| **Zoom in** | `Numpad *` | Cockpit zoom in |
+| **Zoom out** | `Numpad /` | Cockpit zoom out |
+
+### A.8 General / Miscellaneous
+
+| Function | Default Key | Notes |
+|---|---|---|
+| **Pause** | `Pause/Break` | Pause the simulation |
+| **Time acceleration** | `LCtrl + Z` | Speed up time (mission editor / single player) |
+| **Time deceleration** | `LShift + Z` | Slow down time |
+| **Normal time** | `Z` | Reset to 1x time |
+| **Active pause** | `LShift + Pause` | Pause but allow cockpit interaction |
+| **Mission briefing** | `B` | Opens mission briefing in-flight |
+| **Kneeboard** | `K` or `RShift + K` | Opens kneeboard (mission data, frequencies, etc.) |
+| **Scoring / Labels** | `LShift + F10` | Map view (F10 map) for navigation reference |
+| **Screenshot** | `PrtScn` | Captures screenshot |
+
+### A.9 HOTAS Recommendations
+
+For helicopter operations in DCS, the following HOTAS mappings are recommended:
+
+| Function | Recommended Mapping | Priority |
+|---|---|---|
+| **Collective** | Dedicated throttle axis (linear, no detent preferred) | Critical |
+| **Cyclic** | Joystick X/Y with moderate curves (15–25) | Critical |
+| **Pedals** | Dedicated rudder pedals | Highly recommended |
+| **Force trim release** | Joystick button (thumb or finger) | Critical |
+| **Radio transmit** | Joystick or throttle button | Important |
+| **Weapon release** | Joystick trigger (2nd stage if available) | Important |
+| **Countermeasures** | Throttle button | Useful |
+| **View control** | TrackIR or VR headset | Highly recommended |
+
+**Axis curves:** Helicopter flight in DCS benefits from axis curves (typically 15–25 on cyclic, 0–10 on pedals, 0 on collective). This provides fine control near center without sacrificing full deflection at the extremes. Adjust to personal preference in DCS Options → Controls → Axis Tune.
 
 ---
 
-*This research dossier is based on TM 1-1520-248-10 (Operator's Manual), TC 3-04.4 (Fundamentals of Flight), and DCS World Polychop Simulations OH-58D module documentation. For simulation training use only.*
+*This appendix provides default key binds as a reference. The OH-58D module may have additional or different bindings. Always verify in DCS Options → Controls → OH-58D Kiowa Warrior. Key binds marked "Module-specific" require checking the module's actual control assignments, as they vary by developer and version.*
+
+---
+
+*Based on Eagle Dynamics DCS World, Polychop Simulations OH-58D Kiowa Warrior module documentation, TM 1-1520-248-10 (OH-58D Operator's Manual), and real-world US Army rotary-wing flight training doctrine (TC 3-04.4). For simulation use only.*
 
