@@ -3,6 +3,9 @@ Act as an expert military aviation instructor and USAF A-10A "Thunderbolt II" pi
 **Objective:**
 Create a structured syllabus and technical research document covering all aspects of safe A-10A operation from cold-and-dark startup to safe recovery. Combat employment is **out of scope** for this course.
 
+**Correction Directive:**
+A previous version of this research dossier (`.github/research/a-10a-bqt-dossier.md`) was generated and found to contain inaccuracies. This prompt is being re-executed to produce a corrected, authoritative replacement. When generating each module, cross-check all numerical data (V-speeds, RPM limits, EGT limits, fuel capacities, weights, distances) against the T.O. 1A-10A-1 or best available real-world sources. Where DCS behavior overrides the real-world value, clearly mark it. Do not carry forward unverified data from the prior dossier — treat each module as a fresh research effort.
+
 **Source Material Priority:**
 1.  **Real-World (Primary Truth):** Use real USAF documentation wherever possible:
     *   *A1-A10A-1 Flight Manual* (T.O. 1A-10A-1) — the authoritative primary source.
@@ -29,14 +32,26 @@ Create a structured syllabus and technical research document covering all aspect
 *   Taxi procedures: nose wheel steering (NWS) engagement/disengagement, differential braking technique.
 *   Run-up and arming checks (in DCS context: Master Arm discipline).
 
-**Module 3: Takeoff & Departure**
+**Module 3: Communications**
+*   Radio operation fundamentals: the A-10A has **UHF and VHF radios** accessible via DCS keybinds (Flaming Cliffs simplified radio model). The student must learn to:
+    *   Select and tune frequencies using the DCS communications menu.
+    *   Transmit on the correct radio for the situation (UHF for ATC/tower, VHF-FM for tactical).
+    *   Monitor multiple frequencies where the sim permits.
+    *   Use proper radio phraseology (FAA/ICAO for ATC, military brevity for tactical comms).
+*   DCS Easy Communication mode: how the radio menu (`\` key) maps to real-world radio operations; what is abstracted away.
+*   Common radio calls for the BQT environment: startup/taxi clearance, takeoff, pattern calls (crosswind, downwind, base, final), go-around, approach/landing clearance, shutdown advisory.
+*   Guard frequency monitoring (UHF 243.0 MHz / VHF 121.5 MHz) — real-world significance and DCS implementation (if any).
+*   SRS (SimpleRadio Standalone) integration notes: how SRS restores realistic radio behavior to the Flaming Cliffs A-10A; frequency management, radio selection, and PTT keying.
+*   IFF/transponder: real-world Mode 1/2/3C/4 usage and DCS implementation status.
+
+**Module 4: Takeoff & Departure**
 *   Normal takeoff: flap setting, trim, rotation speed (Vr) by weight.
 *   Maximum effort / short-field takeoff considerations.
 *   Rejected takeoff (RTO) procedure and decision speed.
 *   Obstacle clearance climb speeds (Vx, Vy) for typical training loads.
 *   Gear and flap retraction schedule.
 
-**Module 4: Basic Flight Maneuvers**
+**Module 5: Basic Flight Maneuvers**
 *   Level flight, straight-and-level cruise speeds, power settings.
 *   Turns: coordinated technique, load factor awareness, AoA management.
 *   Climbs and descents: recommended profiles and airspeed schedules.
@@ -44,13 +59,13 @@ Create a structured syllabus and technical research document covering all aspect
 *   Approach-to-stall recognition and recovery (buffet onset, AOA warning tones).
 *   Emergency Level Flight recovery (trim runaway awareness).
 
-**Module 5: Emergency Procedures (Academic)**
+**Module 6: Emergency Procedures (Academic)**
 *   Single engine failure (identification, isolation, single-engine approach).
 *   Hydraulic system failure (manual reversion flying qualities).
 *   Fire warning response.
 *   Controlled ejection decision criteria (minimum altitude thresholds for the ACES II seat).
 
-**Module 6: Approach & Landing**
+**Module 7: Approach & Landing**
 *   VFR traffic pattern: altitudes, speeds, configurations by leg.
 *   Visual Approach profile: AOA indexer targets, glidepath references.
 *   Flare technique: the A-10 "flat attitude" landing technique.
