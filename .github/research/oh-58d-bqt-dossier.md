@@ -342,7 +342,7 @@ In **FADEC manual/backup mode**, the correlator (mechanical linkage between coll
 
 #### 1.9.1 Translating Tendency (Drift)
 
-In hover, the tail rotor produces a lateral thrust (pushing the tail to the right for a counterclockwise-rotating main rotor), which causes the entire aircraft to drift **left**. The pilot compensates with a slight right cyclic input to maintain position. This is inherent to all single-rotor helicopters with counterclockwise main rotor rotation.
+In hover, the tail rotor produces a lateral thrust (pushing the aircraft to the right, counteracting the main rotor's counterclockwise-rotation torque), which causes the entire aircraft to drift **right**. The pilot compensates with a slight **left** cyclic input to maintain position. This is inherent to all single-rotor helicopters with counterclockwise main rotor rotation.
 
 #### 1.9.2 Translational Lift (ETL)
 
@@ -484,7 +484,7 @@ Dynamic rollover is an uncontrollable rolling motion that occurs when the helico
 |---|---|---|---|
 | **TOT (continuous)** | < 738°C (1,360°F) | 738–810°C | > 810°C |
 | **TOT (takeoff, 5 min)** | ≤ 810°C (1,490°F) | — | > 810°C (time limit exceeded) |
-| **TOT (starting)** | < 810°C | — | > 810°C for > 10 sec → abort |
+| **TOT (starting)** | < 843°C | — | > 843°C → abort (hot start) |
 | **N1/Ng (gas producer)** | 62–104% | — | > 104% (overspeed) |
 | **Nr (rotor RPM)** | 97–101% (383–399 RPM) | 90–97% or 101–107% | < 90% / > 107% |
 | **Torque (continuous)** | ≤ 85% Q | 85–100% Q | > 100% Q |
