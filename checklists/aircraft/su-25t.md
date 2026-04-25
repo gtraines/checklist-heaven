@@ -82,7 +82,7 @@
 
 | Emergency | Immediate Action Steps |
 |---|---|
-| **Engine Failure on Takeoff** | 1. **Throttle** — IDLE<br>2. **Brakes** — MAX<br>3. **Drag Chute** — DEPLOY (`P`)<br>4. **Jettison Stores** — (`LCtrl + W`) |
+| **Engine Failure on Takeoff** | 1. **Throttle** — IDLE<br>2. **Brakes** — MAX<br>3. **Drag Chute** — DEPLOY (`P`)<br>4. **Jettison Stores** — (`LAlt + J`) |
 | **Engine Fire in Flight** | 1. **Throttle** — IDLE (Affected Engine)<br>2. **Fire Extinguisher** — DISCHARGE (Auto/Manual)<br>3. **Engine** — SHUTDOWN (`RAlt + End` / `RCtrl + End`)<br>4. **Land ASAP** |
 | **Engine Restart** | 1. **Throttle** — IDLE<br>2. **Airspeed** — 300-400 km/h<br>3. **Engine Start** — INITIATE (`RAlt + Home` / `RCtrl + Home`)<br>4. **Throttle** — ADVANCE slowly (>30% RPM) |
 | **Hydraulic Failure** | 1. **Monitor** — Hydro 1/2 Pressures<br>2. **Gear** — EMERGENCY EXTEND (`LCtrl + G`)<br>3. **Flaps** — Plan for No-Flap Landing<br>4. **Brakes** — Expect failure (Use Chute) |
@@ -158,7 +158,7 @@
 - [ ] **Trim** — check neutral
 - [ ] **ILS/NAV** — confirm active waypoint
 - [ ] **Throttle** — FULL (`PgUp`)
-- [ ] Rotate at ~220 kph
+- [ ] Rotate at ~230 kph (loaded) / ~210 kph (clean)
 - [ ] **Gear** — UP at positive rate of climb (`G` key)
 - [ ] **Flaps** — RETRACT above 300 kph (`F` key)
 - [ ] Climb to assigned altitude
@@ -203,7 +203,7 @@
 
 ### SPO-15 Beryoza RWR
 - [ ] **Power** — ON
-- [ ] Indicators: **F** = fighter radar, **C** = SAM/AAA radar
+- [ ] Indicators (Russian/English): **А/A** = airborne; **Н/S** = short-range, **Х/M** = medium-range, **З/L** = long-range radar; **С/AW** = AWACS; solid red = radar lock, flashing red = missile launch
 - [ ] **Volume** — adjust as needed
 - [ ] Alert tones indicate threat type and direction
 
@@ -305,7 +305,7 @@
 - [ ] **Master Arm** — ARM
 - [ ] **SPO-15** — identify threat emitter (SAM/AAA radar)
 - [ ] **Kh-58 seeker** — tune to emitter frequency
-- [ ] **Launch zone:** 10–160 km depending on altitude
+- [ ] **Launch zone:** ~30–120 km depending on altitude
 - [ ] **Fire:** `Space`
 - [ ] **Fire-and-forget** — seeker homes on radar emissions
 
@@ -357,7 +357,7 @@
 - [ ] **ILS** — intercept if available
 - [ ] Touchdown speed: ~230 kph
 - [ ] **Brakes** — `W` (wheel brakes)
-- [ ] **Drag chute** — `C` key (if installed)
+- [ ] **Drag chute** — `P` key (if installed)
 - [ ] **Spoilers** — auto on touchdown
 
 ---
@@ -413,7 +413,7 @@
 | Landing Gear | `G` |
 | Flaps | `F` / `LShift+F` |
 | Wheel Brakes | `W` |
-| Drag Chute | `C` |
+| Drag Chute | `P` |
 
 ### Weapons
 | Function | Key |
