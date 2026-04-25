@@ -81,7 +81,7 @@
 | **Max gross weight** | — | — | 5,500 lbs (2,495 kg) |
 | **TOT (continuous)** | < 738°C | 738–810°C | > 810°C |
 | **TOT (takeoff, 5 min)** | ≤ 810°C | — | > 810°C (time limit) |
-| **TOT (starting)** | < 810°C | — | > 810°C for > 10 sec → abort |
+| **TOT (starting)** | < 843°C | — | > 843°C → abort (hot start) |
 | **N1/Ng (gas producer)** | 62–104% | — | > 104% (overspeed) |
 | **Nr (rotor, power on)** | 97–101% | 90–97% or 101–107% | < 90% / > 107% |
 | **Nr (autorotation)** | 90–107% | — | < 90% / > 107% |
@@ -740,8 +740,8 @@ The MMS is the OH-58D's defining capability — a sensor ball mounted above the 
 
 | Station | Weapon Options |
 |---|---|
-| Left stub | 2.75-in rocket pod or .50 cal gun |
-| Right stub | AGM-114 Hellfire × 4, or AIM-92 × 2 |
+| Left UWP | 2× AGM-114 Hellfire, 1× M260 rocket pod (7× Hydra 70), 1× M3P .50 cal gun pod, or 2× AIM-92 Stinger ATAS |
+| Right UWP | 2× AGM-114 Hellfire or 1× M260 rocket pod (7× Hydra 70) |
 
 ### Arming
 
@@ -1018,7 +1018,7 @@ The values in the [Operating Limitations](#operating-limitations) table are base
 
 Key corrections from prior documentation:
 - **Torque continuous limit is 85% Q** (not 100%). The 100% Q limit is a 5-minute takeoff power limit, not a continuous operating limit.
-- **TOT start limit is < 810°C** (not 843°C). A start that exceeds 810°C for more than 10 seconds should be aborted as a hot start.
+- **TOT start limit is 843°C** (not 810°C). The 810°C figure is the 5-minute takeoff power limit. A hot start is declared when TOT exceeds 843°C during the start cycle — throttle to OFF immediately.
 - **Nr power-on normal range is 97–101%** (not 98–100%).
 - **Vne is 110–120 KIAS** (not 140 kts). The OH-58D is a light scout helicopter — the 140-kt figure applies to other aircraft.
 - **Autorotation best glide is ~72 KIAS** (not 65 kts). Min sink rate is ~55 KIAS.

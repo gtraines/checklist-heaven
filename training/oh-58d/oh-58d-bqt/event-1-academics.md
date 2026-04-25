@@ -177,10 +177,10 @@ This section covers the aerodynamic phenomena that make helicopter flight fundam
 
 ### Translating Tendency (Hover Drift)
 
-The tail rotor produces lateral thrust to counteract main rotor torque. On U.S. helicopters with counterclockwise main rotor rotation (viewed from above), this thrust pushes the aircraft **left**. The pilot compensates with **right cyclic** in hover.
+The tail rotor produces lateral thrust to counteract main rotor torque. On U.S. helicopters with counterclockwise main rotor rotation (viewed from above), this thrust pushes the aircraft **right**. The pilot compensates with **left cyclic** in hover.
 
-- **Student Error:** Failure to pre-position cyclic slightly right before lifting to a hover. Result: immediate left drift.
-- **DCS Behavior:** Modeled. Expect left drift in a no-wind hover with no right cyclic input.
+- **Student Error:** Failure to pre-position cyclic slightly left before lifting to a hover. Result: immediate right drift.
+- **DCS Behavior:** Modeled. Expect right drift in a no-wind hover with no left cyclic input.
 
 ### Effective Translational Lift (ETL)
 
