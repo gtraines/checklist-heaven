@@ -33,7 +33,7 @@ Upon completion of this event the student will be able to:
 - [ ] Explain the electrical system (dual generators, APU, batteries) and single/dual generator failure implications
 - [ ] Describe the AI-9V APU — purpose, operating limits, and when it shuts down automatically
 - [ ] Explain stub wing aerodynamic contribution at different airspeeds and its effect on autorotation
-- [ ] Define and explain: ETL, LTE (left tail rotor effectiveness), ground resonance, settling with power, autorotation in a high-disk-loading aircraft
+- [ ] Define and explain: ETL, LTE (loss of tail rotor effectiveness), ground resonance, settling with power, autorotation in a high-disk-loading aircraft
 - [ ] Locate and identify all major cockpit panels and instruments in both the Pilot (rear) and WSO (front) cockpits
 - [ ] Recite all critical operating limitations from memory (EGT, torque, Nr, VNE, G-limits, weight)
 - [ ] Recite all boldface emergency procedures verbatim, in sequence, without reference to notes
@@ -267,7 +267,7 @@ As the helicopter accelerates through approximately **50 km/h**, the rotor begin
 - **Indication:** Aircraft wants to climb and pitch up through ETL
 - **Technique:** Apply slight forward cyclic and accept the power reduction naturally
 
-### Left Tail Rotor Effectiveness (LTE)
+### Loss of Tail Rotor Effectiveness (LTE)
 
 The Mi-24P is most susceptible to LTE when:
 - Wind is from the **right-front quadrant (270°–360° relative)**

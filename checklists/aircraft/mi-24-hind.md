@@ -74,7 +74,7 @@ Rear Cockpit (Pilot — seat `2`, default spawn):
 
 | Parameter | Normal | Transient (30 sec) | Start Limit | Emergency (single-eng) |
 |---|---|---|---|---|
-| **TIT (Turbine Inlet Temp)** | ≤ 800°C | ≤ 870°C | ≤ 830°C | ≤ 900°C (15 sec) |
+| **TGT (Turbine Gas Temperature)** | ≤ 800°C | ≤ 870°C | ≤ 830°C | ≤ 900°C (15 sec) |
 | **Ng (Gas Generator RPM)** | 88–97% | ≤ 100% | — | ≤ 101% (15 sec) |
 | **Oil Pressure** | 3.0–4.5 kgf/cm² | — | — | Min 2.0 kgf/cm² |
 | **Oil Temperature** | 70–130°C | ≤ 150°C | — | — |
@@ -111,9 +111,9 @@ Rear Cockpit (Pilot — seat `2`, default spawn):
 
 | Condition | Indication | Action |
 |---|---|---|
-| **Hot start** | TIT exceeds 830°C and continues rising | Throttle to STOP immediately |
+| **Hot start** | TGT exceeds 830°C and continues rising | Throttle to STOP immediately |
 | **Hung start** | Ng stalls below 55%, does not increase | Throttle to STOP; cool 30 sec before retry |
-| **No light-off** | No TIT rise within 10 seconds of start | Release button; throttle to STOP |
+| **No light-off** | No TGT rise within 10 seconds of start | Release button; throttle to STOP |
 | **Oil pressure fail** | No oil pressure within 30 sec of idle | Throttle to STOP; do not continue |
 
 ---
@@ -195,7 +195,7 @@ Rear Cockpit (Pilot — seat `2`, default spawn):
 - [ ] **Left Throttle** — Confirm at IDLE detent
 - [ ] **Left Engine Start Button** — PRESS (`RAlt + Home`)
 - [ ] **Ng (L)** — Monitor rising toward 63–65%
-- [ ] **TIT (L)** — Monitor; **ABORT if exceeds 830°C**
+- [ ] **TGT (L)** — Monitor; **ABORT if exceeds 830°C**
 - [ ] Wait for Ng to stabilize at ground idle (~63–65%)
 - [ ] **Oil Pressure (L)** — Confirm 3.0–4.5 kgf/cm² within 30 sec
 
@@ -204,7 +204,7 @@ Rear Cockpit (Pilot — seat `2`, default spawn):
 - [ ] **Right Throttle** — Confirm at IDLE detent
 - [ ] **Right Engine Start Button** — PRESS (`RCtrl + Home`)
 - [ ] **Ng (R)** — Monitor rising toward 63–65%
-- [ ] **TIT (R)** — Monitor; **ABORT if exceeds 830°C**
+- [ ] **TGT (R)** — Monitor; **ABORT if exceeds 830°C**
 - [ ] Wait for Ng to stabilize (~63–65%)
 - [ ] **Oil Pressure (R)** — Confirm 3.0–4.5 kgf/cm²
 
@@ -278,7 +278,7 @@ Rear Cockpit (Pilot — seat `2`, default spawn):
 
 ## Before-Taxi Checklist
 
-- [ ] **Engines** — Both at FLY, Ng/TIT/Oil in limits
+- [ ] **Engines** — Both at FLY, Ng/TGT/Oil in limits
 - [ ] **Nr** — 95% stable
 - [ ] **Hydraulics** — Both systems 65 ± 5 kgf/cm²
 - [ ] **Flight Controls** — Free and correct (check complete)
@@ -324,7 +324,7 @@ Rear Cockpit (Pilot — seat `2`, default spawn):
 
 ## Pre-Takeoff Checklist
 
-- [ ] **Engines** — Both at FLY; Ng, TIT, oil in limits
+- [ ] **Engines** — Both at FLY; Ng, TGT, oil in limits
 - [ ] **Nr** — 95% stable
 - [ ] **Torque** — Note available margin (record current torque at ground idle)
 - [ ] **Hydraulics** — Main and backup 65 ± 5 kgf/cm²
@@ -617,7 +617,7 @@ If normal hydraulic extension fails:
 1. COLLECTIVE — MAINTAIN Nr (92–98%)
 2. OPERATIVE ENGINE — INCREASE POWER (torque ≤ 95%)
 3. AIRSPEED — 160–180 km/h (best single-engine performance)
-4. FAILED ENGINE — IDENTIFY (TIT dropping, Ng dropping on one side; aircraft yaws toward failed side)
+4. FAILED ENGINE — IDENTIFY (TGT dropping, Ng dropping on one side; aircraft yaws toward failed side)
 5. FAILED ENGINE throttle — IDLE, then STOP
 6. CROSS-FEED — OPEN (ensure operating engine has fuel access)
 7. LAND — AS SOON AS PRACTICABLE (running landing preferred; do NOT attempt to hover)
@@ -627,7 +627,7 @@ If normal hydraulic extension fails:
 
 | Indicator | Failed Engine | Operating Engine |
 |---|---|---|
-| TIT | Dropping | Normal or increasing |
+| TGT | Dropping | Normal or increasing |
 | Ng | Dropping toward zero | Normal or increasing |
 | Torque | Dropping | Increasing |
 | Yaw | Aircraft yaws toward failed side | — |
@@ -638,7 +638,7 @@ If normal hydraulic extension fails:
 |---|---|
 | Max continuous torque | 93% (operating engine) |
 | Max transient torque | 106% (≤ 30 sec) |
-| TIT emergency limit | 900°C (15 sec) |
+| TGT emergency limit | 900°C (15 sec) |
 | Hover capability | **NOT possible** at most weights |
 
 ### Dual Engine Failure — Autorotation (BOLDFACE)
@@ -783,13 +783,13 @@ GROUND RESONANCE DETECTED (sudden, rapidly increasing airframe oscillation)
 | Station | Weapon Options |
 |---|---|
 | Outboard pylons × 4 (2 per stub wing) | S-8 / S-13 / S-24 rockets; Ataka / Shturm ATGM; FAB bombs; RBK dispensers; R-60 / R-73 AAM |
-| Fixed right-side fuselage mount | GSh-30-2 twin-barrel 30mm cannon (pilot-aimed) |
+| Fixed right-side fuselage mount | GSh-30K twin-barrel 30mm cannon (pilot-aimed) |
 
 ### Weapons & Stores Summary
 
 | Weapon / System | Type | Effective Range | Notes |
 |---|---|---|---|
-| **GSh-30-2 30mm Cannon** | Fixed twin cannon | < 1.5 km | Fixed starboard mount; pilot aims aircraft |
+| **GSh-30K 30mm Cannon** | Fixed twin cannon | < 1.5 km | Fixed starboard mount; pilot aims aircraft |
 | **9M114 Shturm** | ATGM (SACLOS radio) | 400 m – 5 km | WSO guides; steady flight required |
 | **9M120 Ataka** | ATGM (SACLOS radio) | 400 m – 6 km | Improved range vs. Shturm |
 | **S-8 Rockets (80mm)** | Unguided | 1–2 km | 20-round B-8V20A pods |
@@ -972,7 +972,7 @@ GROUND RESONANCE DETECTED (sudden, rapidly increasing airframe oscillation)
 ## Realism Notes
 
 ### Cannon Variant
-The Mi-24P ('P' for *Pushka* — cannon) uses a fixed twin-barrel 30mm GSh-30-2 cannon on the starboard fuselage rather than the flexible 12.7mm Yak-B turret of the Mi-24V. The pilot must aim the entire aircraft at the target. This fundamentally changes attack geometry compared to the V variant.
+The Mi-24P ('P' for *Pushka* — cannon) uses a fixed twin-barrel 30mm GSh-30K cannon on the starboard fuselage rather than the flexible 12.7mm Yak-B turret of the Mi-24V. The pilot must aim the entire aircraft at the target. This fundamentally changes attack geometry compared to the V variant.
 
 ### ATGM Guidance
 The Shturm (9M114) and Ataka (9M120) missiles are SACLOS (radio-command) guided. The WSO must maintain the sight crosshair on the target from launch to impact. The pilot must fly a steady, level profile to avoid masking the guidance antenna or exceeding the seeker field of view. In DCS, manual guidance input via joystick hat is required; autopilot engagement before missile employment helps maintain a stable platform.

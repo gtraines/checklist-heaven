@@ -385,14 +385,22 @@
 - **No FADEC:** The correlator + governor system is not automatic like FADEC. Governor failure requires the pilot to manually manage throttle to maintain Nr. Practice the manual throttle exercise regularly.
 - **Torque in PSI, not %:** DCS displays torque pressure in PSI. Continuous limit is ~40 PSI; military (time-limited) is 40–48 PSI; structural limit is > 50 PSI.
 - **Weapon Aiming:** There is no CCIP/CCRP. Rocket and fixed-minigun accuracy depends entirely on pilot skill with the reflex sight and manual estimation of ballistic drop and windage.
+- **Countermeasures (Sim Divergence):** The standard UH-1H did not carry an IR flare dispenser as original equipment; Vietnam-era Hueys relied entirely on tactics and terrain for survivability. The DCS module includes a flare dispenser for gameplay reasons. In tactical employment: treat flares as a last-resort supplement to NOE flying — not a reliable substitute for terrain masking.
 
 ---
 
 ## Defensive Procedures
 
-### The UH-1H Has NO COUNTERMEASURES
-- No RWR, no chaff, no flares
-- Survivability = **tactics and situational awareness**
+### Countermeasures — IR Flares
+
+The DCS UH-1H is equipped with an IR flare dispenser. **No RWR. No chaff.**
+
+#### Flare Employment
+- [ ] Confirm flares loaded *(re-arm screen or mission load-out)*
+- [ ] On threat detection — **dispense flares** (`]`) + **immediate break turn**
+- [ ] **Descend to terrain** simultaneously — flares alone are not sufficient
+
+> **No RWR fitted.** Threat cuing relies on visual detection (missile launch flash, smoke trail) or crew call-outs. Dispense early; do not wait for impact.
 
 ### Threat Avoidance
 - [ ] Fly **NOE** (Nap-of-the-Earth) — tree-top level in threat areas
@@ -655,6 +663,7 @@ At any point in the approach:
 |---|---|
 | Master Arm | `O` |
 | Fire / Rockets | `Space` or trigger |
+| Dispense Flares | `]` |
 | Jettison | `LAlt + J` |
 
 ### Navigation & Comms
