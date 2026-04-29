@@ -37,6 +37,7 @@ Aviation-style checklists for DCS World aircraft, optimized for tablet viewing.
 | [Basic & Intermediate Surface Attack Course](training/surface-attack-course.md) | A-10A/C/II, Su-25/T | Basic–Intermediate |
 | [OH-58D Basic Qualification Training](training/oh-58d/oh-58d-bqt/overview.md) | OH-58D Kiowa Warrior | Basic (Level 100) |
 | [OH-58D Weapons Employment Course](training/oh-58d/oh-58d-weapons/overview.md) | OH-58D Kiowa Warrior | Intermediate (Level 200) |
+| [UH-1H Huey Basic Qualification Training](training/uh-1h/uh-1h-bqt/overview.md) | UH-1H Huey | Basic (Level 100) |
 | [Mi-24P Hind Basic Qualification Training](training/mi-24p/mi-24p-bqt/overview.md) | Mil Mi-24P Hind-F | Basic (Level 100) |
 | [Close Combat Attack (CCA) Course](training/cca-course.md) | UH-1H, OH-58D, Mi-24P | Basic–Intermediate |
 | [Formation Flying Training Course](training/formation-flying-training.md) | All rotary & fixed-wing | Basic |
