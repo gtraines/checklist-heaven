@@ -144,72 +144,74 @@
 
 ### Phase 1 — Electrical Power
 
-- [ ] **Battery** — ON *(overhead console — electrical panel; caution panel illuminates normally)*
+- [ ] **Battery** — ON (`LShift + B`) *(overhead console — electrical panel; caution panel illuminates normally)*
 - [ ] **Caution Panel** — CHECK *(multiple lights on at battery-only — normal before engine start)*
-- [ ] **Caution Light Test** — PRESS AND HOLD *(verify all bulbs illuminate; release)*
-- [ ] **Inverter** — ON *(overhead — allows attitude indicator and heading indicator to erect; allow 2–3 min to stabilize)*
+- [ ] **Caution Light Test** — PRESS AND HOLD *(overhead — test panel; verify all bulbs illuminate; release)*
+- [ ] **Inverter** — ON (`LShift + I`) *(overhead — electrical panel; allows attitude indicator and DG to erect; allow 2–3 min to stabilize)*
 
 ### Phase 2 — Fuel System
 
-- [ ] **Fuel Valve** — ON *(overhead — guarded; lift guard and toggle)*
-- [ ] **Fuel Boost Pump** — ON *(overhead — FUEL BOOST caution light extinguishes when pressure established)*
-- [ ] **Fuel Quantity** — CHECK *(sufficient for mission; note quantity in pounds)*
+- [ ] **Fuel Valve** — ON (`LShift + F`) *(overhead — fuel panel; guarded; lift guard and toggle)*
+- [ ] **Fuel Boost Pump** — ON (`LCtrl + B`) *(overhead — fuel panel; FUEL BOOST caution light extinguishes when pressure established)*
+- [ ] **Fuel Quantity** — CHECK *(instrument panel — fuel quantity gauge; sufficient for mission; note quantity in pounds)*
 
 ### Phase 3 — Pre-Start Checks
 
-- [ ] **Throttle** — CLOSED *(full counterclockwise on twist-grip to fuel cutoff)*
+- [ ] **Throttle** — CLOSED *(full counterclockwise on collective grip twist-grip to fuel cutoff)*
 - [ ] **Collective** — FULL DOWN and friction set
 - [ ] **Cyclic** — CENTERED
 - [ ] **Pedals** — CENTERED
-- [ ] **Governor (GOV)** — OFF *(overhead — must be off for start; engage after stabilizing at idle)*
+- [ ] **Governor (GOV)** — OFF (`LCtrl + Home`) *(overhead — engine panel; must be off for start; engage after stabilizing at idle)*
 - [ ] **Area** — CLEAR *(no personnel within 24 ft rotor arc; look both sides and behind)*
 
 ### Phase 4 — Engine Start
 
 > **EGT limit during start: 720°C (10-second maximum).** Monitor continuously. If exceeded: throttle to CLOSED immediately.
 
-- [ ] **Starter Button** — PRESS AND HOLD *(overhead — N1 begins increasing)*
-- [ ] At **~15% N1** — **Throttle** — advance to **IDLE detent** *(introduces fuel to combustion chamber)*
-- [ ] **EGT** — MONITOR for light-off *(rise confirms ignition; expect 200–400°C at light-off)*
+- [ ] **Starter Button** — PRESS AND HOLD (`LShift + Home`) *(overhead — engine panel; N1 begins increasing)*
+- [ ] At **~15% N1** — **Throttle** — advance to **IDLE detent** *(mouse wheel CCW on collective twist-grip, or throttle axis, to IDLE stop; introduces fuel)*
+- [ ] **EGT** — MONITOR for light-off *(instrument panel — EGT gauge; rise confirms ignition; expect 200–400°C at light-off)*
   - If no EGT rise by 25% N1 → **ABORT** — throttle CLOSED, motor 30 sec to purge
   - If EGT exceeds **720°C** → **HOT START** — throttle CLOSED immediately; wait 2 min
   - If N1 stagnates below ~55% with rising EGT → **HUNG START** — throttle CLOSED; motor to clear
-- [ ] **N1** — accelerating to **58–62%** (ground idle)
-- [ ] **Starter Button** — RELEASE *(at idle; do not exceed 60 sec cranking)*
+- [ ] **N1** — accelerating to **58–62%** (ground idle) *(instrument panel — N1 gauge)*
+- [ ] **Starter Button** — RELEASE (`LShift + Home`) *(do not exceed 60 sec continuous cranking)*
 - [ ] **Stabilize at ground idle** — wait 30–60 seconds *(EGT settling, oil pressure rising)*
 
 ### Phase 5 — Post-Start
 
-- [ ] **Engine Oil Pressure** — CHECK 35–70 PSI *(within ~30 sec of start)*
-- [ ] **EGT** — CHECK below 610°C and stable
-- [ ] **Generator (GEN)** — ON *(overhead — GEN caution light extinguishes; voltmeter shows ~28V)*
-- [ ] **Governor (GOV)** — ON *(overhead — Nr will adjust to 324 RPM as governor engages)*
-- [ ] **RPM Warning Audio** — ON *(overhead — arms low-RPM audio warning)*
-- [ ] **Trans Oil Pressure** — CHECK 30–70 PSI
+- [ ] **Generator (GEN)** — ON (`LShift + G`) *(overhead — electrical panel; GEN caution light extinguishes; voltmeter shows ~28V)*
+- [ ] **Governor (GOV)** — ON (`LCtrl + Home`) *(overhead — engine panel; Nr adjusts to 324 RPM as governor engages)*
+- [ ] **RPM Warning Audio** — ON *(overhead — engine panel; arms low-RPM audio warning)*
+- [ ] **Engine Oil Pressure** — CHECK 35–70 PSI *(instrument panel — engine oil pressure gauge; within ~30 sec of start)*
+- [ ] **Engine Oil Temperature** — CHECK rising *(instrument panel — engine oil temp gauge; will rise toward operating range over several minutes)*
+- [ ] **Trans Oil Pressure** — CHECK 30–70 PSI *(instrument panel — transmission oil pressure gauge)*
+- [ ] **Trans Oil Temperature** — CHECK rising *(instrument panel — transmission oil temp gauge)*
+- [ ] **EGT** — CHECK below 610°C and stable *(instrument panel — EGT gauge)*
 - [ ] **Caution Panel** — VERIFY CLEAR *(all lights out except any normal for current state)*
 
 ### Phase 6 — Rotor Engagement (Idle → Flight RPM)
 
 > Keep collective **full down** throughout. Clear the rotor arc.
 
-- [ ] **Idle Stop Release** — PRESS *(button on collective grip while twisting throttle)*
-- [ ] **Throttle** — advance to **FLY detent** *(Nr begins rising toward 324 RPM)*
-- [ ] **Nr** — MONITOR rising to **324 ±3 RPM** *(needles "marry" when governor holds)*
+- [ ] **Idle Stop Release** — PRESS AND HOLD (`LShift + PgDn`) *(collective grip — press idle stop release button while advancing throttle)*
+- [ ] **Throttle** — advance to **FLY detent** *(mouse wheel CW on twist-grip, or throttle axis; Nr begins rising toward 324 RPM)*
+- [ ] **Nr** — MONITOR rising to **324 ±3 RPM** *(dual tachometer — needles "marry" when governor holds)*
 - [ ] **EGT** — VERIFY below 610°C during power increase
 - [ ] **Wait** ~30 seconds for rotor to stabilize
 
 ### Phase 7 — Avionics & Navigation Setup
 
-- [ ] **VHF-AM (AN/ARC-134)** — ON; tune ground/tower frequency; set volume
-- [ ] **UHF-AM (AN/ARC-51BX)** — ON; GUARD mode or assigned frequency
-- [ ] **FM (AN/ARC-131)** — ON; tune assigned frequency if required
-- [ ] **Audio Panel** — configure volumes; select VHF for transmit
-- [ ] **ADF (AN/ARN-83)** — ON; tune if NDB navigation planned
-- [ ] **VOR/ILS (AN/ARN-82)** — ON; tune if VOR navigation planned
-- [ ] **Transponder** — STANDBY; squawk code set per clearance
-- [ ] **Radar Altimeter** — ON; set low-altitude warning bug
-- [ ] **Altimeter** — set current QNH *(Kollsman window; crosscheck with known field elevation)*
-- [ ] **Heading Indicator (DG)** — align to magnetic compass *(aircraft stationary)*
+- [ ] **VHF-AM (AN/ARC-134)** — ON; tune ground/tower frequency; set volume *(center pedestal — top radio)*
+- [ ] **UHF-AM (AN/ARC-51BX)** — ON; GUARD mode or assigned frequency *(center pedestal — middle radio)*
+- [ ] **FM (AN/ARC-131)** — ON; tune assigned frequency if required *(center pedestal — bottom radio)*
+- [ ] **Audio Panel** — configure volumes; select VHF for transmit *(center pedestal)*
+- [ ] **ADF (AN/ARN-83)** — ON; tune if NDB navigation planned *(navigation equipment panel)*
+- [ ] **VOR/ILS (AN/ARN-82)** — ON; tune if VOR navigation planned *(navigation equipment panel)*
+- [ ] **Transponder** — STANDBY; squawk code set per clearance *(center pedestal)*
+- [ ] **Radar Altimeter** — ON; set low-altitude warning bug *(instrument panel)*
+- [ ] **Altimeter** — set current QNH (`LCtrl + Alt + .` / `LCtrl + Alt + ,`) *(Kollsman window; crosscheck with known field elevation)*
+- [ ] **Heading Indicator (DG)** — align to magnetic compass *(instrument panel; aircraft stationary)*
 
 ---
 
@@ -620,8 +622,6 @@ At any point in the approach:
 |---|---|---|
 | Starter button | `LShift + Home` | Hold while N1 rises; release at idle |
 | Engine stop (throttle cutoff) | `LShift + End` | |
-| Throttle increase | `PgUp` | |
-| Throttle decrease | `PgDn` | |
 | Idle stop release | `LShift + PgDn` | Press to advance throttle past idle to FLY |
 | Governor ON/OFF | `LCtrl + Home` | |
 | Battery | `LShift + B` | |
@@ -635,7 +635,7 @@ At any point in the approach:
 |---|---|---|
 | Collective Up | `PgUp` | Collective axis |
 | Collective Down | `PgDn` | Collective axis |
-| Throttle (twist-grip) | cockpit click | Throttle axis |
+| Throttle (twist-grip) | mouse wheel on 3D cockpit twist-grip | Throttle axis |
 
 ### Cyclic (Stick)
 | Function | Key | Axis |
