@@ -51,6 +51,7 @@ Each event contains:
 | [OH-58D Basic Qualification Training](oh-58d/oh-58d-bqt/overview.md) | OH-58D Kiowa Warrior | 8 | Basic (Level 100) |
 | [OH-58D Weapons Employment Course](oh-58d/oh-58d-weapons/overview.md) | OH-58D Kiowa Warrior | 11 | Weapons (Level 200) |
 | [UH-1H Huey Basic Qualification Training](uh-1h/uh-1h-bqt/overview.md) | UH-1H Huey | 8 | Basic (Level 100) |
+| [UH-1H Huey Weapons Employment Course](uh-1h/uh-1h-wec/overview.md) | UH-1H Huey | 8 | Weapons (Level 200) |
 | [Close Combat Attack (CCA) Course](cca-course.md) | UH-1H, OH-58D, Mi-24P | 4 Phases | Basic–Intermediate |
 | [Formation Flying Training Course](formation-flying-training.md) | All rotary & fixed-wing | Multi-phase | Basic |
 
