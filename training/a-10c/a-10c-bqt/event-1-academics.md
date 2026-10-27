@@ -58,14 +58,13 @@ Upon completion of this event the student will be able to:
 | Engine Model | General Electric TF34-GE-100A | High-bypass turbofan, 6.2:1 bypass ratio |
 | Thrust (per engine) | 9,065 lbf (40.32 kN) | Sea level static |
 | Total Installed Thrust | ~18,130 lbf | Both engines |
-| Ground Idle (N1) | 62–65% | Post-start stabilized value |
-| Flight Idle (N1) | ~70% | Engages automatically when airborne |
-| Max N1 | 98% | Primary thrust indicator |
-| Max N2 | 99% | Core speed |
-| ITT Limit — Start | **860°C** | Abort start if exceeded |
-| ITT Limit — Max Continuous | **810°C** | Normal operations |
-| ITT Limit — Transient (takeoff) | 900°C | 5-minute limit only |
-| Min Oil Pressure | 15 PSI | Below = caution; 0 PSI = shutdown |
+| Ground Idle (N2) | ~56–65% | Core speed at post-start stabilized value |
+| Fan Speed (N1) at max | ~82% | Fan speed at MIL/takeoff power — not primary throttle reference |
+| Max N2 (Core Speed) | 98% normal / 102% NTE | 100–102% limited to 3 seconds max |
+| ITT Limit — Start | **865°C** stabilized / 900°C transient | Short period at 900°C possible during start |
+| ITT Limit — Max Continuous | **865°C** | Normal operating range per DCS model |
+| ITT Limit — Transient (takeoff) | 900°C | Not to exceed limit |
+| Min Oil Pressure | 40 PSI | Below = caution (DCS manual); real T.O. value is 15 PSI |
 | Fuel Flow (cruise, both) | ~1,800–2,200 lbs/hr | Medium altitude |
 | Fuel Flow (max power, both) | ~3,000–3,500 lbs/hr | Full military power, low altitude |
 
@@ -77,7 +76,7 @@ The TF34's high-bypass design spools from idle to military power in **4–6 seco
 
 | Condition | Indication | Required Action |
 |---|---|---|
-| **Hot Start** | ITT exceeds 860°C and continues rising during start | Throttle to CUTOFF immediately; Engine Operate to MOTOR (dry crank 30 sec) |
+| **Hot Start** | ITT rises above 865°C stabilized during start | Throttle to CUTOFF immediately; Engine Operate to MOTOR (dry crank 30 sec) |
 | **Hung Start** | N2 stagnates below 55%; ITT rising without N2 progress | Throttle to CUTOFF; Engine Operate to OFF |
 | **No Light-Off** | No ITT rise within 30 seconds of fuel introduction | Throttle to CUTOFF; investigate ignition and fuel |
 | **Low Oil Pressure** | Oil pressure below 15 PSI after idle stabilization | Shutdown engine; investigate |
@@ -165,13 +164,13 @@ The student must be able to locate each panel **by name** before Event 2. Use th
 
 | Panel / System | Location | Key Functions |
 |---|---|---|
-| **Electrical Panel** | Left console, forward | Battery, APU, L/R Generator, Inverter |
+| **Electrical Panel** | **Right console**, forward | Battery, APU Generator, L/R Generator, Inverter — all on RIGHT console |
 | **Fuel Panel** | Left console, mid-forward | Boost pumps, Crossfeed |
 | **ECS Panel** | Left console, mid | Pitot Heat, Engine Anti-Ice, Defog |
 | **SAS Panel** | Left console, mid-aft | Pitch/Yaw/Roll SAS, EAC ARM |
 | **Flight Control Panel** | Left console, aft | Manual Pitch/Roll Reversion, Flap Switch, Speed Brake |
 | **Engine Panel** | Left console, aft-lower | Engine Operate (IGN/MOTOR/NORM); Fire T-handle area |
-| **Throttle Quadrant** | Left console, lower | Dual throttles, CUTOFF detent |
+| **Throttle Quadrant** | Left console, lower | Dual throttles, OFF/CUTOFF detent |
 | **CDU** | Right console, forward | Primary navigation computer |
 | **Lighting Panel** | Right console, mid | Cockpit and exterior lights |
 | **TACAN Panel** | Right console, mid | Channel, mode (T/R / A/A) |
@@ -237,7 +236,7 @@ Memorize these before Event 2. They will be tested verbally at the start of the 
 |---|---|
 | Vr (Rotation) | 135–150 (weight dependent) |
 | Vy (Best Climb) | 200–220 |
-| Vfe (Flap Limit) | 200 |
+| Vfe (Flap Limit) | **185 KIAS** (DCS model auto-retracts; airspeed indicator marks 200 KIAS) |
 | Vlo (Gear Limit) | 200 |
 | Vne (Never Exceed) | 450 |
 | Corner Speed | 280–320 |
@@ -247,11 +246,11 @@ Memorize these before Event 2. They will be tested verbally at the start of the 
 
 | Limit | Value |
 |---|---|
-| ITT Start Limit | **860°C** (abort if exceeded) |
-| ITT Max Continuous | **810°C** |
-| ITT Transient | 900°C (5-minute limit) |
-| N1 Max | 98% |
-| N2 Max | 99% |
+| ITT Start (stabilized) | **865°C** (stabilized above = malfunction; short period at 900°C possible during start) |
+| ITT Max Continuous | **865°C** (DCS model normal range) |
+| ITT Transient | 900°C NTE |
+| N2 (Core) Normal Max | 98%; NTE 102% (max 3 sec) |
+| N1 (Fan) at MIL Power | ~82% at takeoff |
 | APU Max Altitude | 15,000 ft |
 
 ### Crosswind Limits
@@ -324,7 +323,7 @@ These five procedures must be **committed to memory** and recited verbatim befor
 
 This is an academic event. The student passes by correctly answering the following questions without reference to notes. All answers must be recited, not read.
 
-- [ ] **Q1:** What is the ITT abort limit during engine start? *(860°C)*
+- [ ] **Q1:** What is the ITT abort limit during engine start? *(865°C stabilized; 900°C transient possible during start)*
 - [ ] **Q2:** You advance the throttle to CUTOFF first on startup. At what N2 percentage do you introduce fuel? *(12–15% N2)*
 - [ ] **Q3:** What does SAS do, and what does EAC add? *(SAS = rate damping; EAC = attitude hold and turn coordination via SAS servos)*
 - [ ] **Q4:** Hydraulic System A fails. What is lost? What is retained? *(Lost: left elevator, aileron, rudder, NWS, normal brakes. Retained: System B covers right-side controls — aircraft is still flyable)*

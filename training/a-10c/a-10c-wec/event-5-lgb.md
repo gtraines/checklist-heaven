@@ -123,7 +123,7 @@ After releasing the bomb, the TGP must continuously illuminate the target until 
 | Step | Action |
 |---|---|
 | 1 | CDU → LSR page → verify laser code **1688** |
-| 2 | AHCP: **TGP → OPER**; verify MFCD video |
+| 2 | AHCP: **TGP switch → ON** (MFD shows OPER when pod is warmed up); verify MFCD video |
 | 3 | AHCP: **LASER ARM → ARM** (over target area) |
 | 4 | AHCP: **MASTER ARM → ARM** |
 | 5 | DSMS: GBU-12 or GBU-10 selected; CCRP mode |

@@ -111,7 +111,7 @@ Upon completion of this event the student will be able to:
 | Step | Action |
 |---|---|
 | 1 | CDU → GPS status page → verify **GPS READY** and satellite count ≥ 4 |
-| 2 | TGP → **OPER** on AHCP |
+| 2 | TGP switch → **ON** on AHCP (MFD confirms OPER when ready) |
 | 3 | DSMS: GBU-38 selected; CCRP; TOO mode |
 | 4 | CDU steerpoints loaded for PP targets if applicable |
 | 5 | MASTER ARM → **SAFE** until IP |

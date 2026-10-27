@@ -49,7 +49,7 @@ Both pods are mounted on station 10 (right inboard pylon). For training purposes
 |---|---|---|
 | 1 | AHCP: **TGP → STBY** | During engine start or EGI alignment |
 | 2 | Wait ~90 seconds | Pod performs gyro spin-up and thermal calibration |
-| 3 | AHCP: **TGP → OPER** | Pod enters operational mode |
+| 3 | AHCP: **TGP switch → ON** (MFD shows OPER when pod is warmed up) | Pod enters operational mode |
 | 4 | Verify MFCD TGP page shows live video | Cross-hairs centered; OSBs labeled |
 
 **Rule:** Power up TGP during ground operations. By the time the aircraft is airborne and approaching the target area, the pod will be ready.
@@ -142,7 +142,7 @@ Both pods are mounted on station 10 (right inboard pylon). For training purposes
 | 2 | DSMS STATUS → verify Maverick stations and quantities |
 | 3 | Select **IR Maverick** stations; wait for cooldown (select early!) |
 | 4 | CDU → LSR → verify laser code **1688** |
-| 5 | AHCP: TGP OPER; verify MFCD shows TGP video |
+| 5 | AHCP: TGP switch ON; verify MFCD shows TGP video |
 | 6 | AHCP: **LASER ARM → SAFE** (will ARM before designation pass) |
 
 ---
@@ -292,7 +292,7 @@ After the first Maverick is fired:
 
 | Item | Standard |
 |---|---|
-| **TGP power-on** | TGP powered in STBY during ground ops; OPER before takeoff |
+| **TGP power-on** | AHCP TGP switch set to ON during ground ops; MFD shows STBY during cool-down (normal) |
 | **POINT track** | Student independently achieves stable POINT track on a moving vehicle |
 | **SPI from TGP** | SPI set correctly; TAD shows SPI diamond at target location |
 | **Laser designation** | Laser fires (LASER ARM set, code correct, TMS UP long); MFCD confirms "LSR FIRE" |

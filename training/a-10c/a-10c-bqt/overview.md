@@ -92,7 +92,7 @@ An Incomplete Item (II) is issued when the student fails one specific standard b
 | Final approach (AoA) | Green donut ±1 indicator for ≥ 15 sec final |
 | Touchdown point | Within first 1,000 ft of threshold; on centerline ±15 ft |
 | EGI alignment | Full alignment complete before taxi |
-| ITT during start | Must not exceed 860°C |
+| ITT during start | Must not exceed 865°C (stabilized; 900°C transient during start is possible) |
 
 ---
 

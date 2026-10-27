@@ -89,7 +89,7 @@ The evaluator briefs the student on the following before the check ride begins:
 | Pre-takeoff checks | Complete; callouts verbalized | PASS / II / DOWN |
 
 **Area 1 DOWN criteria:**
-- ITT overtemp (> 860°C) during either engine start without recognition or correction
+- ITT overtemp (> 865°C stabilized) during either engine start without recognition or correction
 - Taxiing with NWS HI on taxiways (runway excursion risk)
 - Failing to complete EGI alignment before taxi (navigation system unreliable)
 

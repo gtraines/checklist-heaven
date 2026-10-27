@@ -54,7 +54,7 @@ Upon completion of this event the student will be able to:
 
 | Item | Value |
 |---|---|
-| ITT Start Abort Limit | **860°C** |
+| ITT Start Abort Limit | **865°C** (stabilized) |
 | N2 for Fuel Introduction | ~12–15% |
 | Engine Idle (N1) | 62–65% |
 | Engine Idle (ITT) | 400–500°C |
@@ -85,8 +85,8 @@ Work methodically through each switch. Announce each action aloud during trainin
 
 | Step | Switch | Location | Click Action | Indication |
 |---|---|---|---|---|
-| 1 | **Battery Switch** | Left console — Electrical Panel | Left-click → ON | Cockpit begins powering; some caution lights illuminate |
-| 2 | **Inverter Switch** | Left console — Electrical Panel | Left-click → STBY | AC instruments begin receiving power |
+| 1 | **Battery Switch** | **Right console** — Electrical Panel | Left-click → ON | Cockpit begins powering; some caution lights illuminate |
+| 2 | **Inverter Switch** | **Right console** — Electrical Panel | Left-click → STBY | AC instruments begin receiving power |
 | 3 | **Warning Light Test** | Left glareshield / UFC area | Left-click and hold | All caution/warning lights illuminate; verify none burned out |
 | 4 | Release warning light test | — | Release | Only actual faults remain |
 
@@ -96,24 +96,24 @@ Work methodically through each switch. Announce each action aloud during trainin
 
 | Step | Switch | Location | Click Action | Indication |
 |---|---|---|---|---|
-| 5 | **APU Switch** | Left console — Electrical Panel | Left-click → START | APU begins spooling; listen for turbine whine |
-| 6 | Wait for APU stabilization | — | — | APU RPM stable; APU GEN available |
-| 7 | **APU Generator Switch** | Left console — Electrical Panel | Left-click → PWR | Buses fully powered; most caution lights clear |
+| 5 | **APU Switch** | Left console — Throttle quadrant area | Left-click → START | APU begins spooling; listen for turbine whine |
+| 6 | Wait for APU stabilization | — | — | APU EGT 400–450°C, RPM 100%; APU GEN available |
+| 7 | **APU Generator Switch** | **Right console** — Electrical Panel | Left-click → PWR | Buses fully powered; most caution lights clear |
 
 ### Phase 1C: Left Engine Start
 
 | Step | Switch / Action | Location | Indication |
 |---|---|---|---|
-| 8 | **Left Throttle** — confirm at IDLE (full aft, before CUTOFF) | Throttle quadrant | Throttle in IDLE detent |
-| 9 | **Left Engine Operate Switch** — IGN | Left console — Engine Panel | Starter engages; N2 begins rising |
+| 8 | **Left Throttle** — confirm at **OFF/CUTOFF** (full aft position, past IDLE detent) | Throttle quadrant | Throttle at CUTOFF — NOT at IDLE |
+| 9 | **Left Engine Operate Switch** — confirm **NORM** | Left console — Engine Panel | NORM is standard start mode; IGN is for in-flight restart only |
 | 10 | Monitor **Left N2** on engine gauge | Right instrument panel (lower) | N2 % rising from 0 |
-| 11 | At **~12–15% N2** — advance **Left Throttle** from CUTOFF to IDLE | Throttle quadrant | Throttle moves past CUTOFF detent; fuel introduced |
-| 12 | Monitor **Left ITT** | Right instrument panel (lower) | ITT rises sharply → peaks → stabilizes; **must NOT exceed 860°C** |
-| 13 | Monitor **Left N1** accelerating through 30%, 50%, 60%... | Right instrument panel (lower) | N1 rising steadily |
-| 14 | Engine stabilizes at idle | — | N1: 62–65%; ITT: 400–500°C; Oil: 25–65 PSI; Fuel Flow: 600–800 lbs/hr |
-| 15 | **Left Engine Operate Switch** — NORM | Left console — Engine Panel | Returns to normal operating mode |
+| 11 | **Left Throttle** — advance from **OFF/CUTOFF → IDLE** (this IS the engine start; FADEC handles the sequence automatically) | Throttle quadrant | N2 rises; FADEC introduces fuel; ITT rises (light-off) |
+| 12 | Monitor **Left ITT** | Right instrument panel (lower) | ITT rises sharply → peaks → stabilizes; **must NOT exceed 865°C** |
+| 13 | Monitor **Left N2** (core speed) accelerating to idle | Right instrument panel (lower) | N2 rising to ~56–65% |
+| 14 | Engine stabilizes at idle | — | N2: ~56–65%; ITT: 400–500°C; Oil: 40–95 PSI; Fuel Flow: 600–800 lbs/hr |
+| 15 | **Left Engine Operate Switch** — verify NORM | Left console — Engine Panel | Should already be NORM |
 
-> **Hot Start:** If ITT reaches 860°C and continues rising — **immediately** pull left throttle to CUTOFF. Switch Engine Operate to MOTOR. Allow 30-second dry crank to cool. Retry.
+> **Hot Start:** If ITT rises above **865°C** stabilized — **immediately** pull left throttle to CUTOFF. Switch Engine Operate to MOTOR. Allow 30-second dry crank to cool. Retry.
 
 ### Phase 1D: Right Engine Start
 
@@ -121,9 +121,9 @@ Repeat the left engine start procedure for the right engine:
 
 | Step | Action | Same As Left? |
 |---|---|---|
-| 16 | Confirm Right Throttle at IDLE | Yes |
-| 17 | Right Engine Operate Switch — IGN | Mirror of left |
-| 18 | Monitor N2; introduce fuel at ~12–15% N2 | Yes — same criteria |
+| 16 | Confirm Right Throttle at **OFF/CUTOFF** | Yes |
+| 17 | Right Engine Operate Switch — **NORM** | Mirror of left |
+| 18 | Right Throttle → **IDLE** to start engine | Same as left; FADEC starts automatically |
 | 19 | Monitor ITT; engine stabilizes at idle | Yes — same parameters |
 | 20 | Right Engine Operate Switch — NORM | Yes |
 
@@ -131,11 +131,11 @@ Repeat the left engine start procedure for the right engine:
 
 | Step | Switch | Location | Click Action | Indication |
 |---|---|---|---|---|
-| 21 | **Left Generator Switch** | Left console — Electrical Panel | Left-click → PWR | Left generator online |
-| 22 | **Right Generator Switch** | Left console — Electrical Panel | Left-click → PWR | Right generator online |
+| 21 | **Left Generator Switch** | **Right console** — Electrical Panel | Left-click → PWR | Left generator online |
+| 22 | **Right Generator Switch** | **Right console** — Electrical Panel | Left-click → PWR | Right generator online |
 | 23 | Verify both generators stable | — | — | No GEN caution lights |
-| 24 | **APU Generator Switch** | Left console — Electrical Panel | Left-click → OFF | APU generator off bus |
-| 25 | **APU Switch** | Left console — Electrical Panel | Left-click → OFF | APU spools down |
+| 24 | **APU Generator Switch** | **Right console** — Electrical Panel | Left-click → OFF | APU generator off bus |
+| 25 | **APU Switch** | Left console — Throttle quadrant area | Left-click → OFF | APU spools down |
 
 ### Phase 1F: Post-Start Checks
 
@@ -163,7 +163,7 @@ Power avionics in this sequence. Starting CDU and EGI early maximizes alignment 
 | 3 | **UFC** | Powers on with avionics bus (battery/APU earlier) | Glareshield center | Verify display active |
 | 4 | **Left MFCD** | Brightness knob — rotate clockwise past OFF detent | Left MFCD bezel (lower-left) | ~5 sec self-test |
 | 5 | **Right MFCD** | Brightness knob — rotate clockwise past OFF detent | Right MFCD bezel (lower-left) | ~5 sec self-test |
-| 6 | **TGP** | AHCP TGP switch — STBY | Left glareshield — AHCP | 3–5 min IR cooling (power early) |
+| 6 | **TGP** | AHCP TGP switch — **ON** (switch is ON/OFF only; MFD will show STBY while cooling — this is normal) | Left glareshield — AHCP | 3–5 min IR cooling (power early) |
 | 7 | **HMCS** | AHCP HMCS switch — ON (if A-10C II) | Left glareshield — AHCP | Immediate; boresight later |
 | 8 | **IFFCC** | AHCP IFFCC switch — TEST, then ON | Left glareshield — AHCP | ~10 sec self-test |
 | 9 | **CMSP** | CMSP switch — STBY, then MAN | Left console — CMSP Panel | Immediate |
