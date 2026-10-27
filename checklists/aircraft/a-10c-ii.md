@@ -81,11 +81,11 @@ Same layout as A-10C with additional:
 | **Max Headwind (Canopy Open)** | 45 kts | Ground taxi |
 | **Max Mach** | M 0.75 | Airframe drag usually limits level flight |
 | **APU Operation** | < 15,000 ft | For starting or emergency power |
-| **Engine ITT (Start)** | 860°C max | Abort start if exceeded |
-| **Engine ITT (Max Continuous)** | 810°C | Normal operations limit |
+| **Engine ITT (Start)** | 865°C stabilized / 900°C transient | Stabilized above 865°C = malfunction; short period at 900°C possible during start\* |
+| **Engine ITT (Max Continuous)** | 865°C | Normal operating range 275–865°C per DCS model\* |
 | **Engine ITT (Transient/TO)** | 900°C | Not to exceed limit |
-| **Fan Speed N1** | 98% max | Primary thrust indicator |
-| **Core Speed N2** | 99% max | — |
+| **Fan Speed N1** | ~82% at MIL | Fan speed at max (takeoff) power; not a primary throttle reference\* |
+| **Core Speed N2** | 98% normal / 102% NTE | 100–102% max 3 seconds; normal range 56–98%\* |
 
 ## Performance & V-Speeds
 
@@ -99,7 +99,7 @@ Same layout as A-10C with additional:
 | **Stall Speed (Vs)** | ~110 | Gear/Flaps Down (Weight dependent) |
 | **Max Speed (Vne)** | 450 | Low Altitude Structural Limit |
 | **Gear Extension (Vlo)** | 200 | Do not extend above |
-| **Flaps Limit (Vfe)** | 200 | Maneuver (MVR) & Down (DN) |
+| **Flaps Limit (Vfe)** | 185 KIAS | DCS model auto-retracts flaps at 185 KIAS; airspeed indicator yellow limit line is at 200 KIAS\* |
 | **Refueling** | 200 - 220 | Typical tanker speed |
 
 ## Emergency Procedures (Quick Ref)
@@ -120,11 +120,11 @@ Same layout as A-10C with additional:
 | Weapon / System | Type | Effective Range | Best Suited For | Simulation Notes |
 |---|---|---|---|---|
 | **GAU-8/A Avenger** | 30mm Cannon | < 2 NM | **Anti-Armor** (Tanks/IFVs) | PAC stabilizes aiming; massive recoil |
-| **AGM-65D/G** | IR Missile | 6-8 NM | Moving Armor, Night Ops | Force Correlate (G) for large targets |
-| **AGM-65H/K** | TV Missile | 4-6 NM | High Contrast (Day) | K = Heavy Warhead; H = Light |
-| **AGM-65L** | Laser Missile | 6-8 NM | Buddy Lasing | Requires laser code match |
+| **AGM-65D/G** | IR Missile | ~8 km (~4.3 NM) max | Moving Armor, Night Ops | Force Correlate (G) for large targets; actual range shown by DLZ |
+| **AGM-65H/K** | TV Missile | ~8 km max (day) | High Contrast (Day) | K = Heavy Warhead; H = Light |
+| **AGM-65L** | Laser Missile | ~8 km max | Buddy Lasing | Requires laser code match |
 | **GBU-38** | JDAM (500lb) | 5-10 NM | All Weather / Coordinate | GPS Guided; Requires alignment |
-| **GBU-54 LJDAM** | Laser+GPS (500lb) | 5-10 NM | **Moving Targets** | **A-10C II Only** — terminal laser guidance |
+| **GBU-54 LJDAM** | Laser+GPS (500lb) | ~8 NM | **Moving Targets** | **A-10C II Only** — terminal laser guidance; glide range 8 NM per manual |
 | **GBU-12** | LGB (500lb) | Varies | Precision Point | Requires TGP lasing |
 | **GBU-39 SDB** | GPS Bomb (250lb) | 5-10 NM | Lightly Armored / Soft | 4 per BRU-61 rack; 4 targets per pass |
 | **APKWS** | Guided Rocket | 1.5-5 NM | Light Armor / Precision | **A-10C II Only** — SAL guidance |
@@ -135,30 +135,40 @@ Same layout as A-10C with additional:
 | **JHMCS** | Helmet Sight | N/A | Cueing / SA | **A-10C II Only** — "Look-and-shoot" |
 
 ## Realism Notes
+> *Source: `reference/DCS_A-10C_II_Flight_Manual_EN.pdf` (Eagle Dynamics DCS A-10C II Tank Killer Flight Manual, 814 pp.). Values marked \* are corrected to match the DCS model. Performance data not in this manual is sourced from AFMAN 11-2A-10C Vol 3 and is unverified against the available reference.*
+
+- **Battery location / Startup:** Same as A-10C — Battery switch is on the **right console**; throttles must be at **OFF** (not IDLE) for pre-start. See A-10C Realism Notes for full startup procedure corrections.
+
+- **TGP AHCP switch (Sniper XR):** ON/OFF switch only. "STBY" is the MFD display state during warm-up, not a switch position.
+
 - **A-10C II vs A-10C:** The "Tank Killer" (II) variant adds the JHMCS, APKWS, GBU-54 LJDAM, SADL/Link-16, and the Sniper XR TGP. Flight performance is identical.
+
+- **\* Flap Limit (Vfe):** The DCS model auto-retracts flaps at **185 KIAS**. The airspeed indicator yellow limit line is at 200 KIAS (covers both gear and flaps). The real T.O. limit is 200 KIAS.
+
+- **\* Fan Speed N1 / Core Speed N2:** Fan speed (N1) at MIL power is ~82%, not 98%. Core speed (N2) normal range is 56–98%; NTE 102% (max 3 sec). Real T.O. limits (AFMAN) are more conservative.
+
+- **\* ITT Limits:** DCS model normal range: 275–865°C; stabilized above 865°C = malfunction; 900°C possible during start. Real T.O. specifies 860°C hot start abort limit and 810°C continuous max — more conservative than the DCS model.
+
+- **APKWS Range:** The DCS A-10C II manual gives contradictory data: spec section (p.698) states employment range 0.5–2.5 NM; engagement procedure (p.702) states launch at 5.0–5.5 NM. The checklist uses 1.5–5 NM, consistent with the engagement procedure. The real-world APKWS guidance range is up to 7.5 NM (laser-tracking distance).
+
+- **GBU-54 Glide Range:** Manual specifies **8 NM** glide range (p.90). Actual standoff varies with release altitude and speed; 8 NM represents the nominal spec.
+
 - **Manual Reversion:** In dual hydraulic failure, flight controls must be switched to "Manual Reversion" (Pitch/Roll switches on left console). Control authority is significantly reduced.
-- **APKWS Range:** Real-world APKWS range extends to ~5 km; DCS models this accurately. The rocket is semi-active laser homing — do not break laser until impact.
 
 ---
 
 ## Startup Checklist
 
-### Pre-Start
-- [ ] **Parking Brake** — SET (`W`)
-- [ ] **Battery** — ON
-- [ ] **Emergency Flight Controls** — NORMAL
+### Pre-Start through Engine Start
+*(Follow the full [A-10C Startup Checklist](a-10c.md#startup-checklist) — the pre-start, electrical, APU, and engine start procedures are identical)*
 
-### Engine Start
-*(Same as A-10C — see [A-10C Startup](a-10c.md#startup-checklist))*
-- [ ] **Left Engine** — `RAlt + Home`
-- [ ] **Right Engine** — `RCtrl + Home`
-- [ ] Both at IDLE — stable
+> Key reminders: Throttles to **OFF** (not IDLE) during pre-start; Battery is on the **right console**; moving throttle OFF → IDLE starts the engine.
 
 ### A-10C II Additional Avionics
-- [ ] **CDU** — ON
-- [ ] **EGI (GPS/INS)** — ON — allow GPS alignment
-- [ ] **Sniper XR TGP** — ON (earlier warmup due to better IR detector — ~3 min)
-- [ ] **JHMCS** — ON and boresight (see procedure below)
+- [ ] **CDU** — ON (right console AAP)
+- [ ] **EGI (GPS/INS)** — ON (right console AAP); allow GPS alignment
+- [ ] **Sniper XR TGP** — ON via AHCP switch (AHCP is ON/OFF; MFD shows STBY during ~3 min warmup)
+- [ ] **JHMCS** — ON, then boresight (see procedure below)
 - [ ] **Link-16 / SADL** — ON, set network codes
 - [ ] **ARC-210** — ON, set frequencies
 - [ ] **IFF** — set Mode 1/2/3/4 codes
@@ -203,8 +213,7 @@ Additional A-10C II MFCD pages:
 
 The Sniper XR has greater range and resolution than the Litening AT.
 
-- [ ] **Power** — STBY, then OPER
-- [ ] Warmup ~3 minutes
+- [ ] **Power** — ON via AHCP switch (MFD shows STBY while warming up ~3 min; no "OPER" switch position exists)
 - Longer slant range capability vs Litening (~12+ NM effective)
 - Improved IMC (In-Cloud) track capability
 

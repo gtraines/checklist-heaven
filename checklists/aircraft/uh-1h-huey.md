@@ -142,47 +142,95 @@
 
 ## Startup Checklist
 
-### Phase 1 — Electrical Power
+> **Auto-start shortcut (DCS):** `LWin + Home` starts the engine automatically through all phases.
 
-- [ ] **Battery** — ON (`LShift + B`) *(overhead console — electrical panel; caution panel illuminates normally)*
-- [ ] **Caution Panel** — CHECK *(multiple lights on at battery-only — normal before engine start)*
-- [ ] **Caution Light Test** — PRESS AND HOLD *(overhead — test panel; verify all bulbs illuminate; release)*
-- [ ] **Inverter** — ON (`LShift + I`) *(overhead — electrical panel; allows attitude indicator and DG to erect; allow 2–3 min to stabilize)*
+### Phase 1 — Overhead Panel Setup (Before Electrical Power)
 
-### Phase 2 — Fuel System
+- [ ] **DC Circuit Breakers** — IN (all in, except armament/special equipment)
+- [ ] **DOME LT switch** — as required
+- [ ] **AC POWER — PHASE switch** — AC (`LShift + R`)
+- [ ] **AC POWER — INVTR switch** — **OFF** (`LShift + I`) *(Inverter is OFF during start; turned on after engine running)*
+- [ ] **DC POWER — MAIN GEN switch** — ON, cover down (`LShift + Q`)
+- [ ] **DC POWER — VM selector** — ESS BUS (`LShift + H`)
+- [ ] **DC POWER — STARTER GEN switch** — START (`LShift + X`) *(Sets generator to start mode; changed to STBY GEN post-start)*
+- [ ] **DC POWER — BAT switch** — ON (`LShift + P`) *(Caution panel illuminates — normal)*
 
-- [ ] **Fuel Valve** — ON (`LShift + F`) *(overhead — fuel panel; guarded; lift guard and toggle)*
-- [ ] **Fuel Boost Pump** — ON (`LCtrl + B`) *(overhead — fuel panel; FUEL BOOST caution light extinguishes when pressure established)*
-- [ ] **Fuel Quantity** — CHECK *(instrument panel — fuel quantity gauge; sufficient for mission; note quantity in pounds)*
+### Phase 2 — Center Pedestal Setup
+
+- [ ] **FIRE warning indicator** — TEST (`RCtrl + T`); verify light illuminates; release
+- [ ] **Avionics equipment** — OFF (set as desired later)
+- [ ] **DISP CONTROL panel** — ARM/STBY/SAFE switch → SAFE (`RShift + RAlt + L`); JETTISON switch covered
+- [ ] **GOV switch** — **AUTO** (`G`) *(On center pedestal — set to AUTO before start; remains AUTO throughout normal operations)*
+- [ ] **DE-ICE switch** — OFF (`I`)
+- [ ] **MAIN FUEL switch** — ON (`F`)
+- [ ] **Caution panel lights** — TEST (`LAlt + R`), then RESET (`R`)
+- [ ] **HYD CONT switch** — ON (`LAlt + I`)
+- [ ] **FORCE TRIM switch** — ON (`LAlt + U`)
+- [ ] **CHIP DET switch** — BOTH (`LAlt + G`)
 
 ### Phase 3 — Pre-Start Checks
 
-- [ ] **Throttle** — CLOSED *(full counterclockwise on collective grip twist-grip to fuel cutoff)*
-- [ ] **Collective** — FULL DOWN and friction set
-- [ ] **Cyclic** — CENTERED
-- [ ] **Pedals** — CENTERED
-- [ ] **Governor (GOV)** — OFF (`LCtrl + Home`) *(overhead — engine panel; must be off for start; engage after stabilizing at idle)*
-- [ ] **Area** — CLEAR *(no personnel within 24 ft rotor arc; look both sides and behind)*
+- [ ] **Flight controls** — check freedom through full travel; cyclic, pedals, collective full down
+- [ ] **Collective** — FULL DOWN, friction set
+- [ ] **Altimeter** — set field elevation (`RShift + B` increase / `RCtrl + B` decrease for pilot)
+- [ ] **Area** — CLEAR (no personnel within 24 ft rotor arc)
 
 ### Phase 4 — Engine Start
 
-> **EGT limit during start: 720°C (10-second maximum).** Monitor continuously. If exceeded: throttle to CLOSED immediately.
+> **EGT limit during start: 760°C maximum.** Monitor continuously.
 
-- [ ] **Starter Button** — PRESS AND HOLD (`LShift + Home`) *(overhead — engine panel; N1 begins increasing)*
-- [ ] At **~15% N1** — **Throttle** — advance to **IDLE detent** *(mouse wheel CCW on collective twist-grip, or throttle axis, to IDLE stop; introduces fuel)*
-- [ ] **EGT** — MONITOR for light-off *(instrument panel — EGT gauge; rise confirms ignition; expect 200–400°C at light-off)*
-  - If no EGT rise by 25% N1 → **ABORT** — throttle CLOSED, motor 30 sec to purge
-  - If EGT exceeds **720°C** → **HOT START** — throttle CLOSED immediately; wait 2 min
-  - If N1 stagnates below ~55% with rising EGT → **HUNG START** — throttle CLOSED; motor to clear
-- [ ] **N1** — accelerating to **58–62%** (ground idle) *(instrument panel — N1 gauge)*
-- [ ] **Starter Button** — RELEASE (`LShift + Home`) *(do not exceed 60 sec continuous cranking)*
-- [ ] **Stabilize at ground idle** — wait 30–60 seconds *(EGT settling, oil pressure rising)*
+**Step 1 — Prepare throttle:**
+- [ ] **Controls Indicator** — ON (`RCtrl + Enter`)
+- [ ] Roll throttle **fully left (open)**: hold `PgUp` until full open
+- [ ] Roll throttle **right (decrease)**: hold `PgDn` until idle stop is reached (cannot rotate further)
+- [ ] **Idle Release switch** — press (`RWin + T`) to engage
+- [ ] Roll throttle slightly right of idle stop: press `PgDn` once
+- [ ] **Idle Release switch** — release (`RWin + T`)
+
+**Step 2 — Crank and start:**
+- [ ] **Start switch** — press and hold (`Home`) *(on collective — N1 begins rising; main rotor begins turning)*
+  - If rotor NOT turning by 15% N1 → **ABORT**
+- [ ] At **40% N1** (or after 40 seconds) — **Release** start switch (`Home`)
+- [ ] **Throttle** — advance past idle stop (`PgUp`) to engine idle position
+- [ ] Monitor: N1 rises to **68–72%** at idle
+
+**EGT monitoring:**
+- EGT rising → ignition confirmed (normal 200–400°C at light-off)
+- If EGT exceeds **760°C** → **HOT START** — throttle CLOSED immediately; motor 30 sec to purge
+- If N1 stops rising below idle → **HUNG START** — throttle CLOSED; investigate
 
 ### Phase 5 — Post-Start
 
-- [ ] **Generator (GEN)** — ON (`LShift + G`) *(overhead — electrical panel; GEN caution light extinguishes; voltmeter shows ~28V)*
-- [ ] **Governor (GOV)** — ON (`LCtrl + Home`) *(overhead — engine panel; Nr adjusts to 324 RPM as governor engages)*
-- [ ] **RPM Warning Audio** — ON *(overhead — engine panel; arms low-RPM audio warning)*
+- [ ] **INVTR switch** — MAIN ON (`LShift + U`) *(overhead; DC power panel — cages copilot attitude indicator momentarily)*
+- [ ] **Engine oil pressure** — CHECK 35–70 PSI
+- [ ] **Transmission oil pressure** — CHECK 30–70 PSI
+- [ ] **GPU** — disconnect (if used)
+- [ ] **STARTER GEN switch** — STBY GEN (`LShift + X`) *(overhead DC power — transitions generator from start mode to standby generator mode)*
+- [ ] **Avionics** — ON (radios, navigation equipment)
+- [ ] Systems check: FUEL, ENGINE, TRANSMISSION, ELECTRICAL
+  - AC: 112–118 Volts
+  - DC: 27–28.5 Volts
+- [ ] **RPM** — 6600 (low RPM audio and warning light off at 6100–6300 RPM)
+
+### Phase 6 — Rotor Engagement (Idle → Flight RPM)
+
+> Keep collective **full down** throughout. Clear the rotor arc.
+
+- [ ] **Idle Stop Release** — PRESS AND HOLD (`RWin + T`) while advancing throttle
+- [ ] **Throttle** — advance to **FLY detent** (`PgUp`; Nr begins rising toward 324 RPM)
+- [ ] **Release idle stop** (`RWin + T`)
+- [ ] **Nr** — MONITOR rising to **324 RPM** *(dual tachometer — governor holds at 6600 engine / 324 rotor)*
+- [ ] **EGT** — VERIFY below 610°C during power increase
+
+### Phase 7 — Avionics & Navigation Setup
+
+- [ ] **VHF-AM (AN/ARC-134)** — ON; tune ground/tower frequency; set volume *(center pedestal — top radio)*
+- [ ] **UHF-AM (AN/ARC-51BX)** — ON; GUARD mode or assigned frequency *(center pedestal — middle radio)*
+- [ ] **FM (AN/ARC-131)** — ON; tune assigned frequency if required *(center pedestal — bottom radio)*
+- [ ] **Audio Panel** — configure volumes; select VHF for transmit *(center pedestal)*
+- [ ] **Transponder** — STANDBY; squawk code set per clearance *(center pedestal)*
+- [ ] **Radar Altimeter** — ON; set low-altitude warning bug *(instrument panel)*
+- [ ] **Heading Indicator (DG)** — align to magnetic compass *(instrument panel; aircraft stationary)*
 - [ ] **Engine Oil Pressure** — CHECK 35–70 PSI *(instrument panel — engine oil pressure gauge; within ~30 sec of start)*
 - [ ] **Engine Oil Temperature** — CHECK rising *(instrument panel — engine oil temp gauge; will rise toward operating range over several minutes)*
 - [ ] **Trans Oil Pressure** — CHECK 30–70 PSI *(instrument panel — transmission oil pressure gauge)*
@@ -223,7 +271,7 @@
 - [ ] **Trans instruments** — within limits
 - [ ] **Flight controls** — CYCLE FULL TRAVEL *(cyclic fore/aft/left/right, collective up/down, pedals full left/right — smooth, no binding)*
 - [ ] **Force trim** — CHECK *(set trim, verify it holds; release, verify controls move freely)*
-- [ ] **Governor (GOV)** — ON
+- [ ] **Governor (GOV)** — verify AUTO (`G`) — set during pre-start; should remain AUTO throughout
 - [ ] **RPM Warning** — ON
 - [ ] **Caution panel** — CLEAR
 - [ ] **Altimeter** — SET *(reads within 75 ft of known field elevation)*
@@ -380,6 +428,18 @@
 > **Note:** Rockets are most effective in diving runs. Hover rocket employment possible but exposes aircraft to ground fire.
 
 ## Realism Notes
+> *Source: `reference/DCS UH-1H Flight Manual_EN.pdf` (Eagle Dynamics DCS: UH-1H Huey, 204 pp.). Startup checklist rewritten to match DCS manual chapter 9. Many keybinds in prior documentation were incorrect.*
+
+**Startup corrections (vs. prior documentation):**
+- **Battery (`LShift+P`):** Was incorrectly listed as `LShift+B`. The `BAT switch` keybind is `LShift+P`.
+- **Starter (`Home`):** Was incorrectly listed as `LShift+Home`. The start switch is pressed with bare `Home`. It is on the **collective**, not the overhead panel.
+- **Governor (`G`):** Was incorrectly listed as `LCtrl+Home` on the overhead. The `GOV switch` is on the **center pedestal** with keybind `G`. It is set to AUTO **before** engine start (not cycled OFF→ON).
+- **Main Fuel switch (`F`):** Was incorrectly listed as `LShift+F`.
+- **Inverter:** Must be OFF (`LShift+I`) during start; switched to MAIN ON (`LShift+U`) after engine running.
+- **STARTER GEN switch (`LShift+X`):** Must be set to START before engine start; switched to STBY GEN after engine running.
+- **Missing pre-start items:** MAIN GEN (`LShift+Q`), HYD CONT (`LAlt+I`), FORCE TRIM (`LAlt+U`), CHIP DET (`LAlt+G`).
+- **EGT start limit:** DCS manual specifies 760°C (red limit); earlier documentation stated 720°C.
+
 - **Mast Bumping:** The DCS UH-1H accurately models mast bumping. Avoid all forward cyclic pushes under low-G. A two-blade teetering rotor has zero recovery margin once the mast is struck — rotor separation is instant and fatal.
 - **LTE (Loss of Tail Rotor Effectiveness):** Wind from the left-rear arc (210°–330° relative) can cause uncommanded right yaw at hover/low speed. Forward cyclic (gain airspeed) is the cure. LTE is fully modeled in DCS.
 - **Settling with Power (VRS):** Steep, slow approaches (< 30 KIAS with high power) risk vortex ring state. DCS models VRS — if the aircraft is sinking and collective isn't helping, push forward cyclic immediately.
@@ -620,15 +680,19 @@ At any point in the approach:
 ### Engine & Systems
 | Function | Key | Notes |
 |---|---|---|
-| Starter button | `LShift + Home` | Hold while N1 rises; release at idle |
-| Engine stop (throttle cutoff) | `LShift + End` | |
-| Idle stop release | `LShift + PgDn` | Press to advance throttle past idle to FLY |
-| Governor ON/OFF | `LCtrl + Home` | |
-| Battery | `LShift + B` | |
-| Generator | `LShift + G` | |
-| Inverter | `LShift + I` | |
-| Fuel valve | `LShift + F` | |
-| Fuel boost pump | `LCtrl + B` | |
+| Starter button | `Home` | Hold until 40% N1 then release; throttle advance after |
+| Engine stop (throttle cutoff) | `PgDn` (roll throttle to CLOSE) | |
+| Idle stop release | `RWin + T` | Press to advance throttle past idle stop |
+| Governor (GOV switch AUTO) | `G` | On center pedestal |
+| Battery (BAT switch) | `LShift + P` | |
+| Main Generator (MAIN GEN) | `LShift + Q` | |
+| Starter Generator (STARTER GEN) | `LShift + X` | START pre-engine, STBY GEN post-engine |
+| Inverter OFF / MAIN ON | `LShift + I` / `LShift + U` | OFF before start; MAIN ON after |
+| Main Fuel switch | `F` | |
+| HYD CONT switch | `LAlt + I` | |
+| FORCE TRIM switch | `LAlt + U` | |
+| CHIP DET switch | `LAlt + G` | |
+| Caution lights test / reset | `LAlt + R` / `R` | |
 
 ### Collective & Throttle
 | Function | Key | Axis |
@@ -656,7 +720,7 @@ At any point in the approach:
 |---|---|
 | Landing light | `LCtrl + L` |
 | Nav lights | `LShift + L` |
-| Pitot heat | `LShift + P` |
+| Pitot heat | `LShift + H` | VM selector also uses this; verify in-sim |
 
 ### Weapons
 | Function | Key |

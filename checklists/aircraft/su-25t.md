@@ -106,6 +106,14 @@
 | **Mercury Pod** | LLTV System | N/A | Night Operations | Allows night use of Shkval/Vikhr |
 
 ## Realism Notes
+> *Source: `reference/DCS World Su-25T Flight Manual EN.pdf` (Eagle Dynamics, 68 pp.). Key corrections applied.*
+
+- **Startup:** APU (`RShift+L`) powers up the aircraft; there is no separate Battery switch. Engine start sequence is **right first** (`RCtrl+Home`) then left (`RAlt+Home`). Idle RPM is **~33%** (not 50-65%); EGT at idle is ~440°C.
+
+- **Autopilot keybinds:** The ACS-8 modes were incorrectly documented. Route mode = `LAlt+6`; `LAlt+3` = Emergency Leveling (not heading hold); the Su-25T has no heading hold mode. See Navigation Modes table for correct keybinds.
+
+- **Shkval slewing:** The Shkval and all TDC operations use `[;][,][.][/]` for slewing (not Numpad). Ground-stabilize is plain `Enter` (not Numpad Enter). Zoom uses `=`/`-`.
+
 - **Max Landing Weight:** In DCS, landing significantly above 13,300 kg often results in tire blowouts or gear collapse, which is modeled more strictly than in some other modules.
 - **Crosswind:** DCS Su-25T ground handling logic can be unstable (tipping) in crosswinds >12 m/s, which may differ slightly from real-world tolerances.
 - **Cockpit:** The DCS Su-25T does not have a clickable cockpit; all procedures assume keybinds or HOTAS mappings.
@@ -116,32 +124,27 @@
 
 ### Pre-Start
 - [ ] **Parking Brake** — SET (`W` key)
-- [ ] **Throttle** — IDLE (`PgDn` to minimum)
-- [ ] **Master Power** — ON (`RShift + L`)
-- [ ] **Battery** — ON
+- [ ] **Throttle** — IDLE (`PgDn` to minimum, both engines)
+- [ ] **APU** — ON (`RShift + L`) *(activates auxiliary power unit — avionics and HUD come online)*
 - [ ] **EKRAN** — check (no red warnings)
 
 ### Engine Start
-- [ ] **Left Engine Start** — `RAlt + Home` (or use right-click start lever in cockpit)
-  - Wait for N2 > 50%
-  - EGT rising — normal
+> Both engines at once: `RShift + Home`  
+> Sequential: **Right engine first** (`RCtrl + Home`), then left (`RAlt + Home`)
+
 - [ ] **Right Engine Start** — `RCtrl + Home`
-  - Wait for N2 > 50%
-  - Both engines at IDLE — confirm RPM ~65%
-- [ ] **Generators** — ON (both)
-- [ ] **Hydraulics** — check pressure (green)
-- [ ] **Fuel** — check quantity and transfer pumps ON
-- [ ] **Oxygen** — ON and check flow
-- [ ] **SPO-15 RWR** — ON
+  - RPM rises and stabilizes at **~33%** at idle
+  - EGT should be around **440°C**
+- [ ] **Left Engine Start** — `RAlt + Home`
+  - Same checks
+- [ ] **Both engines stable at idle** — RPM ~33%, EGT ~440°C
 - [ ] **EKRAN** — all green / no warnings
 
 ### Avionics Power-On
-- [ ] **PNK Navigation Computer** — ON
-- [ ] **ILS** — set frequency if applicable
+- [ ] **SPO-15 RWR** — ON
 - [ ] **R-862 Radio** — ON, set frequency
-- [ ] **Shkval TV System** — ON (takes ~1 min warm-up)
-- [ ] **Laser Rangefinder** — SAFE (arm only when weapons employment)
-- [ ] **ATGM Guidance** — check selected weapon type
+- [ ] **Shkval TV System** — ON (`O` key; takes ~60 sec warm-up)
+- [ ] **Laser Rangefinder** — SAFE (arm with `RShift+O` only when weapons employment)
 
 ---
 
@@ -171,16 +174,19 @@
 - [ ] **PNK Power** — ON
 - [ ] **Waypoints** — pre-planned in mission editor or set via cockpit
 - [ ] **Waypoint select** — `1` / `2` to cycle waypoints
-- [ ] **Autopilot Route Mode** — `LAlt + 1` (route following)
-- [ ] **Autopilot Altitude Hold** — `LAlt + 2`
+- [ ] **Autopilot Route Mode** — `LAlt + 6` (route following)
+- [ ] **Autopilot Altitude Hold** — `LAlt + 4` (barometric) or `LAlt + 5` (radar)
 
 ### Navigation Modes
 | Mode | Key | Description |
 |---|---|---|
-| Route Mode | `LAlt + 1` | Follow pre-planned waypoints |
-| Altitude Hold | `LAlt + 2` | Maintain current altitude |
-| Heading Hold | `LAlt + 3` | Maintain current heading |
-| Return to Base | `LAlt + 0` | Navigate to home base waypoint |
+| Route/Landing Mode | `LAlt + 6` | Follow pre-planned waypoints / ILS approach |
+| Attitude Hold | `LAlt + 1` | Hold current pitch and bank |
+| Altitude Hold (barometric) | `LAlt + 4` (or `H`) | Maintain current pressure altitude |
+| Altitude Hold (radar) | `LAlt + 5` | Maintain AGL altitude; includes terrain avoidance |
+| Emergency Leveling | `LAlt + 3` | Bring aircraft to wings-level from any attitude |
+| Momentary Override | Hold `LAlt + ~` | Temporary manual control while autopilot active |
+| Disengage All ACS | `LAlt + 9` or `A` | Cancel all autopilot modes |
 
 ### ILS Approach
 - [ ] **ILS Frequency** — set on radio/nav panel
@@ -195,9 +201,9 @@
 
 ### Shkval TV/Laser Targeting System
 - [ ] **Shkval Power** — ON (warm-up ~60 sec)
-- [ ] **Shkval FOV** — WIDE (default) or NARROW (`*` numpad)
-- [ ] **Shkval Slew** — numpad 8/2/4/6 (up/down/left/right)
-- [ ] **Target Lock** — `Enter` (numpad)
+- [ ] **Shkval FOV** — toggle WIDE/NARROW (`=` zoom in / `-` zoom out)
+- [ ] **Shkval Slew** — `; , . /` keys (up/down/left/right)
+- [ ] **Target Ground-Stabilize** — `Enter`
 - [ ] **Laser Arm** — `O` key
 - [ ] **Laser Fire** — `O` key (hold for ranging/designation)
 
@@ -423,19 +429,23 @@
 | Chaff | `[` |
 | Flares | `]` |
 | Jettison Stores | `LAlt + J` |
-| Shkval: Slew Up/Down | `Numpad 8/2` |
-| Shkval: Slew Left/Right | `Numpad 4/6` |
-| Shkval: Lock | `Numpad Enter` |
-| Shkval: Wide/Narrow | `Numpad *` |
-| Laser Arm/Fire | `O` |
+| Shkval: ON/OFF | `O` |
+| Shkval: Slew (;/,/.//) | `;` `,` `.` `/` | Up/Down/Left/Right |
+| Shkval: Ground-Stabilize | `Enter` |
+| Shkval: Zoom In/Out | `=` / `-` |
+| Mercury LLTV: ON/OFF | `RCtrl + O` |
+| Laser Rangefinder ARM | `RShift + O` |
 
 ### Autopilot
 | Function | Key |
 |---|---|
-| Route Mode | `LAlt + 1` |
-| Altitude Hold | `LAlt + 2` |
-| Heading Hold | `LAlt + 3` |
-| Autopilot Disengage | `LAlt + Z` |
+| Route/Landing Mode | `LAlt + 6` |
+| Attitude Hold | `LAlt + 1` |
+| Altitude Hold (baro) | `LAlt + 4` (or `H`) |
+| Altitude Hold (radar) | `LAlt + 5` |
+| Emergency Leveling | `LAlt + 3` |
+| Momentary Override | Hold `LAlt + ~` |
+| Disengage All ACS | `LAlt + 9` or `A` |
 
 ---
 

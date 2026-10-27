@@ -169,69 +169,116 @@ Rear Cockpit (Pilot — seat `2`, default spawn):
 
 ## Cold-Dark Startup
 
-> All steps performed from **Pilot (rear) cockpit** unless marked WSO.
+> All steps performed from **Pilot (rear) cockpit** unless marked WSO.  
+> DCS autostart shortcut: `LWin + Home` (skips the manual procedure below).
 
 ### Phase 1 — Electrical Power (Left Console)
 
-- [ ] **Parking Brake** — SET
+- [ ] **Parking Brake** — SET (`LShift + W`)
 - [ ] **Collective** — Full DOWN
-- [ ] **Both Throttles** — IDLE detent (confirm at stop)
-- [ ] **Battery 1** — ON (voltmeter shows ~24V)
-- [ ] **Battery 2** — ON (voltage confirmed)
-- [ ] **Caution Panel** — CHECK (multiple lights expected with engines off)
-- [ ] **Warning Light Test** — PRESS and HOLD; verify all lights illuminate; release
+- [ ] **Engine Control Levers (ECL)** — MIDDLE detent
+- [ ] **Throttle Twist Grip** — **FULL LEFT (minimum)** (`PgDn` binding — do NOT leave at IDLE detent)
+- [ ] **Rotor Brake Lever** — OFF (fully disengaged)
+- [ ] Raise **Right and Left Circuit Breaker Panel handles** → sets all CBs to ON
+- [ ] **Battery 1 & Battery 2** — ON
+- [ ] **DC selector knob** — BATT
+- [ ] **DC voltmeter** — Check ≥ 24V
+- [ ] **POWER FROM BATTERY switch** (flip safety cover) — ON
+- [ ] **Inverter #1 (PO-750)** (flip safety cover) — ON
+- [ ] **AC selector knob** — 115 (Inverter)
+- [ ] **RI-65 aural warnings (Nadia)** — MUTE (press OFF button)
+- [ ] **Fire Extinguisher System Power (Master)** — ON
+- [ ] **Fire Detector Test switch** — ON
+- [ ] **Fuel Feed Valves (Service Tank 1 & 2)** — OPEN
+- [ ] **Engine Fuel Shutoff Valves (L & R)** — OPEN
+- [ ] **Fuel Delimiter (Crossfeed) Valve** — OPEN
+- [ ] **Fuel Pump switches (cells 1, 2, 4, 5)** — ON
+- [ ] **Fuel quantity** — Check total sufficient for mission
+- [ ] **Door Seal Control Wheel** — rotate counter-clockwise to pressurize; confirm DOORS SEALED annunciator
+- [ ] **Caution Panel** — CHECK (multiple lights expected cold)
 
-### Phase 2 — APU Start (Left Console)
+### Phase 2 — APU Start
 
-- [ ] **Fuel Boost Pumps (both)** — ON → fuel pressure indication confirmed
-- [ ] **APU Start Button** — PRESS → APU RPM rising
-- [ ] Wait for APU RPM to stabilize at operating range
-- [ ] **APU Generator** — ON → additional buses powered; caution lights begin extinguishing
-
-> *DCS keyboard alternative: autostart available via `LWin + Home`. Manual procedure preferred for training.*
+- [ ] **APU Mode Switch** — START (down position)
+- [ ] **APU START button** — PRESS and hold ~4 sec
+- [ ] Confirm AUTO ON annunciator illuminates
+- [ ] Monitor: APU EGT rising, Air Pressure rising, Oil Pressure normal within 9 sec
+- [ ] Wait for: APU EGT < 720°C, Air Pressure 1.2–2.0 kg/cm², APU NORMAL RPM annunciator
+- [ ] Confirm APU ON (RUNNING) annunciator illuminated
+- [ ] **Wait minimum 1 minute** before starting main engines (APU cool-down requirement)
 
 ### Phase 3 — Left Engine Start
 
-- [ ] **Left Throttle** — Confirm at IDLE detent
-- [ ] **Left Engine Start Button** — PRESS (`RAlt + Home`)
-- [ ] **Ng (L)** — Monitor rising toward 63–65%
+> The engine start in DCS uses clickable cockpit controls. `RAlt + Home` may trigger the left engine start automatically.
+
+- [ ] Confirm **rotor brake is OFF** before starting
+- [ ] Select START mode on the starter panel
+- [ ] **Left Engine — Select**
+- [ ] **START button** — PRESS 2–3 sec (`RAlt + Home`)
+  - Confirm: AUTO ON and STARTER ON annunciators illuminate; engine oil pressure rising
+- [ ] Once **N1 begins rising** → push **Left Engine Red Fuel Shutoff lever** (Engine Stop) **FORWARD**
+  - Fuel flow initiates; N1 accelerates to idle
+  - STARTER ON extinguishes at **60–65% N1**
+  - AUTO ON must extinguish within 33 sec of fuel-on
+  - At 45% N1: oil pressure ≥ 1.0 kgf/cm²
 - [ ] **TGT (L)** — Monitor; **ABORT if exceeds 830°C**
-- [ ] Wait for Ng to stabilize at ground idle (~63–65%)
-- [ ] **Oil Pressure (L)** — Confirm 3.0–4.5 kgf/cm² within 30 sec
+- [ ] Wait for N1 to reach **70–75% (ground idle)**
+- [ ] **Oil Pressure (L)** — Confirm 3.0–4.5 kgf/cm²
 
 ### Phase 4 — Right Engine Start
 
-- [ ] **Right Throttle** — Confirm at IDLE detent
-- [ ] **Right Engine Start Button** — PRESS (`RCtrl + Home`)
-- [ ] **Ng (R)** — Monitor rising toward 63–65%
-- [ ] **TGT (R)** — Monitor; **ABORT if exceeds 830°C**
-- [ ] Wait for Ng to stabilize (~63–65%)
+- [ ] **Right Engine — Select**
+- [ ] **START button** — PRESS 2–3 sec (`RCtrl + Home`)
+  - Same indications as left engine start
+- [ ] Push **Right Engine Red Fuel Shutoff lever FORWARD**
+- [ ] **TGT (R)** — Monitor; ABORT if exceeds 830°C
+- [ ] Wait for N1 to reach **70–75% (ground idle)**
 - [ ] **Oil Pressure (R)** — Confirm 3.0–4.5 kgf/cm²
+- [ ] When both engines at idle: **Main Rotor Speed 45–70% Nr** (pre-governor, rising)
 
-### Phase 5 — Post-Start Electrical
+### Phase 5 — Engine Run-Up Prerequisites
 
-- [ ] **Left Generator** — ON → GEN 1 caution extinguishes
-- [ ] **Right Generator** — ON → GEN 2 caution extinguishes
-- [ ] **APU Generator** — OFF
-- [ ] **APU** — OFF → APU RPM decays to zero
+- [ ] **Engine Dust Protector System Power** — ON
+- [ ] Wait for oil to warm: **Engine oil temperature > +30°C, Main Gearbox temperature > -15°C**
+- [ ] Only when temperatures satisfied: advance **Throttle Twist Grip to MAX** (`PgUp`)
+  - Governor engages; **Nr rises to 95%**
 
-### Phase 6 — Avionics Power-On (Pilot)
+### Phase 6 — Post-Start Electrical
 
+- [ ] **Generators (L & R)** — ON → LH/RH GEN OUT annunciators extinguish; GEN PARAL'D illuminates
+- [ ] **POWER FROM BATTERY switch** — OFF
+- [ ] **Inverter #1 (PO-750)** — OFF
+- [ ] **36V & 115V Transformer switches** — MAIN
+- [ ] **Rectifiers (L & R)** — ON → LH/RH RECT OFF annunciators extinguish
+- [ ] **APU** — OFF (press APU OFF button)
+- [ ] Air conditioner → CONDITION
+
+### Phase 7 — Avionics Power-On (Pilot)
+
+- [ ] **ICS (SPU-8) switches (NET 1 & 2)** — ON
 - [ ] **R-863 UHF Radio** — ON; set departure frequency
 - [ ] **R-828 VHF/FM Radio** — ON; set frequency per plan
-- [ ] **IFF/SRO-2** — STANDBY
-- [ ] **ARK-15 ADF** — ON; tune to NDB if available
-- [ ] **RSBN** — ON; select beacon channel
-- [ ] **DISS-15 Doppler** — ON (warm-up: 2–3 min)
-- [ ] **Radar Altimeter (A-037)** — ON; set warning altitude bug
-- [ ] **Autopilot** — STANDBY (do not engage channels yet)
+- [ ] **Radar Altimeter** — ON
+- [ ] **Doppler System (DISS-15)** — ON (warm-up: 2–3 min)
+- [ ] **Vertical Gyro 1 & 2** — ON
+- [ ] **GREBEN-1 Course Control** — ON (wait 3 min before sync)
+- [ ] **SPO-10 RWR** — ON; sound ON
+- [ ] **IFF** — STANDBY
+- [ ] **ARK-U2 / ARK-15 ADF** — ON; mode → COMPASS
+- [ ] **SPUU-52 Tail Rotor Pitch Limit System** — ON
+- [ ] **Autopilot — engage Roll and Pitch channels** (DO NOT engage Yaw channel)
+- [ ] Navigation lights, formation lights, blade tip lights, anti-collision — ON
+- [ ] Cage **Vertical Gyros 1 & 2** (2-sec press each); confirm VERT GYRO FAIL extinguishes
+- [ ] After 3 min: **GREBEN sync** → MAG mode → press SYNC (3 sec)
 
-### Phase 7 — WSO Cockpit (Switch to seat `1`)
+### Phase 8 — WSO Cockpit (Switch to seat `1`)
 
-- [ ] **SPO-15 RWR** — ON → display illuminates, self-test completes
-- [ ] **UV-26 Countermeasures** — ON; program selected; expendable count confirmed
-- [ ] **PKV-1 Sight** — STANDBY (if familiarization desired)
-- [ ] **Weapon Master** — **SAFE** (verify all weapon stations safe)
+- [ ] **Armament Circuit Breakers** — ON
+- [ ] **ICS (SPU-8)** — ON
+- [ ] **PKP-72M ADI** — ON
+- [ ] **Missile Power switches** — ON
+- [ ] **Countermeasure Dispenser Selectors** — ON
+- [ ] **Magnetic Variation** — set per theater (Caucasus: +6.4°, Syria: +5.0°, Nevada: +14.2°)
 - [ ] **Switch back to Pilot cockpit** (`2` key)
 
 ---
@@ -247,14 +294,11 @@ Rear Cockpit (Pilot — seat `2`, default spawn):
 
 ### Rotor Engagement
 
-- [ ] **Both engines** — Confirmed at ground idle (Ng ~63–65%)
-- [ ] **Both Throttles** — Advance to **FLY** detent
-- [ ] **Nr** — Monitor rising toward 95%
-- [ ] **Governor** — Verify ON (Nr stabilizes at 95% automatically)
-- [ ] **Nr** — Stable at 95 ± 2% (92–98% acceptable)
-- [ ] **Rotor Brake** — Verify OFF
+> Both engines should already be at 95% Nr from the Phase 5 run-up (throttle at MAX). The governor maintains Nr automatically.
 
-> The governor maintains 95% Nr automatically once throttles are in the FLY detent. Monitor for ~30–60 seconds until stable.
+- [ ] **Both engines** — Confirmed at 70–75% N1 (ground idle), TGT/Oil in limits
+- [ ] **Nr** — Confirm stable at **95%** (governor holding)
+- [ ] **Rotor Brake** — Verify OFF
 
 ---
 
@@ -970,6 +1014,16 @@ GROUND RESONANCE DETECTED (sudden, rapidly increasing airframe oscillation)
 ---
 
 ## Realism Notes
+> *Source: `reference/DCS Mi-24P Hind Guide.pdf` (488 pp.). Startup procedure completely rewritten to match Part 5 of the guide. Key corrections applied.*
+
+**Startup corrections (vs. prior documentation):**
+- **Throttle at start**: Must be **FULL LEFT (minimum/PgDn)**, not at IDLE detent. IDLE detent introduces too much fuel during the cranking phase.
+- **Engine idle RPM**: 60–65% N1 is when the **starter cuts out**; the engine continues spinning up to **70–75% N1** at ground idle. Prior documentation stated 63–65% as idle, which is incorrect.
+- **Engine Fuel Shutoff lever**: After N1 begins rising from the starter, the pilot must **push the Red Engine Stop lever FORWARD** to open the fuel flow. Without this step the engine cranks but does not light off. Not previously documented.
+- **APU 1-minute minimum**: APU must run for at least 1 minute before engine start. Prior documentation did not include this delay.
+- **Post-start electrical**: Generator ON → POWER FROM BATTERY OFF → Inverter OFF → Transformers to MAIN → Rectifiers ON. Prior documentation stopped after generators ON.
+- **Autopilot channels**: Engage Roll and Pitch autopilot channels during post-start; **do not engage Yaw channel**. Prior documentation said leave all in STANDBY.
+- **Run-up temperature prerequisites**: Must confirm engine oil temp > +30°C and main gearbox temp > -15°C before advancing throttle to MAX.
 
 ### Cannon Variant
 The Mi-24P ('P' for *Pushka* — cannon) uses a fixed twin-barrel 30mm GSh-30K cannon on the starboard fuselage rather than the flexible 12.7mm Yak-B turret of the Mi-24V. The pilot must aim the entire aircraft at the target. This fundamentally changes attack geometry compared to the V variant.

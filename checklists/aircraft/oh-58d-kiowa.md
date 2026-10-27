@@ -55,11 +55,12 @@
 │  ARC-201 (FM) Control Head                          │
 │  Audio Panel (ICS / Radio Select)                   │
 │  Transponder (IFF)                                  │
+│  ACP (Master Arm, Gun Arm, Stores Jettison)         │
 ├─────────────────────────────────────────────────────┤
 │  LEFT CONSOLE          │      RIGHT CONSOLE          │
-│  MMS Controller        │  Weapon Panel               │
-│  Collective (twist grip│  Master Arm                 │
-│  throttle)             │  Weapon Select              │
+│  MMS Controller        │  (no weapons panel)         │
+│  Collective (twist grip│                             │
+│  throttle)             │                             │
 └─────────────────────────────────────────────────────┘
 ```
 
@@ -67,10 +68,9 @@
 |---|---|---|
 | **Overhead console** | Above pilot | Battery, generator, FADEC, fuel valve, boost pump, rotor brake, lights |
 | **Instrument panel** | Forward | ADI, ASI, altimeter, VSI, radar altimeter, HSI, engine gauges, MFD |
-| **Center pedestal** | Between seats | ARC-164 UHF, ARC-201 FM, audio panel, transponder |
+| **Center pedestal** | Between seats | ARC-164 UHF, ARC-201 FM, audio panel, transponder, **ACP (Master Arm, Gun Arm, Stores Jettison)** |
 | **Collective** | Left side | Twist-grip throttle (IDLE → FLY detent), radio trigger |
 | **Left console** | Left | MMS controller |
-| **Right console** | Right | Weapon panel, master arm |
 
 ---
 
@@ -153,38 +153,44 @@
 
 ### Engine Start Sequence
 
-- [ ] **Battery** — ON *(multiple caution lights will illuminate — normal for cold-dark)*
-- [ ] **Caution/warning panel** — Check for pre-existing faults
-- [ ] **Fuel shutoff valve** — OPEN (verify)
-- [ ] **Fuel boost pump** — ON
-- [ ] **FADEC mode** — Verify AUTO
-- [ ] **Rotor brake** — OFF (released)
+- [ ] **Essential Bus** — START (overhead console)
+- [ ] **FADEC Circuit Breaker** — ON (overhead console)
+- [ ] **Ignition Circuit Breaker** — ON (overhead console)
+- [ ] **Ignition Keylock** — ON
+- [ ] **Battery 1** — ON *(pilot MFD, RFD, VSI and MPD activate; WCAs appear — acknowledge as required)*
+- [ ] **FADEC Auto/Manual switch** — Verify **AUTO**
 - [ ] **Throttle** — IDLE detent
-- [ ] **Starter** — PRESS *(N1 begins to rise)*
+- [ ] **Start Switch** — Hold 2 seconds, then release *(N1/Ng begins to rise; MFD may flicker during start)*
 
 **Monitor during start:**
-- [ ] **N1** — Rising smoothly (FADEC introduces fuel at ~15–20% N1)
-- [ ] **TOT** — Monitor throughout; must remain **< 810°C**; if exceeded for > 10 sec → abort
-- [ ] **Starter** — Release when N1 reaches ~58–62% (self-sustaining speed)
-- [ ] **Engine stabilizes** — N1 at ground idle (~62–65%), TOT decreases, Nr rises to 100%
-- [ ] **Generator** — ON *(caution lights for generator should extinguish)*
+- [ ] **N1/Ng** — Rising smoothly (FADEC introduces fuel at ~15–20% Ng)
+- [ ] **TOT/TGT** — Monitor throughout; must remain **< 843°C** during start; if exceeded → **abort immediately**
+- [ ] **Ng stabilizes** at **63–65%** (ground idle, self-sustaining)
+- [ ] **DC Generator** — ON
+- [ ] **AC Generator** — ON
+- [ ] **Essential Bus** — RUN
+- [ ] **Fuel Boost Pump** — ON
+- [ ] **Particle Separator Circuit Breaker** — IN
+- [ ] **Throttle** — OPEN (advance to OPEN/FLY detent)
+- [ ] **Wait for TGT/RPM to stabilize** — TOT settles, Nr rises
+- [ ] **Nr** — Increase to **100%** using RPM Trim Switch (one amber chiclet visible on NR VSI)
 - [ ] **Electrical panel** — Verify buses powered, ~28V DC
 
 ### Start Abnormalities
 
 | Abnormality | Indication | Action |
 |---|---|---|
-| **Hot start** | TOT > 810°C and climbing | Throttle OFF immediately; motor to cool if available |
-| **Hung start** | N1 stops rising below idle (~62%) | Throttle OFF; wait 30 sec minimum before retry |
-| **No light-off** | N1 rising but no TOT by ~25% N1 | Throttle OFF; check fuel shutoff open |
-| **Compressor stall** | Loud bangs, fluctuating TOT/N1 | Throttle OFF immediately; investigate before retry |
+| **Hot start** | TOT > 843°C during start | Throttle OFF immediately; motor to cool if available |
+| **Hung start** | Ng stops rising below idle (~62%) | Throttle OFF; wait 30 sec minimum before retry |
+| **No light-off** | Ng rising but no TOT by ~25% Ng | Throttle OFF; check fuel shutoff open |
+| **Compressor stall** | Loud bangs, fluctuating TOT/Ng | Throttle OFF immediately; investigate before retry |
 
 ---
 
 ## Post-Start Checks
 
-- [ ] **N1** — Ground idle (~62–65%), stable
-- [ ] **TOT** — Stable, well below limits
+- [ ] **Ng (N1)** — Ground idle (~63–65%), stable
+- [ ] **TOT/TGT** — Stable, well below limits (< 738°C normal range)
 - [ ] **Nr** — 100% governed, stable
 - [ ] **Torque** — Low at idle (~10–20% Q)
 - [ ] **Oil pressure** — 40–130 PSI
@@ -745,7 +751,7 @@ The MMS is the OH-58D's defining capability — a sensor ball mounted above the 
 
 ### Arming
 
-- [ ] **Master Arm** — ARM (`O`)
+- [ ] **Master Arm switch** — **ARMED** (Center Console ACP — physical switch; positions: STANDBY → ARMED)
 - [ ] Select weapon via MFD WPN page
 
 ---
@@ -790,7 +796,7 @@ The MMS is the OH-58D's defining capability — a sensor ball mounted above the 
 | AGM-114K | Laser + IIR | 500m–8km | Armor, moving |
 
 #### Hellfire Laser Procedure (SALH)
-1. [ ] **Master Arm** — ARM
+1. [ ] **Master Arm switch** — **ARMED** (Center Console ACP)
 2. [ ] Select AGM-114 on WPN page
 3. [ ] **MMS** — Slew to target
 4. [ ] **Laser code** — Set (match seeker to designator code)
@@ -994,7 +1000,8 @@ Equipment: (additional info)
 
 | Function | Key |
 |---|---|
-| Master Arm | `O` |
+| Master Arm | Physical switch — Center Console ACP |
+| Gun Arm / Recock | Physical switch — Center Console ACP |
 | Fire / Release | `Space` or trigger (2nd detent) |
 | Weapon jettison | `LAlt + J` |
 
@@ -1012,16 +1019,28 @@ Equipment: (additional info)
 
 ## Realism Notes
 
+> *Grounded against `reference/OH58D_User_Guide.pdf` (Polychop Simulations DCS OH-58D User Guide, 250 pp.) and `reference/tc3_04x44.pdf` (TC 3-04.44, Aircrew Training Manual OH-58D Kiowa Warrior, Mar 2013). TC 3-04.44 references TM 1-1520-248-10 for operating limits; that manual was not available. Limits values are from TM 1-1520-248-10 as cited by prior research.*
+
+### Startup Sequence
+The startup sequence has been corrected to match the DCS OH-58D User Guide (p.189):
+- **Essential Bus → START** must precede Battery ON
+- **FADEC CB, Ignition CB, Ignition Keylock** must be set before Battery
+- **Fuel Boost pump and Particle Separator CB** are switched ON **after** generators are on-line and Essential Bus is in RUN — not before engine start
+- **Throttle → OPEN** is a distinct step after generators and buses are established
+
 ### Operating Limits
 
 The values in the [Operating Limitations](#operating-limitations) table are based on **TM 1-1520-248-10** (real-world). The DCS Polychop module may use slightly different caution/warning trigger points. Observe the actual gauge markings and caution panel thresholds in DCS as the operative limits in simulation.
 
 Key corrections from prior documentation:
 - **Torque continuous limit is 85% Q** (not 100%). The 100% Q limit is a 5-minute takeoff power limit, not a continuous operating limit.
-- **TOT start limit is 843°C** (not 810°C). The 810°C figure is the 5-minute takeoff power limit. A hot start is declared when TOT exceeds 843°C during the start cycle — throttle to OFF immediately.
+- **TOT start limit is 843°C** (not 810°C). The 810°C figure is the 5-minute takeoff power limit. A hot start is declared when TOT exceeds 843°C during the start cycle — throttle to OFF immediately. *(The startup procedure has been corrected to reflect 843°C.)*
 - **Nr power-on normal range is 97–101%** (not 98–100%).
 - **Vne is 110–120 KIAS** (not 140 kts). The OH-58D is a light scout helicopter — the 140-kt figure applies to other aircraft.
 - **Autorotation best glide is ~72 KIAS** (not 65 kts). Min sink rate is ~55 KIAS.
+
+### TGT vs TOT Terminology
+The DCS OH-58D User Guide uses **TGT** (Turbine Gas Temperature) for the engine temperature gauge. This is equivalent to **TOT** (Turbine Outlet Temperature) as used in this checklist and TM 1-1520-248-10. Both refer to the same cockpit instrument on the Allison 250-C30 engine.
 
 ### Translating Tendency
 
