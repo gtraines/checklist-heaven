@@ -38,7 +38,7 @@ These three rules apply to every weapons release in this course. Violation of an
 >
 > **Rule 2 — Safe Escape:** Ensure sufficient altitude and airspeed to escape the weapon's fragmentation envelope before release. Do not fly through your own frag pattern. The GAU-8/A's massive recoil will decelerate you — plan your escape energy accordingly.
 >
-> **Rule 3 — Master Arm Discipline:** Master Arm (`O`) is ON only during the attack run. Return to SAFE immediately after weapon release or abort.
+> **Rule 3 — Weapon Mode Discipline:** The A-10A FC3 has **no clickable Master Arm switch**. Weapons become active when A2G mode (`7`) is selected. Select A2G mode only during the attack run; return to NAV mode (`1`) immediately after weapon release or abort.
 
 ---
 
@@ -50,11 +50,15 @@ The DCS A-10A is a Flaming Cliffs 3 module. Unlike the A-10C (full fidelity), yo
 
 | Function | Key | Notes |
 |---|---|---|
-| Master Arm (Toggle) | `O` | ARM before attack, SAFE after |
+| **A2G Mode** (arm for attack) | `7` | Activates weapons; use only during attack run |
+| **NAV Mode** (safe / transit) | `1` | Return here after each pass |
 | Cycle Weapon Station | `D` | Cycles through loaded stores left-to-right |
-| Fire / Release | `Space` | Guns, rockets, bombs, and missiles |
-| Maverick Slew | `Numpad 8/2/4/6` | Up/Down/Left/Right |
-| Maverick Lock | `Numpad Enter` | Locks seeker on contrast target |
+| Fire (gun / rockets) | `Space` | Gun and rocket fire only |
+| Release (bombs / missiles) | `RAlt + Space` | All bombs and Maverick launch |
+| Maverick Slew | `; , . /` | Up/Down/Left/Right |
+| Maverick Lock | `Enter` | Ground-stabilizes seeker on aim point |
+| Maverick Zoom | `+` | Toggle 3× / 6× magnification |
+| CCRP Mode | `O` | Pre-planned bomb release point toggle |
 | Jettison All | `LAlt + J` | Emergency stores dump |
 | Chaff | `[` | Radar countermeasure |
 | Flares | `]` | IR countermeasure |
@@ -182,11 +186,11 @@ The AGM-65 Maverick is the A-10A's primary precision standoff weapon. It is fire
 
 1. Select Maverick station (`D`)
 2. Seeker powers on — allow 3–5 minutes for IIR cooldown (IR variants)
-3. Slew seeker to target area (`Numpad 8/2/4/6`)
+3. Slew seeker to target area (`;` up, `,` down, `.` left, `/` right)
 4. Identify target — confirm VID
-5. Lock (`Numpad Enter`) — seeker squares on target
+5. Ground-stabilize (`Enter`) — seeker squares on aim point
 6. Confirm lock is on intended target (not decoy or terrain)
-7. Fire (`Space`) — **fire and forget**
+7. Fire (`RAlt + Space`) — **fire and forget**
 8. Break off — the missile guides itself
 
 ### IR Seeker Polarity
@@ -240,15 +244,15 @@ Active electronic jamming pod. Reduces radar lock-on range for enemy SAMs. Power
 
 ## Weapons Modes Cheat Sheet
 
-| Weapon | Master Arm | Select | HUD Mode | Lock Required | Fire-and-Forget |
+| Weapon | Mode | Select | HUD Mode | Lock Required | Fire Key |
 |---|---|---|---|---|---|
-| GAU-8/A | ON (`O`) | `D` (cycle to Gun) | CCIP — Gun Cross | No | N/A |
-| Hydra 70 | ON (`O`) | `D` (cycle to rockets) | CCIP — Pipper | No | N/A |
-| Mk-82/84 (CCIP) | ON (`O`) | `D` (cycle to bomb) | CCIP — Pipper | No | N/A |
-| Mk-82/84 (CCRP) | ON (`O`) | `D` (cycle to bomb) | CCRP — Steering/Release cue | No | N/A |
-| CBU-87/97 | ON (`O`) | `D` (cycle to CBU) | CCIP or Level release | No | N/A |
-| AGM-65 (all) | ON (`O`) | `D` (cycle to Maverick) | Seeker display | **Yes** (`Numpad Enter`) | **Yes** |
-| AIM-9M | ON (`O`) | `D` (cycle to AIM-9) | A-A — Seeker tone | Tone lock | Yes |
+| GAU-8/A | A2G (`7`) | `D` (Gun) | CCIP — Gun Cross | No | `Space` |
+| Hydra 70 | A2G (`7`) | `D` (rockets) | CCIP — Pipper | No | `Space` |
+| Mk-82/84 (CCIP) | A2G (`7`) | `D` (bomb) | CCIP — Pipper | No | `RAlt+Space` |
+| Mk-82/84 (CCRP) | A2G (`7`) | `D` (bomb) | CCRP — Steering/Release cue | No | `RAlt+Space` |
+| CBU-87/97 | A2G (`7`) | `D` (CBU) | CCIP or Level release | No | `RAlt+Space` |
+| AGM-65 (all) | A2G (`7`) | `D` (Maverick) | Seeker display | **Yes** (`Enter`) | `RAlt+Space` |
+| AIM-9M | A2A (`6`) | `D` (AIM-9) | A-A — Seeker tone | Tone lock | `RAlt+Space` |
 
 ---
 

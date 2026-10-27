@@ -71,7 +71,7 @@ Before you taxi, demonstrate the spool-up lag: advance both throttles from idle 
 ## Part 1 — Cold Start & Cockpit Checks
 
 ### Step 1: Electrical Power
-- [ ] **Master Electrical** — ON (`RShift + L`)
+- [ ] **Electrical Power** — ON (`RShift + L`)
 - [ ] Confirm HUD illuminates and warning lights energize
 - [ ] Allow warning lights to clear as systems initialize
 

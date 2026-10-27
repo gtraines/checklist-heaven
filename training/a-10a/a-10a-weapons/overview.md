@@ -38,7 +38,7 @@ Defensive counter-air (AIM-9M employment), buddy lasing with Pave Penny, and mul
 Before beginning this course, the student must:
 - [ ] Have **completed the A-10A Basic Qualification Training (BQT)** ([link](../a-10a-bqt/overview.md))
 - [ ] Be able to fly a stabilized dive and pull off target independently
-- [ ] Understand basic DCS Master Arm, weapons cycling (`D`), and pickle procedures
+- [ ] Understand FC3 weapon mode selection (`7` A2G / `1` NAV), weapons cycling (`D`), and pickle procedures
 - [ ] Have reviewed the **A-10A DCS Checklist** weapons section ([link](../../../checklists/aircraft/a-10a.md))
 
 ---

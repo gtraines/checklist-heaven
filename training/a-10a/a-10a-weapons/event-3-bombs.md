@@ -84,7 +84,7 @@ Release ────→  Bomb falls  ────→  Impact  ────→  F
 CCIP (Continuously Computed Impact Point) projects a pipper on the HUD that shows where the bomb will impact based on current aircraft state. Place the pipper on the target and release.
 
 ### Switchology
-1. - [ ] **Master Arm** — ON (`O`)
+1. - [ ] **A2G Mode** — SELECT (`7`)
 2. - [ ] **Weapon Select** — cycle to Mk-82 (`D`)
 3. - [ ] Confirm CCIP pipper displayed on HUD (pipper moves with dive angle and airspeed)
 
@@ -98,7 +98,7 @@ CCIP (Continuously Computed Impact Point) projects a pipper on the HUD that show
    - [ ] **Release** (`Space`) — single bomb
 4. - [ ] **Immediate pull-off**: ≥ 4 G pull, minimum **2,000 ft AGL**
 5. - [ ] Egress: turn off threat axis
-6. - [ ] **Master Arm** — SAFE
+6. - [ ] **A2G Mode** — EXIT (`1` for NAV)
 
 ### CCIP Dive Parameters
 
@@ -119,7 +119,7 @@ CCIP (Continuously Computed Impact Point) projects a pipper on the HUD that show
 CCRP (Continuously Computed Release Point) calculates the exact moment to release the bomb during a level fly-over. The HUD provides a vertical steering line and a release cue.
 
 ### Switchology
-1. - [ ] **Master Arm** — ON (`O`)
+1. - [ ] **A2G Mode** — SELECT (`7`)
 2. - [ ] **Weapon Select** — cycle to Mk-82 (`D`)
 3. - [ ] Confirm CCRP mode is active — HUD shows vertical steering line and range-to-release cue
 
@@ -133,7 +133,7 @@ CCRP (Continuously Computed Release Point) calculates the exact moment to releas
 4. - [ ] Do **not** release and re-press — hold the button until the bomb releases automatically
 5. - [ ] The computer releases at the calculated release point — you will see/hear the release
 6. - [ ] Continue wings-level for 3–4 seconds after release
-7. - [ ] **Master Arm** — SAFE after delivery
+7. - [ ] **A2G Mode** — EXIT (`1` for NAV) after delivery
 
 ### CCRP Key Numbers
 
@@ -157,7 +157,7 @@ The Mk-82AIR deploys a ballute (balloon-parachute) after release that retards th
 - Target on a road or in a valley where dive delivery is impractical
 
 ### Switchology
-1. - [ ] **Master Arm** — ON (`O`)
+1. - [ ] **A2G Mode** — SELECT (`7`)
 2. - [ ] **Weapon Select** — cycle to Mk-82AIR (`D`)
 3. - [ ] Confirm CCIP pipper on HUD
 
@@ -212,14 +212,14 @@ Same CCIP procedure as Mk-82, with two critical changes:
 
 ### Attack Procedure (CCIP)
 
-1. - [ ] **Master Arm** — ON (`O`)
+1. - [ ] **A2G Mode** — SELECT (`7`)
 2. - [ ] **Weapon Select** — cycle to Mk-84 (`D`)
 3. - [ ] Roll in: **30–45° dive**, 350 kts
 4. - [ ] Place CCIP pipper on target — let it stabilize
 5. - [ ] **Release** at pipper-on-target
 6. - [ ] **Immediate pull-off**: ≥ 4 G, minimum **3,000 ft AGL**
 7. - [ ] Egress away from target
-8. - [ ] **Master Arm** — SAFE
+8. - [ ] **A2G Mode** — EXIT (`1` for NAV)
 
 > **Instructor Note:** Students underestimate the Mk-84's frag envelope. A 600 m blast radius means if you release at 2,500 ft AGL in a 30° dive, fragments will reach your altitude. Brief: "Treat the Mk-84 like a small area weapon. Give it respect."
 
@@ -235,7 +235,7 @@ Same CCIP procedure as Mk-82, with two critical changes:
 | CCRP technique | Held pickle button through auto-release (no tap) |
 | Mk-82AIR delivery | Delivered from ≤ 1,000 ft AGL; bomb impacts within 100 m |
 | Mk-84 pull-off alt | Never below 3,000 ft AGL |
-| Master Arm discipline | SAFE after every pass |
+| Weapon mode discipline | Return to NAV (`1`) after every pass |
 
 ---
 

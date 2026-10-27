@@ -103,15 +103,15 @@ Before any AGM-65D employment:
 
 ### Switchology
 
-1. - [ ] **Master Arm** — ON (`O`)
+1. - [ ] **A2G Mode** — SELECT (`7`)
 2. - [ ] **Weapon Select** — cycle to AGM-65D (`D`)
 3. - [ ] Confirm seeker image is displayed (IR view of terrain ahead)
-4. - [ ] **Slew** seeker to target area: `Numpad 8` (up), `Numpad 2` (down), `Numpad 4` (left), `Numpad 6` (right)
+4. - [ ] **Slew** seeker to target area: `;` (up), `,` (down), `.` (left), `/` (right)
 5. - [ ] **Identify target** — confirm VID (Rule 1: positive target identification)
-6. - [ ] **Lock** on target: `Numpad Enter`
+6. - [ ] **Lock** on target: `Enter`
 7. - [ ] Confirm: seeker gate squares on target and tracks it
 8. - [ ] Verify lock is on the **intended target**, not a terrain feature or decoy
-9. - [ ] **Fire** (`Space`)
+9. - [ ] **Fire** (`RAlt + Space`)
 10. - [ ] **Break off** immediately — fire-and-forget
 
 ### Attack Profile
@@ -160,14 +160,14 @@ The TV Maverick uses a CCD camera to lock onto visual contrast. It does not requ
 ### Switchology
 
 Same as AGM-65D, substituting the TV variant:
-1. - [ ] **Master Arm** — ON (`O`)
+1. - [ ] **A2G Mode** — SELECT (`7`)
 2. - [ ] **Weapon Select** — cycle to AGM-65H (`D`)
 3. - [ ] Confirm seeker image is displayed (video feed — terrain ahead)
-4. - [ ] **Slew** to target: `Numpad 8/2/4/6`
+4. - [ ] **Slew** to target: `; , . /`
 5. - [ ] **Identify target** — TV image is clearer than IR for visual identification
-6. - [ ] **Lock**: `Numpad Enter`
+6. - [ ] **Lock**: `Enter`
 7. - [ ] Confirm tracking gate on target
-8. - [ ] **Fire** (`Space`) — fire and forget
+8. - [ ] **Fire** (`RAlt + Space`) — fire and forget
 9. - [ ] Break off
 
 ### TV Seeker Advantages
@@ -259,7 +259,7 @@ At 6 NM closing at 350 kts, you have approximately 60 seconds before reaching mi
 | Variant selection | Correct variant selected for target type and conditions |
 | Two-target pass | Both missiles hit on ≥ 1 of 2 two-target passes |
 | Heavy Maverick selection | AGM-65K/G used only on hardened/heavy targets |
-| Master Arm discipline | SAFE after every engagement |
+| Weapon mode discipline | Return to NAV (`1`) after every engagement |
 
 ---
 

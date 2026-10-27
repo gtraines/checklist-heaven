@@ -108,7 +108,7 @@ The CBU-87 is your general-purpose area weapon. Use it against:
 - Fuel and ammunition storage areas
 
 ### Switchology
-1. - [ ] **Master Arm** — ON (`O`)
+1. - [ ] **A2G Mode** — SELECT (`7`)
 2. - [ ] **Weapon Select** — cycle to CBU-87 (`D`)
 3. - [ ] Confirm HUD shows bomb delivery cues
 
@@ -122,7 +122,7 @@ The CBU-87 is your general-purpose area weapon. Use it against:
 4. - [ ] **Release** (`Space`) when pipper is on the leading edge of the target cluster
 5. - [ ] Continue straight and level for 3 seconds after release
 6. - [ ] Turn off target — do not overfly the impact zone
-7. - [ ] **Master Arm** — SAFE
+7. - [ ] **A2G Mode** — EXIT (`1` for NAV)
 
 ### Pattern Orientation
 
@@ -159,7 +159,7 @@ For improved accuracy, use a 10–15° dive from 3,000 ft AGL:
 The CBU-97 is the premier anti-armor area weapon. Save it for confirmed armor concentrations — using it against soft targets wastes its capability.
 
 ### Switchology
-1. - [ ] **Master Arm** — ON (`O`)
+1. - [ ] **A2G Mode** — SELECT (`7`)
 2. - [ ] **Weapon Select** — cycle to CBU-97 (`D`)
 3. - [ ] Confirm HUD shows bomb delivery cues
 
@@ -172,7 +172,7 @@ The CBU-97 is the premier anti-armor area weapon. Save it for confirmed armor co
 3. - [ ] **Release** (`Space`) when pipper is over the leading element of the formation
 4. - [ ] Continue straight and level for 3 seconds
 5. - [ ] Egress — turn off axis
-6. - [ ] **Master Arm** — SAFE
+6. - [ ] **A2G Mode** — EXIT (`1` for NAV)
 
 ### Post-Release — What to Expect
 
@@ -224,7 +224,7 @@ This exercise reinforces correct weapon selection. The instructor presents targe
 | Release altitude | 1,000–2,000 ft AGL (never below 500 ft AGL) |
 | Attack axis | Aligned with target long axis on ≥ 2 passes |
 | Weapon selection | Correctly identifies weapon for ≥ 5 of 6 scenarios in Part 3 |
-| Master Arm discipline | SAFE after every pass |
+| Weapon mode discipline | Return to NAV (`1`) after every pass |
 
 ---
 

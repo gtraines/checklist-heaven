@@ -104,7 +104,7 @@ The student is expected to:
 | U2 | Gun strafing technique | ≥ 1 hit per pass; bursts ≤ 3 seconds | / |
 | U3 | Rocket delivery (if selected) | Dive angle ≥ 15°; impacts within 50 m of target area | / |
 | U4 | Pull-off altitude | Above 2,000 ft AGL minimum | / |
-| U5 | Master Arm SAFE post-pass | SAFE within 10 sec of completing each pass | / |
+| U5 | Weapon mode post-pass | Return to NAV mode (`1`) within 10 sec of completing each pass | / |
 
 ---
 
@@ -148,7 +148,7 @@ The student is expected to:
 | U2 — Gun technique | ☐ | ☐ | ☐ |
 | U3 — Rocket delivery | ☐ | ☐ | ☐ |
 | U4 — Pull-off altitude | ☐ | ☐ | ☐ |
-| U5 — Master Arm SAFE | ☐ | ☐ | ☐ |
+| U5 — Weapon mode (NAV post-pass) | ☐ | ☐ | ☐ |
 
 ### Cluster Munitions
 | Standard | Pass | II | Fail |

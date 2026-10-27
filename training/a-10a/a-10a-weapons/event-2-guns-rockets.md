@@ -80,7 +80,7 @@ All unguided weapons in this course use the standard diving attack profile. The 
 ## Part 1 — GAU-8/A Gun Employment
 
 ### Switchology
-1. - [ ] **Master Arm** — ON (`O`)
+1. - [ ] **A2G Mode** — SELECT (`7`)
 2. - [ ] **Weapon Select** — cycle to GUN (`D` until HUD shows Gun Cross)
 3. - [ ] **HUD** — confirm CCIP Gun Cross is displayed
 
@@ -94,7 +94,7 @@ All unguided weapons in this course use the standard diving attack profile. The 
 4. - [ ] Observe: tracer stream converges on target area
 5. - [ ] If miss — correct pipper placement, fire **one more burst**
 6. - [ ] At **2,000 ft AGL minimum** — **pull off**: ≥ 4 G pull, wings level or slight bank away from target
-7. - [ ] **Master Arm** — SAFE (`O`) after egress
+7. - [ ] **A2G Mode** — EXIT (`1` for NAV) after egress
 
 ### GAU-8/A Technique Notes
 
@@ -123,7 +123,7 @@ All unguided weapons in this course use the standard diving attack profile. The 
 The Hydra 70 is an area suppression weapon. Individual rockets are inaccurate — effectiveness comes from firing salvos into a target area.
 
 ### Switchology
-1. - [ ] **Master Arm** — ON (`O`)
+1. - [ ] **A2G Mode** — SELECT (`7`)
 2. - [ ] **Weapon Select** — cycle to Rockets (`D` until HUD shows rocket CCIP pipper)
 3. - [ ] Confirm CCIP pipper appears on HUD and moves with range
 
@@ -134,7 +134,7 @@ The Hydra 70 is an area suppression weapon. Individual rockets are inaccurate �
 3. - [ ] Place CCIP pipper on target cluster
 4. - [ ] At **5,000–6,000 ft slant range** (~1.5–1.8 NM): **fire** (`Space`) — hold for 1–2 seconds (salvo of 4–7 rockets)
 5. - [ ] At 2,000 ft AGL — **hard pull-off**, exit threat axis
-6. - [ ] **Master Arm** — SAFE
+6. - [ ] **A2G Mode** — EXIT (`1` for NAV)
 
 ### Rocket Accuracy Table
 
@@ -178,7 +178,7 @@ Same technique as M151 HE rockets, with two differences:
 | Rocket accuracy (M151) | ≥ 1 pass with rockets impacting within 50 m of target cluster |
 | Dive angle | Minimum 15° dive on all passes |
 | Pull-off altitude | Never below 2,000 ft AGL |
-| Master Arm discipline | SAFE after every pass |
+| Weapon mode discipline | Return to NAV (`1`) after every pass |
 | WP marking | Smoke visible within 100 m of intended mark point |
 
 ---
@@ -192,7 +192,7 @@ Same technique as M151 HE rockets, with two differences:
 | Shallow dive (<10°) with rockets | Rockets scatter badly at shallow angles; minimum 15° dive |
 | Fixating on target — late pull-off | Set 2,000 ft AGL as a hard deck; honor it every pass |
 | Firing rockets at individual vehicles | Rockets are area weapons — aim at cluster center, not one truck |
-| Master Arm left ON after pass | Build the habit: cease fire, safety on, egress |
+| Staying in A2G mode after pass | Build the habit: cease fire, NAV mode, egress |
 
 ---
 
