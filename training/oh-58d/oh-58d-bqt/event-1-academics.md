@@ -326,15 +326,20 @@ The student must be able to locate each panel **by name** before Event 2. Use th
 
 | Panel / Control | Location | Key Functions |
 |---|---|---|
-| **Battery Switch** | Overhead console | Master electrical power ON/OFF |
-| **Fuel Boost Pump** | Overhead console — fuel panel | Required ON before engine start |
-| **Generator Switch** | Overhead console — electrical panel | Generator ON after engine start |
-| **Inverter Switch** | Overhead console — electrical panel | AC power for attitude indicator |
-| **FADEC Switch** | Overhead console | Auto/Manual mode selection |
-| **Throttle (Twist Grip)** | Collective grip | Engine power control; FLY detent for normal ops |
+| **Essential Bus Switch** | Overhead console | Must be set to START before Battery ON; then RUN after generators ON |
+| **FADEC Circuit Breaker** | Overhead console | Must be ON before Battery ON for proper start sequencing |
+| **Ignition Circuit Breaker** | Overhead console | Must be ON before Battery ON |
+| **Ignition Keylock Switch** | Overhead console | Turn to ON before Battery ON |
+| **Battery Switch** | Overhead console | Last electrical step before engine start; powers MFD, RFD, VSI, MPD |
+| **Fuel Boost Pump** | Overhead console — fuel panel | ON after generator online (post-start); also available pre-start via battery |
+| **DC Generator Switch** | Overhead console — electrical panel | Generator ON after engine reaches ground idle |
+| **AC Generator Switch** | Overhead console — electrical panel | AC power after DC generator online |
+| **FADEC Switch** | Instrument panel (dash) | Auto/Manual mode selection; verify AUTO before start |
+| **Throttle (Twist Grip)** | Collective grip | Engine power control; IDLE for start, OPEN/FLY for normal ops |
 | **Force Trim Release** | Cyclic grip | Press-hold to move controls; release to set trim |
 | **MFD (Multi-Function Display)** | Center instrument panel | Navigation pages, moving map, system data |
 | **Caution/Warning Panel** | Center instrument panel | Engine, systems, and rotor caution lights |
+| **ACP (Armament Control Panel)** | **Center console** | Master Arm, Gun Arm, stores jettison switches |
 | **Torque Gauge (Q%)** | Left instrument panel | Primary power indication |
 | **TOT Gauge** | Right instrument panel | Engine temperature — primary limitation |
 | **Nr Gauge (Rotor RPM)** | Left instrument panel | Rotor speed — critical in autorotation |

@@ -123,7 +123,7 @@ The OH-58D does not use a centralized stores management system. Weapons are mana
 | **SAFE** | Weapons safed | No weapon can fire regardless of any other switch position; default for all non-tactical flight |
 | **ARM** | Weapons armed | Selected weapon is hot; trigger/pickle will fire if weapon-specific constraints are met |
 
-**Location in DCS:** Master Arm switch is located on the armament panel — consult the Polychop OH-58D manual for precise cockpit location. Verify the switch position is displayed on the MFD weapons page.
+**Location in DCS:** The Master Arm switch is on the **Armament Control Panel (ACP)** located on the **Center Console** (center pedestal between the two crew positions). It has STANDBY, ARMED, and SAFE positions. The armed state is confirmed by the MASTER ARM annunciation on the MFD weapons page.
 
 ### Complete Arming Sequence
 

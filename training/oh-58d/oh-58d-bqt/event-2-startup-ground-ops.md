@@ -89,39 +89,54 @@ Work through these steps in sequence. **Do not rush the engine start.** The thro
 
 | Step | Switch / Action | Location | Expected Result |
 |---|---|---|---|
-| 1 | **Battery** — **ON** | Overhead console | DC power on; caution panel illuminates briefly |
-| 2 | **Fuel Boost Pump** — **ON** | Overhead console — fuel panel | FUEL BOOST PUMP caution extinguishes |
-| 3 | **Avionics Master** — **ON** (if equipped) | Overhead console | Avionics bus powered |
+| 1 | **Essential Bus Switch** — **START** | Overhead console | Battery emergency bus enabled for startup |
+| 2 | **FADEC Circuit Breaker Switch** — **ON** | Overhead console | FADEC powered for start |
+| 3 | **Ignition Circuit Breaker Switch** — **ON** | Overhead console | Ignition system enabled |
+| 4 | **Ignition Keylock Switch** — **ON** | Overhead console | Key turned to ON |
+| 5 | **Battery 1** — **ON** | Overhead console | Pilot MFD, RFD, VSI and MPD activate; acknowledge WCAs |
+| 6 | Verify **FADEC AUTO/MANUAL Switch** — **AUTO** | Instrument panel | FADEC in automatic mode for start |
+| 7 | **Fuel Boost Pump** — **ON** | Overhead console — fuel panel | FUEL BOOST PUMP caution extinguishes |
 
 ### Phase 1B: Pre-Start Checks
 
 | Step | Check | Expected |
 |---|---|---|
-| 4 | Throttle | Confirm at **IDLE** or **OFF** detent — not FLY |
-| 5 | Collective | Full DOWN |
-| 6 | Cyclic and Pedals | Centered / neutral |
-| 7 | Caution panel | Note any pre-existing cautions (GEN, FADEC) |
-| 8 | Engine instruments | TOT at ambient; N1 at 0% |
+| 8 | Throttle | Confirm at **IDLE** detent |
+| 9 | Collective | Full DOWN |
+| 10 | Rotor Brake | Confirm **disengaged** (fully down) before start |
+| 11 | Cyclic and Pedals | Centered / neutral |
+| 12 | Caution panel | Note any pre-existing cautions (GEN, FADEC) |
+| 13 | Engine instruments | TOT at ambient; N1 at 0% |
 
 ### Phase 1C: Engine Start
 
 | Step | Action | Monitor |
 |---|---|---|
-| 9 | **Starter** — **ENGAGE** (or battery start switch per DCS OH-58D) | N1 begins rising; starter motoring |
-| 10 | At **15% N1** — **Throttle to IDLE detent** (fuel introduction) | TOT begins rising — **MONITOR TOT CONTINUOUSLY** |
-| 11 | Monitor **TOT during light-off** | TOT rises rapidly during combustion; must stay **below 843°C** |
-| 12 | Monitor **N1 rising** | N1 should accelerate past 60% toward ground idle |
-| 13 | At **~62–65% N1** — engine stabilizes at ground idle | Starter disengages (auto or manual); check: TOT ≤ 737°C, N1 stable, Oil pressure rising |
-| 14 | Verify **Engine Oil Pressure** — 90–130 PSI | If < 60 PSI after 30 seconds → shutdown |
+| 14 | **Starter** — **HOLD 2 seconds** then release | N1 begins rising; AUTO ON and STARTER ON annunciators illuminate |
+| 15 | Monitor **TOT during light-off** | TOT rises rapidly during combustion; must stay **below 843°C** |
+| 16 | Monitor **N1 rising** | N1 should accelerate past 60% toward ground idle; STARTER ON extinguishes at 60–65% N1 |
+| 17 | At **~63–65% N1** — engine stabilizes at ground idle | Starter auto-disengages; check: TOT ≤ 737°C, N1 stable, Oil pressure rising |
+| 18 | Verify **Engine Oil Pressure** — 90–130 PSI | If < 60 PSI after 30 seconds → shutdown |
 
 > *⚠ Abort Action: If TOT approaches 843°C at any point during start — **Throttle to OFF immediately**. Do not wait. Do not hesitate. A hot start is a maintenance event; a burned turbine is an expensive and dangerous outcome.*
 
-### Phase 1D: Generator and Inverter On
+### Phase 1D: Generator, Buses, and Fuel Systems
 
 | Step | Switch | Location | Expected |
 |---|---|---|---|
-| 15 | **Generator** — **ON** | Overhead console — electrical panel | GEN caution extinguishes; voltmeter shows ~28V |
-| 16 | **Inverter** — **ON** | Overhead console — electrical panel | AC bus powered; attitude indicator begins erecting |
+| 19 | **DC Generator** — **ON** | Overhead console — electrical panel | DC power from engine online |
+| 20 | **AC Generator** — **ON** | Overhead console — electrical panel | AC power online |
+| 21 | **Essential Bus Switch** — **RUN** | Overhead console | Normal bus configuration |
+| 22 | **Fuel Boost Switch** — **ON** | Overhead console — fuel panel | Fuel boost from main system |
+| 23 | **Particle Separator Circuit Breaker** — **IN** | Overhead console | Engine inlet protection active |
+
+### Phase 1E: Rotor Engagement
+
+| Step | Action | Monitor |
+|---|---|---|
+| 24 | **Throttle** — advance to **OPEN/FLY** detent | Nr begins rising; governor engages |
+| 25 | **Nr** — increase to **100%** using RPM Trim Switch | One amber chiclet visible on NR VSI |
+| 26 | Verify Nr stable at 100% | Governor holding; Nr not fluctuating |
 
 ---
 
