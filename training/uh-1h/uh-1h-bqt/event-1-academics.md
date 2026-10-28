@@ -80,7 +80,7 @@ The UH-1H is powered by a single **Lycoming T53-L-13B** turboshaft engine produc
 | **Rotor RPM (Nr)** | Normal: 324 ±3 RPM | Dual tachometer shows Nr and N2 together |
 | **EGT Continuous Max** | 610°C | Primary engine health indicator |
 | **EGT Transient (5 sec)** | 625°C | Brief exceedance only |
-| **EGT Starting Limit (10 sec)** | **720°C** | Exceed this during start → HOT START; throttle CLOSED immediately |
+| **EGT Starting Limit (10 sec)** | **760°C** | Exceed this during start → HOT START; throttle CLOSED immediately |
 | **Engine Oil Pressure** | 35–70 PSI normal | < 35 PSI = caution; < 25 PSI = warning |
 | **Engine Oil Temperature** | < 107°C | > 107°C = land as soon as practicable |
 
@@ -111,13 +111,13 @@ The UH-1H does **not** have a FADEC. RPM management uses a two-part mechanical/h
 
 | Step | Action | Key Indication |
 |---|---|---|
-| 1 | Battery ON, Inverter ON | Caution panel illuminates normally |
-| 2 | Fuel Valve ON, Boost Pump ON | FUEL BOOST caution extinguishes |
+| 1 | Battery ON (`LShift + P`), Inverter OFF (`LShift + I`) during pre-start | Caution panel illuminates normally; inverter goes MAIN ON (`LShift + U`) after start |
+| 2 | Fuel Valve (`F`) ON, GOV → AUTO (`G`) on CENTER PEDESTAL | FUEL BOOST caution extinguishes when boost pump ON |
 | 3 | Throttle CLOSED, Collective full down | Fuel cutoff confirmed |
-| 4 | Hold Starter Button (`LShift + Home`) | N1 begins rising from 0% |
+| 4 | Hold Starter Button (`Home`) | N1 begins rising from 0% |
 | 5 | At ~15% N1 → Throttle to IDLE (mouse wheel CW on grip) | Fuel introduced to combustion |
 | 6 | EGT rises → light-off confirmed | 200–400°C at light-off |
-| 7 | Monitor EGT — must not exceed **720°C** | Continuous monitoring required |
+| 7 | Monitor EGT — must not exceed **760°C** | Continuous monitoring required |
 | 8 | N1 accelerates to 58–62% (ground idle) | Rotor begins spinning up |
 | 9 | Release Starter Button | Starter disengages |
 | 10 | Stabilize at ground idle 30–60 sec | EGT settles, oil pressure rises |
@@ -126,7 +126,7 @@ The UH-1H does **not** have a FADEC. RPM management uses a two-part mechanical/h
 
 | Condition | Recognition | Action |
 |---|---|---|
-| **Hot Start** | EGT exceeds 720°C | Throttle to CLOSED immediately; motor 30 sec to purge; wait 2 min |
+| **Hot Start** | EGT exceeds **760°C** | Throttle to CLOSED immediately; motor 30 sec to purge; wait 2 min |
 | **Hung Start** | N1 stagnates below ~55% with rising EGT | Throttle to CLOSED; motor to clear; check battery and fuel supply |
 | **No Light-Off** | No EGT rise by ~25% N1 | Throttle to CLOSED; motor to purge; check fuel valve and boost pump |
 
@@ -258,11 +258,15 @@ The two-blade teetering rotor is the most safety-critical system characteristic 
 
 **DCS Keybinds:**
 
-| Function | Key |
-|---|---|
-| Battery ON/OFF | `LShift + B` |
-| Generator ON/OFF | `LShift + G` |
-| Inverter ON/OFF | `LShift + I` |
+| Function | Key | Notes |
+|---|---|---|
+| Battery (BAT switch) | `LShift + P` | Overhead |
+| MAIN GEN switch | `LShift + Q` | Overhead |
+| STARTER GEN → START (pre-engine) | `LShift + X` | Set before start; STBY GEN post-start |
+| Inverter → OFF (pre-start) | `LShift + I` | OFF during start |
+| Inverter → MAIN ON (post-start) | `LShift + U` | After engine running |
+| Governor (GOV) → AUTO | `G` | Center Pedestal — set BEFORE start |
+| Main Fuel switch | `F` | |
 
 ---
 
@@ -383,11 +387,11 @@ The fuselage hangs below the rotor like a pendulum and swings during attitude ch
 
 | Panel | Location | Key Contents |
 |---|---|---|
-| **Overhead Console** | Above both crew members | Battery, Generator, Inverter, Fuel Valve, Boost Pump, Governor (GOV), Starter, RPM Warning, Pitot Heat, De-ice, Caution Light Test |
+| **Overhead Console** | Above both crew members | Battery (BAT), MAIN GEN, STARTER GEN, Inverter (PO-750), PHASE switch, Fuel Valve, Boost Pump, Pitot Heat, De-ice, RPM Warning, Caution Light Test |
 | **Main Instrument Panel — Pilot (Right)** | Forward right | Flight instruments (AI, ASI, ALT, VSI, DG, T&S), Radar Altimeter |
 | **Main Instrument Panel — Engine (Center)** | Forward center | Torque (PSI), EGT (°C), N1 (%), Dual Tach (Nr/N2), Engine Oil P/T, Trans Oil P/T, Fuel Qty |
 | **Caution/Advisory Panel** | Instrument panel — center-left | MASTER CAUTION, RPM, GEN, GOV EMER, FUEL BOOST, CHIP DET, XMSN OIL, ENG OIL, FIRE |
-| **Center Pedestal** | Between seats | AN/ARC-134 (VHF-AM), AN/ARC-51BX (UHF-AM), AN/ARC-131 (FM), Transponder, Audio Panels |
+| **Center Pedestal** | Between seats | AN/ARC-134 (VHF-AM), AN/ARC-51BX (UHF-AM), AN/ARC-131 (FM), Transponder, Audio Panels, **GOV switch (AUTO/EMER)** |
 | **Pilot's Subpanel (Right Lower)** | Below pilot's instruments | Circuit breakers (pilot side), armament panel (if equipped) |
 
 ### Engine Instruments — Priority Reference
@@ -395,7 +399,7 @@ The fuselage hangs below the rotor like a pendulum and swings during attitude ch
 | Instrument | Display | Normal Range | Never Exceed |
 |---|---|---|---|
 | **Torque** | PSI | <40 PSI continuous | >50 PSI |
-| **EGT** | °C | <610°C | 720°C (start), 625°C (5 sec transient) |
+| **EGT** | °C | <610°C | 760°C (start), 625°C (5 sec transient) |
 | **N1** | % | 58–100% | >101% |
 | **Dual Tach (Nr/N2)** | RPM | 321–327 RPM (needles married) | <294 or >345 RPM |
 | **Engine Oil Pressure** | PSI | 35–70 PSI | <25 PSI |
@@ -456,7 +460,7 @@ All radios are **manually tuned via rotary knobs** in DCS (left-click increase, 
 
 | Parameter | Normal | Caution | Limit |
 |---|---|---|---|
-| **EGT** | <610°C | 610–625°C (5 sec) | **720°C** starting (10 sec) |
+| **EGT **760°C** (start limit per DCS manual) starting (10 sec) |
 | **N1** | 58–100% | — | >101% |
 | **Nr** | 321–327 RPM | 294–321 / 327–339 | <294 or >345 RPM |
 | **Torque** | <40 PSI | 40–48 PSI (time-limited) | >50 PSI |
@@ -506,7 +510,7 @@ Boldface procedures are memory items — executed without reference to a checkli
 ### Engine Fire in Flight
 
 1. **Throttle** — CLOSED (fuel cutoff position, full CCW)
-2. **Fuel Valve** — OFF (`LShift + F`)
+2. **Fuel Valve** — OFF (`F`)
 3. **Boost Pump** — OFF (`LCtrl + B`)
 4. **Land** — IMMEDIATELY (do not attempt to restart)
 
@@ -514,9 +518,9 @@ Boldface procedures are memory items — executed without reference to a checkli
 
 1. **Throttle** — CLOSED
 2. **Starter Button** — HOLD (motor to purge)
-3. **Fuel Valve** — OFF (`LShift + F`)
+3. **Fuel Valve** — OFF (`F`)
 4. **Boost Pump** — OFF (`LCtrl + B`)
-5. **Battery** — OFF (`LShift + B`)
+5. **Battery** — OFF (`LShift + P`)
 6. **Evacuate** aircraft
 
 ### Low RPM (Nr Warning Tone / RPM Caution)
@@ -524,7 +528,7 @@ Boldface procedures are memory items — executed without reference to a checkli
 1. **Collective** — LOWER (reduce power demand immediately)
 2. **Nr** — Check on dual tachometer
 3. **Throttle** — Advance as required (increase fuel flow)
-4. **Governor** — Verify ON (`LCtrl + Home`)
+4. **Governor** — Verify ON (`G`)
 5. If Nr continues to fall → initiate **autorotation**
 
 ### Tail Rotor Failure (Loss of Anti-Torque)
@@ -542,7 +546,7 @@ Boldface procedures are memory items — executed without reference to a checkli
 ### Governor Failure (GOV EMER Light or Loss of RPM Control)
 
 1. **Manual throttle** — Take immediate control with twist-grip
-2. **Governor switch** — OFF (`LCtrl + Home`) (prevent conflicting inputs)
+2. **Governor switch** — OFF (`G`) (prevent conflicting inputs)
 3. **Nr** — Maintain 321–327 RPM manually; adjust throttle with every collective change
 4. **Land** — as soon as practicable; manual throttle is high workload
 
@@ -559,7 +563,7 @@ Boldface procedures are memory items — executed without reference to a checkli
 
 This is a **ground event** — no simulator time required. Completion standards are oral/written:
 
-- [ ] **Engine Limits:** State all EGT, N1, Nr, torque, oil pressure, and temperature limits from memory without reference. Zero errors permitted on EGT starting limit (720°C) and Nr low warning (294 RPM).
+- [ ] **Engine Limits:** State all EGT, N1, Nr, torque, oil pressure, and temperature limits from memory without reference. Zero errors permitted on EGT starting limit (760°C) and Nr low warning (294 RPM).
 - [ ] **Correlator/Governor:** Explain the difference between correlator and governor; describe what happens when the governor fails; describe correct manual throttle technique.
 - [ ] **Mast Bumping:** Describe the mechanism, list three triggering scenarios, and state the prevention rules without reference.
 - [ ] **Aerodynamics:** Define and explain ETL, LTE, settling with power, retreating blade stall, and dynamic rollover. State recovery procedures for each.

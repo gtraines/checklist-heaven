@@ -101,7 +101,7 @@ The check ride evaluates mastery of all prior BQT events. The student must demon
 |---|---|---|---|---|
 | **Nr** | 321–327 RPM | 294–320 RPM | <294 (low) / >345 (overspeed) | TM 55-1520-210-10 |
 | **Torque** | 0–40 PSI continuous | 40–48 PSI (time limited) | >50 PSI (structural) | TM 55-1520-210-10 |
-| **EGT** | ≤610°C continuous | 610–625°C (5 sec limit) | >720°C during start (10 sec) | TM 55-1520-210-10 |
+| **EGT** | ≤610°C continuous | 610–625°C (5 sec limit) | >760°C during start | TM 55-1520-210-10 |
 | **Vne** | 124 KIAS (sea level) | — | 124 KIAS | TM 55-1520-210-10 |
 | **Max GW** | 9,500 lb (varies) | — | Per loading tables | TM 55-1520-210-10 |
 
@@ -153,7 +153,7 @@ The student performs the complete startup checklist from memory, using the check
 | Pre-start checks completed | All switches verified before start | Missing battery/fuel valve = Unsatisfactory |
 | Starter engagement | Starter held until self-sustaining; released correctly | Early release causing failed start = Marginal |
 | Throttle advance (idle stop) | Idle stop released (`LShift + PgDn`) before throttle advance | Advancing throttle without releasing idle stop = Unsatisfactory |
-| EGT monitoring | Student calls out EGT; recognizes hot start threshold (720°C) | Not monitoring EGT = Marginal |
+| EGT monitoring | Student calls out EGT; recognizes hot start threshold (760°C) | Not monitoring EGT = Marginal |
 | Post-start sequence | Generator ON → Governor ON → RPM Warning ON → gauge checks | Out of order = Marginal; missing generator/governor = Unsatisfactory |
 | Before-takeoff checks | Completed before departing the parking spot | Skipping the hover check = Marginal |
 

@@ -226,10 +226,10 @@ The IP will call "engine failure" at various conditions. Student response is tim
 | Step | Action | DCS Input |
 |---|---|---|
 | 1 | **Throttle — CLOSE** (enter autorotation) | Mouse wheel on throttle grip to OFF position |
-| 2 | **Emergency fuel shutoff — OFF** | Fuel valve switch `LShift + F` → OFF |
+| 2 | **Emergency fuel shutoff — OFF** | Fuel valve switch `F` → OFF |
 | 3 | **Cabin Heat — OFF** | Cockpit cabin heat switch (if simulated) |
 | 4 | **Autorotate to nearest suitable area** | Full autorotation technique as above |
-| 5 | After landing: **Battery OFF** | `LShift + B` → OFF |
+| 5 | After landing: **Battery OFF** | `LShift + P` → OFF |
 | 6 | **Egress immediately** | Leave the aircraft away from the direction of the fire |
 
 > **Speed is critical:** Engine fire with fuel flowing will progress rapidly. The difference between fire containment and aircraft loss may be seconds. The throttle and fuel shutoff must be immediate and simultaneous with the autorotation entry.
@@ -354,7 +354,7 @@ All three conditions must be present simultaneously:
 
 | Step | Action | DCS Input |
 |---|---|---|
-| 1 | **GOV switch — OFF** | Cockpit governor switch (`LCtrl + Home`) |
+| 1 | **GOV switch — EMER** (off auto mode) | Center Pedestal — GOV switch (`G` toggles; verify in EMER/manual position) |
 | 2 | **Throttle — MANUAL** | Mouse wheel on throttle grip in cockpit |
 | 3 | Adjust throttle to maintain **Nr 324 RPM** | Twist grip right (clockwise) to add fuel; left (counterclockwise) to reduce |
 | 4 | **Coordinate collective and throttle** | Collective up → add throttle; collective down → reduce throttle |

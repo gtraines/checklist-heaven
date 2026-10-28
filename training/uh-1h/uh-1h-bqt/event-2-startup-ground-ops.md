@@ -34,7 +34,7 @@ Upon completion of this event the student will be able to:
 - [ ] Perform a stable hover at 3–5 ft skid height with no more than ±1 ft altitude deviation, ±5° heading deviation, and no more than 3 ft lateral drift over a 30-second stabilization period
 - [ ] Execute a hover taxi for a minimum 200 ft along a taxiway with a ground track within 5 ft of centerline
 - [ ] Perform a complete normal shutdown in correct sequence from flight RPM to engine off to battery off
-- [ ] State all start abort criteria (hot start, hung start, no light-off) and the EGT starting limit (720°C) from memory
+- [ ] State all start abort criteria (hot start, hung start, no light-off) and the EGT starting limit (760°C) from memory
 
 ---
 
@@ -59,7 +59,7 @@ This is an **out-and-back simulator session** flown from the starting ramp posit
 
 | Parameter | Value | Notes |
 |---|---|---|
-| **EGT starting limit** | **720°C (10 sec max)** | Throttle to CLOSED immediately if exceeded |
+| **EGT starting limit** | **760°C (10 sec max)** | Throttle to CLOSED immediately if exceeded |
 | **EGT continuous limit** | 610°C | Must be below this before advancing to FLY |
 | **Nr normal (flight)** | 321–327 RPM | Governor maintains; dual tach needles married |
 | **Nr low warning** | 294 RPM | Audio tone; lower collective / increase throttle |
@@ -77,15 +77,15 @@ This is an **out-and-back simulator session** flown from the starting ramp posit
 
 | Function | Keybind | Notes |
 |---|---|---|
-| Battery ON/OFF | `LShift + B` | First switch in startup |
+| Battery ON/OFF | `LShift + P` | First switch in startup |
 | Inverter ON/OFF | `LShift + I` | Second switch; powers AC gyro instruments |
-| Fuel Valve ON/OFF | `LShift + F` | Guarded — lift guard first |
+| Fuel Valve ON/OFF | `F` | Guarded — lift guard first |
 | Fuel Boost Pump ON/OFF | `LCtrl + B` | Extinguishes FUEL BOOST caution |
-| Starter Button (hold) | `LShift + Home` | Hold until ~15% N1, then throttle to IDLE |
+| Starter Button (hold) | `Home` | Hold until ~15% N1, then throttle to IDLE |
 | Throttle (mouse wheel on 3D grip) | Mouse wheel on twist-grip | CW = increase; CCW = decrease; no keyboard key |
 | Idle Stop Release | `LShift + PgDn` | Must press before advancing past IDLE to FLY |
-| Generator ON/OFF | `LShift + G` | Post-start; extinguishes GEN caution |
-| Governor ON/OFF | `LCtrl + Home` | Post-start; do not turn ON until engine stabilized |
+| Generator ON/OFF | `LShift + X` | Post-start; extinguishes GEN caution |
+| Governor (GOV) | `G` | On CENTER PEDESTAL; set to AUTO before start | engine stabilized |
 | RPM Warning ON/OFF | *(panel click)* | Overhead console — click to arm |
 | Force Trim Release (hold) | `T` | Hold to reposition, release to latch |
 | Set Force Trim | `LCtrl + T` | Latch current position |
@@ -103,18 +103,18 @@ This is an **out-and-back simulator session** flown from the starting ramp posit
 
 | Step | Action | Location | Expected Result |
 |---|---|---|---|
-| 1 | **Battery** — ON (`LShift + B`) | Overhead — Electrical panel | Caution panel illuminates multiple lights; voltmeter ~24V (battery). Normal. |
+| 1 | **Battery** — ON (`LShift + P`) | Overhead — Electrical panel | Caution panel illuminates multiple lights; voltmeter ~24V (battery). Normal. |
 | 2 | **Caution Panel** — scan | Instrument panel | Multiple lights ON (RPM, GEN, GOV EMER, FUEL BOOST, etc.) — normal on battery only. Verify no *unexpected* unusual indications |
 | 3 | **Caution Light Test** — press and hold | Overhead — Test panel | ALL caution lights illuminate. Verify no dead bulbs. Release. |
-| 4 | **Inverter** — ON (`LShift + I`) | Overhead — Electrical panel | AC bus powered; attitude indicator starts erecting (allow 2–3 min to fully stabilize) |
-| 5 | **Fuel Valve** — OPEN (`LShift + F`) | Overhead — Fuel panel (guarded) | Lift guard; toggle switch. Fuel supply open to engine. No immediate cockpit indication other than valve position. |
+| 4 | **Inverter** — **OFF** (`LShift + I`) | Overhead — Electrical panel | Inverter should be OFF during pre-start; it will be switched to MAIN ON (`LShift + U`) after engine start |
+| 5 | **Fuel Valve** — OPEN (`F`) | Overhead — Fuel panel (guarded) | Lift guard; toggle switch. Fuel supply open to engine. No immediate cockpit indication other than valve position. |
 | 6 | **Fuel Boost Pump** — ON (`LCtrl + B`) | Overhead — Fuel panel | **FUEL BOOST caution extinguishes** — fuel pressure established. If caution stays ON → stop and check fuel valve and plumbing. |
 | 7 | **Fuel Quantity** — check | Instrument panel — Fuel qty gauge | Verify adequate fuel in pounds for planned mission. Note quantity. |
 | 8 | **Throttle** — verify CLOSED (full CCW) | Collective grip — twist-grip | No fuel to engine. If not at CLOSED, rotate CCW until fully closed. |
 | 9 | **Collective** — full DOWN (friction set) | Left hand | At bottom of travel; minimum blade pitch |
 | 10 | **Cyclic** — centered | Right hand | Neutral |
 | 11 | **Pedals** — centered | Feet | Neutral; slight left pedal anticipation is acceptable |
-| 12 | **Governor (GOV)** — verify OFF | Overhead — Engine panel | Governor must be OFF before start; will be turned ON after stabilization |
+| 12 | **Governor (GOV)** — set **AUTO** (`G`) | **Center Pedestal** (not overhead) | Governor in automatic mode — required BEFORE start. The `G` key sets GOV to AUTO. |
 | 13 | **Rotor arc** — clear | Visual scan out windows | No personnel or obstacles within rotor sweep (48 ft radius from mast) |
 
 ---
@@ -125,11 +125,11 @@ This is an **out-and-back simulator session** flown from the starting ramp posit
 
 | Step | Action | Location | Expected Result | Critical Monitoring |
 |---|---|---|---|---|
-| 14 | **Starter Button** — press and HOLD (`LShift + Home`) | Overhead — Engine panel | Starter engages; N1 begins to climb from 0% | Watch N1 — should increase steadily |
+| 14 | **Starter Button** — press and HOLD (`Home`) | Overhead — Engine panel | Starter engages; N1 begins to climb from 0% | Watch N1 — should increase steadily |
 | 15 | Monitor **N1 increasing** | Instrument panel — N1 gauge | N1 climbs: 5% → 10% → 15%... | Smooth, continuous increase. If stagnation → abort |
 | 16 | At **~15% N1** — advance **Throttle to IDLE** | Collective grip — twist clockwise to IDLE detent | Fuel introduced to combustion chamber | Watch for EGT rise (light-off) within a few seconds |
 | 17 | Monitor **EGT** for light-off confirmation | Instrument panel — EGT gauge | EGT begins rising from ambient — confirms ignition | **If no EGT rise by ~25% N1 → ABORT** |
-| 18 | Monitor **EGT** during N1 acceleration | EGT gauge | EGT rises, peaks, then settles as N1 reaches idle | **720°C is the hard limit.** If EGT trend exceeds this → ABORT immediately |
+| 18 | Monitor **EGT** during N1 acceleration | EGT gauge | EGT rises, peaks, then settles as N1 reaches idle | **760°C is the hard limit.** If EGT trend exceeds this → ABORT immediately |
 | 19 | Monitor **N1 acceleration** to idle | N1 gauge | N1 accelerates steadily toward ~58–62% | **If N1 stagnates below ~55% with rising EGT → ABORT** (hung start) |
 | 20 | When **N1 ~58-62%** — **release Starter Button** | Overhead — Engine panel | Starter disengages; N1 holds at idle RPM | N1 should hold stable at ground idle |
 | 21 | **Stabilize at ground idle** — wait 30–60 sec | All engine instruments | N1: 58–62%, EGT: settling <610°C, rotor spinning up slowly | Do not advance throttle or governor until engine is thermally stable |
@@ -139,7 +139,7 @@ This is an **out-and-back simulator session** flown from the starting ramp posit
 | Condition | Recognition | Immediate Action | Before Reattempt |
 |---|---|---|---|
 | **No light-off** | No EGT rise by ~25% N1 | Throttle to CLOSED immediately; release starter; motor 30 sec to purge | Check fuel valve ON, boost pump ON; wait 30 sec |
-| **Hot start** | EGT trending toward or exceeding **720°C** | Throttle to CLOSED **immediately**; motor 30 sec to purge exhaust | Wait **2 minutes** for turbine cooling |
+| **Hot start** | EGT trending toward or exceeding **760°C** | Throttle to CLOSED **immediately**; motor 30 sec to purge exhaust | Wait **2 minutes** for turbine cooling |
 | **Hung start** | N1 stagnates below ~55% with rising EGT | Throttle to CLOSED; release starter; motor to clear | Check battery voltage (may need GPU); wait 2 min |
 
 > *If three consecutive start attempts fail — stop. Brief the IP and troubleshoot cause before attempting again.*
@@ -152,9 +152,9 @@ This is an **out-and-back simulator session** flown from the starting ramp posit
 
 | Step | Action | Location | Expected Result |
 |---|---|---|---|
-| 22 | **Generator (GEN)** — ON (`LShift + G`) | Overhead — Electrical panel | **GEN caution extinguishes**; voltmeter shows ~28V (generator output). Generator now powering the bus; battery begins charging. |
-| 23 | **Governor (GOV)** — ON (`LCtrl + Home`) | Overhead — Engine panel | Governor engages; small Nr adjustment may be noted as governor takes authority. |
-| 24 | **RPM Warning Audio** — ON | Overhead — Engine panel | Low-RPM audio warning system armed. Verify by briefly reducing throttle below ~294 Nr threshold and listening for tone (optional — do not allow Nr to drop dangerously). |
+| 22 | **STARTER GEN switch** — **STBY GEN** (`LShift + X`) | Overhead — Electrical panel | Switches generator from start mode to standby generator mode; **GEN caution extinguishes**; voltmeter shows ~28V |
+| 23 | **Inverter** — **MAIN ON** (`LShift + U`) | Overhead — Electrical panel | AC bus powered; attitude indicator begins erecting. Note: different key from Inverter OFF (`LShift + I`) |
+| 24 | **Governor (GOV)** — verify **AUTO** (`G`) | **Center Pedestal** | Already set to AUTO at pre-start; confirm it is still in AUTO position |
 | 25 | **Engine Oil Pressure** — check | Instrument panel — Eng oil press gauge | Must be **35–70 PSI** within 30 seconds of start. If not rising → shut down and investigate. |
 | 26 | **Engine Oil Temperature** — check | Instrument panel — Eng oil temp gauge | Rising toward operating range. Will take several minutes to reach steady state. No action required if rising trend confirmed. |
 | 27 | **Transmission Oil Pressure** — check | Instrument panel — Trans oil press gauge | **30–70 PSI** |
@@ -173,7 +173,7 @@ Perform at ground idle, collective full down, before advancing to FLY:
 4. Observe: Nr remains stable; EGT and torque decrease.
 5. **Lesson:** Governor holds Nr regardless of collective position.
 
-**Exercise B — Governor OFF (`LCtrl + Home` to disengage):**
+**Exercise B — Governor OFF (`G` to disengage):**
 1. Turn GOV switch OFF.
 2. Slowly raise collective 1–2 inches.
 3. Observe: Nr begins to drop; must add throttle to recover.
@@ -282,7 +282,7 @@ Before departing on a full-power maneuver:
 | Step | Action | Location | Expected Result |
 |---|---|---|---|
 | 1 | **Collective** — full DOWN (hold through entire shutdown) | Left hand | Minimum blade pitch; minimum rotor thrust |
-| 2 | **Governor (GOV)** — OFF (`LCtrl + Home`) | Overhead — Engine panel | Governor disengaged; RPM will begin to drop with next step |
+| 2 | **Governor (GOV)** — OFF (`G`) | Overhead — Engine panel | Governor disengaged; RPM will begin to drop with next step |
 | 3 | **Throttle** — retard to IDLE (CCW to IDLE detent) | Collective grip — twist-grip | Engine power reduces; N1 drops toward idle; Nr begins to reduce |
 | 4 | **Stabilize at ground idle** — 1–2 minutes | All engine instruments | N1: 58–62%; EGT settling and cooling; Nr at idle/ground idle RPM. Allow engine to cool before shutdown. |
 | 5 | **Avionics** — OFF (radios, ADF, VOR, transponder) | Pedestal | All avionics powered off |
@@ -291,10 +291,10 @@ Before departing on a full-power maneuver:
 | 8 | **Throttle** — CLOSE (full CCW to fuel cutoff) (`LShift + End`) | Collective grip / keyboard | Engine fuel cutoff; N1 and EGT begin to drop toward zero |
 | 9 | Monitor **Nr decreasing** | Dual tach | Nr and N2 decreasing and separating (freewheeling unit decouples as N2 drops below Nr); Nr coasts down freely |
 | 10 | **Fuel Boost Pump** — OFF (`LCtrl + B`) | Overhead — Fuel panel | Boost pump off |
-| 11 | **Fuel Valve** — CLOSED (`LShift + F`) | Overhead — Fuel panel | Fuel system secured |
-| 12 | When **Nr below ~30 RPM** — **Generator** — OFF (`LShift + G`) | Overhead — Electrical panel | GEN caution illuminates (expected) |
+| 11 | **Fuel Valve** — CLOSED (`F`) | Overhead — Fuel panel | Fuel system secured |
+| 12 | When **Nr below ~30 RPM** — **Generator** — OFF (`LShift + X`) | Overhead — Electrical panel | GEN caution illuminates (expected) |
 | 13 | **Inverter** — OFF (`LShift + I`) | Overhead — Electrical panel | AC bus de-powered; AI and DG will cage |
-| 14 | **Battery** — OFF (`LShift + B`) | Overhead — Electrical panel | All electrical power removed; caution panel dark |
+| 14 | **Battery** — OFF (`LShift + P`) | Overhead — Electrical panel | All electrical power removed; caution panel dark |
 | 15 | Verify **rotor fully stopped** | Visual | All movement ceased before conducting a walk-around |
 
 ---

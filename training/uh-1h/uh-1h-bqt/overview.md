@@ -100,7 +100,7 @@ An Incomplete Item (II) is issued when the student fails one specific standard b
 | **Approach angle (normal)** | 8–12° glidepath; deceleration to hover at designated point |
 | **Approach angle (steep)** | 15–20° glidepath maintained |
 | **Hover to touchdown** | Smooth set-down; no dynamic rollover tendency; both skids simultaneously |
-| **Engine start EGT** | Must not exceed 720°C starting limit; monitor continuously |
+| **Engine start EGT** | Must not exceed 760°C starting limit; monitor continuously |
 
 ---
 
