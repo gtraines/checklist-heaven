@@ -54,7 +54,7 @@ The Su-25T "Frogfoot-B" is a substantially modified variant of the base Su-25A. 
 |---|---|
 | Engine | 2× Tumansky R-195 Turbojet |
 | Max Thrust (each) | 4,500 kgf |
-| Idle RPM (N1 / N2) | ~36–40% / ~60–65% |
+| Idle RPM | ~33% (per DCS manual) |
 | Max RPM | 100% N1 |
 
 ### ⚠ Critical: Engine Spool-Up Lag

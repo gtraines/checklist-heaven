@@ -68,7 +68,7 @@ Before takeoff, demonstrate the spool-up lag on the ramp: advance both throttles
 ## Part 1 — Cold Start & Cockpit Checks
 
 ### Step 1: Electrical Power
-- [ ] **Battery** — ON (`RShift + L`)
+- [ ] **APU** — ON (`RShift + L`) *(not "Battery" — `RShift+L` activates the Auxiliary Power Unit; there is no separate Battery switch in the Su-25T FC3)*
 - [ ] Confirm EKRAN panel illuminates and performs self-test
 - [ ] Allow EKRAN warnings to clear (normal: battery cautions extinguish within 30 sec)
 
@@ -76,16 +76,16 @@ Before takeoff, demonstrate the spool-up lag on the ramp: advance both throttles
 - [ ] **Canopy** — CLOSE AND LOCK (`LCtrl + C`)
 - [ ] Verify closed visually
 
-### Step 3: Left Engine Start
-- [ ] **Left Engine Start** — INITIATE (`RAlt + Home`)
-- [ ] Monitor N1 RPM — must reach > 30% before throttle advance
+### Step 3: Right Engine Start *(right engine first)*
+- [ ] **Right Engine Start** — INITIATE (`RCtrl + Home`) *(start right first per DCS manual)*
+- [ ] Monitor RPM stabilizing at **~33%** at idle (per DCS manual)
 - [ ] Verify **no EGT overtemp** (no red warning on EKRAN)
-- [ ] Left engine settles at idle: **~36–40% N1 / ~60–65% N2**
+- [ ] EGT should be ~440°C at idle
 
-### Step 4: Right Engine Start
-- [ ] **Right Engine Start** — INITIATE (`RCtrl + Home`)
-- [ ] Monitor N1 RPM — same procedure as left engine
-- [ ] Verify right engine at idle parameters
+### Step 4: Left Engine Start
+- [ ] **Left Engine Start** — INITIATE (`RAlt + Home`)
+- [ ] Monitor RPM — same as right engine
+- [ ] Both engines at idle: **~33% RPM, EGT ~440°C**
 - [ ] Confirm all EKRAN cautions clear
 
 ### Step 5: Post-Start Checks
